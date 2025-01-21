@@ -1,4 +1,9 @@
 # This is the configuration file for the GitHub Pages.
+
+title: "Opengrep"
+description: "Opengrep | The open source static code analysis engine"
+url: "https://github.com/opengrep/opengrep"
+
 plugins:
   - jekyll-relative-links
 
@@ -10,3 +15,7 @@ include:
   - README.md
 
 theme: jekyll-theme-slate
+
+social_links:
+  x: "https://x.com/opengrep"
+  github: "https://github.com/opengrep/opengrep"
