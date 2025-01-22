@@ -1,3 +1,5 @@
+# Opengrep - The open-source security engine
+
 ## TL;DR
 We’re launching Opengrep, a fork of Semgrep OSS, in response to recent changes by Semgrep that affects its open-source nature and shift focus to its paid offering, limiting access and innovation for the broader community.
 
@@ -47,6 +49,12 @@ For users, Opengrep means:
 Each organization contributes resources and OCAML development power to improve Opengrep’s SAST engine for the benefit and free use of all. To further guarantee Opengrep’s open future, parties have committed a timeframe to move Opengrep under foundation management.
 
 Democratizing static code analysis isn’t just a technical goal—it’s a mission to make security scalable, accessible, and impactful for all.
+
+## Getting Started
+
+- [github.com/opengrep/opengrep](https://github.com/opengrep/opengrep) - Install, run, or contribute to the Opengrep CLI.
+- [github.com/opengrep/opengrep-rules](https://github.com/opengrep/opengrep-rules) - Review, modify, or contribute new rules.
+
 
 ## Social channels
 We encourage community driven conversations via [X](https://x.com/opengrep), [Reddit](https://www.reddit.com/r/opengrep) or [GitHub](https://github.com/opengrep/opengrep). 
