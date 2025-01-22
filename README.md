@@ -1,3 +1,5 @@
+# Opengrep - The open-source security engine
+
 ## TL;DR
 We’re launching Opengrep, a fork of Semgrep OSS, in response to recent changes by Semgrep that affects its open-source nature and shift focus to its paid offering, limiting access and innovation for the broader community.
 

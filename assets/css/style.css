@@ -274,3 +274,6 @@ Small Device Styles
   h6 { font-size: 12px; }
   code, pre { min-width: 240px; max-width: 320px; font-size: 11px; } }
 
+
+/** Hide first h1 that use used for controlling the window <title>  **/
+#main_content h1:first-of-type { display: none; }
