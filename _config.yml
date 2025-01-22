@@ -1,6 +1,6 @@
 # This is the configuration file for the GitHub Pages.
 
-title: "<img src='/assets/images/logo.png'>"
+title: "<img src='/assets/images/logo.svg'>"
 #description: "Opengrep | The open source static code analysis engine"
 url: "https://github.com/opengrep/opengrep"
 
