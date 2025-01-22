@@ -49,4 +49,4 @@ Each organization contributes resources and OCAML development power to improve O
 Democratizing static code analysis isn’t just a technical goal—it’s a mission to make security scalable, accessible, and impactful for all.
 
 ## Social channels
-We encourage community driven conversations via [X](https://x.com/opengrep), [Reddit](https://www.reddit.com/r/opengrep) or [GitHub](https://github.com/opengrep/opengrep/issues). 
+We encourage community driven conversations via [X](https://x.com/opengrep), [Reddit](https://www.reddit.com/r/opengrep) or [GitHub](https://github.com/opengrep/opengrep). 
