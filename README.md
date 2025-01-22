@@ -50,5 +50,11 @@ Each organization contributes resources and OCAML development power to improve O
 
 Democratizing static code analysis isn’t just a technical goal—it’s a mission to make security scalable, accessible, and impactful for all.
 
+## Getting Started
+
+- [github.com/opengrep/opengrep](https://github.com/opengrep/opengrep) - Install, run, or contribute to the Opengrep CLI.
+- [github.com/opengrep/opengrep-rules](https://github.com/opengrep/opengrep-rules) - Review, modify, or contribute new rules.
+
+
 ## Social channels
 We encourage community driven conversations via [X](https://x.com/opengrep), [Reddit](https://www.reddit.com/r/opengrep) or [GitHub](https://github.com/opengrep/opengrep). 
