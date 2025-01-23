@@ -142,7 +142,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 /*******************************************************************************
 Theme Styles
 *******************************************************************************/
-body { background-size: cover;    background-image: url('/assets/images/background.svg'); background-position: center; box-sizing: border-box; color: #373737; font-size: 16px; font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+body { background-size: cover;    background-image: url('/assets/images/background.png'); background-position: center; box-sizing: border-box; color: #373737; font-size: 16px; font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 
 h1, h2, h3, h4, h5, h6 { margin: 10px 0; font-weight: 700; color: #222222; font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif; letter-spacing: -1px; }
 
@@ -223,7 +223,7 @@ Full-Width Styles
 
 #forkme_banner { display: none; position: absolute; top: 0; right: 10px; z-index: 10; padding: 10px 50px 10px 10px; color: #fff; background: url("../images/blacktocat.png") #0090ff no-repeat 95% 50%; font-weight: 700; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; }
 
-#header_wrap { background-image: url('/assets/images/background.svg'); background-position: center; background-size: cover; }
+#header_wrap { background-image: url('/assets/images/background.png'); background-position: center; background-size: cover; }
 
 #header_wrap .inner { padding: 50px 10px 30px 10px; }
 
