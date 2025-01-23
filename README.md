@@ -1,7 +1,7 @@
-# Opengrep - The open-source security engine
+# Opengrep - The open-source code security engine
 
 ## TL;DR
-We’re launching Opengrep, a fork of Semgrep OSS, in response to recent changes by Semgrep that affects its open-source nature and shift focus to its paid offering, limiting access and innovation for the broader community.
+We’re launching Opengrep, a fork of SemgrepCS (formerly SemgrepOSS), in response to recent changes by Semgrep that affect its open-source nature and shift focus to its paid offering, limiting access and innovation for the broader community.
 
 Our commitment to Opengrep ensures that its static code analysis engine and rules remain accessible to everyone. We’re investing for the long term with a strong roadmap for impactful new features. Together, we will democratize Static Application Security Testing (SAST) and code security to empower developers to build more secure software.
 
@@ -14,7 +14,7 @@ Since 2017, Semgrep has been an exemplary leader in the open-source security com
 
 These projects have helped democratize Static Application Security Testing (SAST), a historically inaccessible, highly specialized field. Best put by Semgrep co-founder Luke O’Malley, *“That’s the big breakthrough. Semgrep is an open-source project that’s by developers, for developers.”* ([Interview, 2022](https://news.mit.edu/2022/r2c-software-security-0210))
 
-Since then, Semgrep has focused on its commercial SaaS management platform, as its open-source community has continued to flourish. Over eight years, the Semgrep community has grown to millions of users and contributors. This ecosystem also comprises customers, vendors, and others who actively support and advance the open source projects, all united by a common goal: helping developers build more secure software.
+Since then, Semgrep has focused on its commercial SaaS management platform, as its open-source community has continued to flourish. Over eight years, the Semgrep community has grown to millions of users and contributors. This ecosystem also comprises customers, vendors, and others who actively support and advance the open source projects, united by a common goal: helping developers build more secure software.
 
 On December 13th, 2024, Semgrep announced license changes to its OSS rules repository and moved critical features of its OSS engine behind the commercial license. 
 1. All new community-contributed rules will be locked behind Semgrep’s license permitting only their product to utilize them;
@@ -45,6 +45,8 @@ For users, Opengrep means:
 3. **Long-term assurance** that your rules won't be locked into specific vendors, so you can take them easily between your jobs no matter which code security provider they use.
 4. Your contributions to Opengrep and PRs are regularly reviewed and accepted on merit, not contingent upon the commercial interest of any single company.
 
+Follow the Opengrep calendar & [join the open roadmap sessions](https://lu.ma/opengrep?utm=github).
+
 
 Each organization contributes resources and OCAML development power to improve Opengrep’s SAST engine for the benefit and free use of all. To further guarantee Opengrep’s open future, parties have committed a timeframe to move Opengrep under foundation management.
 
@@ -57,4 +59,4 @@ Democratizing static code analysis isn’t just a technical goal—it’s a miss
 
 
 ## Social channels
-We encourage community driven conversations via [X](https://x.com/opengrep), [Reddit](https://www.reddit.com/r/opengrep) or [GitHub](https://github.com/opengrep/opengrep). 
+We encourage community driven conversations via [X](https://x.com/opengrep), [Reddit](https://www.reddit.com/r/opengrep) or [GitHub](https://github.com/opengrep/opengrep). Join meetings via the [opengrep calendar](https://lu.ma/opengrep?utm=github)
