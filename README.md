@@ -8,15 +8,13 @@ Our commitment to Opengrep ensures that its static code analysis engine and rule
 We invite everyone who shares this mission to use and contribute to Opengrep. 
 
 ## Background
-Since 2017, Semgrep has been an exemplary leader in the open-source security community. It maintains two open-source projects:
-- OSS Engine: A smart taint-aware pattern matcher, a fast way to analyze large codebases. Licensed under [LGPL 2.1](https://www.tldrlegal.com/license/gnu-lesser-general-public-license-v2-1-lgpl-2-1).
-- OSS Rules: A shared registry combining Semgrep’s rules with community contributions built on the engine. Now licensed under Semgrep’s own [Rules License](https://semgrep.dev/legal/rules-license/).
+Since 2017, Semgrep has been an exemplary leader in the open-source security community. It maintains the [Semgrep Engine](https://github.com/semgrep/semgrep), a smart taint-aware pattern matcher which is a fast way to analyze large codebases and is licensed under [LGPL 2.1](https://www.tldrlegal.com/license/gnu-lesser-general-public-license-v2-1-lgpl-2-1).
 
-These projects have helped democratize Static Application Security Testing (SAST), a historically inaccessible, highly specialized field. Best put by Semgrep co-founder Luke O’Malley, *“That’s the big breakthrough. Semgrep is an open-source project that’s by developers, for developers.”* ([Interview, 2022](https://news.mit.edu/2022/r2c-software-security-0210))
+This project has helped democratize Static Application Security Testing (SAST), a historically inaccessible, highly specialized field. Best put by Semgrep co-founder Luke O’Malley, *“That’s the big breakthrough. Semgrep is an open-source project that’s by developers, for developers.”* ([Interview, 2022](https://news.mit.edu/2022/r2c-software-security-0210))
 
-Since then, Semgrep has focused on its commercial SaaS management platform, as its open-source community has continued to flourish. Over eight years, the Semgrep community has grown to millions of users and contributors. This ecosystem also comprises customers, vendors, and others who actively support and advance the open source projects, united by a common goal: helping developers build more secure software.
+Since then, Semgrep has focused on its commercial SaaS management platform, as its open-source community has continued to flourish. Over eight years, the Semgrep community has grown to millions of users and contributors. This ecosystem also comprises customers, vendors, and others who actively support and advance the open source project, united by a common goal: helping developers build more secure software.
 
-On December 13th, 2024, Semgrep announced license changes to its OSS engine and moved critical features behind the commercial license. 
+On December 13th, 2024, Semgrep announced changes to its OSS engine and moved critical features behind the commercially licensed version.
 Specifically, key features of the scanning engine were moved behind the commercial SaaS platform, including tracking ignores, fingerprint, and meta-variables.
 
 This comes as no surprise to the community; Semgrep has been quietly reducing its support for the OSS engine for a long time. Beyond the license and feature migration, Semgrep rebranded from “Semgrep OSS” to “Semgrep Community Edition.” This confirms a departure from their open source commitment and goal to democratize code security for developers. 
@@ -28,7 +26,7 @@ Semgrep’s decision creates turmoil for end-users and vendors alike who are com
 
 *“This sort of change also harms all similar open-source projects. Every company and every developer now needs to think twice before adopting and investing in an open-source project in case the creator suddenly decides to change the license.”*
 
-As much as the changes have been positioned as only affecting other SaaS providers, their walling of experimental and “Pro” features stunted the capabilities of its open-source scanner. This creates serious disruptions for end-users and organizations alike, as the communities scramble to adopt new standards. 
+Whilst this was not a license change as such, deliberately removing functionality from an open source project in this way causes a similar impact. As much as the changes have been positioned as only affecting other SaaS providers, their walling of experimental and “Pro” features stunted the capabilities of its open-source scanner. This creates serious disruptions for end-users and organizations alike, as the communities scramble to adopt new standards. 
 
 ## Our mission
 We believe that discovering security issues must remain accessible to all. Opengrep will empower every developer with open and transparent SAST, making secure software development a shared standard. 
