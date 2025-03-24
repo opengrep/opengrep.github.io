@@ -28,6 +28,33 @@ There is a full-time developmer team building Opengrep. Each organization contri
 
 Follow the Opengrep calendar & [join the open roadmap sessions](https://lu.ma/opengrep?utm=github), get involved, and weigh in on the roadmap.
 
+## Roadmap (Updated March 2025)
+
+| Feature Request (& Github Issue)                                                                | T-Shirt Sizing                                          | Rank | Status |
+|----------------------------------------------------------------------------------|---------------------------------------------------------|------|--------|
+| [Support for Cross Function / Inter Procedural Analysis](https://github.com/opengrep/opengrep/issues/88)                     | XXL                                                     | 1    |    ⌛️     |
+| [Cross-file analysis (per language!)](https://github.com/opengrep/opengrep/issues/88)                                        | XXXL                                                    | 2    |    2026    |
+| [Windows support](https://github.com/opengrep/opengrep/issues/18)                                                            | XXXL; Testing, see PRs and Issues with tag "windows")   | 3    |    ✅     |
+| [Expose Tree-sitter AST Context in Results](https://github.com/opengrep/opengrep/issues/103)                                  | XL                                                      | 4    |        |
+| [Add support of JavaServer Pages (JSP) scriptlets](https://github.com/opengrep/opengrep/issues/110)                           | XL                                                      | 5    |        |
+| [Language support: add Elixir](https://github.com/opengrep/opengrep/issues/84)                                               | L                                                       | 5    |   ⌛️    |
+| [Inconsistent miss of matches in C#](https://github.com/opengrep/opengrep/issues/92)                                         | L                                                       | 5    |        |
+| [Support metavariable references in metadata fields](https://github.com/opengrep/opengrep/issues/104)                         | M                                                       | 8    |     ✅    |
+| Better support of C/C++                                                    | L                                                       | 8    |        |
+| [Language support: add Visual Basic](https://github.com/opengrep/opengrep/issues/85)                                         | L                                                       | 10   |        |
+| [Composability of rule logic](https://github.com/opengrep/opengrep/issues/108)                                                | XXL                                                     | 10   |        |
+| [Java metavariable issue (function parameter parsing)](https://github.com/opengrep/opengrep/issues/23)                       | L                                                       | 10   |        |
+| [Improve Rule Resiliency: Configurable Limits](https://github.com/opengrep/opengrep/issues/102)                               | L                                                       | 10   |        |
+| [Language support: C# version 13](https://github.com/opengrep/opengrep/issues/93)                                            | L                                                       | 10   |        |
+| [Build & export code property graph](https://github.com/opengrep/opengrep/issues/109)                                         | XXXL                                                    | 15   |        |
+| [JavaScript template string incorrect range issue](https://github.com/semgrep/semgrep/issues/7695)                           | L                                                       | 15   |        |
+| Support of APEX                                                            | L                                                       | 15   |        |
+| [Playground / Editor for rules](https://github.com/opengrep/opengrep/issues/54#issuecomment-2692828447)                                              | S                                                       | 15   |     ✅    |
+
+
+Keep up with the latest **Open Roadmap Session (recorded)**
+
+
 ## Getting Started
 
 - [github.com/opengrep/opengrep](https://github.com/opengrep/opengrep) - Install, run, or contribute to the Opengrep CLI.
