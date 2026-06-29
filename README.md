@@ -22,11 +22,9 @@ We invite everyone who shares this mission to use and contribute to Opengrep.
 
 By working together, we can pool resources, OCaml development power, and expertise to advance static code analysis further and faster.
 
-This is why a consortium of 10+ organizations in the application security space, including [Aikido Security](https://www.aikido.dev/), [Arnica](https://www.arnica.io), [Amplify](https://amplify.security/), [Endor Labs](https://www.endorlabs.com/), [Jit](https://www.jit.io/), [Kodem](https://www.kodemsecurity.com/), [Legit](https://www.legitsecurity.com/), [Mobb](https://www.mobb.ai/), [Orca Security](https://orca.security/), [Phoenix Security](https://phoenix.security/), and others have united behind Opengrep. 
+This is why a consortium of organizations in the application security space, including [Aikido Security](https://www.aikido.dev/), [Amplify](https://amplify.security/), [Endor Labs](https://www.endorlabs.com/), [Kodem](https://www.kodemsecurity.com/), [Orca Security](https://orca.security/), and others have united behind Opengrep. 
 
-There is a full-time developer team building Opengrep. Each organization contributes resources or OCaml development power to build the Opengrep engine for the benefit and free use of all. To further guarantee Opengrep’s open future, parties have committed a timeframe to move Opengrep under foundation management.
-
-Follow the Opengrep calendar & [join the open roadmap sessions](https://lu.ma/opengrep?utm=github), get involved, and weigh in on the roadmap.
+There is a full-time developer team building Opengrep. Each organization contributes resources or OCaml development power to build the Opengrep engine for the benefit and free use of all. The parties remain committed to keeping Opengrep free and open-source, safeguarding its open future for the whole community.
 
 ## Getting Started
 
