@@ -30,7 +30,7 @@
 
     <header class="hero">
       <h1 class="crumb"><a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="Opengrep" width="582" height="100"></a><span class="sep" aria-hidden="true">/</span>about</h1>
-      <p class="lede"><strong>Opengrep</strong> is a <strong>SAST</strong> (static application security testing) engine. It finds vulnerabilities by analyzing source code without executing it. It checks the code against a set of rules. A rule can match a code pattern, or track untrusted data as it flows through the program, for example from an HTTP request into a SQL query.</p>
+      <p class="lede"><strong>Opengrep</strong> is a <strong>SAST</strong> (static application security testing) engine. It finds vulnerabilities by analyzing source code without executing it. It checks the code against a set of <a class="quiet" href="docs/rule-syntax.html">rules</a>. A rule can match <a class="quiet" href="docs/rule-syntax/pattern.html">a code pattern</a>, or <a class="quiet" href="docs/rule-syntax/taint-mode.html">track untrusted data</a> as it flows through the program, for example from an HTTP request into a SQL query.</p>
     </header>
 
     <section aria-labelledby="lang-h">
@@ -51,15 +51,15 @@
       <ul class="features">
         <li><details>
           <summary><h3>semantic &amp; type-aware matching</h3></summary>
-          <p>Rules are written as code and matched against the syntax tree, so formatting and comments don't matter. Names are resolved too, so a function imported under another name still matches. Matching can also use type information that Opengrep infers during analysis, for example to flag <code>stmt.execute(query)</code> only when <code>stmt</code> is a database <code>Statement</code>, and not a thread pool that has an <code>execute</code> method too.</p>
+          <p>Rules are <a class="quiet" href="docs/rule-syntax/pattern.html">written as code</a> and matched against the syntax tree, so formatting and comments don't matter. Names are resolved too, so a function imported under another name still matches. Matching can also use <a class="quiet" href="docs/rule-syntax/metavariable-type.html">type information</a> that Opengrep infers during analysis, for example to flag <code>stmt.execute(query)</code> only when <code>stmt</code> is a database <code>Statement</code>, and not a thread pool that has an <code>execute</code> method too.</p>
         </details></li>
         <li><details>
           <summary><h3>constant &amp; symbolic propagation</h3></summary>
-          <p>Values and expressions are tracked through assignments: a rule for <code>shell=True</code> also matches <code>shell=flag</code> when <code>flag</code> is <code>True</code>.</p>
+          <p><a class="quiet" href="docs/rule-options/constant_propagation.html">Values</a> and <a class="quiet" href="docs/rule-options/symbolic_propagation.html">expressions</a> are tracked through assignments: a rule for <code>shell=True</code> also matches <code>shell=flag</code> when <code>flag</code> is <code>True</code>.</p>
         </details></li>
         <li><details>
           <summary><h3>taint analysis</h3></summary>
-          <p>Declare where untrusted data comes from (sources), where it must not end up (sinks) and what makes it safe (sanitizers). Opengrep flags unsanitized flows from sources to sinks.</p>
+          <p>Declare where untrusted data comes from (<a class="quiet" href="docs/rule-syntax/taint-mode.html">sources</a>), where it must not end up (<a class="quiet" href="docs/rule-syntax/taint-mode.html">sinks</a>) and what makes it safe (<a class="quiet" href="docs/rule-syntax/taint-mode.html">sanitizers</a>). Opengrep flags unsanitized flows from sources to sinks.</p>
         </details></li>
         <li><details>
           <summary><h3>field sensitivity</h3></summary>
@@ -67,7 +67,7 @@
         </details></li>
         <li><details>
           <summary><h3>cross-function &amp; cross-file taint</h3></summary>
-          <p>With <code>--taint-intrafile</code>, Opengrep summarises how each function passes tainted data along, and follows it through calls, return values, lambdas and higher-order functions like <code>map</code>. For a whole project, <code>--taint-interfile</code> builds a call graph and follows data from a source in one file to a sink in another, for example from a request handler to a SQL query in a separate data-access module. Taint is also tracked through standard library functions and classes, so user input stored in a list or map and read back later is still tainted.</p>
+          <p>With <a class="plain" href="docs/flags/taint-intrafile.html"><code>--taint-intrafile</code></a>, Opengrep summarises how each function passes tainted data along, and follows it through calls, return values, lambdas and higher-order functions like <code>map</code>. For a whole project, <a class="plain" href="docs/flags/taint-interfile.html"><code>--taint-interfile</code></a> builds a call graph and follows data from a source in one file to a sink in another, for example from a request handler to a SQL query in a separate data-access module. Taint is also tracked through standard library functions and classes, so user input stored in a list or map and read back later is still tainted.</p>
         </details></li>
       </ul>
     </section>
@@ -91,11 +91,11 @@
       <ul class="features">
         <li><details>
           <summary><h3>ci mode</h3></summary>
-          <p><code>opengrep ci</code> reports only the findings a pull request introduces, and <code>--baseline-commit</code> compares against any commit. <code>opengrep install-ci</code> sets up GitHub Actions.</p>
+          <p><a class="plain" href="docs/commands/ci.html"><code>opengrep ci</code></a> reports only the findings a pull request introduces, and <a class="plain" href="docs/flags/baseline-commit.html"><code>--baseline-commit</code></a> compares against any commit. <a class="plain" href="docs/commands/install-ci.html"><code>opengrep install-ci</code></a> sets up GitHub Actions.</p>
         </details></li>
         <li><details>
           <summary><h3>output formats: SARIF, JSON &amp; more</h3></summary>
-          <p>SARIF, JSON, JUnit XML, GitLab SAST and GitLab Secrets, plus Emacs and Vim formats. Several at once from a single run.</p>
+          <p><a class="quiet" href="docs/flags/sarif.html">SARIF</a>, <a class="quiet" href="docs/flags/json.html">JSON</a>, <a class="quiet" href="docs/flags/junit-xml.html">JUnit XML</a>, <a class="quiet" href="docs/flags/gitlab-sast.html">GitLab SAST</a> and <a class="quiet" href="docs/flags/gitlab-secrets.html">GitLab Secrets</a>, plus <a class="quiet" href="docs/flags/emacs.html">Emacs</a> and <a class="quiet" href="docs/flags/vim.html">Vim</a> formats. <a class="quiet" href="docs/flags/output.html">Several at once</a> from a single run.</p>
         </details></li>
         <li><details>
           <summary><h3>fingerprints</h3></summary>
@@ -103,11 +103,11 @@
         </details></li>
         <li><details>
           <summary><h3>autofix</h3></summary>
-          <p>Rules can carry a fix that replaces vulnerable code with a safe equivalent, for example <code>el.innerHTML = comment</code> with <code>el.textContent = comment</code>. Use the <code>--autofix</code> flag to apply fixes in place, and <code>--dryrun</code> to preview them without touching files.</p>
+          <p>Rules can carry <a class="quiet" href="docs/rule-syntax/fix.html">a fix</a> that replaces vulnerable code with a safe equivalent, for example <code>el.innerHTML = comment</code> with <code>el.textContent = comment</code>. Use the <a class="plain" href="docs/flags/autofix.html"><code>--autofix</code></a> flag to apply fixes in place, and <a class="plain" href="docs/flags/dryrun.html"><code>--dryrun</code></a> to preview them without touching files.</p>
         </details></li>
         <li><details>
           <summary><h3>editor integration</h3></summary>
-          <p><code>opengrep lsp</code> runs a language server for your editor.</p>
+          <p><a class="plain" href="docs/commands/lsp.html"><code>opengrep lsp</code></a> runs a language server for your editor.</p>
         </details></li>
       </ul>
     </section>
@@ -117,15 +117,15 @@
       <ul class="features">
         <li><details>
           <summary><h3>multicore engine</h3></summary>
-          <p>OCaml 5 with shared-memory parallelism across all cores.</p>
+          <p>OCaml 5 with shared-memory parallelism across <a class="quiet" href="docs/flags/jobs.html">all cores</a>.</p>
         </details></li>
         <li><details>
           <summary><h3>dynamic timeouts</h3></summary>
-          <p>Timeouts scale with file size (<code>--dynamic-timeout</code>), and rules can set their own.</p>
+          <p>Timeouts scale with file size (<a class="plain" href="docs/flags/dynamic-timeout.html"><code>--dynamic-timeout</code></a>), and rules can <a class="quiet" href="docs/rule-options/timeout.html">set their own</a>.</p>
         </details></li>
         <li><details>
           <summary><h3>resource limits</h3></summary>
-          <p>Caps on memory and file size, and an option to skip minified files.</p>
+          <p>Caps on <a class="quiet" href="docs/flags/max-memory.html">memory</a> and <a class="quiet" href="docs/flags/max-target-bytes.html">file size</a>, and an option to <a class="quiet" href="docs/flags/exclude-minified-files.html">skip minified files</a>.</p>
         </details></li>
         <li><details>
           <summary><h3>native binaries</h3></summary>

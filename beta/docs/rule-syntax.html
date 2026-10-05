@@ -135,9 +135,28 @@
 <li><a href="flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details open><summary><a href="rule-syntax.html" aria-current="page">Rule syntax</a></summary><ul>
+<li><a href="rule-syntax/fix.html">fix</a></li>
+<li><a href="rule-syntax/fix-regex.html">fix-regex</a></li>
+<li><a href="rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="rule-syntax/message.html">message</a></li>
+<li><a href="rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
+<li><a href="rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
+<li><a href="rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
+<li><a href="rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
+<li><a href="rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="rule-syntax/mode.html">mode</a></li>
 <li><a href="rule-syntax/taint-mode.html">mode: taint</a></li>
 <li><a href="rule-syntax/paths.html">paths</a></li>
+<li><a href="rule-syntax/pattern.html">pattern</a></li>
+<li><a href="rule-syntax/pattern-either.html">pattern-either</a></li>
+<li><a href="rule-syntax/pattern-inside.html">pattern-inside</a></li>
+<li><a href="rule-syntax/pattern-not.html">pattern-not</a></li>
+<li><a href="rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
+<li><a href="rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="rule-syntax/pattern-regex.html">pattern-regex</a></li>
 <li><a href="rule-syntax/patterns.html">patterns</a></li>
+<li><a href="rule-syntax/rules.html">rules</a></li>
+<li><a href="rule-syntax/severity.html">severity</a></li>
 </ul></details></li>
 <li><details><summary><a href="rule-options.html">Rule options</a></summary><ul>
 <li><a href="rule-options/ac_matching.html">ac_matching</a></li>
@@ -241,12 +260,31 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Name</th><th>Summary</th></tr></thead>
 <tbody>
+<tr><td><a href="rule-syntax/fix.html"><code>fix</code></a></td><td>Replacement code for each match, applied by --autofix.</td></tr>
+<tr><td><a href="rule-syntax/fix-regex.html"><code>fix-regex</code></a></td><td>Fix each match by replacing what a regular expression matches inside it.</td></tr>
+<tr><td><a href="rule-syntax/focus-metavariable.html"><code>focus-metavariable</code></a></td><td>Report only the code a metavariable matched, not the whole match.</td></tr>
+<tr><td><a href="rule-syntax/message.html"><code>message</code></a></td><td>The text reported with each finding; metavariables in it are replaced by the code they matched.</td></tr>
+<tr><td><a href="rule-syntax/metavariable-analysis.html"><code>metavariable-analysis</code></a></td><td>Keep the matches where a metavariable passes an analysis: entropy for secrets, redos for regular expressions.</td></tr>
+<tr><td><a href="rule-syntax/metavariable-comparison.html"><code>metavariable-comparison</code></a></td><td>Keep the matches where an expression over metavariables is true.</td></tr>
+<tr><td><a href="rule-syntax/metavariable-pattern.html"><code>metavariable-pattern</code></a></td><td>Keep the matches where the code a metavariable matched also matches a further pattern.</td></tr>
+<tr><td><a href="rule-syntax/metavariable-regex.html"><code>metavariable-regex</code></a></td><td>Keep the matches where the code a metavariable matched fits a regular expression.</td></tr>
+<tr><td><a href="rule-syntax/metavariable-type.html"><code>metavariable-type</code></a></td><td>Keep the matches where a metavariable's expression has a given type.</td></tr>
+<tr><td><a href="rule-syntax/mode.html"><code>mode</code></a></td><td>How the rule finds code: search, the default, or taint.</td></tr>
 <tr><td><a href="rule-syntax/taint-mode.html"><code>mode: taint</code></a></td><td>Find data that flows from sources to sinks without passing through a sanitizer.</td></tr>
 <tr><td><a href="rule-syntax/paths.html"><code>paths</code></a></td><td>Limit a rule to files whose paths match, or do not match, glob patterns.</td></tr>
+<tr><td><a href="rule-syntax/pattern.html"><code>pattern</code></a></td><td>Match code that looks like the pattern, written in the rule's language.</td></tr>
+<tr><td><a href="rule-syntax/pattern-either.html"><code>pattern-either</code></a></td><td>Match code that matches any one of a list of patterns.</td></tr>
+<tr><td><a href="rule-syntax/pattern-inside.html"><code>pattern-inside</code></a></td><td>Keep only the matches that lie inside code matching this pattern.</td></tr>
+<tr><td><a href="rule-syntax/pattern-not.html"><code>pattern-not</code></a></td><td>Drop the matches that also match this pattern.</td></tr>
+<tr><td><a href="rule-syntax/pattern-not-inside.html"><code>pattern-not-inside</code></a></td><td>Drop the matches that lie inside code matching this pattern.</td></tr>
+<tr><td><a href="rule-syntax/pattern-not-regex.html"><code>pattern-not-regex</code></a></td><td>Drop the matches that contain a match of this regular expression.</td></tr>
+<tr><td><a href="rule-syntax/pattern-regex.html"><code>pattern-regex</code></a></td><td>Match the text of the file with a PCRE regular expression.</td></tr>
 <tr><td><a href="rule-syntax/patterns.html"><code>patterns</code></a></td><td>Match code that satisfies every condition of a list.</td></tr>
+<tr><td><a href="rule-syntax/rules.html"><code>rules</code></a></td><td>The top-level list of a rule file, one entry per rule.</td></tr>
+<tr><td><a href="rule-syntax/severity.html"><code>severity</code></a></td><td>How serious a finding is: ERROR, WARNING or INFO, or CRITICAL, HIGH, MEDIUM or LOW.</td></tr>
 </tbody>
 </table></div>
-<p>Not yet documented (58): <code>aliengrep</code>, <code>analyzer</code>, <code>at-exit</code>, <code>base</code>, <code>by-side-effect</code>, <code>comparison</code>, <code>concat</code>, <code>constant-propagation</code>, <code>control</code>, <code>count</code>, <code>dest-language</code>, <code>dest-rules</code>, <code>django-view</code>, <code>entropy</code>, <code>equivalences</code>, <code>exact</code>, <code>extract</code>, <code>fix</code>, <code>fix-regex</code>, <code>focus-metavariable</code>, <code>from</code>, <code>kind</code>, <code>label</code>, <code>language</code>, <code>message</code>, <code>metavariable</code>, <code>metavariable-analysis</code>, <code>metavariable-comparison</code>, <code>metavariable-pattern</code>, <code>metavariable-regex</code>, <code>metavariable-regexp</code>, <code>metavariable-type</code>, <code>mode</code>, <code>module</code>, <code>modules</code>, <code>pattern</code>, <code>pattern-either</code>, <code>pattern-inside</code>, <code>pattern-not</code>, <code>pattern-not-inside</code>, <code>pattern-not-regex</code>, <code>pattern-regex</code>, <code>pattern-where-python</code>, <code>redos</code>, <code>reduce</code>, <code>regex</code>, <code>replace-labels</code>, <code>replacement</code>, <code>requires</code>, <code>rules</code>, <code>separate</code>, <code>severity</code>, <code>steps</code>, <code>strip</code>, <code>to</code>, <code>transform</code>, <code>type</code>, <code>types</code></p>
+<p>Not yet documented (29): <code>aliengrep</code>, <code>at-exit</code>, <code>base</code>, <code>by-side-effect</code>, <code>concat</code>, <code>control</code>, <code>dest-language</code>, <code>dest-rules</code>, <code>django-view</code>, <code>equivalences</code>, <code>exact</code>, <code>extract</code>, <code>from</code>, <code>kind</code>, <code>label</code>, <code>language</code>, <code>metavariable</code>, <code>metavariable-regexp</code>, <code>module</code>, <code>modules</code>, <code>pattern-where-python</code>, <code>reduce</code>, <code>regex</code>, <code>replace-labels</code>, <code>requires</code>, <code>separate</code>, <code>steps</code>, <code>to</code>, <code>transform</code></p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="an-unknown-key-only-warns"><a class="hash" href="#an-unknown-key-only-warns" aria-hidden="true" tabindex="-1">###</a> An unknown key only warns</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span><span class="line">    <span class="k">nosuchkey</span>: whatever</span></code></pre></div>

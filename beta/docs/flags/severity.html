@@ -135,9 +135,28 @@
 <li><a href="vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/fix.html">fix</a></li>
+<li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
+<li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
+<li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
+<li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
+<li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
+<li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
+<li><a href="../rule-syntax/pattern.html">pattern</a></li>
+<li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
+<li><a href="../rule-syntax/pattern-inside.html">pattern-inside</a></li>
+<li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
+<li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
+<li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
+<li><a href="../rule-syntax/rules.html">rules</a></li>
+<li><a href="../rule-syntax/severity.html">severity</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -233,7 +252,7 @@
 <dl class="facts">
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a></dd></div>
 <div><dt>Value</dt><dd><code>INFO</code>, <code>WARNING</code> or <code>ERROR</code>, repeatable</dd></div>
-<div><dt>See also</dt><dd><a href="exclude-rule.html"><code>--exclude-rule</code></a>, <a href="error.html"><code>--error</code></a>, <a href="config.html"><code>--config</code></a></dd></div>
+<div><dt>See also</dt><dd><a href="exclude-rule.html"><code>--exclude-rule</code></a>, <a href="error.html"><code>--error</code></a>, <a href="config.html"><code>--config</code></a>, <a href="../rule-syntax/severity.html"><code>severity</code></a></dd></div>
 </dl>
 <p>Keeps only the findings whose rule carries one of the named severities, and drops the rest. Repeat the flag to keep several. Without it every rule's findings are reported.</p>
 <p>The value is one of <code>INFO</code>, <code>WARNING</code> or <code>ERROR</code>, spelled as a rule's <code>severity:</code> key spells it. Anything else is rejected as a bad option value.</p>

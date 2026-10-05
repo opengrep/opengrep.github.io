@@ -53,6 +53,10 @@ a:hover,
 /* in-text link that doesn't stand out: body colour, dashed underline */
 .quiet { color: inherit; border-bottom-color: var(--dim); }
 .quiet:hover { color: var(--fg); border-bottom-color: var(--fg); text-shadow: none; }
+/* a link that looks exactly like the text it wraps, such as a flag in <code>;
+   only hovering shows it is a link */
+.plain { color: inherit; border-bottom: 0; }
+.plain:hover { color: inherit; border-bottom: 1px solid var(--fg); text-shadow: none; }
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
