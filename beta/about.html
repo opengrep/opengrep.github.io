@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>About · Opengrep</title>
+  <meta name="description" content="What's in the Opengrep engine: semantic matching, constant and symbolic propagation, cross-function and cross-file taint analysis, SARIF and JSON output, CI mode, dynamic timeouts and 30+ languages.">
+  <meta name="theme-color" content="#0b0b0e">
+  <link rel="canonical" href="https://opengrep.dev/about.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@200..700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="Main">
+      <a href="index.html">home</a>
+      <a href="about.html" aria-current="page">about</a>
+      <a href="examples.html">examples</a>
+      <a href="https://github.com/opengrep/opengrep">github</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <header class="hero">
+      <h1 class="crumb"><a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="Opengrep" width="582" height="100"></a><span class="sep" aria-hidden="true">/</span>about</h1>
+      <p class="lede"><strong>Opengrep</strong> is a <strong>SAST</strong> (static application security testing) engine. It finds vulnerabilities by analyzing source code without executing it. What it looks for is defined by rules provided by the user. A rule can match a code pattern, or track untrusted data as it flows through the program, for example from an HTTP request into a SQL query.</p>
+    </header>
+
+    <section aria-labelledby="lang-h">
+      <h2 id="lang-h"><span class="hash" aria-hidden="true">##</span> languages</h2>
+      <ul class="features">
+        <li><details>
+          <summary><h3>30+ languages</h3></summary>
+          <p class="langs">
+            <span>Apex<span class="star">*</span></span> <span>Bash</span> <span>C<span class="star">*</span></span> <span>C++<span class="star">*</span></span> <span>C#<span class="star">*</span></span> <span>Clojure<span class="star">*</span></span> <span>Crystal</span> <span>Dart<span class="star">*</span></span> <span>Dockerfile</span> <span>Elixir<span class="star">*</span></span> <span>Go<span class="star">*</span></span> <span>HTML</span> <span>Java<span class="star">*</span></span> <span>JavaScript<span class="star">*</span></span> <span>JSON</span> <span>Jsonnet</span> <span>JSX</span> <span>Julia<span class="star">*</span></span> <span>Kotlin<span class="star">*</span></span> <span>Lisp</span> <span>Lua<span class="star">*</span></span> <span>OCaml</span> <span>PHP</span> <span>Python<span class="star">*</span></span> <span>R</span> <span>Ruby<span class="star">*</span></span> <span>Rust<span class="star">*</span></span> <span>Scala<span class="star">*</span></span> <span>Scheme</span> <span>Solidity</span> <span>Swift<span class="star">*</span></span> <span>Terraform</span> <span>TSX</span> <span>TypeScript<span class="star">*</span></span> <span>Visual Basic<span class="star">*</span></span> <span>XML</span> <span>YAML</span> <span>Generic (ERB, Jinja, …)</span>
+          </p>
+          <p class="langs-note"><span class="star">*</span> supports cross-function taint analysis</p>
+        </details></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="analysis-h">
+      <h2 id="analysis-h"><span class="hash" aria-hidden="true">##</span> analysis</h2>
+      <ul class="features">
+        <li><details>
+          <summary><h3>semantic &amp; type-aware matching</h3></summary>
+          <p>Rules are written as code and matched against the syntax tree, so formatting and comments don't matter. Names are resolved too, so a function imported under another name still matches. Matching can also use type information that Opengrep infers during analysis, for example to flag <code>stmt.execute(query)</code> only when <code>stmt</code> is a database <code>Statement</code>, and not a thread pool that has an <code>execute</code> method too.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>constant &amp; symbolic propagation</h3></summary>
+          <p>Values and expressions are tracked through assignments: a rule for <code>shell=True</code> also matches <code>shell=flag</code> when <code>flag</code> is <code>True</code>.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>taint analysis</h3></summary>
+          <p>Declare where untrusted data comes from (sources), where it must not end up (sinks) and what makes it safe (sanitizers). Opengrep reports every flow from a source to a sink.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>field sensitivity</h3></summary>
+          <p>Taint is tracked per field: a tainted <code>user.name</code> doesn't make <code>user.id</code> tainted.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>cross-function &amp; cross-file taint</h3></summary>
+          <p>With <code>--taint-intrafile</code>, Opengrep summarises how each function passes tainted data along, and follows it through calls, return values, lambdas and higher-order functions like <code>map</code>. For a whole project, <code>--taint-interfile</code> builds a call graph and follows data from a source in one file to a sink in another, for example from a request handler to a SQL query in a separate data-access module. Taint is also tracked through standard library functions and classes, so user input stored in a list or map and read back later is still tainted.</p>
+        </details></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="tools-h">
+      <h2 id="tools-h"><span class="hash" aria-hidden="true">##</span> tools</h2>
+      <ul class="features">
+        <li><details>
+          <summary><h3>playground</h3></summary>
+          <p>A desktop app for writing rules: edit a rule next to sample code, run it and see what it matches, and run the rule's tests. For Linux, macOS and Windows, from <a class="quiet" href="https://github.com/opengrep/opengrep-playground">opengrep/opengrep-playground</a>.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>agent skill</h3></summary>
+          <p>Teaches AI coding agents such as Claude Code, Codex and OpenCode to use Opengrep: to write new rules, scan for vulnerabilities, and find code by its structure where grep falls short. Install it with <code>npx skills add opengrep/skills</code>, or get it from <a class="quiet" href="https://github.com/opengrep/skills">opengrep/skills</a>.</p>
+        </details></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="ci-h">
+      <h2 id="ci-h"><span class="hash" aria-hidden="true">##</span> ci &amp; integrations</h2>
+      <ul class="features">
+        <li><details>
+          <summary><h3>ci mode</h3></summary>
+          <p><code>opengrep ci</code> reports only the findings a pull request introduces, and <code>--baseline-commit</code> compares against any commit. <code>opengrep install-ci</code> sets up GitHub Actions.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>output formats: SARIF, JSON &amp; more</h3></summary>
+          <p>SARIF, JSON, JUnit XML, GitLab SAST and GitLab Secrets, plus Emacs and Vim formats. Several at once from a single run.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>fingerprints</h3></summary>
+          <p>Every finding in JSON and SARIF carries a fingerprint built from the rule, the file path and the matched code, not line numbers, so findings can be tracked across commits as code moves.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>autofix</h3></summary>
+          <p>Rules can carry a fix that replaces vulnerable code with a safe equivalent, for example <code>el.innerHTML = comment</code> with <code>el.textContent = comment</code>. Use the <code>--autofix</code> flag to apply fixes in place, and <code>--dryrun</code> to preview them without touching files.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>editor integration</h3></summary>
+          <p><code>opengrep lsp</code> runs a language server for your editor.</p>
+        </details></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="perf-h">
+      <h2 id="perf-h"><span class="hash" aria-hidden="true">##</span> performance</h2>
+      <ul class="features">
+        <li><details>
+          <summary><h3>multicore engine</h3></summary>
+          <p>OCaml 5 with shared-memory parallelism across all cores.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>dynamic timeouts</h3></summary>
+          <p>Timeouts scale with file size (<code>--dynamic-timeout</code>), and rules can set their own.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>resource limits</h3></summary>
+          <p>Caps on memory and file size, and an option to skip minified files.</p>
+        </details></li>
+        <li><details>
+          <summary><h3>native binaries</h3></summary>
+          <p>Self-contained and Cosign-signed, for Linux, macOS and Windows.</p>
+        </details></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

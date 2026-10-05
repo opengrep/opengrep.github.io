@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Examples · Opengrep</title>
+  <meta name="description" content="Two runnable Opengrep examples: semantic pattern matching with constant propagation, and cross-function taint analysis.">
+  <meta name="theme-color" content="#0b0b0e">
+  <link rel="canonical" href="https://opengrep.dev/examples.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@200..700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="Main">
+      <a href="index.html">home</a>
+      <a href="about.html">about</a>
+      <a href="examples.html" aria-current="page">examples</a>
+      <a href="https://github.com/opengrep/opengrep">github</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <header class="hero">
+      <h1 class="crumb"><a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="Opengrep" width="582" height="100"></a><span class="sep" aria-hidden="true">/</span>examples</h1>
+      <p class="lede">Two small, runnable examples. Copy the files, run the command, get the same result.</p>
+    </header>
+
+    <!-- example 1 -->
+    <section class="example" id="semantic" aria-labelledby="ex1-h">
+      <h2 id="ex1-h"><span class="hash" aria-hidden="true">##</span> semantic matching</h2>
+      <p>A rule is a pattern that looks like the code it finds. Opengrep matches it against the syntax tree, not the text, so import aliases, line breaks, argument order and values held in variables don't get in the way.</p>
+
+      <div class="file">
+        <div class="file-head">shell-true.yaml</div>
+        <button class="copy" type="button">copy</button>
+<pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: subprocess-shell-true</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span><span class="line">    <span class="k">message</span>: shell=True runs the command through a shell (command injection risk)</span><span class="line">    <span class="k">pattern</span>: subprocess.<span class="mv">$FUNC</span>(<span class="mv">...</span>, shell=<span class="s">True</span>, <span class="mv">...</span>)</span></code></pre>
+      </div>
+      <div class="file">
+        <div class="file-head">deploy.py</div>
+        <button class="copy" type="button">copy</button>
+<pre class="code"><code><span class="line"><span class="k">import</span> subprocess</span><span class="line"><span class="k">from</span> subprocess <span class="k">import</span> run <span class="k">as</span> sh</span><span class="line"></span><span class="line"></span><span class="line"><span class="k">def</span> deploy(branch):</span><span class="line hit">    subprocess.call(<span class="s">&quot;git checkout &quot;</span> + branch, shell=<span class="s">True</span>)</span><span class="line"></span><span class="line hit">    sh(<span class="s">f&quot;make release BRANCH={branch}&quot;</span>, shell=<span class="s">True</span>)</span><span class="line"></span><span class="line">    use_shell = <span class="s">True</span></span><span class="line hit">    subprocess.Popen(</span><span class="line hit">        [<span class="s">&quot;make&quot;</span>, <span class="s">&quot;clean&quot;</span>],</span><span class="line hit">        cwd=<span class="s">&quot;/srv/app&quot;</span>,</span><span class="line hit">        shell=use_shell,</span><span class="line hit">    )</span><span class="line"></span><span class="line">    subprocess.run([<span class="s">&quot;make&quot;</span>, <span class="s">&quot;test&quot;</span>], shell=<span class="s">False</span>)</span></code></pre>
+      </div>
+      <div class="file">
+        <div class="file-head">output</div>
+<pre class="out"><code><span class="p">$ </span>opengrep scan -f shell-true.yaml deploy.py
+
+<span class="n">1 file · 1 rule</span>
+
+<span class="b">deploy.py</span>
+
+  <span class="err">error</span>  <span class="rule">subprocess-shell-true</span>
+  shell=True runs the command through a shell (command injection risk)
+
+<span class="n">    6 │</span><span class="b"> subprocess.call(&quot;git checkout &quot; + branch, shell=True)</span>
+
+<span class="n">    8 │</span><span class="b"> sh(f&quot;make release BRANCH={branch}&quot;, shell=True)</span>
+
+<span class="n">    11 │</span><span class="b"> subprocess.Popen(</span>
+<span class="n">    12 │</span><span class="b">     [&quot;make&quot;, &quot;clean&quot;],</span>
+<span class="n">    13 │</span><span class="b">     cwd=&quot;/srv/app&quot;,</span>
+<span class="n">    14 │</span><span class="b">     shell=use_shell,</span>
+<span class="n">    15 │</span><span class="b"> )</span>
+
+3 findings in 1 file</code></pre>
+      </div>
+
+      <ul class="notes">
+        <li><span class="ref">line 6</span><span>the plain case: <code>shell=True</code> passed directly.</span></li>
+        <li><span class="ref">line 8</span><span><code>sh</code> is <code>subprocess.run</code> imported under another name.</span></li>
+        <li><span class="ref">line 11</span><span>spread over five lines, with <code>cwd</code> before <code>shell</code>, and <code>use_shell</code> resolved to <code>True</code> by constant propagation.</span></li>
+        <li><span class="ref">line 17</span><span><code>shell=False</code>, so no finding.</span></li>
+      </ul>
+    </section>
+
+    <!-- example 2 -->
+    <section class="example" id="taint" aria-labelledby="ex2-h">
+      <h2 id="ex2-h"><span class="hash" aria-hidden="true">##</span> cross-function taint analysis</h2>
+      <p>A taint rule says where untrusted data comes from (sources), where it must never end up (sinks) and what makes it safe (sanitizers). With <code>--taint-intrafile</code>, Opengrep follows the data through function calls, return values, lambdas and higher-order functions.</p>
+
+      <div class="file">
+        <div class="file-head">command-injection.yaml</div>
+        <button class="copy" type="button">copy</button>
+<pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: command-injection</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">languages</span>: [javascript]</span><span class="line">    <span class="k">severity</span>: ERROR</span><span class="line">    <span class="k">message</span>: User input reaches a shell command</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: req.query</span><span class="line">      - <span class="k">pattern</span>: req.body</span><span class="line">    <span class="k">pattern-sanitizers</span>:</span><span class="line">      - <span class="k">pattern</span>: shellescape(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: exec(<span class="mv">...</span>)</span></code></pre>
+      </div>
+      <div class="file">
+        <div class="file-head">server.js</div>
+        <button class="copy" type="button">copy</button>
+<pre class="code"><code><span class="line"><span class="k">const</span> express = require(<span class="s">&quot;express&quot;</span>);</span><span class="line"><span class="k">const</span> { exec } = require(<span class="s">&quot;child_process&quot;</span>);</span><span class="line"><span class="k">const</span> shellescape = require(<span class="s">&quot;shell-escape&quot;</span>);</span><span class="line"></span><span class="line"><span class="k">const</span> app = express();</span><span class="line"></span><span class="line"><span class="k">function</span> tarCommand(dir) {</span><span class="line">  <span class="k">return</span> <span class="s">&quot;tar czf /backups/latest.tgz &quot;</span> + dir;</span><span class="line">}</span><span class="line"></span><span class="line"><span class="k">function</span> escape(dir) {</span><span class="line">  <span class="k">return</span> shellescape([dir]);</span><span class="line">}</span><span class="line"></span><span class="line">app.get(<span class="s">&quot;/backup&quot;</span>, (req, res) =&gt; {</span><span class="line hit">  exec(tarCommand(req.query.dir));</span><span class="line">});</span><span class="line"></span><span class="line">app.post(<span class="s">&quot;/backup-all&quot;</span>, (req, res) =&gt; {</span><span class="line hit">  req.body.dirs.map(tarCommand).forEach((cmd) =&gt; exec(cmd));</span><span class="line">});</span><span class="line"></span><span class="line">app.get(<span class="s">&quot;/backup-safe&quot;</span>, (req, res) =&gt; {</span><span class="line">  exec(tarCommand(escape(req.query.dir)));</span><span class="line">});</span></code></pre>
+      </div>
+      <div class="file">
+        <div class="file-head">output</div>
+<pre class="out"><code><span class="p">$ </span>opengrep scan --taint-intrafile -f command-injection.yaml server.js
+
+<span class="n">1 file · 1 rule</span>
+
+<span class="b">server.js</span>
+
+  <span class="err">error</span>  <span class="rule">command-injection</span>
+  User input reaches a shell command
+
+<span class="n">    16 │</span><span class="b"> exec(tarCommand(req.query.dir));</span>
+
+<span class="n">    20 │</span><span class="b"> req.body.dirs.map(tarCommand).forEach((cmd) =&gt; exec(cmd));</span>
+
+2 findings in 1 file</code></pre>
+      </div>
+
+      <ul class="notes">
+        <li><span class="ref">line 16</span><span><code>req.query.dir</code> flows through <code>tarCommand()</code> and its return value into <code>exec</code>.</span></li>
+        <li><span class="ref">line 20</span><span>each entry of <code>req.body.dirs</code> passes through <code>map(tarCommand)</code> and a lambda before reaching <code>exec</code>.</span></li>
+        <li><span class="ref">line 24</span><span>no finding: the input goes through <code>escape()</code>, which calls the sanitizer.</span></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Opengrep · the most advanced open source SAST engine</title>
+  <meta name="description" content="Opengrep is the most advanced open source SAST engine. A fork of Semgrep under LGPL 2.1, with cross-function and cross-file taint analysis and support for 30+ languages.">
+  <meta name="theme-color" content="#0b0b0e">
+  <link rel="canonical" href="https://opengrep.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://opengrep.dev/">
+  <meta property="og:title" content="Opengrep · the most advanced open source SAST engine">
+  <meta property="og:description" content="A fork of Semgrep under LGPL 2.1, with cross-function and cross-file taint analysis and support for 30+ languages.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@200..700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="Main">
+      <a href="index.html" aria-current="page">home</a>
+      <a href="about.html">about</a>
+      <a href="examples.html">examples</a>
+      <a href="https://github.com/opengrep/opengrep">github</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <!-- hero -->
+    <header class="hero">
+      <a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="Opengrep" width="582" height="100"></a>
+      <h1 class="slogan">the most advanced <em>open source</em> SAST engine</h1>
+    </header>
+
+    <!-- features -->
+    <section id="why" aria-label="Why Opengrep">
+      <ul class="features">
+        <li><details open>
+          <summary><h3>fork of Semgrep, LGPL 2.1</h3></summary>
+          <p>Started as a fork of <a class="quiet" href="https://github.com/semgrep/semgrep">Semgrep CE</a> and is fully backwards compatible: your existing rules work unchanged. Open source under LGPL 2.1, for good.</p>
+        </details></li>
+        <li><details open>
+          <summary><h3>superior performance</h3></summary>
+          <p>Pure OCaml 5 with multicore parallelism for maximal performance. Shipped as self-contained binaries for Linux, macOS and Windows.</p>
+        </details></li>
+        <li><details open>
+          <summary><h3>cross-function &amp; cross-file analysis</h3></summary>
+          <p>Taint tracking follows data through functions, methods and fields, including higher-order functions and calls into the language's standard library.</p>
+        </details></li>
+        <li><details open>
+          <summary><h3>30+ languages</h3></summary>
+          <p>From C, Java and Python to Apex, Elixir and Visual Basic, plus generic matching for templates like Jinja and ERB.</p>
+        </details></li>
+      </ul>
+    </section>
+
+    <!-- install -->
+    <section id="install" aria-labelledby="install-h">
+      <h2 id="install-h"><span class="hash" aria-hidden="true">##</span> install</h2>
+
+      <div class="term">
+        <div class="tabs" role="tablist" aria-label="Operating system">
+          <button role="tab" id="tab-unix" aria-controls="panel-unix" aria-selected="true">linux / macos</button>
+          <button role="tab" id="tab-win" aria-controls="panel-win" aria-selected="false" tabindex="-1">windows</button>
+          <button role="tab" id="tab-manual" aria-controls="panel-manual" aria-selected="false" tabindex="-1">manual</button>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-unix" aria-labelledby="tab-unix">
+          <button class="copy" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/opengrep/opengrep/main/install.sh | bash">copy</button>
+<pre><code><span class="c"># installs the latest release into ~/.opengrep</span>
+<span class="p">$ </span>curl -fsSL https://raw.githubusercontent.com/opengrep/opengrep/main/install.sh | bash</code></pre>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-win" aria-labelledby="tab-win" hidden>
+          <button class="copy" type="button" data-copy="irm https://raw.githubusercontent.com/opengrep/opengrep/main/install.ps1 | iex">copy</button>
+<pre><code><span class="c"># run in PowerShell</span>
+<span class="p">PS&gt; </span>irm https://raw.githubusercontent.com/opengrep/opengrep/main/install.ps1 | iex</code></pre>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-manual" aria-labelledby="tab-manual" hidden>
+<pre><code><span class="c"># 1. grab the binary for your platform from the releases page</span>
+<span class="c">#    opengrep_osx_arm64, opengrep_manylinux_x86, opengrep_windows_x86.exe, …</span>
+<span class="c"># 2. make it executable and put it on your PATH</span>
+<span class="p">$ </span>sudo install -m 755 opengrep_osx_arm64 /usr/local/bin/opengrep
+<span class="p">$ </span>opengrep --version</code></pre>
+          <p class="note">
+            <a href="https://github.com/opengrep/opengrep/releases">→ github.com/opengrep/opengrep/releases</a><br>
+            Every binary ships with a Cosign <code>.sig</code> and <code>.cert</code>. On Windows, keep <code>opengrep.exe</code> and its DLLs together in the directory you install them to.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- source -->
+    <section id="source" aria-labelledby="source-h">
+      <h2 id="source-h"><span class="hash" aria-hidden="true">##</span> source</h2>
+      <p>Read the code, open an issue, send a PR.</p>
+      <a class="repo" href="https://github.com/opengrep/opengrep">
+        <span class="p" aria-hidden="true">$ </span>git clone <strong>github.com/opengrep/opengrep</strong>
+      </a>
+      <p class="stats" hidden>
+        <span data-stat="stars"></span>
+        <span data-stat="release"></span>
+      </p>
+    </section>
+
+    <!-- sponsors -->
+    <section id="backers" aria-label="Backers">
+      <p>Opengrep is backed by a consortium of application security companies. Each contributes funding or OCaml engineers to a full-time team building the engine, free and open for everyone.</p>
+      <ul class="backers">
+        <li><a href="https://www.aikido.dev/">aikido security</a></li>
+        <li><a href="https://amplify.security/">amplify</a></li>
+        <li><a href="https://www.endorlabs.com/">endor labs</a></li>
+        <li><a href="https://www.kodemsecurity.com/">kodem</a></li>
+        <li><a href="https://orca.security/">orca security</a></li>
+        <li class="dim">+ others</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
