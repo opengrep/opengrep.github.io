@@ -65,3 +65,49 @@ if (stats) Promise.allSettled([getJSON(repo), getJSON(`${repo}/releases/latest`)
   }
   if (info.status === 'fulfilled' || release.status === 'fulfilled') stats.hidden = false;
 });
+
+// docs: contents tree, closed on narrow screens, filterable, scrolled to the current page
+const toc = document.querySelector('.docs-toc');
+if (toc) {
+  const narrow = matchMedia('(max-width: 900px)');
+  const fit = () => { toc.open = !narrow.matches; };
+  fit();
+  narrow.addEventListener('change', fit);
+
+  const tree = toc.querySelector('.toc');
+  const current = tree.querySelector('[aria-current="page"]');
+  if (current && !narrow.matches) tree.scrollTop = current.offsetTop - tree.clientHeight / 3;
+
+  const filter = toc.querySelector('.docs-filter');
+  const sections = [...toc.querySelectorAll('.toc > ul > li')];
+  const wasOpen = new Map([...toc.querySelectorAll('.toc details')].map((d) => [d, d.open]));
+  const has = (el, q) => el.textContent.toLowerCase().includes(q);
+  filter.hidden = false;
+  filter.addEventListener('input', () => {
+    const q = filter.value.trim().toLowerCase();
+    for (const section of sections) {
+      const details = section.querySelector('details');
+      if (!details) { section.hidden = q && !has(section, q); continue; }
+      // a matching section title shows the whole section; otherwise only the matching entries
+      const whole = !q || has(details.querySelector('summary'), q);
+      let any = false;
+      for (const li of details.querySelectorAll('li')) {
+        li.hidden = !whole && !has(li, q);
+        any ||= !li.hidden;
+      }
+      section.hidden = !whole && !any;
+      details.open = q ? !section.hidden : wasOpen.get(details);
+    }
+  });
+  filter.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { filter.value = ''; filter.dispatchEvent(new Event('input')); }
+  });
+  // "/" jumps to the filter, as on many docs sites
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'SELECT') {
+      e.preventDefault();
+      toc.open = true;
+      filter.focus();
+    }
+  });
+}

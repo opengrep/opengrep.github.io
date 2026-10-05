@@ -21,6 +21,7 @@
       <a href="index.html">home</a>
       <a href="about.html" aria-current="page">about</a>
       <a href="examples.html">examples</a>
+      <a href="docs/index.html">docs</a>
       <a href="https://github.com/opengrep/opengrep">github</a>
     </nav>
   </header>
@@ -29,7 +30,7 @@
 
     <header class="hero">
       <h1 class="crumb"><a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="Opengrep" width="582" height="100"></a><span class="sep" aria-hidden="true">/</span>about</h1>
-      <p class="lede"><strong>Opengrep</strong> is a <strong>SAST</strong> (static application security testing) engine. It finds vulnerabilities by analyzing source code without executing it. What it looks for is defined by rules provided by the user. A rule can match a code pattern, or track untrusted data as it flows through the program, for example from an HTTP request into a SQL query.</p>
+      <p class="lede"><strong>Opengrep</strong> is a <strong>SAST</strong> (static application security testing) engine. It finds vulnerabilities by analyzing source code without executing it. It checks the code against a set of rules. A rule can match a code pattern, or track untrusted data as it flows through the program, for example from an HTTP request into a SQL query.</p>
     </header>
 
     <section aria-labelledby="lang-h">
@@ -58,7 +59,7 @@
         </details></li>
         <li><details>
           <summary><h3>taint analysis</h3></summary>
-          <p>Declare where untrusted data comes from (sources), where it must not end up (sinks) and what makes it safe (sanitizers). Opengrep reports every flow from a source to a sink.</p>
+          <p>Declare where untrusted data comes from (sources), where it must not end up (sinks) and what makes it safe (sanitizers). Opengrep flags unsanitized flows from sources to sinks.</p>
         </details></li>
         <li><details>
           <summary><h3>field sensitivity</h3></summary>

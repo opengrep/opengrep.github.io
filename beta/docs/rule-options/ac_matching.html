@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>ac_matching · Opengrep</title>
+  <meta name="description" content="Match chains of an associative operator as a flat list of operands.">
+  <meta name="theme-color" content="#0b0b0e">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@200..700&display=swap">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body class="docs">
+  <header class="site-header">
+    <nav class="wrap wide nav" aria-label="Main">
+      <a href="../../index.html">home</a>
+      <a href="../../about.html">about</a>
+      <a href="../../examples.html">examples</a>
+      <a href="../../docs/index.html" aria-current="page">docs</a>
+      <a href="https://github.com/opengrep/opengrep">github</a>
+    </nav>
+  </header>
+
+  <div class="wrap wide docs-layout">
+    <aside class="docs-side">
+      <details class="docs-toc" open>
+        <summary>contents</summary>
+        <input class="docs-filter" type="search" placeholder="filter" aria-label="Filter the contents" hidden>
+<nav class="toc" aria-label="Reference">
+<ul>
+<li class="top"><a href="../index.html">overview</a></li>
+<li><details><summary><a href="../commands.html">Commands</a></summary><ul>
+<li><a href="../commands/ci.html">opengrep ci</a></li>
+<li><a href="../commands/install-ci.html">opengrep install-ci</a></li>
+<li><a href="../commands/lsp.html">opengrep lsp</a></li>
+<li><a href="../commands/scan.html">opengrep scan</a></li>
+<li><a href="../commands/show.html">opengrep show</a></li>
+<li><a href="../commands/test.html">opengrep test</a></li>
+<li><a href="../commands/validate.html">opengrep validate</a></li>
+</ul></details></li>
+<li><details><summary><a href="../flags.html">Flags</a></summary><ul>
+<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
+<li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
+<li><a href="../flags/audit-on.html">--audit-on</a></li>
+<li><a href="../flags/autofix.html">--autofix</a></li>
+<li><a href="../flags/baseline-commit.html">--baseline-commit</a></li>
+<li><a href="../flags/config.html">--config</a></li>
+<li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
+<li><a href="../flags/debug.html">--debug</a></li>
+<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
+<li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
+<li><a href="../flags/dryrun.html">--dryrun</a></li>
+<li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
+<li><a href="../flags/dynamic-timeout-max-multiplier.html">--dynamic-timeout-max-multiplier</a></li>
+<li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
+<li><a href="../flags/emacs.html">--emacs</a></li>
+<li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
+<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
+<li><a href="../flags/env.html">--env</a></li>
+<li><a href="../flags/error.html">--error</a></li>
+<li><a href="../flags/exclude.html">--exclude</a></li>
+<li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
+<li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
+<li><a href="../flags/experimental.html">--experimental</a></li>
+<li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
+<li><a href="../flags/force-color.html">--force-color</a></li>
+<li><a href="../flags/force-exclude.html">--force-exclude</a></li>
+<li><a href="../flags/gitlab-sast.html">--gitlab-sast</a></li>
+<li><a href="../flags/gitlab-sast-output.html">--gitlab-sast-output</a></li>
+<li><a href="../flags/gitlab-secrets.html">--gitlab-secrets</a></li>
+<li><a href="../flags/gitlab-secrets-output.html">--gitlab-secrets-output</a></li>
+<li><a href="../flags/guarded-taint-signatures.html">--guarded-taint-signatures</a></li>
+<li><a href="../flags/html.html">--html</a></li>
+<li><a href="../flags/include.html">--include</a></li>
+<li><a href="../flags/incremental-output.html">--incremental-output</a></li>
+<li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
+<li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
+<li><a href="../flags/jobs.html">--jobs</a></li>
+<li><a href="../flags/json.html">--json</a></li>
+<li><a href="../flags/json-output.html">--json-output</a></li>
+<li><a href="../flags/junit-xml.html">--junit-xml</a></li>
+<li><a href="../flags/junit-xml-output.html">--junit-xml-output</a></li>
+<li><a href="../flags/lang.html">--lang</a></li>
+<li><a href="../flags/matching-diagnosis.html">--matching-diagnosis</a></li>
+<li><a href="../flags/matching-explanations.html">--matching-explanations</a></li>
+<li><a href="../flags/max-chars-per-line.html">--max-chars-per-line</a></li>
+<li><a href="../flags/max-lines-per-finding.html">--max-lines-per-finding</a></li>
+<li><a href="../flags/max-log-list-entries.html">--max-log-list-entries</a></li>
+<li><a href="../flags/max-match-per-file.html">--max-match-per-file</a></li>
+<li><a href="../flags/max-memory.html">--max-memory</a></li>
+<li><a href="../flags/max-target-bytes.html">--max-target-bytes</a></li>
+<li><a href="../flags/no-progress-bar.html">--no-progress-bar</a></li>
+<li><a href="../flags/opengrep-ignore-pattern.html">--opengrep-ignore-pattern</a></li>
+<li><a href="../flags/optimizations.html">--optimizations</a></li>
+<li><a href="../flags/output.html">--output</a></li>
+<li><a href="../flags/output-enclosing-context.html">--output-enclosing-context</a></li>
+<li><a href="../flags/pattern.html">--pattern</a></li>
+<li><a href="../flags/project-root.html">--project-root</a></li>
+<li><a href="../flags/quiet.html">--quiet</a></li>
+<li><a href="../flags/replacement.html">--replacement</a></li>
+<li><a href="../flags/repo.html">--repo</a></li>
+<li><a href="../flags/rewrite-rule-ids.html">--rewrite-rule-ids</a></li>
+<li><a href="../flags/sarif.html">--sarif</a></li>
+<li><a href="../flags/sarif-output.html">--sarif-output</a></li>
+<li><a href="../flags/scan-unknown-extensions.html">--scan-unknown-extensions</a></li>
+<li><a href="../flags/semgrepignore-filename.html">--semgrepignore-filename</a></li>
+<li><a href="../flags/severity.html">--severity</a></li>
+<li><a href="../flags/show-supported-languages.html">--show-supported-languages</a></li>
+<li><a href="../flags/skin.html">--skin</a></li>
+<li><a href="../flags/skip-invalid-configs.html">--skip-invalid-configs</a></li>
+<li><a href="../flags/strict.html">--strict</a></li>
+<li><a href="../flags/subdir.html">--subdir</a></li>
+<li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
+<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
+<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
+<li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
+<li><a href="../flags/test.html">--test</a></li>
+<li><a href="../flags/text.html">--text</a></li>
+<li><a href="../flags/text-output.html">--text-output</a></li>
+<li><a href="../flags/time.html">--time</a></li>
+<li><a href="../flags/timeout.html">--timeout</a></li>
+<li><a href="../flags/timeout-threshold.html">--timeout-threshold</a></li>
+<li><a href="../flags/update.html">--update</a></li>
+<li><a href="../flags/use-git-ignore.html">--use-git-ignore</a></li>
+<li><a href="../flags/validate.html">--validate</a></li>
+<li><a href="../flags/verbose.html">--verbose</a></li>
+<li><a href="../flags/version.html">--version</a></li>
+<li><a href="../flags/vim.html">--vim</a></li>
+<li><a href="../flags/vim-output.html">--vim-output</a></li>
+</ul></details></li>
+<li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/paths.html">paths</a></li>
+<li><a href="../rule-syntax/patterns.html">patterns</a></li>
+</ul></details></li>
+<li><details open><summary><a href="../rule-options.html">Rule options</a></summary><ul>
+<li><a href="ac_matching.html" aria-current="page">ac_matching</a></li>
+<li><a href="arrow_is_function.html">arrow_is_function</a></li>
+<li><a href="attr_expr.html">attr_expr</a></li>
+<li><a href="commutative_boolop.html">commutative_boolop</a></li>
+<li><a href="constant_propagation.html">constant_propagation</a></li>
+<li><a href="cpp_parsing_pref.html">cpp_parsing_pref</a></li>
+<li><a href="decorators_order_matters.html">decorators_order_matters</a></li>
+<li><a href="dynamic_timeout.html">dynamic_timeout</a></li>
+<li><a href="dynamic_timeout_max_multiplier.html">dynamic_timeout_max_multiplier</a></li>
+<li><a href="dynamic_timeout_unit_kb.html">dynamic_timeout_unit_kb</a></li>
+<li><a href="flddef_assign.html">flddef_assign</a></li>
+<li><a href="generic_braces.html">generic_braces</a></li>
+<li><a href="generic_caseless.html">generic_caseless</a></li>
+<li><a href="generic_comment_style.html">generic_comment_style</a></li>
+<li><a href="generic_ellipsis_max_span.html">generic_ellipsis_max_span</a></li>
+<li><a href="generic_engine.html">generic_engine</a></li>
+<li><a href="generic_extra_braces.html">generic_extra_braces</a></li>
+<li><a href="generic_extra_word_characters.html">generic_extra_word_characters</a></li>
+<li><a href="generic_multiline.html">generic_multiline</a></li>
+<li><a href="go_deeper_expr.html">go_deeper_expr</a></li>
+<li><a href="go_deeper_stmt.html">go_deeper_stmt</a></li>
+<li><a href="guarded_taint_signatures.html">guarded_taint_signatures</a></li>
+<li><a href="implicit_deep_exprstmt.html">implicit_deep_exprstmt</a></li>
+<li><a href="implicit_ellipsis.html">implicit_ellipsis</a></li>
+<li><a href="implicit_return.html">implicit_return</a></li>
+<li><a href="let_is_var.html">let_is_var</a></li>
+<li><a href="max_match_per_file.html">max_match_per_file</a></li>
+<li><a href="symbolic_propagation.html">symbolic_propagation</a></li>
+<li><a href="symmetric_eq.html">symmetric_eq</a></li>
+<li><a href="taint_assume_safe_booleans.html">taint_assume_safe_booleans</a></li>
+<li><a href="taint_assume_safe_comparisons.html">taint_assume_safe_comparisons</a></li>
+<li><a href="taint_assume_safe_functions.html">taint_assume_safe_functions</a></li>
+<li><a href="taint_assume_safe_indexes.html">taint_assume_safe_indexes</a></li>
+<li><a href="taint_assume_safe_numbers.html">taint_assume_safe_numbers</a></li>
+<li><a href="taint_focus_on.html">taint_focus_on</a></li>
+<li><a href="taint_interfile.html">taint_interfile</a></li>
+<li><a href="taint_interfile_depth.html">taint_interfile_depth</a></li>
+<li><a href="taint_intrafile.html">taint_intrafile</a></li>
+<li><a href="taint_only_propagate_through_assignments.html">taint_only_propagate_through_assignments</a></li>
+<li><a href="taint_unify_mvars.html">taint_unify_mvars</a></li>
+<li><a href="timeout.html">timeout</a></li>
+<li><a href="unify_ids_strictly.html">unify_ids_strictly</a></li>
+<li><a href="vardef_assign.html">vardef_assign</a></li>
+<li><a href="xml_attrs_implicit_ellipsis.html">xml_attrs_implicit_ellipsis</a></li>
+<li><a href="xml_children_ordered.html">xml_children_ordered</a></li>
+<li><a href="xml_singleton_loose_matching.html">xml_singleton_loose_matching</a></li>
+</ul></details></li>
+<li><details><summary><a href="../environment.html">Environment variables</a></summary><ul>
+<li><a href="../env/ALL_PROXY.html">ALL_PROXY</a></li>
+<li><a href="../env/CI.html">CI</a></li>
+<li><a href="../env/COLUMNS.html">COLUMNS</a></li>
+<li><a href="../env/GIT_SSH_COMMAND.html">GIT_SSH_COMMAND</a></li>
+<li><a href="../env/HOME.html">HOME</a></li>
+<li><a href="../env/HTTP_PROXY.html">HTTP_PROXY</a></li>
+<li><a href="../env/HTTPS_PROXY.html">HTTPS_PROXY</a></li>
+<li><a href="../env/NO_COLOR.html">NO_COLOR</a></li>
+<li><a href="../env/NO_PROXY.html">NO_PROXY</a></li>
+<li><a href="../env/OPENGREP_APP_URL.html">OPENGREP_APP_URL</a></li>
+<li><a href="../env/OPENGREP_AUDIT_ON.html">OPENGREP_AUDIT_ON</a></li>
+<li><a href="../env/OPENGREP_BASELINE_COMMIT.html">OPENGREP_BASELINE_COMMIT</a></li>
+<li><a href="../env/OPENGREP_BASELINE_REF.html">OPENGREP_BASELINE_REF</a></li>
+<li><a href="../env/OPENGREP_BRANCH.html">OPENGREP_BRANCH</a></li>
+<li><a href="../env/OPENGREP_COMMIT.html">OPENGREP_COMMIT</a></li>
+<li><a href="../env/OPENGREP_FORCE_COLOR.html">OPENGREP_FORCE_COLOR</a></li>
+<li><a href="../env/OPENGREP_JOB_URL.html">OPENGREP_JOB_URL</a></li>
+<li><a href="../env/OPENGREP_LOG_FILE.html">OPENGREP_LOG_FILE</a></li>
+<li><a href="../env/OPENGREP_LOG_LEVEL.html">OPENGREP_LOG_LEVEL</a></li>
+<li><a href="../env/OPENGREP_LOG_SRCS.html">OPENGREP_LOG_SRCS</a></li>
+<li><a href="../env/OPENGREP_LOG_TAGS.html">OPENGREP_LOG_TAGS</a></li>
+<li><a href="../env/OPENGREP_PR_ID.html">OPENGREP_PR_ID</a></li>
+<li><a href="../env/OPENGREP_PR_TITLE.html">OPENGREP_PR_TITLE</a></li>
+<li><a href="../env/OPENGREP_REPO_DISPLAY_NAME.html">OPENGREP_REPO_DISPLAY_NAME</a></li>
+<li><a href="../env/OPENGREP_REPO_NAME.html">OPENGREP_REPO_NAME</a></li>
+<li><a href="../env/OPENGREP_REPO_URL.html">OPENGREP_REPO_URL</a></li>
+<li><a href="../env/OPENGREP_RULES.html">OPENGREP_RULES</a></li>
+<li><a href="../env/OPENGREP_SKIN.html">OPENGREP_SKIN</a></li>
+<li><a href="../env/OPENGREP_SUPPRESS_ERRORS.html">OPENGREP_SUPPRESS_ERRORS</a></li>
+<li><a href="../env/OPENGREP_TIMEOUT.html">OPENGREP_TIMEOUT</a></li>
+<li><a href="../env/OPENGREP_URL.html">OPENGREP_URL</a></li>
+<li><a href="../env/TERM.html">TERM</a></li>
+</ul></details></li>
+<li class="top"><a href="../internal.html">Internal and debugging interfaces</a></li>
+</ul>
+</nav>
+      </details>
+    </aside>
+
+    <main class="docs-main">
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../rule-options.html">Rule options</a></p>
+<h1><code>ac_matching</code></h1>
+<dl class="facts">
+<div><dt>Value</dt><dd><code>true</code> or <code>false</code></dd></div>
+<div><dt>Default</dt><dd><code>true</code></dd></div>
+<div><dt>See also</dt><dd><a href="commutative_boolop.html"><code>commutative_boolop</code></a>, <a href="symmetric_eq.html"><code>symmetric_eq</code></a></dd></div>
+</dl>
+<p><code>a | b | c</code> is parsed as <code>(a | b) | c</code>. With <code>ac_matching</code>, on by default, a chain of one associative operator is matched as a flat list of operands, not as the nested pairs the parser produces. Two cases follow.</p>
+<ul>
+<li>The bitwise operators <code>|</code>, <code>&amp;</code> and <code>^</code> are also commutative: the operands of the pattern may appear in any order, among other operands. <code>os.O_CREAT | os.O_TRUNC</code> matches <code>os.O_TRUNC | os.O_WRONLY | os.O_CREAT</code>.</li>
+<li>For <code>&amp;&amp;</code> and <code>||</code>, the order is kept, but a metavariable can stand for several operands in a row: <code>a() &amp;&amp; $X &amp;&amp; c()</code> matches <code>a() &amp;&amp; b() &amp;&amp; d() &amp;&amp; c()</code>. <a href="commutative_boolop.html"><code>commutative_boolop</code></a> drops the order too.</li>
+</ul>
+<p>With <code>ac_matching: false</code>, operators are matched as the parser nests them. <a href="commutative_boolop.html"><code>commutative_boolop</code></a> and <a href="symmetric_eq.html"><code>symmetric_eq</code></a> then have no effect.</p>
+<h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
+<h3 id="flags-combined-in-any-order"><a class="hash" href="#flags-combined-in-any-order" aria-hidden="true" tabindex="-1">###</a> Flags combined in any order</h3>
+<p>The rule <code>trunc-create</code> turns the option off.</p>
+<div class="file"><div class="file-head">flags.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: trunc-create-default</span><span class="line">    <span class="k">pattern</span>: os.O_CREAT | os.O_TRUNC</span><span class="line">    <span class="k">message</span>: creates or truncates the file</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span><span class="line">  - <span class="k">id</span>: trunc-create</span><span class="line">    <span class="k">pattern</span>: os.O_CREAT | os.O_TRUNC</span><span class="line">    <span class="k">message</span>: creates or truncates the file</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">ac_matching</span>: false</span></code></pre></div>
+<div class="file"><div class="file-head">flags.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">import</span> os</span><span class="line"></span><span class="line"><span class="k">def</span> create(path):</span><span class="line">    <span class="c"># ruleid: trunc-create-default, trunc-create</span></span><span class="line">    os.open(path, os.O_CREAT | os.O_TRUNC)</span><span class="line">    <span class="c"># ruleid: trunc-create-default</span></span><span class="line">    os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC)</span><span class="line">    <span class="c"># ruleid: trunc-create-default</span></span><span class="line">    os.open(path, os.O_TRUNC | os.O_WRONLY | os.O_CREAT)</span><span class="line">    <span class="c"># ok: trunc-create-default</span></span><span class="line">    os.open(path, os.O_CREAT | os.O_WRONLY)</span></code></pre></div>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep test .
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep test .</span>
+2/2: ✓ All tests passed
+No tests for fixes found.</code></pre></div>
+<h3 id="a-metavariable-for-several-conditions"><a class="hash" href="#a-metavariable-for-several-conditions" aria-hidden="true" tabindex="-1">###</a> A metavariable for several conditions</h3>
+<div class="file"><div class="file-head">guard.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: guard-default</span><span class="line">    <span class="k">pattern</span>: user.active &amp;&amp; <span class="mv">$COND</span> &amp;&amp; user.admin</span><span class="line">    <span class="k">message</span>: admin check with extra conditions</span><span class="line">    <span class="k">languages</span>: [javascript]</span><span class="line">    <span class="k">severity</span>: WARNING</span><span class="line">  - <span class="k">id</span>: guard</span><span class="line">    <span class="k">pattern</span>: user.active &amp;&amp; <span class="mv">$COND</span> &amp;&amp; user.admin</span><span class="line">    <span class="k">message</span>: admin check with extra conditions</span><span class="line">    <span class="k">languages</span>: [javascript]</span><span class="line">    <span class="k">severity</span>: WARNING</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">ac_matching</span>: false</span></code></pre></div>
+<div class="file"><div class="file-head">guard.js</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="c">// ruleid: guard-default, guard</span></span><span class="line"><span class="k">if</span> (user.active &amp;&amp; user.verified &amp;&amp; user.admin) {}</span><span class="line"><span class="c">// ruleid: guard-default</span></span><span class="line"><span class="k">if</span> (user.active &amp;&amp; user.verified &amp;&amp; req.secure &amp;&amp; user.admin) {}</span></code></pre></div>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep test .
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep test .</span>
+2/2: ✓ All tests passed
+No tests for fixes found.</code></pre></div>
+    </main>
+  </div>
+
+  <script src="../../main.js"></script>
+</body>
+</html>
