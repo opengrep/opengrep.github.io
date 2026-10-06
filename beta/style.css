@@ -196,6 +196,9 @@ section > p { margin: 0 0 16px; max-width: 66ch; }
 .backers li::before { content: "./"; color: var(--dim); }
 .backers li.dim::before { content: ""; }
 
+/* social channels: one short paragraph, as wide as the main column */
+#social > p { max-width: none; }
+
 /* ---------- terminal / tabs ---------- */
 .term {
   border: 1px solid var(--line);

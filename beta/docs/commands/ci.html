@@ -220,19 +220,13 @@
 <li><a href="../env/OPENGREP_AUDIT_ON.html">OPENGREP_AUDIT_ON</a></li>
 <li><a href="../env/OPENGREP_BASELINE_COMMIT.html">OPENGREP_BASELINE_COMMIT</a></li>
 <li><a href="../env/OPENGREP_BASELINE_REF.html">OPENGREP_BASELINE_REF</a></li>
-<li><a href="../env/OPENGREP_BRANCH.html">OPENGREP_BRANCH</a></li>
-<li><a href="../env/OPENGREP_COMMIT.html">OPENGREP_COMMIT</a></li>
 <li><a href="../env/OPENGREP_FORCE_COLOR.html">OPENGREP_FORCE_COLOR</a></li>
-<li><a href="../env/OPENGREP_JOB_URL.html">OPENGREP_JOB_URL</a></li>
 <li><a href="../env/OPENGREP_LOG_FILE.html">OPENGREP_LOG_FILE</a></li>
 <li><a href="../env/OPENGREP_LOG_LEVEL.html">OPENGREP_LOG_LEVEL</a></li>
 <li><a href="../env/OPENGREP_LOG_SRCS.html">OPENGREP_LOG_SRCS</a></li>
 <li><a href="../env/OPENGREP_LOG_TAGS.html">OPENGREP_LOG_TAGS</a></li>
 <li><a href="../env/OPENGREP_PR_ID.html">OPENGREP_PR_ID</a></li>
-<li><a href="../env/OPENGREP_PR_TITLE.html">OPENGREP_PR_TITLE</a></li>
-<li><a href="../env/OPENGREP_REPO_DISPLAY_NAME.html">OPENGREP_REPO_DISPLAY_NAME</a></li>
 <li><a href="../env/OPENGREP_REPO_NAME.html">OPENGREP_REPO_NAME</a></li>
-<li><a href="../env/OPENGREP_REPO_URL.html">OPENGREP_REPO_URL</a></li>
 <li><a href="../env/OPENGREP_RULES.html">OPENGREP_RULES</a></li>
 <li><a href="../env/OPENGREP_SKIN.html">OPENGREP_SKIN</a></li>
 <li><a href="../env/OPENGREP_SUPPRESS_ERRORS.html">OPENGREP_SUPPRESS_ERRORS</a></li>
@@ -250,14 +244,14 @@
 <p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../commands.html">Commands</a></p>
 <h1><code>opengrep ci</code></h1>
 <dl class="facts">
-<div><dt>See also</dt><dd><a href="scan.html"><code>opengrep scan</code></a>, <a href="../flags/audit-on.html"><code>--audit-on</code></a>, <a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a>, <a href="../flags/subdir.html"><code>--subdir</code></a>, <a href="../flags/baseline-commit.html"><code>--baseline-commit</code></a>, <a href="install-ci.html"><code>opengrep install-ci</code></a>, <a href="../flags/error.html"><code>--error</code></a>, <a href="../env/OPENGREP_BRANCH.html"><code>OPENGREP_BRANCH</code></a>, <a href="../env/OPENGREP_COMMIT.html"><code>OPENGREP_COMMIT</code></a>, <a href="../env/OPENGREP_JOB_URL.html"><code>OPENGREP_JOB_URL</code></a>, <a href="../env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a>, <a href="../env/OPENGREP_PR_TITLE.html"><code>OPENGREP_PR_TITLE</code></a>, <a href="../env/OPENGREP_REPO_DISPLAY_NAME.html"><code>OPENGREP_REPO_DISPLAY_NAME</code></a>, <a href="../env/OPENGREP_REPO_NAME.html"><code>OPENGREP_REPO_NAME</code></a>, <a href="../env/OPENGREP_REPO_URL.html"><code>OPENGREP_REPO_URL</code></a></dd></div>
+<div><dt>See also</dt><dd><a href="scan.html"><code>opengrep scan</code></a>, <a href="../flags/audit-on.html"><code>--audit-on</code></a>, <a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a>, <a href="../flags/subdir.html"><code>--subdir</code></a>, <a href="../flags/baseline-commit.html"><code>--baseline-commit</code></a>, <a href="install-ci.html"><code>opengrep install-ci</code></a>, <a href="../flags/error.html"><code>--error</code></a>, <a href="../env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a>, <a href="../env/OPENGREP_REPO_NAME.html"><code>OPENGREP_REPO_NAME</code></a></dd></div>
 </dl>
 <div class="file"><pre class="snip"><code>opengrep ci [FLAGS]</code></pre></div>
 <p>Runs the same engine as <a href="scan.html"><code>opengrep scan</code></a>, with the defaults a CI job wants. It takes no target arguments: it scans the current directory, or the directory given by <a href="../flags/subdir.html"><code>--subdir</code></a>, and it expects to be run from the root of a git repository. Elsewhere it warns and carries on with whatever it can work out.</p>
 <p>Rules come from <a href="../flags/config.html"><code>--config</code></a> or <a href="../env/OPENGREP_RULES.html"><code>OPENGREP_RULES</code></a>, as for a scan. With neither, <code>ci</code> falls back to <code>--config auto</code> and fetches rules from the registry.</p>
 <p>What <code>ci</code> adds to a scan:</p>
 <ul>
-<li><strong>Repository metadata.</strong> It works out the CI provider from the environment (GitHub Actions, GitLab CI, CircleCI, Jenkins, Bitbucket, Azure Pipelines, Buildkite, Travis; otherwise plain git). The first line it prints on standard error names the provider and the event that triggered the run, such as <code>git · unknown</code> or <code>gitlab-ci · push</code>. Variables such as <code>OPENGREP_REPO_NAME</code> and <code>OPENGREP_BRANCH</code> are accepted for compatibility with semgrep, but only <a href="../env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a> changes what <code>ci</code> does in general; see <a href="../environment.html">Environment variables</a>.</li>
+<li><strong>Repository metadata.</strong> It works out the CI provider from the environment (GitHub Actions, GitLab CI, CircleCI, Jenkins, Bitbucket, Azure Pipelines, Buildkite, Travis; otherwise plain git). The first line it prints on standard error names the provider and the event that triggered the run, such as <code>git · unknown</code> or <code>gitlab-ci · push</code>. Variables such as <a href="../env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a> can set parts of the metadata; see <a href="../environment.html">Environment variables</a>.</li>
 <li><strong>A baseline.</strong> The baseline comes from that metadata, so in a pull or merge request only findings that the request introduces are reported. <a href="../flags/baseline-commit.html"><code>--baseline-commit</code></a> overrides it.</li>
 <li><strong>Blocking findings.</strong> A finding is blocking or not according to its rule's metadata. <code>ci</code> lists the rules of the blocking ones under <code>blocking rules fired</code> and exits 1 when there is at least one, without needing <code>--error</code>. <a href="../flags/audit-on.html"><code>--audit-on</code></a> turns that status back into 0 for a given CI event.</li>
 <li><strong>Suppressed errors.</strong> By default any other failure becomes exit status 0, so a broken rule file does not fail the build. See <a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a>.</li>

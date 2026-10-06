@@ -220,19 +220,13 @@
 <li><a href="env/OPENGREP_AUDIT_ON.html">OPENGREP_AUDIT_ON</a></li>
 <li><a href="env/OPENGREP_BASELINE_COMMIT.html">OPENGREP_BASELINE_COMMIT</a></li>
 <li><a href="env/OPENGREP_BASELINE_REF.html">OPENGREP_BASELINE_REF</a></li>
-<li><a href="env/OPENGREP_BRANCH.html">OPENGREP_BRANCH</a></li>
-<li><a href="env/OPENGREP_COMMIT.html">OPENGREP_COMMIT</a></li>
 <li><a href="env/OPENGREP_FORCE_COLOR.html">OPENGREP_FORCE_COLOR</a></li>
-<li><a href="env/OPENGREP_JOB_URL.html">OPENGREP_JOB_URL</a></li>
 <li><a href="env/OPENGREP_LOG_FILE.html">OPENGREP_LOG_FILE</a></li>
 <li><a href="env/OPENGREP_LOG_LEVEL.html">OPENGREP_LOG_LEVEL</a></li>
 <li><a href="env/OPENGREP_LOG_SRCS.html">OPENGREP_LOG_SRCS</a></li>
 <li><a href="env/OPENGREP_LOG_TAGS.html">OPENGREP_LOG_TAGS</a></li>
 <li><a href="env/OPENGREP_PR_ID.html">OPENGREP_PR_ID</a></li>
-<li><a href="env/OPENGREP_PR_TITLE.html">OPENGREP_PR_TITLE</a></li>
-<li><a href="env/OPENGREP_REPO_DISPLAY_NAME.html">OPENGREP_REPO_DISPLAY_NAME</a></li>
 <li><a href="env/OPENGREP_REPO_NAME.html">OPENGREP_REPO_NAME</a></li>
-<li><a href="env/OPENGREP_REPO_URL.html">OPENGREP_REPO_URL</a></li>
 <li><a href="env/OPENGREP_RULES.html">OPENGREP_RULES</a></li>
 <li><a href="env/OPENGREP_SKIN.html">OPENGREP_SKIN</a></li>
 <li><a href="env/OPENGREP_SUPPRESS_ERRORS.html">OPENGREP_SUPPRESS_ERRORS</a></li>
@@ -257,10 +251,14 @@
 <li><a href="environment.html">Environment variables</a>: the variables opengrep reads.</li>
 <li><a href="internal.html">Internal and debugging interfaces</a>: interfaces meant for opengrep's own development, listed but not documented in detail.</li>
 </ul>
-<h2 id="reading-an-entry"><a class="hash" href="#reading-an-entry" aria-hidden="true" tabindex="-1">##</a> Reading an entry</h2>
-<p>Each entry has its own page. Below the title, a short list of facts gives the commands that accept a flag, its default, the environment variable that has the same effect, and related entries.</p>
-<p>The examples at the end of a page are complete. Create the files shown, run the command in the same directory, and you will see the output shown. Every block in an example is labelled: with the name of the file to create, or with <strong>Command and result:</strong> for the commands to run and what they print. Only standard output is shown unless the command redirects standard error (<code>2&gt;&amp;1</code>). Opengrep prints its progress and summary on standard error.</p>
-<p>In example targets, a <code># ruleid: &lt;id&gt;</code> comment marks the next line as one that rule <code>&lt;id&gt;</code> must report, and <code># ok: &lt;id&gt;</code> marks one it must not report. <a href="commands/test.html"><code>opengrep test</code></a> checks these annotations, so an example that runs <code>opengrep test</code> and prints <code>✓ All tests passed</code> shows exactly where the rule matches.</p>
+<h2 id="further-reading"><a class="hash" href="#further-reading" aria-hidden="true" tabindex="-1">##</a> Further reading</h2>
+<p>The <a href="https://github.com/opengrep/opengrep/wiki">Opengrep wiki</a> on GitHub goes deeper into parts of the taint analysis than this reference does. Its pages are tutorials with worked examples, and notes on how the analysis works inside:</p>
+<ul>
+<li><a href="https://github.com/opengrep/opengrep/wiki/Intrafile-tainting-tutorial">Intrafile taint tracking</a>: following tainted data from function to function within one file, with <code>--taint-intrafile</code>.</li>
+<li><a href="https://github.com/opengrep/opengrep/wiki/Higher-order-functions-tutorial">Taint tracking in higher-order functions</a>: taint carried through callbacks such as <code>map</code> and <code>forEach</code>.</li>
+<li><a href="https://github.com/opengrep/opengrep/wiki/Methods-that-taint">Built-in methods that taint</a>: the standard library methods, such as <code>list.add</code> and <code>map.get</code>, that carry taint into and out of a collection, language by language.</li>
+<li><a href="https://github.com/opengrep/opengrep/wiki/Guarded-taint-signatures">Guarded taint signatures</a>: an experimental refinement that drops a finding when the condition leading to the sink can never hold for a call.</li>
+</ul>
     </main>
   </div>
 

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>OPENGREP_REPO_NAME · Opengrep</title>
-  <meta name="description" content="The repository name for opengrep ci; it matters only to the GitHub merge-base lookup.">
+  <meta name="description" content="On GitHub Actions, the repository opengrep ci asks GitHub about for a pull request&#x27;s merge base.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -220,19 +220,13 @@
 <li><a href="OPENGREP_AUDIT_ON.html">OPENGREP_AUDIT_ON</a></li>
 <li><a href="OPENGREP_BASELINE_COMMIT.html">OPENGREP_BASELINE_COMMIT</a></li>
 <li><a href="OPENGREP_BASELINE_REF.html">OPENGREP_BASELINE_REF</a></li>
-<li><a href="OPENGREP_BRANCH.html">OPENGREP_BRANCH</a></li>
-<li><a href="OPENGREP_COMMIT.html">OPENGREP_COMMIT</a></li>
 <li><a href="OPENGREP_FORCE_COLOR.html">OPENGREP_FORCE_COLOR</a></li>
-<li><a href="OPENGREP_JOB_URL.html">OPENGREP_JOB_URL</a></li>
 <li><a href="OPENGREP_LOG_FILE.html">OPENGREP_LOG_FILE</a></li>
 <li><a href="OPENGREP_LOG_LEVEL.html">OPENGREP_LOG_LEVEL</a></li>
 <li><a href="OPENGREP_LOG_SRCS.html">OPENGREP_LOG_SRCS</a></li>
 <li><a href="OPENGREP_LOG_TAGS.html">OPENGREP_LOG_TAGS</a></li>
 <li><a href="OPENGREP_PR_ID.html">OPENGREP_PR_ID</a></li>
-<li><a href="OPENGREP_PR_TITLE.html">OPENGREP_PR_TITLE</a></li>
-<li><a href="OPENGREP_REPO_DISPLAY_NAME.html">OPENGREP_REPO_DISPLAY_NAME</a></li>
 <li><a href="OPENGREP_REPO_NAME.html" aria-current="page">OPENGREP_REPO_NAME</a></li>
-<li><a href="OPENGREP_REPO_URL.html">OPENGREP_REPO_URL</a></li>
 <li><a href="OPENGREP_RULES.html">OPENGREP_RULES</a></li>
 <li><a href="OPENGREP_SKIN.html">OPENGREP_SKIN</a></li>
 <li><a href="OPENGREP_SUPPRESS_ERRORS.html">OPENGREP_SUPPRESS_ERRORS</a></li>
@@ -252,19 +246,13 @@
 <dl class="facts">
 <div><dt>Also spelled</dt><dd><code>SEMGREP_REPO_NAME</code></dd></div>
 <div><dt>Value</dt><dd>a repository name</dd></div>
-<div><dt>See also</dt><dd><a href="../commands/ci.html"><code>opengrep ci</code></a>, <a href="OPENGREP_REPO_DISPLAY_NAME.html"><code>OPENGREP_REPO_DISPLAY_NAME</code></a>, <a href="OPENGREP_REPO_URL.html"><code>OPENGREP_REPO_URL</code></a></dd></div>
+<div><dt>See also</dt><dd><a href="../commands/ci.html"><code>opengrep ci</code></a></dd></div>
 </dl>
-<p><a href="../commands/ci.html"><code>opengrep ci</code></a> reads this variable and records the value as the repository name in the metadata of the scan, instead of the name it would work out itself. That metadata is what Semgrep sent to its app. Opengrep has no such app, and nothing in it displays the metadata: the value appears in no output format and in no log, and it does not change what is scanned.</p>
-<p>The name has one use, on GitHub Actions. When a pull request is scanned and <code>GH_TOKEN</code> is set, opengrep asks the GitHub API for the pull request's merge base, and this variable, or <code>GITHUB_REPOSITORY</code> when it is unset, names the repository to ask about. A wrong name makes that lookup fail, and opengrep then fetches history and computes the merge base locally, which is slower. That path needs GitHub itself, so the example below does not exercise it.</p>
+<p>On GitHub Actions, when <a href="../commands/ci.html"><code>opengrep ci</code></a> scans a pull request and <code>GH_TOKEN</code> is set, it asks the GitHub API for the pull request's merge base. This variable names the repository to ask about, as <code>owner/repo</code>; when it is unset, <code>GITHUB_REPOSITORY</code>, which GitHub Actions sets, names it instead. A wrong name makes that lookup fail, and opengrep then fetches history and computes the merge base locally, which is slower.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="the-value-goes-nowhere"><a class="hash" href="#the-value-goes-nowhere" aria-hidden="true" tabindex="-1">###</a> The value goes nowhere</h3>
-<div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
-<div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="git init -q &amp;&amp; git add . &amp;&amp; git commit -qm init
-OPENGREP_REPO_NAME=my-repo opengrep ci --config rule.yaml 2&gt;&amp;1 | grep -c my-repo
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">git init -q &amp;&amp; git add . &amp;&amp; git commit -qm init</span>
-<span class="p">$ </span><span class="cmd">OPENGREP_REPO_NAME=my-repo opengrep ci --config rule.yaml 2&gt;&amp;1 | grep -c my-repo</span>
-0</code></pre></div>
+<h3 id="naming-the-repository-on-github-actions"><a class="hash" href="#naming-the-repository-on-github-actions" aria-hidden="true" tabindex="-1">###</a> Naming the repository on GitHub Actions</h3>
+<div class="file console"><div class="file-head">Command</div><button class="copy" type="button" data-copy="OPENGREP_REPO_NAME=my-org/my-repo opengrep ci --config rule.yaml
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">OPENGREP_REPO_NAME=my-org/my-repo opengrep ci --config rule.yaml</span></code></pre></div>
     </main>
   </div>
 

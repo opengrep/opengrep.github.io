@@ -220,19 +220,13 @@
 <li><a href="OPENGREP_AUDIT_ON.html">OPENGREP_AUDIT_ON</a></li>
 <li><a href="OPENGREP_BASELINE_COMMIT.html">OPENGREP_BASELINE_COMMIT</a></li>
 <li><a href="OPENGREP_BASELINE_REF.html">OPENGREP_BASELINE_REF</a></li>
-<li><a href="OPENGREP_BRANCH.html">OPENGREP_BRANCH</a></li>
-<li><a href="OPENGREP_COMMIT.html">OPENGREP_COMMIT</a></li>
 <li><a href="OPENGREP_FORCE_COLOR.html" aria-current="page">OPENGREP_FORCE_COLOR</a></li>
-<li><a href="OPENGREP_JOB_URL.html">OPENGREP_JOB_URL</a></li>
 <li><a href="OPENGREP_LOG_FILE.html">OPENGREP_LOG_FILE</a></li>
 <li><a href="OPENGREP_LOG_LEVEL.html">OPENGREP_LOG_LEVEL</a></li>
 <li><a href="OPENGREP_LOG_SRCS.html">OPENGREP_LOG_SRCS</a></li>
 <li><a href="OPENGREP_LOG_TAGS.html">OPENGREP_LOG_TAGS</a></li>
 <li><a href="OPENGREP_PR_ID.html">OPENGREP_PR_ID</a></li>
-<li><a href="OPENGREP_PR_TITLE.html">OPENGREP_PR_TITLE</a></li>
-<li><a href="OPENGREP_REPO_DISPLAY_NAME.html">OPENGREP_REPO_DISPLAY_NAME</a></li>
 <li><a href="OPENGREP_REPO_NAME.html">OPENGREP_REPO_NAME</a></li>
-<li><a href="OPENGREP_REPO_URL.html">OPENGREP_REPO_URL</a></li>
 <li><a href="OPENGREP_RULES.html">OPENGREP_RULES</a></li>
 <li><a href="OPENGREP_SKIN.html">OPENGREP_SKIN</a></li>
 <li><a href="OPENGREP_SUPPRESS_ERRORS.html">OPENGREP_SUPPRESS_ERRORS</a></li>
@@ -256,7 +250,7 @@
 <div><dt>See also</dt><dd><a href="NO_COLOR.html"><code>NO_COLOR</code></a></dd></div>
 </dl>
 <p>When neither <a href="../flags/force-color.html"><code>--force-color</code></a> nor <code>--no-force-color</code> is given, opengrep reads this variable. A true value styles the output even when it goes to a pipe or a file, and wins over <a href="NO_COLOR.html"><code>NO_COLOR</code></a>. A false value leaves the usual rule in place, under which only a terminal gets colour.</p>
-<p>The accepted spellings are <code>true</code>, <code>yes</code> and <code>1</code> for true, and <code>false</code>, <code>no</code> and <code>0</code> for false. Any other value is rejected like a bad flag value, with exit status 2, and the message names <code>SEMGREP_FORCE_COLOR</code> whichever spelling was set.</p>
+<p>The accepted spellings are <code>true</code>, <code>yes</code> and <code>1</code> for true, and <code>false</code>, <code>no</code> and <code>0</code> for false. Any other value is rejected like a bad flag value, with exit status 2.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="colour-through-a-pipe-from-the-environment"><a class="hash" href="#colour-through-a-pipe-from-the-environment" aria-hidden="true" tabindex="-1">###</a> Colour through a pipe, from the environment</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

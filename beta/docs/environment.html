@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Environment variables · Opengrep</title>
-  <meta name="description" content="Opengrep was forked from Semgrep, and it reads each of its OPENGREP_ variables under the old SEMGREP_ name as well. For example, OPENGREP_TIMEOUT can also be written SEMGREP_TIMEOUT. When both are set, the OPENGREP_ one wins. This reference names variables by their OPENGREP_ name and lists the SEMGREP_ name as an alias. Variables that never had a SEMGREP name, such as NO_COLOR, have no alias.">
+  <meta name="description" content="Opengrep was forked from Semgrep. Semgrep&#x27;s variables, whose names start with SEMGREP_, still work, and each also has an OPENGREP_ equivalent: SEMGREP_TIMEOUT and OPENGREP_TIMEOUT mean the same. When both are set, the OPENGREP_ one wins. Variables new to Opengrep, such as OPENGREP_SKIN, exist only under their OPENGREP_ name. This reference names variables by their OPENGREP_ name and lists the SEMGREP_ name as an alias. Variables that never had a SEMGREP name, such as NO_COLOR, have no alias.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -220,19 +220,13 @@
 <li><a href="env/OPENGREP_AUDIT_ON.html">OPENGREP_AUDIT_ON</a></li>
 <li><a href="env/OPENGREP_BASELINE_COMMIT.html">OPENGREP_BASELINE_COMMIT</a></li>
 <li><a href="env/OPENGREP_BASELINE_REF.html">OPENGREP_BASELINE_REF</a></li>
-<li><a href="env/OPENGREP_BRANCH.html">OPENGREP_BRANCH</a></li>
-<li><a href="env/OPENGREP_COMMIT.html">OPENGREP_COMMIT</a></li>
 <li><a href="env/OPENGREP_FORCE_COLOR.html">OPENGREP_FORCE_COLOR</a></li>
-<li><a href="env/OPENGREP_JOB_URL.html">OPENGREP_JOB_URL</a></li>
 <li><a href="env/OPENGREP_LOG_FILE.html">OPENGREP_LOG_FILE</a></li>
 <li><a href="env/OPENGREP_LOG_LEVEL.html">OPENGREP_LOG_LEVEL</a></li>
 <li><a href="env/OPENGREP_LOG_SRCS.html">OPENGREP_LOG_SRCS</a></li>
 <li><a href="env/OPENGREP_LOG_TAGS.html">OPENGREP_LOG_TAGS</a></li>
 <li><a href="env/OPENGREP_PR_ID.html">OPENGREP_PR_ID</a></li>
-<li><a href="env/OPENGREP_PR_TITLE.html">OPENGREP_PR_TITLE</a></li>
-<li><a href="env/OPENGREP_REPO_DISPLAY_NAME.html">OPENGREP_REPO_DISPLAY_NAME</a></li>
 <li><a href="env/OPENGREP_REPO_NAME.html">OPENGREP_REPO_NAME</a></li>
-<li><a href="env/OPENGREP_REPO_URL.html">OPENGREP_REPO_URL</a></li>
 <li><a href="env/OPENGREP_RULES.html">OPENGREP_RULES</a></li>
 <li><a href="env/OPENGREP_SKIN.html">OPENGREP_SKIN</a></li>
 <li><a href="env/OPENGREP_SUPPRESS_ERRORS.html">OPENGREP_SUPPRESS_ERRORS</a></li>
@@ -250,7 +244,7 @@
 <p class="docs-crumb"><a href="index.html">reference</a></p>
 <h1>Environment variables</h1>
 <h2 id="names-opengrep_-and-semgrep_"><a class="hash" href="#names-opengrep_-and-semgrep_" aria-hidden="true" tabindex="-1">##</a> Names: <code>OPENGREP_*</code> and <code>SEMGREP_*</code></h2>
-<p>Opengrep was forked from Semgrep, and it reads each of its <code>OPENGREP_*</code> variables under the old <code>SEMGREP_*</code> name as well. For example, <code>OPENGREP_TIMEOUT</code> can also be written <code>SEMGREP_TIMEOUT</code>. When both are set, the <code>OPENGREP_*</code> one wins. This reference names variables by their <code>OPENGREP_*</code> name and lists the <code>SEMGREP_*</code> name as an alias. Variables that never had a <code>SEMGREP</code> name, such as <code>NO_COLOR</code>, have no alias.</p>
+<p>Opengrep was forked from Semgrep. Semgrep's variables, whose names start with <code>SEMGREP_</code>, still work, and each also has an <code>OPENGREP_</code> equivalent: <code>SEMGREP_TIMEOUT</code> and <code>OPENGREP_TIMEOUT</code> mean the same. When both are set, the <code>OPENGREP_*</code> one wins. Variables new to Opengrep, such as <a href="env/OPENGREP_SKIN.html"><code>OPENGREP_SKIN</code></a>, exist only under their <code>OPENGREP_*</code> name. This reference names variables by their <code>OPENGREP_*</code> name and lists the <code>SEMGREP_*</code> name as an alias. Variables that never had a <code>SEMGREP</code> name, such as <code>NO_COLOR</code>, have no alias.</p>
 <p>A variable set to the empty string counts as unset.</p>
 <h2 id="variables-and-flags"><a class="hash" href="#variables-and-flags" aria-hidden="true" tabindex="-1">##</a> Variables and flags</h2>
 <p>Some variables are equivalent to a command-line flag (the <em>Equivalent flag</em> column). When both are given, the flag wins and opengrep logs a warning such as:</p>
@@ -272,19 +266,13 @@
 <tr><td><a href="env/OPENGREP_AUDIT_ON.html"><code>OPENGREP_AUDIT_ON</code></a></td><td><code>--audit-on</code></td><td>Event names for --audit-on when the flag is not given, separated by whitespace.</td></tr>
 <tr><td><a href="env/OPENGREP_BASELINE_COMMIT.html"><code>OPENGREP_BASELINE_COMMIT</code></a></td><td><code>--baseline-commit</code></td><td>The baseline for scan and ci when --baseline-commit is not given.</td></tr>
 <tr><td><a href="env/OPENGREP_BASELINE_REF.html"><code>OPENGREP_BASELINE_REF</code></a></td><td><code>--baseline-commit</code></td><td>Another name for the baseline, used when OPENGREP_BASELINE_COMMIT is not set.</td></tr>
-<tr><td><a href="env/OPENGREP_BRANCH.html"><code>OPENGREP_BRANCH</code></a></td><td></td><td>Accepted by opengrep ci for the branch name, but it changes neither the output nor the scan.</td></tr>
-<tr><td><a href="env/OPENGREP_COMMIT.html"><code>OPENGREP_COMMIT</code></a></td><td></td><td>Accepted by opengrep ci for the commit being scanned, but it changes neither the output nor the scan.</td></tr>
 <tr><td><a href="env/OPENGREP_FORCE_COLOR.html"><code>OPENGREP_FORCE_COLOR</code></a></td><td><code>--force-color</code></td><td>Style the output even through a pipe, when neither --force-color nor --no-force-color is given.</td></tr>
-<tr><td><a href="env/OPENGREP_JOB_URL.html"><code>OPENGREP_JOB_URL</code></a></td><td></td><td>Accepted by opengrep ci for the CI job's URL, but used for nothing.</td></tr>
 <tr><td><a href="env/OPENGREP_LOG_FILE.html"><code>OPENGREP_LOG_FILE</code></a></td><td></td><td>Also write the logs to this file, at the same level as standard error.</td></tr>
 <tr><td><a href="env/OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a></td><td></td><td>Set the level of the logs on standard error, overriding --quiet, --verbose and --debug.</td></tr>
 <tr><td><a href="env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a></td><td></td><td>Hear from parts of opengrep and its libraries whose logs are silent by default.</td></tr>
 <tr><td><a href="env/OPENGREP_LOG_TAGS.html"><code>OPENGREP_LOG_TAGS</code></a></td><td></td><td>Choose which debug messages are shown, by the tags they carry.</td></tr>
 <tr><td><a href="env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a></td><td></td><td>Mark an opengrep ci run as a pull request, which makes its event pull_request.</td></tr>
-<tr><td><a href="env/OPENGREP_PR_TITLE.html"><code>OPENGREP_PR_TITLE</code></a></td><td></td><td>Accepted by opengrep ci for the pull request's title, but used for nothing.</td></tr>
-<tr><td><a href="env/OPENGREP_REPO_DISPLAY_NAME.html"><code>OPENGREP_REPO_DISPLAY_NAME</code></a></td><td></td><td>Accepted by opengrep ci for the repository's display name, but used for nothing.</td></tr>
-<tr><td><a href="env/OPENGREP_REPO_NAME.html"><code>OPENGREP_REPO_NAME</code></a></td><td></td><td>The repository name for opengrep ci; it matters only to the GitHub merge-base lookup.</td></tr>
-<tr><td><a href="env/OPENGREP_REPO_URL.html"><code>OPENGREP_REPO_URL</code></a></td><td></td><td>Accepted by opengrep ci for the repository URL, but used for nothing.</td></tr>
+<tr><td><a href="env/OPENGREP_REPO_NAME.html"><code>OPENGREP_REPO_NAME</code></a></td><td></td><td>On GitHub Actions, the repository opengrep ci asks GitHub about for a pull request's merge base.</td></tr>
 <tr><td><a href="env/OPENGREP_RULES.html"><code>OPENGREP_RULES</code></a></td><td><code>--config</code></td><td>Rule sources used when --config is not given, as a whitespace-separated list.</td></tr>
 <tr><td><a href="env/OPENGREP_SKIN.html"><code>OPENGREP_SKIN</code></a></td><td><code>--skin</code></td><td>The layout of the text report, when --skin is not given.</td></tr>
 <tr><td><a href="env/OPENGREP_SUPPRESS_ERRORS.html"><code>OPENGREP_SUPPRESS_ERRORS</code></a></td><td><code>--suppress-errors</code></td><td>Whether errors fail opengrep ci, when the flag is not given.</td></tr>

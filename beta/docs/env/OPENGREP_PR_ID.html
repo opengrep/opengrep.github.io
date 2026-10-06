@@ -220,19 +220,13 @@
 <li><a href="OPENGREP_AUDIT_ON.html">OPENGREP_AUDIT_ON</a></li>
 <li><a href="OPENGREP_BASELINE_COMMIT.html">OPENGREP_BASELINE_COMMIT</a></li>
 <li><a href="OPENGREP_BASELINE_REF.html">OPENGREP_BASELINE_REF</a></li>
-<li><a href="OPENGREP_BRANCH.html">OPENGREP_BRANCH</a></li>
-<li><a href="OPENGREP_COMMIT.html">OPENGREP_COMMIT</a></li>
 <li><a href="OPENGREP_FORCE_COLOR.html">OPENGREP_FORCE_COLOR</a></li>
-<li><a href="OPENGREP_JOB_URL.html">OPENGREP_JOB_URL</a></li>
 <li><a href="OPENGREP_LOG_FILE.html">OPENGREP_LOG_FILE</a></li>
 <li><a href="OPENGREP_LOG_LEVEL.html">OPENGREP_LOG_LEVEL</a></li>
 <li><a href="OPENGREP_LOG_SRCS.html">OPENGREP_LOG_SRCS</a></li>
 <li><a href="OPENGREP_LOG_TAGS.html">OPENGREP_LOG_TAGS</a></li>
 <li><a href="OPENGREP_PR_ID.html" aria-current="page">OPENGREP_PR_ID</a></li>
-<li><a href="OPENGREP_PR_TITLE.html">OPENGREP_PR_TITLE</a></li>
-<li><a href="OPENGREP_REPO_DISPLAY_NAME.html">OPENGREP_REPO_DISPLAY_NAME</a></li>
 <li><a href="OPENGREP_REPO_NAME.html">OPENGREP_REPO_NAME</a></li>
-<li><a href="OPENGREP_REPO_URL.html">OPENGREP_REPO_URL</a></li>
 <li><a href="OPENGREP_RULES.html">OPENGREP_RULES</a></li>
 <li><a href="OPENGREP_SKIN.html">OPENGREP_SKIN</a></li>
 <li><a href="OPENGREP_SUPPRESS_ERRORS.html">OPENGREP_SUPPRESS_ERRORS</a></li>
@@ -252,7 +246,7 @@
 <dl class="facts">
 <div><dt>Also spelled</dt><dd><code>SEMGREP_PR_ID</code></dd></div>
 <div><dt>Value</dt><dd>a pull or merge request id</dd></div>
-<div><dt>See also</dt><dd><a href="../commands/ci.html"><code>opengrep ci</code></a>, <a href="OPENGREP_PR_TITLE.html"><code>OPENGREP_PR_TITLE</code></a>, <a href="OPENGREP_AUDIT_ON.html"><code>OPENGREP_AUDIT_ON</code></a></dd></div>
+<div><dt>See also</dt><dd><a href="../commands/ci.html"><code>opengrep ci</code></a>, <a href="OPENGREP_AUDIT_ON.html"><code>OPENGREP_AUDIT_ON</code></a></dd></div>
 </dl>
 <p>Tells <a href="../commands/ci.html"><code>opengrep ci</code></a> the id of the pull or merge request the run belongs to, and with it the event name: <code>pull_request</code> when the variable is set, <code>unknown</code> otherwise.</p>
 <p>That holds when no CI provider is detected, and on Azure Pipelines, Bitbucket, Buildkite, CircleCI, Jenkins and Travis, where this variable is read before the provider's own pull-request variable. GitHub Actions and GitLab CI take the event from their own variables, <code>GITHUB_EVENT_NAME</code> and <code>CI_PIPELINE_SOURCE</code>, and this one does not change it.</p>

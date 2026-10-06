@@ -220,19 +220,13 @@
 <li><a href="env/OPENGREP_AUDIT_ON.html">OPENGREP_AUDIT_ON</a></li>
 <li><a href="env/OPENGREP_BASELINE_COMMIT.html">OPENGREP_BASELINE_COMMIT</a></li>
 <li><a href="env/OPENGREP_BASELINE_REF.html">OPENGREP_BASELINE_REF</a></li>
-<li><a href="env/OPENGREP_BRANCH.html">OPENGREP_BRANCH</a></li>
-<li><a href="env/OPENGREP_COMMIT.html">OPENGREP_COMMIT</a></li>
 <li><a href="env/OPENGREP_FORCE_COLOR.html">OPENGREP_FORCE_COLOR</a></li>
-<li><a href="env/OPENGREP_JOB_URL.html">OPENGREP_JOB_URL</a></li>
 <li><a href="env/OPENGREP_LOG_FILE.html">OPENGREP_LOG_FILE</a></li>
 <li><a href="env/OPENGREP_LOG_LEVEL.html">OPENGREP_LOG_LEVEL</a></li>
 <li><a href="env/OPENGREP_LOG_SRCS.html">OPENGREP_LOG_SRCS</a></li>
 <li><a href="env/OPENGREP_LOG_TAGS.html">OPENGREP_LOG_TAGS</a></li>
 <li><a href="env/OPENGREP_PR_ID.html">OPENGREP_PR_ID</a></li>
-<li><a href="env/OPENGREP_PR_TITLE.html">OPENGREP_PR_TITLE</a></li>
-<li><a href="env/OPENGREP_REPO_DISPLAY_NAME.html">OPENGREP_REPO_DISPLAY_NAME</a></li>
 <li><a href="env/OPENGREP_REPO_NAME.html">OPENGREP_REPO_NAME</a></li>
-<li><a href="env/OPENGREP_REPO_URL.html">OPENGREP_REPO_URL</a></li>
 <li><a href="env/OPENGREP_RULES.html">OPENGREP_RULES</a></li>
 <li><a href="env/OPENGREP_SKIN.html">OPENGREP_SKIN</a></li>
 <li><a href="env/OPENGREP_SUPPRESS_ERRORS.html">OPENGREP_SUPPRESS_ERRORS</a></li>
@@ -251,7 +245,7 @@
 <h1>Internal and debugging interfaces</h1>
 <p>These interfaces exist for opengrep's own development, tests, and packaging. They are listed so the reference is complete, and they may change or disappear in any release.</p>
 <h2 id="opengrep---core"><a class="hash" href="#opengrep---core" aria-hidden="true" tabindex="-1">##</a> <code>opengrep --core</code></h2>
-<p>The opengrep binary also contains the low-level engine CLI, historically called <code>semgrep-core</code> and later <code>opengrep-core</code>. It runs when the first argument is <code>--core</code>, and <code>opengrep --core -help</code> lists its options. The <code>opengrep</code> commands build on the same engine, and this reference does not document the engine CLI. The engine CLI appends the whitespace-separated words of <code>OPENGREP_CORE_EXTRA</code> (or <code>SEMGREP_CORE_EXTRA</code>) to its own arguments.</p>
+<p>The opengrep binary also contains the low-level engine CLI. It runs when the first argument is <code>--core</code>, and <code>opengrep --core -help</code> lists its options. The <code>opengrep</code> commands build on the same engine, and this reference does not document the engine CLI. The engine CLI appends the whitespace-separated words of <code>OPENGREP_CORE_EXTRA</code> (or <code>SEMGREP_CORE_EXTRA</code>) to its own arguments.</p>
 <h2 id="opengrep-show-dump-commands"><a class="hash" href="#opengrep-show-dump-commands" aria-hidden="true" tabindex="-1">##</a> <code>opengrep show</code> dump commands</h2>
 <p><code>opengrep show</code> prints internal representations with <code>dump-config</code>, <code>dump-rule</code>, <code>dump-rule-v2</code>, <code>dump-patterns-of-rule</code>, <code>dump-ast</code>, <code>dump-il</code>, <code>dump-il-pp</code>, <code>dump-cst</code>, <code>dump-pattern</code>, <code>dump-intrafile-graph</code>, <code>dump-interfile-graph</code> and <code>dump-taint-signatures</code>. <code>opengrep show --help</code> describes their arguments.</p>
 <h2 id="flags"><a class="hash" href="#flags" aria-hidden="true" tabindex="-1">##</a> Flags</h2>
@@ -275,6 +269,7 @@
 <tr><td><code>OPENGREP_PROJIDX_BATCH</code></td><td>Batch size of the project index. Read only under this name, with no <code>SEMGREP_</code> alias.</td></tr>
 <tr><td><code>OPENGREP_FAIL_OPEN_URL</code></td><td>Not used: its only mention in the sources is commented out.</td></tr>
 <tr><td><code>OPENGREP_GHA_MIN_FETCH_DEPTH</code></td><td>Deprecated: minimum git fetch depth for <code>opengrep ci</code> on GitHub Actions.</td></tr>
+<tr><td><code>OPENGREP_BRANCH</code>, <code>OPENGREP_COMMIT</code>, <code>OPENGREP_JOB_URL</code>, <code>OPENGREP_PR_TITLE</code>, <code>OPENGREP_REPO_DISPLAY_NAME</code>, <code>OPENGREP_REPO_URL</code>, and their <code>SEMGREP_</code> names</td><td>For <code>opengrep ci</code>: the branch, commit, CI job URL, pull request title, repository display name and repository URL, recorded in the metadata of the scan.</td></tr>
 <tr><td><code>PYTEST_OPENGREP_LOG_*</code>, <code>PYTEST_SEMGREP_LOG_*</code></td><td>Log settings for test runners that clear the environment except <code>PYTEST_*</code>. They take precedence over <a href="env/OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a> and the related variables.</td></tr>
 <tr><td><code>GITHUB_*</code>, <code>GH_TOKEN</code>, <code>GITLAB_CI</code>, <code>CI_*</code>, <code>CIRCLECI</code>, <code>CIRCLE_*</code>, <code>BUILDKITE</code>, <code>BUILDKITE_*</code>, <code>TRAVIS</code>, <code>TRAVIS_*</code>, <code>JENKINS_URL</code>, <code>GIT_URL</code>, <code>GIT_URL_1</code>, <code>GIT_BRANCH</code>, <code>GIT_COMMIT</code>, <code>BUILD_*</code>, <code>BITBUCKET_*</code>, <code>SYSTEM_*</code></td><td>Set by CI providers. <code>opengrep ci</code> reads them to detect the provider, the repository, the branch and the pull request.</td></tr>
 </tbody>
