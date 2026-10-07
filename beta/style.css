@@ -390,19 +390,26 @@ pre.out .n { color: var(--dim); }
 .notes .ref { color: var(--accent); }
 
 /* ---------- docs ---------- */
-.wrap.wide { max-width: calc(1180px + 48px); }
-
+/* The text sits in the site's own column, the middle one, so it starts right
+   under the nav as on every other page; the contents tree hangs in the left
+   margin. Below 1300px the margin is too narrow, and the tree folds into a
+   "contents" toggle above the text. */
 .docs-layout {
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, calc(var(--measure) + 48px)) minmax(0, 1fr);
   align-items: start;
   padding-top: 32px;
   padding-bottom: 64px;
 }
+.docs-main { grid-column: 2; grid-row: 1; min-width: 0; padding: 0 24px; }
 
 /* sidebar: filter and contents tree; sticks below the site header and only the tree scrolls */
 .docs-side {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  width: min(260px, calc(100% - 40px));
+  margin-right: 8px;
   position: sticky;
   top: 76px;
   font-size: 13px;
@@ -446,11 +453,12 @@ pre.out .n { color: var(--dim); }
 .toc details ul { margin: 2px 0 8px 0.5ch; padding-left: 1.5ch; border-left: 1px solid var(--line); }
 
 /* page */
-.docs-main { max-width: 820px; }
+/* the overview's "Opengrep / docs" heading, at the height the other pages have theirs */
+.docs-main > .hero { padding-top: 4px; margin-bottom: 20px; }
 .docs-crumb { margin: 0 0 6px; font-size: 13px; color: var(--dim); text-transform: lowercase; }
 .docs-crumb a { color: var(--dim); border-bottom-color: var(--line); }
 .docs-crumb a:hover { color: var(--fg); border-bottom-color: var(--fg); text-shadow: none; }
-.docs-main h1 {
+.docs-main h1:not(.crumb) {
   margin: 0 0 22px;
   font-size: clamp(22px, 3vw, 28px);
   font-weight: 300;
@@ -509,9 +517,10 @@ pre.snip { padding: 14px 18px; }
 pre.out .cmd { color: var(--fg); font-weight: 400; }
 pre.out .sev { color: var(--fg); font-weight: 500; }
 
-@media (max-width: 900px) {
-  .docs-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-top: 20px; }
-  .docs-side { position: static; }
+@media (max-width: 1299px) {
+  .docs-layout { padding-top: 20px; row-gap: 24px; }
+  .docs-side { grid-column: 2; justify-self: stretch; width: auto; margin: 0; padding: 0 24px; position: static; }
+  .docs-main { grid-row: 2; }
   .toc { max-height: 60vh; }
   .docs-toc { border: 1px solid var(--line); background: var(--bg-raised); padding: 8px 14px; }
   .docs-toc > summary { display: block; position: relative; padding-left: 2ch; color: var(--fg); cursor: pointer; list-style: none; }
@@ -519,6 +528,8 @@ pre.out .sev { color: var(--fg); font-weight: 500; }
   .docs-toc > summary::before { content: "+"; position: absolute; left: 0; color: var(--accent); }
   .docs-toc[open] > summary { margin-bottom: 10px; }
   .docs-toc[open] > summary::before { content: "-"; }
+}
+@media (max-width: 900px) {
   .facts div { grid-template-columns: 1fr; gap: 0; }
 }
 
@@ -535,4 +546,6 @@ pre.out .sev { color: var(--fg); font-weight: 500; }
   .file .copy { top: 4px; }
   .nav { gap: 22px; }
   .notes li { grid-template-columns: 1fr; }
+  .docs-main,
+  .docs-side { padding: 0 16px; }
 }

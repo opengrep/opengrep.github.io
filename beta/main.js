@@ -69,7 +69,7 @@ if (stats) Promise.allSettled([getJSON(repo), getJSON(`${repo}/releases/latest`)
 // docs: contents tree, closed on narrow screens, filterable, scrolled to the current page
 const toc = document.querySelector('.docs-toc');
 if (toc) {
-  const narrow = matchMedia('(max-width: 900px)');
+  const narrow = matchMedia('(max-width: 1299px)');
   const fit = () => { toc.open = !narrow.matches; };
   fit();
   narrow.addEventListener('change', fit);
