@@ -35,7 +35,6 @@
 <li class="top"><a href="../index.html">overview</a></li>
 <li><details><summary><a href="../commands.html">Commands</a></summary><ul>
 <li><a href="../commands/ci.html">opengrep ci</a></li>
-<li><a href="../commands/install-ci.html">opengrep install-ci</a></li>
 <li><a href="../commands/lsp.html">opengrep lsp</a></li>
 <li><a href="../commands/scan.html">opengrep scan</a></li>
 <li><a href="../commands/show.html">opengrep show</a></li>
@@ -61,7 +60,6 @@
 <li><a href="emacs-output.html">--emacs-output</a></li>
 <li><a href="enable-nosem.html">--enable-nosem</a></li>
 <li><a href="enable-version-check.html">--enable-version-check</a></li>
-<li><a href="env.html">--env</a></li>
 <li><a href="error.html">--error</a></li>
 <li><a href="exclude.html">--exclude</a></li>
 <li><a href="exclude-minified-files.html">--exclude-minified-files</a></li>
@@ -104,7 +102,6 @@
 <li><a href="project-root.html">--project-root</a></li>
 <li><a href="quiet.html">--quiet</a></li>
 <li><a href="replacement.html">--replacement</a></li>
-<li><a href="repo.html">--repo</a></li>
 <li><a href="rewrite-rule-ids.html">--rewrite-rule-ids</a></li>
 <li><a href="sarif.html">--sarif</a></li>
 <li><a href="sarif-output.html">--sarif-output</a></li>
@@ -126,7 +123,6 @@
 <li><a href="time.html">--time</a></li>
 <li><a href="timeout.html">--timeout</a></li>
 <li><a href="timeout-threshold.html">--timeout-threshold</a></li>
-<li><a href="update.html">--update</a></li>
 <li><a href="use-git-ignore.html">--use-git-ignore</a></li>
 <li><a href="validate.html">--validate</a></li>
 <li><a href="verbose.html">--verbose</a></li>
@@ -264,7 +260,7 @@ chain.py
   <span class="err">error</span>  <span class="rule">input-to-system</span>
   input reaches os.system
 
-<span class="n">    4 │</span><span class="b"> os.system(x)</span></code></pre></div>
+<span class="n">     4:</span><span class="b"> os.system(x)</span></code></pre></div>
 <p>The first command prints nothing: without the flag the taint stops at the call to <code>c</code>.</p>
     </main>
   </div>

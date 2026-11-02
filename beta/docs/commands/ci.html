@@ -35,7 +35,6 @@
 <li class="top"><a href="../index.html">overview</a></li>
 <li><details open><summary><a href="../commands.html">Commands</a></summary><ul>
 <li><a href="ci.html" aria-current="page">opengrep ci</a></li>
-<li><a href="install-ci.html">opengrep install-ci</a></li>
 <li><a href="lsp.html">opengrep lsp</a></li>
 <li><a href="scan.html">opengrep scan</a></li>
 <li><a href="show.html">opengrep show</a></li>
@@ -61,7 +60,6 @@
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
 <li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
-<li><a href="../flags/env.html">--env</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
@@ -104,7 +102,6 @@
 <li><a href="../flags/project-root.html">--project-root</a></li>
 <li><a href="../flags/quiet.html">--quiet</a></li>
 <li><a href="../flags/replacement.html">--replacement</a></li>
-<li><a href="../flags/repo.html">--repo</a></li>
 <li><a href="../flags/rewrite-rule-ids.html">--rewrite-rule-ids</a></li>
 <li><a href="../flags/sarif.html">--sarif</a></li>
 <li><a href="../flags/sarif-output.html">--sarif-output</a></li>
@@ -126,7 +123,6 @@
 <li><a href="../flags/time.html">--time</a></li>
 <li><a href="../flags/timeout.html">--timeout</a></li>
 <li><a href="../flags/timeout-threshold.html">--timeout-threshold</a></li>
-<li><a href="../flags/update.html">--update</a></li>
 <li><a href="../flags/use-git-ignore.html">--use-git-ignore</a></li>
 <li><a href="../flags/validate.html">--validate</a></li>
 <li><a href="../flags/verbose.html">--verbose</a></li>
@@ -244,7 +240,7 @@
 <p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../commands.html">Commands</a></p>
 <h1><code>opengrep ci</code></h1>
 <dl class="facts">
-<div><dt>See also</dt><dd><a href="scan.html"><code>opengrep scan</code></a>, <a href="../flags/audit-on.html"><code>--audit-on</code></a>, <a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a>, <a href="../flags/subdir.html"><code>--subdir</code></a>, <a href="../flags/baseline-commit.html"><code>--baseline-commit</code></a>, <a href="install-ci.html"><code>opengrep install-ci</code></a>, <a href="../flags/error.html"><code>--error</code></a>, <a href="../env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a>, <a href="../env/OPENGREP_REPO_NAME.html"><code>OPENGREP_REPO_NAME</code></a></dd></div>
+<div><dt>See also</dt><dd><a href="scan.html"><code>opengrep scan</code></a>, <a href="../flags/audit-on.html"><code>--audit-on</code></a>, <a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a>, <a href="../flags/subdir.html"><code>--subdir</code></a>, <a href="../flags/baseline-commit.html"><code>--baseline-commit</code></a>, <a href="../flags/error.html"><code>--error</code></a>, <a href="../env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a>, <a href="../env/OPENGREP_REPO_NAME.html"><code>OPENGREP_REPO_NAME</code></a></dd></div>
 </dl>
 <div class="file"><pre class="snip"><code>opengrep ci [FLAGS]</code></pre></div>
 <p>Runs the same engine as <a href="scan.html"><code>opengrep scan</code></a>, with the defaults a CI job wants. It takes no target arguments: it scans the current directory, or the directory given by <a href="../flags/subdir.html"><code>--subdir</code></a>, and it expects to be run from the root of a git repository. Elsewhere it warns and carries on with whatever it can work out.</p>
@@ -354,7 +350,7 @@ app.py
   <span class="sev">warn</span>  <span class="rule">find-eval</span>
   found eval
 
-<span class="n">    1 │</span><span class="b"> eval(1)</span>
+<span class="n">     1:</span><span class="b"> eval(1)</span>
 
 blocking rules fired
   find-eval

@@ -35,7 +35,6 @@
 <li class="top"><a href="../index.html">overview</a></li>
 <li><details><summary><a href="../commands.html">Commands</a></summary><ul>
 <li><a href="../commands/ci.html">opengrep ci</a></li>
-<li><a href="../commands/install-ci.html">opengrep install-ci</a></li>
 <li><a href="../commands/lsp.html">opengrep lsp</a></li>
 <li><a href="../commands/scan.html">opengrep scan</a></li>
 <li><a href="../commands/show.html">opengrep show</a></li>
@@ -61,7 +60,6 @@
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
 <li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
-<li><a href="../flags/env.html">--env</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
@@ -104,7 +102,6 @@
 <li><a href="../flags/project-root.html">--project-root</a></li>
 <li><a href="../flags/quiet.html">--quiet</a></li>
 <li><a href="../flags/replacement.html">--replacement</a></li>
-<li><a href="../flags/repo.html">--repo</a></li>
 <li><a href="../flags/rewrite-rule-ids.html">--rewrite-rule-ids</a></li>
 <li><a href="../flags/sarif.html">--sarif</a></li>
 <li><a href="../flags/sarif-output.html">--sarif-output</a></li>
@@ -126,7 +123,6 @@
 <li><a href="../flags/time.html">--time</a></li>
 <li><a href="../flags/timeout.html">--timeout</a></li>
 <li><a href="../flags/timeout-threshold.html">--timeout-threshold</a></li>
-<li><a href="../flags/update.html">--update</a></li>
 <li><a href="../flags/use-git-ignore.html">--use-git-ignore</a></li>
 <li><a href="../flags/validate.html">--validate</a></li>
 <li><a href="../flags/verbose.html">--verbose</a></li>
@@ -262,7 +258,7 @@ opengrep scan --config patient.yaml --allow-rule-timeout-control --timeout 0.001
 <span class="p">$ </span><span class="cmd">opengrep scan --config slow.yaml big.py 2&gt;&amp;1 | grep -c <span class="s">&#x27;timeout error&#x27;</span></span>
 0
 <span class="p">$ </span><span class="cmd">opengrep scan --config slow.yaml --allow-rule-timeout-control big.py 2&gt;&amp;1 | grep <span class="s">&#x27;timeout error&#x27;</span></span>
-[00.00][WARNING]: 1 timeout error(s) in big.py when running the following rules: [slow]
+warning  1 timeout error(s) in big.py when running the following rules: [slow]
 <span class="p">$ </span><span class="cmd">opengrep scan --config patient.yaml --allow-rule-timeout-control --timeout 0.001 big.py 2&gt;&amp;1 | grep -c <span class="s">&#x27;timeout error&#x27;</span></span>
 0</code></pre></div>
 <p>Without the flag, <code>slow</code> gets the scan's 5 seconds and finishes. With it, its own limit of a millisecond applies. <code>patient</code> finishes although the scan's limit is a millisecond, because its own limit is 100 seconds.</p>

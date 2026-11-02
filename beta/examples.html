@@ -59,15 +59,15 @@
   <span class="err">error</span>  <span class="rule">subprocess-shell-true</span>
   shell=True runs the command through a shell (command injection risk)
 
-<span class="n">    6 │</span><span class="b"> subprocess.call(&quot;git checkout &quot; + branch, shell=True)</span>
+<span class="n">     6:</span><span class="b"> subprocess.call(&quot;git checkout &quot; + branch, shell=True)</span>
 
-<span class="n">    8 │</span><span class="b"> sh(f&quot;make release BRANCH={branch}&quot;, shell=True)</span>
+<span class="n">     8:</span><span class="b"> sh(f&quot;make release BRANCH={branch}&quot;, shell=True)</span>
 
-<span class="n">    11 │</span><span class="b"> subprocess.Popen(</span>
-<span class="n">    12 │</span><span class="b">     [&quot;make&quot;, &quot;clean&quot;],</span>
-<span class="n">    13 │</span><span class="b">     cwd=&quot;/srv/app&quot;,</span>
-<span class="n">    14 │</span><span class="b">     shell=use_shell,</span>
-<span class="n">    15 │</span><span class="b"> )</span>
+<span class="n">    11:</span><span class="b"> subprocess.Popen(</span>
+<span class="n">    12:</span><span class="b">     [&quot;make&quot;, &quot;clean&quot;],</span>
+<span class="n">    13:</span><span class="b">     cwd=&quot;/srv/app&quot;,</span>
+<span class="n">    14:</span><span class="b">     shell=use_shell,</span>
+<span class="n">    15:</span><span class="b"> )</span>
 
 3 findings in 1 file</code></pre>
       </div>
@@ -106,9 +106,9 @@
   <span class="err">error</span>  <span class="rule">command-injection</span>
   User input reaches a shell command
 
-<span class="n">    16 │</span><span class="b"> exec(tarCommand(req.query.dir));</span>
+<span class="n">    16:</span><span class="b"> exec(tarCommand(req.query.dir));</span>
 
-<span class="n">    20 │</span><span class="b"> req.body.dirs.map(tarCommand).forEach((cmd) =&gt; exec(cmd));</span>
+<span class="n">    20:</span><span class="b"> req.body.dirs.map(tarCommand).forEach((cmd) =&gt; exec(cmd));</span>
 
 2 findings in 1 file</code></pre>
       </div>

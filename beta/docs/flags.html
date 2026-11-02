@@ -35,7 +35,6 @@
 <li class="top"><a href="index.html">overview</a></li>
 <li><details><summary><a href="commands.html">Commands</a></summary><ul>
 <li><a href="commands/ci.html">opengrep ci</a></li>
-<li><a href="commands/install-ci.html">opengrep install-ci</a></li>
 <li><a href="commands/lsp.html">opengrep lsp</a></li>
 <li><a href="commands/scan.html">opengrep scan</a></li>
 <li><a href="commands/show.html">opengrep show</a></li>
@@ -61,7 +60,6 @@
 <li><a href="flags/emacs-output.html">--emacs-output</a></li>
 <li><a href="flags/enable-nosem.html">--enable-nosem</a></li>
 <li><a href="flags/enable-version-check.html">--enable-version-check</a></li>
-<li><a href="flags/env.html">--env</a></li>
 <li><a href="flags/error.html">--error</a></li>
 <li><a href="flags/exclude.html">--exclude</a></li>
 <li><a href="flags/exclude-minified-files.html">--exclude-minified-files</a></li>
@@ -104,7 +102,6 @@
 <li><a href="flags/project-root.html">--project-root</a></li>
 <li><a href="flags/quiet.html">--quiet</a></li>
 <li><a href="flags/replacement.html">--replacement</a></li>
-<li><a href="flags/repo.html">--repo</a></li>
 <li><a href="flags/rewrite-rule-ids.html">--rewrite-rule-ids</a></li>
 <li><a href="flags/sarif.html">--sarif</a></li>
 <li><a href="flags/sarif-output.html">--sarif-output</a></li>
@@ -126,7 +123,6 @@
 <li><a href="flags/time.html">--time</a></li>
 <li><a href="flags/timeout.html">--timeout</a></li>
 <li><a href="flags/timeout-threshold.html">--timeout-threshold</a></li>
-<li><a href="flags/update.html">--update</a></li>
 <li><a href="flags/use-git-ignore.html">--use-git-ignore</a></li>
 <li><a href="flags/validate.html">--validate</a></li>
 <li><a href="flags/verbose.html">--verbose</a></li>
@@ -255,10 +251,10 @@
 <tr><td><a href="flags/baseline-commit.html"><code>--baseline-commit</code></a></td><td>scan, ci</td><td><code>OPENGREP_BASELINE_COMMIT</code>, <code>OPENGREP_BASELINE_REF</code></td><td>Report only the findings that are not already present in the given commit.</td></tr>
 <tr><td><a href="flags/config.html"><code>--config</code></a></td><td>scan, ci, test</td><td><code>OPENGREP_RULES</code></td><td>Load rules from a file, a directory, a URL, a git repository or the Semgrep registry.</td></tr>
 <tr><td><a href="flags/dataflow-traces.html"><code>--dataflow-traces</code></a></td><td>scan, ci</td><td></td><td>Show how a value reaches the finding, for taint rules.</td></tr>
-<tr><td><a href="flags/debug.html"><code>--debug</code></a></td><td>scan, ci, test, validate, show, lsp, install-ci</td><td></td><td>Log everything --verbose does and the engine's own diagnostics as well.</td></tr>
+<tr><td><a href="flags/debug.html"><code>--debug</code></a></td><td>scan, ci, test, validate, show, lsp</td><td></td><td>Log everything --verbose does and the engine's own diagnostics as well.</td></tr>
 <tr><td><a href="flags/disable-interfile.html"><code>--disable-interfile</code></a></td><td>scan, ci</td><td></td><td>Keep every taint rule within single files, even rules that ask to follow taint across files.</td></tr>
 <tr><td><a href="flags/disable-intrafile.html"><code>--disable-intrafile</code></a></td><td>scan, ci</td><td></td><td>Keep every taint rule within single functions, even rules that ask to follow calls.</td></tr>
-<tr><td><a href="flags/dryrun.html"><code>--dryrun</code></a></td><td>scan, install-ci</td><td></td><td>Show what would be changed without changing it; the two commands mean different things by it.</td></tr>
+<tr><td><a href="flags/dryrun.html"><code>--dryrun</code></a></td><td>scan</td><td></td><td>Show the fixes --autofix would make, without writing them to the files.</td></tr>
 <tr><td><a href="flags/dynamic-timeout.html"><code>--dynamic-timeout</code></a></td><td>scan, ci</td><td></td><td>Scale each rule's time limit with the size of the file being scanned.</td></tr>
 <tr><td><a href="flags/dynamic-timeout-max-multiplier.html"><code>--dynamic-timeout-max-multiplier</code></a></td><td>scan, ci</td><td></td><td>The ceiling on how much a file's size may stretch the timeout.</td></tr>
 <tr><td><a href="flags/dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a></td><td>scan, ci</td><td></td><td>The file size, in KB, that counts as one step when scaling the timeout.</td></tr>
@@ -266,12 +262,11 @@
 <tr><td><a href="flags/emacs-output.html"><code>--emacs-output</code></a></td><td>scan, ci</td><td></td><td>Also write the findings in Emacs single-line format to a file.</td></tr>
 <tr><td><a href="flags/enable-nosem.html"><code>--enable-nosem</code></a></td><td>scan, ci</td><td></td><td>Whether a nosem comment silences findings on its line; on by default.</td></tr>
 <tr><td><a href="flags/enable-version-check.html"><code>--enable-version-check</code></a></td><td>scan, ci</td><td></td><td>Accepted for compatibility; opengrep never checks for a newer version.</td></tr>
-<tr><td><a href="flags/env.html"><code>--env</code></a></td><td>install-ci</td><td></td><td>The CI system to install a workflow for; only GitHub Actions is supported.</td></tr>
 <tr><td><a href="flags/error.html"><code>--error</code></a></td><td>scan</td><td></td><td>Exit 1 when there are findings, so a script or CI job fails on them.</td></tr>
 <tr><td><a href="flags/exclude.html"><code>--exclude</code></a></td><td>scan, ci</td><td></td><td>Skip files and directories whose path matches a gitignore-style pattern.</td></tr>
 <tr><td><a href="flags/exclude-minified-files.html"><code>--exclude-minified-files</code></a></td><td>scan</td><td></td><td>Skip files that look minified.</td></tr>
 <tr><td><a href="flags/exclude-rule.html"><code>--exclude-rule</code></a></td><td>scan, ci</td><td></td><td>Skip a rule by its id, whichever config it came from.</td></tr>
-<tr><td><a href="flags/experimental.html"><code>--experimental</code></a></td><td>scan, ci, test, validate, show, lsp, install-ci</td><td></td><td>Accepted for compatibility; opengrep has only the one implementation.</td></tr>
+<tr><td><a href="flags/experimental.html"><code>--experimental</code></a></td><td>scan, ci, test, validate, show, lsp</td><td></td><td>Accepted for compatibility; opengrep has only the one implementation.</td></tr>
 <tr><td><a href="flags/files-with-matches.html"><code>--files-with-matches</code></a></td><td>scan, ci</td><td></td><td>Print only the paths of the files that have findings.</td></tr>
 <tr><td><a href="flags/force-color.html"><code>--force-color</code></a></td><td>scan, ci, test, validate</td><td><code>OPENGREP_FORCE_COLOR</code></td><td>Style the output even when it is not going to a terminal.</td></tr>
 <tr><td><a href="flags/force-exclude.html"><code>--force-exclude</code></a></td><td>scan, ci</td><td></td><td>Apply --include and --exclude to files named on the command line as well.</td></tr>
@@ -307,9 +302,8 @@
 <tr><td><a href="flags/output-enclosing-context.html"><code>--output-enclosing-context</code></a></td><td>scan</td><td></td><td>Record which function or class each finding sits in.</td></tr>
 <tr><td><a href="flags/pattern.html"><code>--pattern</code></a></td><td>scan</td><td></td><td>Search with a single pattern given on the command line, instead of a rule file.</td></tr>
 <tr><td><a href="flags/project-root.html"><code>--project-root</code></a></td><td>scan</td><td></td><td>Treat this folder as the project root, so its ignore files are read.</td></tr>
-<tr><td><a href="flags/quiet.html"><code>--quiet</code></a></td><td>scan, ci, test, validate, show, lsp, install-ci</td><td></td><td>Print the findings and nothing else.</td></tr>
+<tr><td><a href="flags/quiet.html"><code>--quiet</code></a></td><td>scan, ci, test, validate, show, lsp</td><td></td><td>Print the findings and nothing else.</td></tr>
 <tr><td><a href="flags/replacement.html"><code>--replacement</code></a></td><td>scan</td><td></td><td>The fix for a command-line pattern, as a rule's fix key would give it.</td></tr>
-<tr><td><a href="flags/repo.html"><code>--repo</code></a></td><td>install-ci</td><td></td><td>The repository to add the workflow to, as a path or as owner/repo.</td></tr>
 <tr><td><a href="flags/rewrite-rule-ids.html"><code>--rewrite-rule-ids</code></a></td><td>scan, ci</td><td></td><td>Whether a rule loaded from a directory gets its path as a prefix; on by default.</td></tr>
 <tr><td><a href="flags/sarif.html"><code>--sarif</code></a></td><td>scan, ci</td><td></td><td>Print the findings as a SARIF 2.1.0 document.</td></tr>
 <tr><td><a href="flags/sarif-output.html"><code>--sarif-output</code></a></td><td>scan, ci</td><td></td><td>Also write the findings as SARIF to a file, suppressed findings included.</td></tr>
@@ -331,10 +325,9 @@
 <tr><td><a href="flags/time.html"><code>--time</code></a></td><td>scan, ci</td><td></td><td>Report how long the scan took, per rule and per file.</td></tr>
 <tr><td><a href="flags/timeout.html"><code>--timeout</code></a></td><td>scan, ci, test</td><td><code>OPENGREP_TIMEOUT</code></td><td>Maximum time in seconds for one rule on one file; 0 means no limit.</td></tr>
 <tr><td><a href="flags/timeout-threshold.html"><code>--timeout-threshold</code></a></td><td>scan, ci, test</td><td></td><td>How many rules may time out on a file before opengrep gives up on that file.</td></tr>
-<tr><td><a href="flags/update.html"><code>--update</code></a></td><td>install-ci</td><td></td><td>Replace a workflow that is already there instead of leaving it alone.</td></tr>
 <tr><td><a href="flags/use-git-ignore.html"><code>--use-git-ignore</code></a></td><td>scan, ci</td><td></td><td>Whether .gitignore decides which files are scanned; on by default.</td></tr>
 <tr><td><a href="flags/validate.html"><code>--validate</code></a></td><td>scan</td><td></td><td>Check the rules and scan nothing; the older spelling of the validate command.</td></tr>
-<tr><td><a href="flags/verbose.html"><code>--verbose</code></a></td><td>scan, ci, test, validate, show, lsp, install-ci</td><td></td><td>Log what the scan is doing, at the info level.</td></tr>
+<tr><td><a href="flags/verbose.html"><code>--verbose</code></a></td><td>scan, ci, test, validate, show, lsp</td><td></td><td>Log what the scan is doing, at the info level.</td></tr>
 <tr><td><a href="flags/version.html"><code>--version</code></a></td><td>scan</td><td></td><td>Print the opengrep version and exit.</td></tr>
 <tr><td><a href="flags/vim.html"><code>--vim</code></a></td><td>scan, ci</td><td></td><td>Print one line per finding, in the form Vim quickfix lists parse.</td></tr>
 <tr><td><a href="flags/vim-output.html"><code>--vim-output</code></a></td><td>scan, ci</td><td></td><td>Also write the findings in Vim quickfix format to a file.</td></tr>
@@ -352,15 +345,14 @@ app.py
   <span class="sev">warn</span>  <span class="rule">find-eval</span>
   found eval
 
-<span class="n">    1 │</span><span class="b"> eval(1)</span>
-
+<span class="n">     1:</span><span class="b"> eval(1)</span>
 <span class="p">$ </span><span class="cmd">opengrep scan app.py --config rule.yaml</span>
 app.py
 
   <span class="sev">warn</span>  <span class="rule">find-eval</span>
   found eval
 
-<span class="n">    1 │</span><span class="b"> eval(1)</span></code></pre></div>
+<span class="n">     1:</span><span class="b"> eval(1)</span></code></pre></div>
     </main>
   </div>
 

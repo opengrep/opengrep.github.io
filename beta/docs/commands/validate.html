@@ -35,7 +35,6 @@
 <li class="top"><a href="../index.html">overview</a></li>
 <li><details open><summary><a href="../commands.html">Commands</a></summary><ul>
 <li><a href="ci.html">opengrep ci</a></li>
-<li><a href="install-ci.html">opengrep install-ci</a></li>
 <li><a href="lsp.html">opengrep lsp</a></li>
 <li><a href="scan.html">opengrep scan</a></li>
 <li><a href="show.html">opengrep show</a></li>
@@ -61,7 +60,6 @@
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
 <li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
-<li><a href="../flags/env.html">--env</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
@@ -104,7 +102,6 @@
 <li><a href="../flags/project-root.html">--project-root</a></li>
 <li><a href="../flags/quiet.html">--quiet</a></li>
 <li><a href="../flags/replacement.html">--replacement</a></li>
-<li><a href="../flags/repo.html">--repo</a></li>
 <li><a href="../flags/rewrite-rule-ids.html">--rewrite-rule-ids</a></li>
 <li><a href="../flags/sarif.html">--sarif</a></li>
 <li><a href="../flags/sarif-output.html">--sarif-output</a></li>
@@ -126,7 +123,6 @@
 <li><a href="../flags/time.html">--time</a></li>
 <li><a href="../flags/timeout.html">--timeout</a></li>
 <li><a href="../flags/timeout-threshold.html">--timeout-threshold</a></li>
-<li><a href="../flags/update.html">--update</a></li>
 <li><a href="../flags/use-git-ignore.html">--use-git-ignore</a></li>
 <li><a href="../flags/validate.html">--validate</a></li>
 <li><a href="../flags/verbose.html">--verbose</a></li>
@@ -300,17 +296,17 @@ exit status: 0</code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep validate bad.yaml 2&gt;&amp;1 &gt;/dev/null
 opengrep validate bad.yaml &gt; /dev/null 2&gt;&amp;1; echo &quot;exit status: $?&quot;
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep validate bad.yaml 2&gt;&amp;1 &gt;/dev/null</span>
-[00.00][WARNING]: bad.yaml:3:5: Invalid rule schema in rule broken
-  --&gt; bad.yaml:3
-2 |   - id: broken
-3 |     patterns:
-  |     ^^^^^^^^
-4 |       - pattern-not: eval(&quot;...&quot;)
-you need at least one positive term (not just negations or conditions)
+warning  bad.yaml:3:5: Invalid rule schema in rule broken
+           --&gt; bad.yaml:3
+         2 |   - id: broken
+         3 |     patterns:
+           |     ^^^^^^^^
+         4 |       - pattern-not: eval(&quot;...&quot;)
+         you need at least one positive term (not just negations or conditions)
 1 file · 6 rules
 
 Configuration is invalid - found 0 fatal errors, 1 skippable error(s), and 0 rule(s).
-[00.00][ERROR]: Please fix the above errors and try again.
+error    Please fix the above errors and try again.
 <span class="p">$ </span><span class="cmd">opengrep validate bad.yaml &gt; /dev/null 2&gt;&amp;1; echo <span class="s">&quot;exit status: $?&quot;</span></span>
 exit status: 4</code></pre></div>
     </main>

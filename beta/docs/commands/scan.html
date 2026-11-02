@@ -35,7 +35,6 @@
 <li class="top"><a href="../index.html">overview</a></li>
 <li><details open><summary><a href="../commands.html">Commands</a></summary><ul>
 <li><a href="ci.html">opengrep ci</a></li>
-<li><a href="install-ci.html">opengrep install-ci</a></li>
 <li><a href="lsp.html">opengrep lsp</a></li>
 <li><a href="scan.html" aria-current="page">opengrep scan</a></li>
 <li><a href="show.html">opengrep show</a></li>
@@ -61,7 +60,6 @@
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
 <li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
-<li><a href="../flags/env.html">--env</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
@@ -104,7 +102,6 @@
 <li><a href="../flags/project-root.html">--project-root</a></li>
 <li><a href="../flags/quiet.html">--quiet</a></li>
 <li><a href="../flags/replacement.html">--replacement</a></li>
-<li><a href="../flags/repo.html">--repo</a></li>
 <li><a href="../flags/rewrite-rule-ids.html">--rewrite-rule-ids</a></li>
 <li><a href="../flags/sarif.html">--sarif</a></li>
 <li><a href="../flags/sarif-output.html">--sarif-output</a></li>
@@ -126,7 +123,6 @@
 <li><a href="../flags/time.html">--time</a></li>
 <li><a href="../flags/timeout.html">--timeout</a></li>
 <li><a href="../flags/timeout-threshold.html">--timeout-threshold</a></li>
-<li><a href="../flags/update.html">--update</a></li>
 <li><a href="../flags/use-git-ignore.html">--use-git-ignore</a></li>
 <li><a href="../flags/validate.html">--validate</a></li>
 <li><a href="../flags/verbose.html">--verbose</a></li>
@@ -280,7 +276,7 @@
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><a href="../flags/disable-interfile.html"><code>--disable-interfile</code></a></td><td>Keep every taint rule within single files, even rules that ask to follow taint across files.</td></tr>
 <tr><td><a href="../flags/disable-intrafile.html"><code>--disable-intrafile</code></a></td><td>Keep every taint rule within single functions, even rules that ask to follow calls.</td></tr>
-<tr><td><a href="../flags/dryrun.html"><code>--dryrun</code></a></td><td>Show what would be changed without changing it; the two commands mean different things by it.</td></tr>
+<tr><td><a href="../flags/dryrun.html"><code>--dryrun</code></a></td><td>Show the fixes --autofix would make, without writing them to the files.</td></tr>
 <tr><td><code>--dump-ast</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><a href="../flags/dynamic-timeout.html"><code>--dynamic-timeout</code></a></td><td>Scale each rule's time limit with the size of the file being scanned.</td></tr>
 <tr><td><a href="../flags/dynamic-timeout-max-multiplier.html"><code>--dynamic-timeout-max-multiplier</code></a></td><td>The ceiling on how much a file's size may stretch the timeout.</td></tr>
@@ -373,7 +369,7 @@ app.py
   <span class="sev">warn</span>  <span class="rule">find-eval</span>
   found eval
 
-<span class="n">    2 │</span><span class="b"> return eval(expr)</span></code></pre></div>
+<span class="n">     2:</span><span class="b"> return eval(expr)</span></code></pre></div>
 <h3 id="fail-when-there-are-findings"><a class="hash" href="#fail-when-there-are-findings" aria-hidden="true" tabindex="-1">###</a> Fail when there are findings</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(input())</span></code></pre></div>

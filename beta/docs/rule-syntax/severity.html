@@ -35,7 +35,6 @@
 <li class="top"><a href="../index.html">overview</a></li>
 <li><details><summary><a href="../commands.html">Commands</a></summary><ul>
 <li><a href="../commands/ci.html">opengrep ci</a></li>
-<li><a href="../commands/install-ci.html">opengrep install-ci</a></li>
 <li><a href="../commands/lsp.html">opengrep lsp</a></li>
 <li><a href="../commands/scan.html">opengrep scan</a></li>
 <li><a href="../commands/show.html">opengrep show</a></li>
@@ -61,7 +60,6 @@
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
 <li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
-<li><a href="../flags/env.html">--env</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
@@ -104,7 +102,6 @@
 <li><a href="../flags/project-root.html">--project-root</a></li>
 <li><a href="../flags/quiet.html">--quiet</a></li>
 <li><a href="../flags/replacement.html">--replacement</a></li>
-<li><a href="../flags/repo.html">--repo</a></li>
 <li><a href="../flags/rewrite-rule-ids.html">--rewrite-rule-ids</a></li>
 <li><a href="../flags/sarif.html">--sarif</a></li>
 <li><a href="../flags/sarif-output.html">--sarif-output</a></li>
@@ -126,7 +123,6 @@
 <li><a href="../flags/time.html">--time</a></li>
 <li><a href="../flags/timeout.html">--timeout</a></li>
 <li><a href="../flags/timeout-threshold.html">--timeout-threshold</a></li>
-<li><a href="../flags/update.html">--update</a></li>
 <li><a href="../flags/use-git-ignore.html">--use-git-ignore</a></li>
 <li><a href="../flags/validate.html">--validate</a></li>
 <li><a href="../flags/verbose.html">--verbose</a></li>
@@ -259,45 +255,44 @@ app.py
   critical  sev-critical
   CRITICAL
 
-<span class="n">    1 │</span><span class="b"> critical()</span>
+<span class="n">     1:</span><span class="b"> critical()</span>
 
   <span class="err">error</span>  <span class="rule">sev-error</span>
   ERROR
 
-<span class="n">    2 │</span><span class="b"> error()</span>
+<span class="n">     2:</span><span class="b"> error()</span>
 
   <span class="err">error</span>  <span class="rule">sev-high</span>
   HIGH
 
-<span class="n">    3 │</span><span class="b"> high()</span>
+<span class="n">     3:</span><span class="b"> high()</span>
 
   <span class="sev">warn</span>  <span class="rule">sev-warning</span>
   WARNING
 
-<span class="n">    4 │</span><span class="b"> warning()</span>
+<span class="n">     4:</span><span class="b"> warning()</span>
 
   <span class="sev">warn</span>  <span class="rule">sev-medium</span>
   MEDIUM
 
-<span class="n">    5 │</span><span class="b"> medium()</span>
+<span class="n">     5:</span><span class="b"> medium()</span>
 
   <span class="sev">info</span>  <span class="rule">sev-info</span>
   INFO
 
-<span class="n">    6 │</span><span class="b"> info()</span>
+<span class="n">     6:</span><span class="b"> info()</span>
 
   <span class="sev">info</span>  <span class="rule">sev-low</span>
   LOW
 
-<span class="n">    7 │</span><span class="b"> low()</span>
-</code></pre></div>
+<span class="n">     7:</span><span class="b"> low()</span></code></pre></div>
 <h3 id="a-severity-in-lower-case"><a class="hash" href="#a-severity-in-lower-case" aria-hidden="true" tabindex="-1">###</a> A severity in lower case</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: error</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(expression)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml app.py 2&gt;&amp;1 | grep &#x27;Bad severity&#x27;
 opengrep scan --config rule.yaml app.py &gt; /dev/null 2&gt;&amp;1; echo &quot;exit status: $?&quot;
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml app.py 2&gt;&amp;1 | grep <span class="s">&#x27;Bad severity&#x27;</span></span>
-Bad severity: error (expected ERROR, WARNING or INFO)
+         Bad severity: error (expected ERROR, WARNING or INFO)
 <span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml app.py &gt; /dev/null 2&gt;&amp;1; echo <span class="s">&quot;exit status: $?&quot;</span></span>
 exit status: 7</code></pre></div>
     </main>
