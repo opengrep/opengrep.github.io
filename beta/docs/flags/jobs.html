@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--jobs · Opengrep</title>
-  <meta name="description" content="How many cores run rules in parallel.">
+  <meta name="description" content="The number of cores that run rules in parallel.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="audit-on.html">--audit-on</a></li>
 <li><a href="autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="config.html">--config</a></li>
 <li><a href="dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="debug.html">--debug</a></li>
-<li><a href="disable-interfile.html">--disable-interfile</a></li>
 <li><a href="disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="dryrun.html">--dryrun</a></li>
 <li><a href="dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="emacs.html">--emacs</a></li>
 <li><a href="emacs-output.html">--emacs-output</a></li>
+<li><a href="enable-interfile.html">--enable-interfile</a></li>
 <li><a href="enable-nosem.html">--enable-nosem</a></li>
-<li><a href="enable-version-check.html">--enable-version-check</a></li>
 <li><a href="error.html">--error</a></li>
 <li><a href="exclude.html">--exclude</a></li>
 <li><a href="exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="exclude-rule.html">--exclude-rule</a></li>
-<li><a href="experimental.html">--experimental</a></li>
 <li><a href="files-with-matches.html">--files-with-matches</a></li>
 <li><a href="force-color.html">--force-color</a></li>
 <li><a href="force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="incremental-output.html">--incremental-output</a></li>
 <li><a href="inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="interfile-depth.html">--interfile-depth</a></li>
 <li><a href="interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="jobs.html" aria-current="page">--jobs</a></li>
 <li><a href="json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="strict.html">--strict</a></li>
 <li><a href="subdir.html">--subdir</a></li>
 <li><a href="suppress-errors.html">--suppress-errors</a></li>
-<li><a href="taint-interfile.html">--taint-interfile</a></li>
-<li><a href="taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="test.html">--test</a></li>
 <li><a href="text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,7 +254,7 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../flags.html">Flags</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../flags.html">Flags</a></p>
 <h1><code>--jobs</code></h1>
 <dl class="facts">
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a>, <a href="../commands/ci.html"><code>opengrep ci</code></a></dd></div>
@@ -246,15 +263,15 @@
 <div><dt>Default</dt><dd><code>the number of cores detected</code></dd></div>
 <div><dt>See also</dt><dd><a href="max-memory.html"><code>--max-memory</code></a>, <a href="timeout.html"><code>--timeout</code></a>, <a href="optimizations.html"><code>--optimizations</code></a>, <a href="incremental-output.html"><code>--incremental-output</code></a>, <a href="time.html"><code>--time</code></a></dd></div>
 </dl>
-<p>Opengrep splits the work across as many cores as it finds. <code>--jobs N</code> fixes the number instead.</p>
-<p>Lower it when a scan must leave room for something else, or when memory is short: each worker holds its own analysis, so the cap set by <a href="max-memory.html"><code>--max-memory</code></a> applies per worker, and fewer workers means less memory in total. <code>--jobs 1</code> also makes the logs readable, since nothing interleaves, which helps when tracking down a slow or crashing rule.</p>
-<p>The findings do not depend on the job count.</p>
+<p>By default, opengrep runs as many parallel workers as there are cores. <code>--jobs N</code> sets the number of workers.</p>
+<p>Each worker holds its own analysis, and the limit of <a href="max-memory.html"><code>--max-memory</code></a> applies to each worker, so fewer workers use less memory in total. With <code>--jobs 1</code>, log messages do not interleave, which makes the logs easier to follow when investigating a slow or failing rule.</p>
+<p>The findings do not depend on the number of workers.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="scanning-on-one-core"><a class="hash" href="#scanning-on-one-core" aria-hidden="true" tabindex="-1">###</a> Scanning on one core</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml --jobs 1 app.py
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --jobs 1 app.py</span>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rule.yaml --jobs 1 app.py
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --jobs 1 app.py</span>
 app.py
 
   <span class="sev">warn</span>  <span class="rule">find-eval</span>

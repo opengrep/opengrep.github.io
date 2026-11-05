@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="audit-on.html">--audit-on</a></li>
 <li><a href="autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="config.html">--config</a></li>
 <li><a href="dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="debug.html">--debug</a></li>
-<li><a href="disable-interfile.html">--disable-interfile</a></li>
 <li><a href="disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="dryrun.html">--dryrun</a></li>
 <li><a href="dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="emacs.html">--emacs</a></li>
 <li><a href="emacs-output.html">--emacs-output</a></li>
+<li><a href="enable-interfile.html">--enable-interfile</a></li>
 <li><a href="enable-nosem.html">--enable-nosem</a></li>
-<li><a href="enable-version-check.html">--enable-version-check</a></li>
 <li><a href="error.html">--error</a></li>
 <li><a href="exclude.html">--exclude</a></li>
 <li><a href="exclude-minified-files.html" aria-current="page">--exclude-minified-files</a></li>
 <li><a href="exclude-rule.html">--exclude-rule</a></li>
-<li><a href="experimental.html">--experimental</a></li>
 <li><a href="files-with-matches.html">--files-with-matches</a></li>
 <li><a href="force-color.html">--force-color</a></li>
 <li><a href="force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="incremental-output.html">--incremental-output</a></li>
 <li><a href="inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="interfile-depth.html">--interfile-depth</a></li>
 <li><a href="interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="jobs.html">--jobs</a></li>
 <li><a href="json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="strict.html">--strict</a></li>
 <li><a href="subdir.html">--subdir</a></li>
 <li><a href="suppress-errors.html">--suppress-errors</a></li>
-<li><a href="taint-interfile.html">--taint-interfile</a></li>
-<li><a href="taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="test.html">--test</a></li>
 <li><a href="text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,7 +254,7 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../flags.html">Flags</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../flags.html">Flags</a></p>
 <h1><code>--exclude-minified-files</code></h1>
 <dl class="facts">
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a></dd></div>
@@ -245,22 +262,21 @@
 <div><dt>Default</dt><dd><code>false</code></dd></div>
 <div><dt>See also</dt><dd><a href="max-target-bytes.html"><code>--max-target-bytes</code></a>, <a href="exclude.html"><code>--exclude</code></a></dd></div>
 </dl>
-<p>Skips files that look minified. Such a file is usually generated, matches rules in ways no one wants to read, and is slow to analyse.</p>
-<p>A file counts as minified when its first 4096 bytes are less than 7% whitespace (spaces, tabs, carriage returns and newlines), or average more than 1000 bytes per line. The rest of the file is not looked at. Files of 1000 bytes or less are never skipped, so a short file made of one long URL is still scanned.</p>
-<p>Minified files are scanned by default, so this is the flag to add rather than one to turn off. <code>--no-exclude-minified-files</code> asks for the default back.</p>
-<p>A size limit is a blunter way to the same end; see <a href="max-target-bytes.html"><code>--max-target-bytes</code></a>.</p>
+<p>Skips the files that look minified. Such files are usually generated, produce findings that are hard to read, and are slow to analyse.</p>
+<p>A file counts as minified when its first 4096 bytes contain less than 7% whitespace (spaces, tabs, carriage returns and newlines), or have more than 1000 bytes per line on average. The rest of the file is not examined. Files of 1000 bytes or less are never skipped.</p>
+<p>Minified files are scanned by default. <code>--no-exclude-minified-files</code> restores the default. <a href="max-target-bytes.html"><code>--max-target-bytes</code></a> skips files by size instead.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="leaving-a-minified-file-out"><a class="hash" href="#leaving-a-minified-file-out" aria-hidden="true" tabindex="-1">###</a> Leaving a minified file out</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">normal.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="python3 -c &quot;open(&#x27;min.py&#x27;,&#x27;w&#x27;).write(&#x27;eval(1);&#x27; * 400 + &#x27;\n&#x27;)&quot;
-opengrep scan --config rule.yaml --files-with-matches .
-opengrep scan --config rule.yaml --files-with-matches --exclude-minified-files .
+opengrep scan -q --config rule.yaml --files-with-matches .
+opengrep scan -q --config rule.yaml --files-with-matches --exclude-minified-files .
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">python3 -c <span class="s">&quot;open(&#x27;min.py&#x27;,&#x27;w&#x27;).write(&#x27;eval(1);&#x27; * 400 + &#x27;\n&#x27;)&quot;</span></span>
-<span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --files-with-matches .</span>
+<span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --files-with-matches .</span>
 min.py
 normal.py
-<span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --files-with-matches --exclude-minified-files .</span>
+<span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --files-with-matches --exclude-minified-files .</span>
 normal.py</code></pre></div>
 <h3 id="small-files-and-only-the-start-of-a-file"><a class="hash" href="#small-files-and-only-the-start-of-a-file" aria-hidden="true" tabindex="-1">###</a> Small files, and only the start of a file</h3>
 <p>Both generated files below have no whitespace in their first bytes. The first is 1000 bytes long and is kept; the second is one byte longer and is skipped. The third starts with 4800 bytes of ordinary lines, so the long line after them does not count.</p>
@@ -268,11 +284,11 @@ normal.py</code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="python3 -c &quot;open(&#x27;a.py&#x27;,&#x27;w&#x27;).write(&#x27;eval(1);&#x27; * 125)&quot;
 python3 -c &quot;open(&#x27;b.py&#x27;,&#x27;w&#x27;).write(&#x27;eval(1);&#x27; * 125 + &#x27;\n&#x27;)&quot;
 python3 -c &quot;open(&#x27;c.py&#x27;,&#x27;w&#x27;).write(&#x27;eval(1)\n&#x27; * 600 + &#x27;eval(1);&#x27; * 2000 + &#x27;\n&#x27;)&quot;
-opengrep scan --config rule.yaml --files-with-matches --exclude-minified-files .
+opengrep scan -q --config rule.yaml --files-with-matches --exclude-minified-files .
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">python3 -c <span class="s">&quot;open(&#x27;a.py&#x27;,&#x27;w&#x27;).write(&#x27;eval(1);&#x27; * 125)&quot;</span></span>
 <span class="p">$ </span><span class="cmd">python3 -c <span class="s">&quot;open(&#x27;b.py&#x27;,&#x27;w&#x27;).write(&#x27;eval(1);&#x27; * 125 + &#x27;\n&#x27;)&quot;</span></span>
 <span class="p">$ </span><span class="cmd">python3 -c <span class="s">&quot;open(&#x27;c.py&#x27;,&#x27;w&#x27;).write(&#x27;eval(1)\n&#x27; * 600 + &#x27;eval(1);&#x27; * 2000 + &#x27;\n&#x27;)&quot;</span></span>
-<span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --files-with-matches --exclude-minified-files .</span>
+<span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --files-with-matches --exclude-minified-files .</span>
 a.py
 c.py</code></pre></div>
     </main>

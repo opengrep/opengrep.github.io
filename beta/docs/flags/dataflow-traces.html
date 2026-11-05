@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--dataflow-traces · Opengrep</title>
-  <meta name="description" content="Show how a value reaches the finding, for taint rules.">
+  <meta name="description" content="Show the path from source to sink in the findings of taint rules.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="audit-on.html">--audit-on</a></li>
 <li><a href="autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="config.html">--config</a></li>
 <li><a href="dataflow-traces.html" aria-current="page">--dataflow-traces</a></li>
 <li><a href="debug.html">--debug</a></li>
-<li><a href="disable-interfile.html">--disable-interfile</a></li>
 <li><a href="disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="dryrun.html">--dryrun</a></li>
 <li><a href="dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="emacs.html">--emacs</a></li>
 <li><a href="emacs-output.html">--emacs-output</a></li>
+<li><a href="enable-interfile.html">--enable-interfile</a></li>
 <li><a href="enable-nosem.html">--enable-nosem</a></li>
-<li><a href="enable-version-check.html">--enable-version-check</a></li>
 <li><a href="error.html">--error</a></li>
 <li><a href="exclude.html">--exclude</a></li>
 <li><a href="exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="exclude-rule.html">--exclude-rule</a></li>
-<li><a href="experimental.html">--experimental</a></li>
 <li><a href="files-with-matches.html">--files-with-matches</a></li>
 <li><a href="force-color.html">--force-color</a></li>
 <li><a href="force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="incremental-output.html">--incremental-output</a></li>
 <li><a href="inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="interfile-depth.html">--interfile-depth</a></li>
 <li><a href="interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="jobs.html">--jobs</a></li>
 <li><a href="json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="strict.html">--strict</a></li>
 <li><a href="subdir.html">--subdir</a></li>
 <li><a href="suppress-errors.html">--suppress-errors</a></li>
-<li><a href="taint-interfile.html">--taint-interfile</a></li>
-<li><a href="taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="test.html">--test</a></li>
 <li><a href="text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,20 +254,38 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../flags.html">Flags</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../flags.html">Flags</a></p>
 <h1><code>--dataflow-traces</code></h1>
 <dl class="facts">
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a>, <a href="../commands/ci.html"><code>opengrep ci</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="../rule-syntax/taint-mode.html"><code>mode: taint</code></a>, <a href="../rule-options/taint_intrafile.html"><code>taint_intrafile</code></a>, <a href="sarif.html"><code>--sarif</code></a>, <a href="matching-explanations.html"><code>--matching-explanations</code></a>, <a href="output-enclosing-context.html"><code>--output-enclosing-context</code></a></dd></div>
 </dl>
-<p>Adds the path the tainted value took to each finding of a <a href="../rule-syntax/taint-mode.html">taint rule</a>: where the taint came from, the variables it passed through, and how it reached the sink. Without the flag only the sink is shown.</p>
-<p>It affects the text and SARIF output only. The JSON output carries the same information whether or not the flag is given.</p>
+<p>Adds to each finding of a <a href="../rule-syntax/taint-mode.html">taint rule</a> the path the tainted data took from the source to the sink. Without the flag, the text output shows only the sink.</p>
+<h2 id="reading-a-trace"><a class="hash" href="#reading-a-trace" aria-hidden="true" tabindex="-1">##</a> Reading a trace</h2>
+<p>A trace is a list of steps, one per line, each with a label and the line of code it refers to:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Label</th><th>Step</th></tr></thead>
+<tbody>
+<tr><td><code>source</code></td><td>The code that a source of the rule matches.</td></tr>
+<tr><td><code>through</code></td><td>A variable that holds the tainted data.</td></tr>
+<tr><td><code>through call</code></td><td>A call that the data goes through, entering the called function by an argument and leaving it by its return value or by a field of an argument.</td></tr>
+<tr><td><code>source in call</code></td><td>A call to a function that contains the source.</td></tr>
+<tr><td><code>sink in call</code></td><td>A call to a function that contains the sink.</td></tr>
+<tr><td><code>arg</code></td><td>The parameter by which the data enters a called function.</td></tr>
+<tr><td><code>return</code></td><td>The <code>return</code> by which the data leaves a called function.</td></tr>
+<tr><td><code>sink</code></td><td>The code that a sink of the rule matches.</td></tr>
+</tbody>
+</table></div>
+<p>The steps inside a called function are drawn under its call, one level deeper. A function called within a called function is nested in turn. Calls are followed only when the analysis follows them, that is with <a href="taint-intrafile.html"><code>--taint-intrafile</code></a>, the rule option <a href="../rule-options/taint_intrafile.html"><code>taint_intrafile</code></a>, or the cross-file analysis of <a href="enable-interfile.html"><code>--enable-interfile</code></a>. Otherwise, a call appears as a single <code>through</code> step.</p>
+<h2 id="output-formats"><a class="hash" href="#output-formats" aria-hidden="true" tabindex="-1">##</a> Output formats</h2>
+<p>The <code>simple</code> and <code>vivid</code> <a href="skin.html">skins</a> draw the trace as a tree. The <code>legacy</code> skin lists the source, the intermediate variables and the sink, in order, without nesting.</p>
+<p>In the SARIF output, the flag adds a <code>codeFlows</code> entry to each result. The JSON output always contains the trace, in the <code>dataflow_trace</code> field of each result, as a flat list of variables in execution order; the flag does not change it.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="the-path-from-source-to-sink"><a class="hash" href="#the-path-from-source-to-sink" aria-hidden="true" tabindex="-1">###</a> The path from source to sink</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: input-to-eval</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: input reaches eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">x = input()</span><span class="line">y = x</span><span class="line">eval(y)</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml --dataflow-traces app.py
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --dataflow-traces app.py</span>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rule.yaml --dataflow-traces app.py
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --dataflow-traces app.py</span>
 app.py
 
   <span class="err">error</span>  <span class="rule">input-to-eval</span>
@@ -258,10 +293,65 @@ app.py
 
 <span class="n">     3:</span><span class="b"> eval(y)</span>
         │
-        ├─ source    1: x = input()
-        ├─ through   1: x = input()
-        │            2: y = x
-        └─ sink      3: eval(y)</code></pre></div>
+        ├─ source           1: x = input()
+        ├─ through          1: x = input()
+        ├─ through          2: y = x
+        └─ sink             3: eval(y)</code></pre></div>
+<h3 id="through-a-function-call"><a class="hash" href="#through-a-function-call" aria-hidden="true" tabindex="-1">###</a> Through a function call</h3>
+<div class="file"><div class="file-head">sql.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: sql-injection</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: request.args.get(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: cursor.execute(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: user input reaches a SQL query</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
+<div class="file"><div class="file-head">search.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">def</span> build_query(name):</span><span class="line">    query = <span class="s">&quot;SELECT * FROM users WHERE name = &#x27;&quot;</span> + name + <span class="s">&quot;&#x27;&quot;</span></span><span class="line">    <span class="k">return</span> query</span><span class="line"></span><span class="line"><span class="k">def</span> search():</span><span class="line">    name = request.args.get(<span class="s">&quot;name&quot;</span>)</span><span class="line">    query = build_query(name)</span><span class="line">    cursor.execute(query)</span></code></pre></div>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config sql.yaml --dataflow-traces search.py
+opengrep scan -q --config sql.yaml --dataflow-traces --taint-intrafile search.py
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config sql.yaml --dataflow-traces search.py</span>
+search.py
+
+  <span class="err">error</span>  <span class="rule">sql-injection</span>
+  user input reaches a SQL query
+
+<span class="n">     8:</span><span class="b"> cursor.execute(query)</span>
+        │
+        ├─ source           6: name = request.args.get(&quot;name&quot;)
+        ├─ through          6: name = request.args.get(&quot;name&quot;)
+        ├─ through          7: query = build_query(name)
+        └─ sink             8: cursor.execute(query)
+<span class="p">$ </span><span class="cmd">opengrep scan -q --config sql.yaml --dataflow-traces --taint-intrafile search.py</span>
+search.py
+
+  <span class="err">error</span>  <span class="rule">sql-injection</span>
+  user input reaches a SQL query
+
+<span class="n">     8:</span><span class="b"> cursor.execute(query)</span>
+        │
+        ├─ source           6: name = request.args.get(&quot;name&quot;)
+        ├─ through          6: name = request.args.get(&quot;name&quot;)
+        ├─ through call     7: query = build_query(name)
+        │  ├─ arg              1: def build_query(name):
+        │  ├─ through          2: query = &quot;SELECT * FROM users WHERE name = &#x27;&quot; + name + &quot;&#x27;&quot;
+        │  └─ return           3: return query
+        ├─ through          7: query = build_query(name)
+        └─ sink             8: cursor.execute(query)</code></pre></div>
+<p>The first scan treats the call to <code>build_query</code> as a single step. With <code>--taint-intrafile</code>, the trace also shows the path inside the function.</p>
+<h3 id="a-source-and-a-sink-in-called-functions"><a class="hash" href="#a-source-and-a-sink-in-called-functions" aria-hidden="true" tabindex="-1">###</a> A source and a sink in called functions</h3>
+<div class="file"><div class="file-head">sql.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: sql-injection</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: request.args.get(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: cursor.execute(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: user input reaches a SQL query</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
+<div class="file"><div class="file-head">calls.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">def</span> get_name():</span><span class="line">    name = request.args.get(<span class="s">&quot;name&quot;</span>)</span><span class="line">    <span class="k">return</span> name</span><span class="line"></span><span class="line"><span class="k">def</span> run_query(name):</span><span class="line">    sql = <span class="s">&quot;SELECT * FROM users WHERE name = &#x27;&quot;</span> + name + <span class="s">&quot;&#x27;&quot;</span></span><span class="line">    cursor.execute(sql)</span><span class="line"></span><span class="line"><span class="k">def</span> search():</span><span class="line">    run_query(get_name())</span></code></pre></div>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config sql.yaml --dataflow-traces --taint-intrafile calls.py
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config sql.yaml --dataflow-traces --taint-intrafile calls.py</span>
+calls.py
+
+  <span class="err">error</span>  <span class="rule">sql-injection</span>
+  user input reaches a SQL query
+
+<span class="n">     7:</span><span class="b"> cursor.execute(sql)</span>
+        │
+        ├─ source in call   10: run_query(get_name())
+        │  ├─ source            2: name = request.args.get(&quot;name&quot;)
+        │  ├─ through           2: name = request.args.get(&quot;name&quot;)
+        │  └─ return            3: return name
+        └─ sink in call     10: run_query(get_name())
+           ├─ arg               5: def run_query(name):
+           ├─ through           6: sql = &quot;SELECT * FROM users WHERE name = &#x27;&quot; + name + &quot;&#x27;&quot;
+           └─ sink              7: cursor.execute(sql)</code></pre></div>
+<p>The finding is reported at the sink, inside <code>run_query</code>. The trace starts at the call in <code>search</code> that connects the two functions.</p>
     </main>
   </div>
 

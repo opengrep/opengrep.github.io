@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Environment variables · Opengrep</title>
-  <meta name="description" content="Opengrep was forked from Semgrep. Semgrep&#x27;s variables, whose names start with SEMGREP_, still work, and each also has an OPENGREP_ equivalent: SEMGREP_TIMEOUT and OPENGREP_TIMEOUT mean the same. When both are set, the OPENGREP_ one wins. Variables new to Opengrep, such as OPENGREP_SKIN, exist only under their OPENGREP_ name. This reference names variables by their OPENGREP_ name and lists the SEMGREP_ name as an alias. Variables that never had a SEMGREP name, such as NO_COLOR, have no alias.">
+  <meta name="description" content="The environment variables that opengrep reads, one entry per variable.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="flags.html">Flags</a></summary><ul>
-<li><a href="flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="flags/audit-on.html">--audit-on</a></li>
 <li><a href="flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="flags/config.html">--config</a></li>
 <li><a href="flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="flags/debug.html">--debug</a></li>
-<li><a href="flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="flags/dryrun.html">--dryrun</a></li>
 <li><a href="flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="flags/emacs.html">--emacs</a></li>
 <li><a href="flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="flags/error.html">--error</a></li>
 <li><a href="flags/exclude.html">--exclude</a></li>
 <li><a href="flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="flags/experimental.html">--experimental</a></li>
 <li><a href="flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="flags/force-color.html">--force-color</a></li>
 <li><a href="flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="flags/jobs.html">--jobs</a></li>
 <li><a href="flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="flags/strict.html">--strict</a></li>
 <li><a href="flags/subdir.html">--subdir</a></li>
 <li><a href="flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="flags/test.html">--test</a></li>
 <li><a href="flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="rule-syntax/control.html">control</a></li>
+<li><a href="rule-syntax/exact.html">exact</a></li>
 <li><a href="rule-syntax/fix.html">fix</a></li>
 <li><a href="rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="rule-syntax/id.html">id</a></li>
+<li><a href="rule-syntax/label.html">label</a></li>
+<li><a href="rule-syntax/languages.html">languages</a></li>
 <li><a href="rule-syntax/message.html">message</a></li>
+<li><a href="rule-syntax/metadata.html">metadata</a></li>
 <li><a href="rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="rule-syntax/min-version.html">min-version</a></li>
 <li><a href="rule-syntax/mode.html">mode</a></li>
 <li><a href="rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="rule-syntax/options.html">options</a></li>
 <li><a href="rule-syntax/paths.html">paths</a></li>
 <li><a href="rule-syntax/pattern.html">pattern</a></li>
 <li><a href="rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="rule-syntax/patterns.html">patterns</a></li>
 <li><a href="rule-syntax/rules.html">rules</a></li>
 <li><a href="rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="rule-options.html">Rule options</a></summary><ul>
 <li><a href="rule-options/ac_matching.html">ac_matching</a></li>
@@ -239,42 +256,44 @@
     <main class="docs-main">
 <p class="docs-crumb"><a href="index.html">reference</a></p>
 <h1>Environment variables</h1>
-<h2 id="names-opengrep_-and-semgrep_"><a class="hash" href="#names-opengrep_-and-semgrep_" aria-hidden="true" tabindex="-1">##</a> Names: <code>OPENGREP_*</code> and <code>SEMGREP_*</code></h2>
-<p>Opengrep was forked from Semgrep. Semgrep's variables, whose names start with <code>SEMGREP_</code>, still work, and each also has an <code>OPENGREP_</code> equivalent: <code>SEMGREP_TIMEOUT</code> and <code>OPENGREP_TIMEOUT</code> mean the same. When both are set, the <code>OPENGREP_*</code> one wins. Variables new to Opengrep, such as <a href="env/OPENGREP_SKIN.html"><code>OPENGREP_SKIN</code></a>, exist only under their <code>OPENGREP_*</code> name. This reference names variables by their <code>OPENGREP_*</code> name and lists the <code>SEMGREP_*</code> name as an alias. Variables that never had a <code>SEMGREP</code> name, such as <code>NO_COLOR</code>, have no alias.</p>
+<p>The environment variables that opengrep reads, one entry per variable.</p>
+<h2 id="opengrep_-and-semgrep_-names"><a class="hash" href="#opengrep_-and-semgrep_-names" aria-hidden="true" tabindex="-1">##</a> <code>OPENGREP_</code> and <code>SEMGREP_</code> names</h2>
+<p>For compatibility, most variables whose names start with <code>OPENGREP_</code> can also be set with the prefix <code>SEMGREP_</code>: <code>SEMGREP_TIMEOUT</code> is read as <code>OPENGREP_TIMEOUT</code>. When both are set, the <code>OPENGREP_</code> variable takes precedence. The entry of such a variable lists its <code>SEMGREP_</code> name as an alias. Some variables, such as <a href="env/OPENGREP_SKIN.html"><code>OPENGREP_SKIN</code></a>, are read only under their <code>OPENGREP_</code> name, and variables such as <code>NO_COLOR</code> have neither prefix.</p>
 <p>A variable set to the empty string counts as unset.</p>
 <h2 id="variables-and-flags"><a class="hash" href="#variables-and-flags" aria-hidden="true" tabindex="-1">##</a> Variables and flags</h2>
-<p>Some variables are equivalent to a command-line flag (the <em>Equivalent flag</em> column). When both are given, the flag wins and opengrep logs a warning such as:</p>
+<p>Some variables set the same value as a command-line flag, shown in the <em>Equivalent flag</em> column. When both are given, the flag takes precedence, and opengrep logs a warning:</p>
 <div class="file"><pre class="snip"><code>[00.04][WARNING]: --timeout is given; ignoring $OPENGREP_TIMEOUT</code></pre></div>
-<p>A variable whose value cannot be parsed is reported like a bad flag value, and opengrep exits with status 2.</p>
+<p>A variable whose value is invalid is reported like an invalid flag value, and opengrep exits with status 2.</p>
+<h2 id="index"><a class="hash" href="#index" aria-hidden="true" tabindex="-1">##</a> Index</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Variable</th><th>Equivalent flag</th><th>Summary</th></tr></thead>
 <tbody>
-<tr><td><a href="env/ALL_PROXY.html"><code>ALL_PROXY</code></a></td><td></td><td>The proxy for opengrep's downloads over both http and https, unless a scheme has its own.</td></tr>
-<tr><td><a href="env/CI.html"><code>CI</code></a></td><td></td><td>Set by CI services; any value other than false or 0 turns off the status line of a scan.</td></tr>
-<tr><td><a href="env/COLUMNS.html"><code>COLUMNS</code></a></td><td></td><td>The width the text report is laid out for, between 40 and 120.</td></tr>
-<tr><td><a href="env/GIT_SSH_COMMAND.html"><code>GIT_SSH_COMMAND</code></a></td><td></td><td>The ssh command git uses to clone a git+ssh rule repository; opengrep sets a non-prompting one when it is unset.</td></tr>
-<tr><td><a href="env/HOME.html"><code>HOME</code></a></td><td></td><td>The home directory; opengrep keeps only the language server's cache there.</td></tr>
-<tr><td><a href="env/HTTP_PROXY.html"><code>HTTP_PROXY</code></a></td><td></td><td>The proxy for opengrep's plain http downloads; https downloads use HTTPS_PROXY.</td></tr>
-<tr><td><a href="env/HTTPS_PROXY.html"><code>HTTPS_PROXY</code></a></td><td></td><td>The proxy for opengrep's https downloads, such as rules from a URL or the registry.</td></tr>
-<tr><td><a href="env/NO_COLOR.html"><code>NO_COLOR</code></a></td><td></td><td>Turn off colour and other text styling in all output, even on a terminal.</td></tr>
-<tr><td><a href="env/NO_PROXY.html"><code>NO_PROXY</code></a></td><td></td><td>Hosts that opengrep's downloads reach directly, without the proxy.</td></tr>
-<tr><td><a href="env/OPENGREP_APP_URL.html"><code>OPENGREP_APP_URL</code></a></td><td></td><td>Another name for the registry base URL, used when OPENGREP_URL is not set.</td></tr>
-<tr><td><a href="env/OPENGREP_AUDIT_ON.html"><code>OPENGREP_AUDIT_ON</code></a></td><td><code>--audit-on</code></td><td>Event names for --audit-on when the flag is not given, separated by whitespace.</td></tr>
-<tr><td><a href="env/OPENGREP_BASELINE_COMMIT.html"><code>OPENGREP_BASELINE_COMMIT</code></a></td><td><code>--baseline-commit</code></td><td>The baseline for scan and ci when --baseline-commit is not given.</td></tr>
-<tr><td><a href="env/OPENGREP_BASELINE_REF.html"><code>OPENGREP_BASELINE_REF</code></a></td><td><code>--baseline-commit</code></td><td>Another name for the baseline, used when OPENGREP_BASELINE_COMMIT is not set.</td></tr>
-<tr><td><a href="env/OPENGREP_FORCE_COLOR.html"><code>OPENGREP_FORCE_COLOR</code></a></td><td><code>--force-color</code></td><td>Style the output even through a pipe, when neither --force-color nor --no-force-color is given.</td></tr>
-<tr><td><a href="env/OPENGREP_LOG_FILE.html"><code>OPENGREP_LOG_FILE</code></a></td><td></td><td>Also write the logs to this file, at the same level as standard error.</td></tr>
-<tr><td><a href="env/OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a></td><td></td><td>Set the level of the logs on standard error, overriding --quiet, --verbose and --debug.</td></tr>
-<tr><td><a href="env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a></td><td></td><td>Hear from parts of opengrep and its libraries whose logs are silent by default.</td></tr>
-<tr><td><a href="env/OPENGREP_LOG_TAGS.html"><code>OPENGREP_LOG_TAGS</code></a></td><td></td><td>Choose which debug messages are shown, by the tags they carry.</td></tr>
-<tr><td><a href="env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a></td><td></td><td>Mark an opengrep ci run as a pull request, which makes its event pull_request.</td></tr>
-<tr><td><a href="env/OPENGREP_REPO_NAME.html"><code>OPENGREP_REPO_NAME</code></a></td><td></td><td>On GitHub Actions, the repository opengrep ci asks GitHub about for a pull request's merge base.</td></tr>
-<tr><td><a href="env/OPENGREP_RULES.html"><code>OPENGREP_RULES</code></a></td><td><code>--config</code></td><td>Rule sources used when --config is not given, as a whitespace-separated list.</td></tr>
-<tr><td><a href="env/OPENGREP_SKIN.html"><code>OPENGREP_SKIN</code></a></td><td><code>--skin</code></td><td>The layout of the text report, when --skin is not given.</td></tr>
-<tr><td><a href="env/OPENGREP_SUPPRESS_ERRORS.html"><code>OPENGREP_SUPPRESS_ERRORS</code></a></td><td><code>--suppress-errors</code></td><td>Whether errors fail opengrep ci, when the flag is not given.</td></tr>
-<tr><td><a href="env/OPENGREP_TIMEOUT.html"><code>OPENGREP_TIMEOUT</code></a></td><td><code>--timeout</code></td><td>The value of --timeout for scan and ci when the flag is not given.</td></tr>
-<tr><td><a href="env/OPENGREP_URL.html"><code>OPENGREP_URL</code></a></td><td></td><td>The base URL of the rule registry, for configs such as p/python and auto.</td></tr>
-<tr><td><a href="env/TERM.html"><code>TERM</code></a></td><td></td><td>When unset, dumb or unknown, a scan draws no status line on the terminal.</td></tr>
+<tr><td><a href="env/ALL_PROXY.html"><code>ALL_PROXY</code></a></td><td></td><td>The proxy for downloads over http and https.</td></tr>
+<tr><td><a href="env/CI.html"><code>CI</code></a></td><td></td><td>Set by CI services; turns off the status line of a scan.</td></tr>
+<tr><td><a href="env/COLUMNS.html"><code>COLUMNS</code></a></td><td></td><td>The width of the text output, between 40 and 120 characters.</td></tr>
+<tr><td><a href="env/GIT_SSH_COMMAND.html"><code>GIT_SSH_COMMAND</code></a></td><td></td><td>The ssh command that git uses to clone a git+ssh rule repository.</td></tr>
+<tr><td><a href="env/HOME.html"><code>HOME</code></a></td><td></td><td>The home directory, where the language server keeps its cache.</td></tr>
+<tr><td><a href="env/HTTP_PROXY.html"><code>HTTP_PROXY</code></a></td><td></td><td>The proxy for downloads over http.</td></tr>
+<tr><td><a href="env/HTTPS_PROXY.html"><code>HTTPS_PROXY</code></a></td><td></td><td>The proxy for downloads over https, such as rules from a URL or the registry.</td></tr>
+<tr><td><a href="env/NO_COLOR.html"><code>NO_COLOR</code></a></td><td></td><td>Turns off colour and other styling in all output.</td></tr>
+<tr><td><a href="env/NO_PROXY.html"><code>NO_PROXY</code></a></td><td></td><td>The hosts that downloads reach without a proxy.</td></tr>
+<tr><td><a href="env/OPENGREP_APP_URL.html"><code>OPENGREP_APP_URL</code></a></td><td></td><td>An alternative name for OPENGREP_URL.</td></tr>
+<tr><td><a href="env/OPENGREP_AUDIT_ON.html"><code>OPENGREP_AUDIT_ON</code></a></td><td><code>--audit-on</code></td><td>The event names of --audit-on, when the flag is not given.</td></tr>
+<tr><td><a href="env/OPENGREP_BASELINE_COMMIT.html"><code>OPENGREP_BASELINE_COMMIT</code></a></td><td><code>--baseline-commit</code></td><td>The baseline of scan and ci, when --baseline-commit is not given.</td></tr>
+<tr><td><a href="env/OPENGREP_BASELINE_REF.html"><code>OPENGREP_BASELINE_REF</code></a></td><td><code>--baseline-commit</code></td><td>An alternative name for OPENGREP_BASELINE_COMMIT.</td></tr>
+<tr><td><a href="env/OPENGREP_FORCE_COLOR.html"><code>OPENGREP_FORCE_COLOR</code></a></td><td><code>--force-color</code></td><td>Whether to style output that does not go to a terminal, when --force-color is not given.</td></tr>
+<tr><td><a href="env/OPENGREP_LOG_FILE.html"><code>OPENGREP_LOG_FILE</code></a></td><td></td><td>A file that receives a copy of the logs.</td></tr>
+<tr><td><a href="env/OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a></td><td></td><td>The level of the logs, taking precedence over --quiet, --verbose and --debug.</td></tr>
+<tr><td><a href="env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a></td><td></td><td>The log sources whose messages are shown in addition to those of opengrep.</td></tr>
+<tr><td><a href="env/OPENGREP_LOG_TAGS.html"><code>OPENGREP_LOG_TAGS</code></a></td><td></td><td>The tags of the debug messages that are shown.</td></tr>
+<tr><td><a href="env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a></td><td></td><td>The pull request of an opengrep ci run; sets the event of the run to pull_request.</td></tr>
+<tr><td><a href="env/OPENGREP_REPO_NAME.html"><code>OPENGREP_REPO_NAME</code></a></td><td></td><td>On GitHub Actions, the repository that opengrep ci asks for the merge base of a pull request.</td></tr>
+<tr><td><a href="env/OPENGREP_RULES.html"><code>OPENGREP_RULES</code></a></td><td><code>--config</code></td><td>The rule sources, when --config is not given.</td></tr>
+<tr><td><a href="env/OPENGREP_SKIN.html"><code>OPENGREP_SKIN</code></a></td><td><code>--skin</code></td><td>The layout of the text output, when --skin is not given.</td></tr>
+<tr><td><a href="env/OPENGREP_SUPPRESS_ERRORS.html"><code>OPENGREP_SUPPRESS_ERRORS</code></a></td><td><code>--suppress-errors</code></td><td>Whether errors fail opengrep ci, when --suppress-errors is not given.</td></tr>
+<tr><td><a href="env/OPENGREP_TIMEOUT.html"><code>OPENGREP_TIMEOUT</code></a></td><td><code>--timeout</code></td><td>The value of --timeout, when the flag is not given.</td></tr>
+<tr><td><a href="env/OPENGREP_URL.html"><code>OPENGREP_URL</code></a></td><td></td><td>The base URL of the rule registry.</td></tr>
+<tr><td><a href="env/TERM.html"><code>TERM</code></a></td><td></td><td>The terminal type; unset, dumb or unknown turns off the status line.</td></tr>
 </tbody>
 </table></div>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

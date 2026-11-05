@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="../flags/audit-on.html">--audit-on</a></li>
 <li><a href="../flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="../flags/config.html">--config</a></li>
 <li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="../flags/debug.html">--debug</a></li>
-<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="../flags/dryrun.html">--dryrun</a></li>
 <li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="../flags/emacs.html">--emacs</a></li>
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="../flags/experimental.html">--experimental</a></li>
 <li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="../flags/force-color.html">--force-color</a></li>
 <li><a href="../flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="../flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="../flags/jobs.html">--jobs</a></li>
 <li><a href="../flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="../flags/strict.html">--strict</a></li>
 <li><a href="../flags/subdir.html">--subdir</a></li>
 <li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="../flags/test.html">--test</a></li>
 <li><a href="../flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="../flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="by-side-effect.html">by-side-effect</a></li>
+<li><a href="control.html">control</a></li>
+<li><a href="exact.html">exact</a></li>
 <li><a href="fix.html">fix</a></li>
 <li><a href="fix-regex.html">fix-regex</a></li>
 <li><a href="focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="id.html">id</a></li>
+<li><a href="label.html">label</a></li>
+<li><a href="languages.html">languages</a></li>
 <li><a href="message.html">message</a></li>
+<li><a href="metadata.html">metadata</a></li>
 <li><a href="metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="metavariable-type.html">metavariable-type</a></li>
+<li><a href="min-version.html">min-version</a></li>
 <li><a href="mode.html">mode</a></li>
 <li><a href="taint-mode.html">mode: taint</a></li>
+<li><a href="options.html">options</a></li>
 <li><a href="paths.html">paths</a></li>
 <li><a href="pattern.html">pattern</a></li>
 <li><a href="pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="pattern-not.html">pattern-not</a></li>
 <li><a href="pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="pattern-regex.html">pattern-regex</a></li>
+<li><a href="pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="pattern-sources.html">pattern-sources</a></li>
 <li><a href="patterns.html">patterns</a></li>
 <li><a href="rules.html">rules</a></li>
 <li><a href="severity.html" aria-current="page">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,19 +254,19 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../rule-syntax.html">Rule syntax</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../rule-syntax.html">Rule syntax</a></p>
 <h1><code>severity</code></h1>
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="../flags/severity.html"><code>--severity</code></a>, <a href="message.html"><code>message</code></a></dd></div>
 </dl>
-<p>Every rule needs a <code>severity</code>: a rule without one is rejected with <code>Missing required field severity</code>. The value is one of <code>ERROR</code>, <code>WARNING</code> and <code>INFO</code>, or one of the four levels <code>CRITICAL</code>, <code>HIGH</code>, <code>MEDIUM</code> and <code>LOW</code>, written in capitals. Any other spelling, <code>error</code> or <code>Warning</code> included, makes the rule invalid.</p>
+<p>Every search and taint rule must have a <code>severity</code>; a rule without one is rejected with <code>Missing required field severity</code>. The value is one of <code>ERROR</code>, <code>WARNING</code> and <code>INFO</code>, or one of the four levels <code>CRITICAL</code>, <code>HIGH</code>, <code>MEDIUM</code> and <code>LOW</code>, written in capitals. Any other spelling, <code>error</code> or <code>Warning</code> included, makes the rule invalid.</p>
 <p>The text output labels each finding with its severity: <code>ERROR</code> and <code>HIGH</code> show as <code>error</code>, <code>WARNING</code> and <code>MEDIUM</code> as <code>warn</code>, <code>INFO</code> and <code>LOW</code> as <code>info</code>, and <code>CRITICAL</code> as <code>critical</code>. <a href="../flags/severity.html"><code>--severity</code></a> reports only the findings of the severities it names.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="each-severity-in-the-text-output"><a class="hash" href="#each-severity-in-the-text-output" aria-hidden="true" tabindex="-1">###</a> Each severity in the text output</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: sev-critical</span><span class="line">    <span class="k">pattern</span>: critical()</span><span class="line">    <span class="k">message</span>: CRITICAL</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: CRITICAL</span><span class="line">  - <span class="k">id</span>: sev-error</span><span class="line">    <span class="k">pattern</span>: error()</span><span class="line">    <span class="k">message</span>: ERROR</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span><span class="line">  - <span class="k">id</span>: sev-high</span><span class="line">    <span class="k">pattern</span>: high()</span><span class="line">    <span class="k">message</span>: HIGH</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: HIGH</span><span class="line">  - <span class="k">id</span>: sev-warning</span><span class="line">    <span class="k">pattern</span>: warning()</span><span class="line">    <span class="k">message</span>: WARNING</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span><span class="line">  - <span class="k">id</span>: sev-medium</span><span class="line">    <span class="k">pattern</span>: medium()</span><span class="line">    <span class="k">message</span>: MEDIUM</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: MEDIUM</span><span class="line">  - <span class="k">id</span>: sev-info</span><span class="line">    <span class="k">pattern</span>: info()</span><span class="line">    <span class="k">message</span>: INFO</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: INFO</span><span class="line">  - <span class="k">id</span>: sev-low</span><span class="line">    <span class="k">pattern</span>: low()</span><span class="line">    <span class="k">message</span>: LOW</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: LOW</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">critical()</span><span class="line">error()</span><span class="line">high()</span><span class="line">warning()</span><span class="line">medium()</span><span class="line">info()</span><span class="line">low()</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml app.py
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml app.py</span>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rule.yaml app.py
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml app.py</span>
 app.py
 
   critical  sev-critical

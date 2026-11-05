@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>dynamic_timeout_unit_kb · Opengrep</title>
-  <meta name="description" content="For this rule, how many KB of file earn one more time limit; needs --allow-rule-timeout-control.">
+  <meta name="description" content="The file size, in KB, of one step of the dynamic timeout of this rule; requires --allow-rule-timeout-control.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="../flags/audit-on.html">--audit-on</a></li>
 <li><a href="../flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="../flags/config.html">--config</a></li>
 <li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="../flags/debug.html">--debug</a></li>
-<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="../flags/dryrun.html">--dryrun</a></li>
 <li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="../flags/emacs.html">--emacs</a></li>
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="../flags/experimental.html">--experimental</a></li>
 <li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="../flags/force-color.html">--force-color</a></li>
 <li><a href="../flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="../flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="../flags/jobs.html">--jobs</a></li>
 <li><a href="../flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="../flags/strict.html">--strict</a></li>
 <li><a href="../flags/subdir.html">--subdir</a></li>
 <li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="../flags/test.html">--test</a></li>
 <li><a href="../flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="../flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="ac_matching.html">ac_matching</a></li>
@@ -237,14 +254,14 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../rule-options.html">Rule options</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../rule-options.html">Rule options</a></p>
 <h1><code>dynamic_timeout_unit_kb</code></h1>
 <dl class="facts">
 <div><dt>Value</dt><dd>an integer, in KB</dd></div>
 <div><dt>See also</dt><dd><a href="../flags/dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a>, <a href="dynamic_timeout.html"><code>dynamic_timeout</code></a></dd></div>
 </dl>
 <p>When <a href="dynamic_timeout.html"><code>dynamic_timeout</code></a> scales this rule's time limit with the size of a file, the limit is multiplied by the size of the file in KB (1024 bytes) divided by this unit, and kept between 1 and <a href="dynamic_timeout_max_multiplier.html"><code>dynamic_timeout_max_multiplier</code></a>. A smaller unit gives large files more time.</p>
-<p>The option needs <a href="../flags/allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a>, like the other timeout options of a rule. A rule that does not set it uses <a href="../flags/dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a>, whose default is 30.</p>
+<p>The option requires <a href="../flags/allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a>, like the other timeout options of a rule. A rule that does not set it uses <a href="../flags/dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a>, whose default is 30.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="the-limit-a-3-kb-file-gets"><a class="hash" href="#the-limit-a-3-kb-file-gets" aria-hidden="true" tabindex="-1">###</a> The limit a 3 KB file gets</h3>
 <p>Opengrep logs the limit it sets for each file, as an info message from the <code>semgrep.engine</code> log source, which <a href="../env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a> turns on.</p>
@@ -258,7 +275,7 @@ OPENGREP_LOG_SRCS=semgrep.engine opengrep scan --config unit2.yaml --allow-rule-
 for three.py to 6.01s using a factor of 3.01 derived from the file size
 <span class="p">$ </span><span class="cmd">OPENGREP_LOG_SRCS=semgrep.engine opengrep scan --config unit2.yaml --allow-rule-timeout-control --verbose three.py 2&gt;&amp;1 | grep -o <span class="s">&#x27;for .* derived from the file size&#x27;</span></span>
 for three.py to 3.01s using a factor of 1.50 derived from the file size</code></pre></div>
-<p>The file is 3079 bytes, about 3 KB: three units of 1 KB, or one and a half units of 2 KB, times the rule's base of 2 seconds.</p>
+<p>The file is 3079 bytes, about 3 KB: three units of 1 KB, or one and a half units of 2 KB, times the base of the rule, 2 seconds.</p>
     </main>
   </div>
 

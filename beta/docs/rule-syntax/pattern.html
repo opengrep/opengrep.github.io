@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>pattern · Opengrep</title>
-  <meta name="description" content="Match code that looks like the pattern, written in the rule&#x27;s language.">
+  <meta name="description" content="Match code that looks like the pattern, written in the language of the rule.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="../flags/audit-on.html">--audit-on</a></li>
 <li><a href="../flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="../flags/config.html">--config</a></li>
 <li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="../flags/debug.html">--debug</a></li>
-<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="../flags/dryrun.html">--dryrun</a></li>
 <li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="../flags/emacs.html">--emacs</a></li>
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="../flags/experimental.html">--experimental</a></li>
 <li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="../flags/force-color.html">--force-color</a></li>
 <li><a href="../flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="../flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="../flags/jobs.html">--jobs</a></li>
 <li><a href="../flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="../flags/strict.html">--strict</a></li>
 <li><a href="../flags/subdir.html">--subdir</a></li>
 <li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="../flags/test.html">--test</a></li>
 <li><a href="../flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="../flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="by-side-effect.html">by-side-effect</a></li>
+<li><a href="control.html">control</a></li>
+<li><a href="exact.html">exact</a></li>
 <li><a href="fix.html">fix</a></li>
 <li><a href="fix-regex.html">fix-regex</a></li>
 <li><a href="focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="id.html">id</a></li>
+<li><a href="label.html">label</a></li>
+<li><a href="languages.html">languages</a></li>
 <li><a href="message.html">message</a></li>
+<li><a href="metadata.html">metadata</a></li>
 <li><a href="metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="metavariable-type.html">metavariable-type</a></li>
+<li><a href="min-version.html">min-version</a></li>
 <li><a href="mode.html">mode</a></li>
 <li><a href="taint-mode.html">mode: taint</a></li>
+<li><a href="options.html">options</a></li>
 <li><a href="paths.html">paths</a></li>
 <li><a href="pattern.html" aria-current="page">pattern</a></li>
 <li><a href="pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="pattern-not.html">pattern-not</a></li>
 <li><a href="pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="pattern-regex.html">pattern-regex</a></li>
+<li><a href="pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="pattern-sources.html">pattern-sources</a></li>
 <li><a href="patterns.html">patterns</a></li>
 <li><a href="rules.html">rules</a></li>
 <li><a href="severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,18 +254,14 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../rule-syntax.html">Rule syntax</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../rule-syntax.html">Rule syntax</a></p>
 <h1><code>pattern</code></h1>
 <dl class="facts">
-<div><dt>See also</dt><dd><a href="patterns.html"><code>patterns</code></a>, <a href="pattern-either.html"><code>pattern-either</code></a>, <a href="pattern-regex.html"><code>pattern-regex</code></a>, <a href="../flags/pattern.html"><code>--pattern</code></a>, <a href="mode.html"><code>mode</code></a></dd></div>
+<div><dt>See also</dt><dd><a href="patterns.html"><code>patterns</code></a>, <a href="pattern-either.html"><code>pattern-either</code></a>, <a href="pattern-regex.html"><code>pattern-regex</code></a>, <a href="../flags/pattern.html"><code>--pattern</code></a>, <a href="mode.html"><code>mode</code></a>, <a href="../pattern-syntax/ellipsis.html"><code>...</code></a>, <a href="../pattern-syntax/imports.html">imports and aliases</a></dd></div>
 </dl>
-<p>A pattern is a piece of code in the rule's language. Opengrep matches it against the syntax of the target, so line breaks, spacing and comments make no difference. Two kinds of placeholders make a pattern general:</p>
-<ul>
-<li>a metavariable, a <code>$</code> followed by capital letters, digits and underscores such as <code>$URL</code>, matches any expression and binds it. A metavariable that appears more than once must match the same code each time.</li>
-<li>an ellipsis, <code>...</code>, matches any sequence: of arguments in a call, of statements in a block, and so on.</li>
-</ul>
-<p>A pattern can stand on its own at the top of a rule, as an item of <a href="patterns.html"><code>patterns</code></a>, or as an alternative in <a href="pattern-either.html"><code>pattern-either</code></a>. A rule has exactly one of <code>pattern</code>, <code>pattern-either</code>, <code>patterns</code> and <a href="pattern-regex.html"><code>pattern-regex</code></a> at its top. A pattern of several lines is written as a YAML block, after <code>|</code>.</p>
-<p>In a rule for <code>regex</code>, which has no syntax to match, <code>pattern</code> is an error; use <code>pattern-regex</code> there.</p>
+<p>A piece of code in the language of the rule. Opengrep matches it against the syntax of the target, so line breaks, spacing and comments make no difference. Placeholders make a pattern match more than one piece of code, most often metavariables, such as <code>$URL</code>, which match any expression, and the ellipsis, <code>...</code>, which matches any sequence of arguments, statements or elements. The <a href="../pattern-syntax.html">pattern syntax</a> describes them all.</p>
+<p>A pattern can stand at the top of a rule, as an item of <a href="patterns.html"><code>patterns</code></a>, or as an alternative in <a href="pattern-either.html"><code>pattern-either</code></a>. A rule has exactly one of <code>pattern</code>, <code>pattern-either</code>, <code>patterns</code> and <a href="pattern-regex.html"><code>pattern-regex</code></a> at its top level. A pattern of several lines is written as a YAML block scalar, after <code>|</code>.</p>
+<p>A rule for the language <code>regex</code> has no syntax to match, and <code>pattern</code> is an error in it; such a rule uses <code>pattern-regex</code>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-keyword-argument-anywhere-in-the-call"><a class="hash" href="#a-keyword-argument-anywhere-in-the-call" aria-hidden="true" tabindex="-1">###</a> A keyword argument anywhere in the call</h3>
 <div class="file"><div class="file-head">no-verify.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: no-verify</span><span class="line">    <span class="k">pattern</span>: requests.get(<span class="mv">$URL</span>, <span class="mv">...</span>, verify=<span class="s">False</span>, <span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: TLS certificate verification is disabled</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

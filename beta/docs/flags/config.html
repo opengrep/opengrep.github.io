@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--config · Opengrep</title>
-  <meta name="description" content="Load rules from a file, a directory, a URL, a git repository or the Semgrep registry.">
+  <meta name="description" content="Load rules from a file, a directory, a URL, a git repository or the registry.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="audit-on.html">--audit-on</a></li>
 <li><a href="autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="config.html" aria-current="page">--config</a></li>
 <li><a href="dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="debug.html">--debug</a></li>
-<li><a href="disable-interfile.html">--disable-interfile</a></li>
 <li><a href="disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="dryrun.html">--dryrun</a></li>
 <li><a href="dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="emacs.html">--emacs</a></li>
 <li><a href="emacs-output.html">--emacs-output</a></li>
+<li><a href="enable-interfile.html">--enable-interfile</a></li>
 <li><a href="enable-nosem.html">--enable-nosem</a></li>
-<li><a href="enable-version-check.html">--enable-version-check</a></li>
 <li><a href="error.html">--error</a></li>
 <li><a href="exclude.html">--exclude</a></li>
 <li><a href="exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="exclude-rule.html">--exclude-rule</a></li>
-<li><a href="experimental.html">--experimental</a></li>
 <li><a href="files-with-matches.html">--files-with-matches</a></li>
 <li><a href="force-color.html">--force-color</a></li>
 <li><a href="force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="incremental-output.html">--incremental-output</a></li>
 <li><a href="inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="interfile-depth.html">--interfile-depth</a></li>
 <li><a href="interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="jobs.html">--jobs</a></li>
 <li><a href="json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="strict.html">--strict</a></li>
 <li><a href="subdir.html">--subdir</a></li>
 <li><a href="suppress-errors.html">--suppress-errors</a></li>
-<li><a href="taint-interfile.html">--taint-interfile</a></li>
-<li><a href="taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="test.html">--test</a></li>
 <li><a href="text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,16 +254,16 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../flags.html">Flags</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../flags.html">Flags</a></p>
 <h1><code>--config</code></h1>
 <dl class="facts">
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a>, <a href="../commands/ci.html"><code>opengrep ci</code></a>, <a href="../commands/test.html"><code>opengrep test</code></a></dd></div>
 <div><dt>Also spelled</dt><dd><code>-c</code>, <code>-f</code></dd></div>
 <div><dt>Value</dt><dd><code>SOURCE</code>, repeatable</dd></div>
 <div><dt>Environment</dt><dd><a href="../env/OPENGREP_RULES.html"><code>OPENGREP_RULES</code></a></dd></div>
-<div><dt>See also</dt><dd><a href="pattern.html"><code>--pattern</code></a>, <a href="skip-invalid-configs.html"><code>--skip-invalid-configs</code></a>, <a href="rewrite-rule-ids.html"><code>--rewrite-rule-ids</code></a>, <a href="../commands/test.html"><code>opengrep test</code></a>, <a href="../commands/scan.html"><code>opengrep scan</code></a>, <a href="../commands/validate.html"><code>opengrep validate</code></a>, <a href="allow-local-builds.html"><code>--allow-local-builds</code></a>, <a href="exclude-rule.html"><code>--exclude-rule</code></a>, <a href="severity.html"><code>--severity</code></a>, <a href="validate.html"><code>--validate</code></a>, <a href="../rule-syntax/rules.html"><code>rules</code></a>, <a href="../env/GIT_SSH_COMMAND.html"><code>GIT_SSH_COMMAND</code></a>, <a href="../env/OPENGREP_URL.html"><code>OPENGREP_URL</code></a></dd></div>
+<div><dt>See also</dt><dd><a href="pattern.html"><code>--pattern</code></a>, <a href="skip-invalid-configs.html"><code>--skip-invalid-configs</code></a>, <a href="rewrite-rule-ids.html"><code>--rewrite-rule-ids</code></a>, <a href="../commands/test.html"><code>opengrep test</code></a>, <a href="../commands/scan.html"><code>opengrep scan</code></a>, <a href="../commands/validate.html"><code>opengrep validate</code></a>, <a href="exclude-rule.html"><code>--exclude-rule</code></a>, <a href="severity.html"><code>--severity</code></a>, <a href="validate.html"><code>--validate</code></a>, <a href="../rule-syntax/rules.html"><code>rules</code></a>, <a href="../env/GIT_SSH_COMMAND.html"><code>GIT_SSH_COMMAND</code></a>, <a href="../env/OPENGREP_URL.html"><code>OPENGREP_URL</code></a></dd></div>
 </dl>
-<p>Each <code>--config</code> names one source of rules. Repeat the flag to combine sources: the rules of all sources run together.</p>
+<p>Each <code>--config</code> names one source of rules. The flag can be repeated; the rules of all the sources run together.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>SOURCE</th><th>Rules loaded</th></tr></thead>
 <tbody>
@@ -257,19 +274,19 @@
 <tr><td><code>p/NAME</code>, <code>r/NAME</code>, <code>s/NAME</code>, <code>auto</code>, <code>r2c</code></td><td>Rules from the Semgrep registry, at <a href="../environment.html"><code>OPENGREP_URL</code></a> (default <code>https://semgrep.dev</code>). <code>auto</code> sends the project URL to the registry, which selects the rules.</td></tr>
 </tbody>
 </table></div>
-<p>A rule file that is not valid stops the scan (exit status 7). When the file comes from a directory or a git repository, <a href="../flags.html"><code>--skip-invalid-configs</code></a> turns this into a warning and skips the file.</p>
+<p>An invalid rule file stops the scan with exit status 7. When the file comes from a directory or a git repository, <a href="skip-invalid-configs.html"><code>--skip-invalid-configs</code></a> skips it with a warning instead.</p>
 <h2 id="rule-ids"><a class="hash" href="#rule-ids" aria-hidden="true" tabindex="-1">##</a> Rule ids</h2>
-<p>When the rules come from a file in a subdirectory, each rule id gets the directory path as a prefix, with dots for slashes. For example, with <code>--config rules/</code> or <code>--config rules/python/eval.yaml</code>, the rule <code>find-eval</code> in <code>rules/python/eval.yaml</code> is reported as <code>rules.python.find-eval</code>. <code>--no-rewrite-rule-ids</code> keeps the ids as written.</p>
+<p>When the rules come from a file in a subdirectory, each rule id is prefixed with the path of the directory, with dots in place of the slashes. For example, with <code>--config rules/</code> or <code>--config rules/python/eval.yaml</code>, the rule <code>find-eval</code> in <code>rules/python/eval.yaml</code> is reported as <code>rules.python.find-eval</code>. <code>--no-rewrite-rule-ids</code> keeps the ids as written.</p>
 <h2 id="without---config"><a class="hash" href="#without---config" aria-hidden="true" tabindex="-1">##</a> Without <code>--config</code></h2>
 <p>When no <code>--config</code> is given, <code>scan</code>, <code>ci</code> and <code>test</code> read the sources from <a href="../env/OPENGREP_RULES.html"><code>OPENGREP_RULES</code></a>. If that variable is not set either, <code>scan</code> runs a single pattern given with <code>-e</code>/<code>--pattern</code>, and failing that it uses <code>--config auto</code>.</p>
-<p>For <a href="../commands/test.html"><code>opengrep test</code></a>, <code>--config</code> also changes what is tested. The given rules run on the given targets, instead of each rule file being paired with the files named after it.</p>
+<p>For <a href="../commands/test.html"><code>opengrep test</code></a>, <code>--config</code> also changes what is tested: the given rules run on the given targets, instead of each rule file being tested against the files named after it.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="two-rule-files"><a class="hash" href="#two-rule-files" aria-hidden="true" tabindex="-1">###</a> Two rule files</h3>
 <div class="file"><div class="file-head">eval.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">exec.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-exec</span><span class="line">    <span class="k">pattern</span>: exec(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found exec</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(code)</span><span class="line">exec(code)</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config eval.yaml --config exec.yaml app.py
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config eval.yaml --config exec.yaml app.py</span>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config eval.yaml --config exec.yaml app.py
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config eval.yaml --config exec.yaml app.py</span>
 app.py
 
   <span class="sev">warn</span>  <span class="rule">find-eval</span>
@@ -284,16 +301,16 @@ app.py
 <h3 id="a-directory-of-rules"><a class="hash" href="#a-directory-of-rules" aria-hidden="true" tabindex="-1">###</a> A directory of rules</h3>
 <div class="file"><div class="file-head">rules/python/eval.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(code)</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rules/ app.py
-opengrep scan --config rules/ --no-rewrite-rule-ids app.py
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rules/ app.py</span>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rules/ app.py
+opengrep scan -q --config rules/ --no-rewrite-rule-ids app.py
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rules/ app.py</span>
 app.py
 
   <span class="sev">warn</span>  <span class="rule">rules.python.find-eval</span>
   found eval
 
 <span class="n">     1:</span><span class="b"> eval(code)</span>
-<span class="p">$ </span><span class="cmd">opengrep scan --config rules/ --no-rewrite-rule-ids app.py</span>
+<span class="p">$ </span><span class="cmd">opengrep scan -q --config rules/ --no-rewrite-rule-ids app.py</span>
 app.py
 
   <span class="sev">warn</span>  <span class="rule">find-eval</span>

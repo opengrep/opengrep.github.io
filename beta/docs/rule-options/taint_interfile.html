@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>taint_interfile · Opengrep</title>
-  <meta name="description" content="Follow taint across files, through calls to functions defined in other files.">
+  <meta name="description" content="Mark a taint rule for cross-file analysis under --enable-interfile.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="../flags/audit-on.html">--audit-on</a></li>
 <li><a href="../flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="../flags/config.html">--config</a></li>
 <li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="../flags/debug.html">--debug</a></li>
-<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="../flags/dryrun.html">--dryrun</a></li>
 <li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="../flags/emacs.html">--emacs</a></li>
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="../flags/experimental.html">--experimental</a></li>
 <li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="../flags/force-color.html">--force-color</a></li>
 <li><a href="../flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="../flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="../flags/jobs.html">--jobs</a></li>
 <li><a href="../flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="../flags/strict.html">--strict</a></li>
 <li><a href="../flags/subdir.html">--subdir</a></li>
 <li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="../flags/test.html">--test</a></li>
 <li><a href="../flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="../flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="ac_matching.html">ac_matching</a></li>
@@ -237,26 +254,26 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../rule-options.html">Rule options</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../rule-options.html">Rule options</a></p>
 <h1><code>taint_interfile</code></h1>
 <dl class="facts">
 <div><dt>Also spelled</dt><dd><code>interfile</code></dd></div>
 <div><dt>Value</dt><dd><code>true</code> or <code>false</code></dd></div>
 <div><dt>Default</dt><dd><code>false</code></dd></div>
-<div><dt>See also</dt><dd><a href="../flags/taint-interfile.html"><code>--taint-interfile</code></a>, <a href="../flags/taint-interfile-depth.html"><code>--taint-interfile-depth</code></a>, <a href="taint_interfile_depth.html"><code>taint_interfile_depth</code></a>, <a href="../flags/interfile-timeout.html"><code>--interfile-timeout</code></a>, <a href="taint_intrafile.html"><code>taint_intrafile</code></a>, <a href="../rule-syntax/taint-mode.html"><code>mode: taint</code></a>, <a href="../flags/disable-interfile.html"><code>--disable-interfile</code></a>, <a href="../flags/interfile-dedup-by.html"><code>--interfile-dedup-by</code></a></dd></div>
+<div><dt>See also</dt><dd><a href="../flags/enable-interfile.html"><code>--enable-interfile</code></a>, <a href="../flags/interfile-depth.html"><code>--interfile-depth</code></a>, <a href="taint_interfile_depth.html"><code>taint_interfile_depth</code></a>, <a href="../flags/interfile-timeout.html"><code>--interfile-timeout</code></a>, <a href="taint_intrafile.html"><code>taint_intrafile</code></a>, <a href="../rule-syntax/taint-mode.html"><code>mode: taint</code></a>, <a href="../flags/interfile-dedup-by.html"><code>--interfile-dedup-by</code></a></dd></div>
 </dl>
-<p>With <code>taint_interfile: true</code>, a <a href="../rule-syntax/taint-mode.html">taint rule</a> follows taint through calls to functions defined in other files of the project. It implies <a href="taint_intrafile.html"><code>taint_intrafile</code></a>, which does the same within a file.</p>
-<p>Opengrep builds a call graph of the whole project. When a file has sources but no sinks, or sinks but no sources, the files it is connected to in the graph are analysed together with it. The search follows call chains up to <code>taint_interfile_depth</code> calls deep. The rule's option wins over <code>--taint-interfile-depth</code>, which defaults to 3. A negative depth means no limit. <code>--interfile-timeout</code> limits the time spent on this analysis.</p>
-<p>A rule with this option runs only in this cross-file analysis, not file by file. The finding is reported at the sink.</p>
-<p><code>interfile: true</code> is another name for this option, used by published rules. Setting both <code>interfile</code> and <code>taint_interfile</code> makes the rule invalid.</p>
-<p>The flag <code>--taint-interfile</code> turns this on for every taint rule of the scan.</p>
+<p>Marks a <a href="../rule-syntax/taint-mode.html">taint rule</a> for cross-file analysis. When the scan is run with <a href="../flags/enable-interfile.html"><code>--enable-interfile</code></a>, the rule follows taint through calls to functions defined in other files of the project, and through calls within each file, as <a href="taint_intrafile.html"><code>taint_intrafile</code></a> does. Without the flag, the rule runs as if the option were absent.</p>
+<p>Under <code>--enable-interfile</code>, opengrep builds a call graph of the project. When a file has sources but no sinks, or sinks but no sources, the files it is connected to in the graph are analysed together with it, following call chains up to <a href="taint_interfile_depth.html"><code>taint_interfile_depth</code></a> calls long, or <a href="../flags/interfile-depth.html"><code>--interfile-depth</code></a> when the rule does not set a depth. <a href="../flags/interfile-timeout.html"><code>--interfile-timeout</code></a> limits the time spent on the analysis. A finding is reported at the sink.</p>
+<p><code>interfile: true</code> is an alias of the option. A rule that sets both <code>interfile</code> and <code>taint_interfile</code> is invalid.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="taint-across-two-files"><a class="hash" href="#taint-across-two-files" aria-hidden="true" tabindex="-1">###</a> Taint across two files</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: input-to-system</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: os.system(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: user input reaches os.system</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">taint_interfile</span>: true</span></code></pre></div>
 <div class="file"><div class="file-head">util.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">import</span> os</span><span class="line"></span><span class="line"><span class="k">def</span> run(cmd):</span><span class="line">    os.system(cmd)</span></code></pre></div>
 <div class="file"><div class="file-head">main.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">from</span> util <span class="k">import</span> run</span><span class="line"></span><span class="line">run(input())</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml .
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml .</span>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rule.yaml .
+opengrep scan -q --config rule.yaml --enable-interfile .
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml .</span>
+<span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --enable-interfile .</span>
 util.py
 
   <span class="err">error</span>  <span class="rule">input-to-system</span>
@@ -266,6 +283,7 @@ util.py
 
   from: main.py
 <span class="n">     3:</span><span class="b"> input()</span></code></pre></div>
+<p>Without <code>--enable-interfile</code>, the first scan analyses each file on its own and reports nothing.</p>
 <h3 id="both-names-set"><a class="hash" href="#both-names-set" aria-hidden="true" tabindex="-1">###</a> Both names set</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: input-to-system</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: os.system(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: user input reaches os.system</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">interfile</span>: true</span><span class="line">      <span class="k">taint_interfile</span>: true</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml . 2&gt;&amp;1 | grep &#x27;only one&#x27;

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Rule options · Opengrep</title>
-  <meta name="description" content="The options: key of a rule tunes how that rule matches. Options apply to the rule that sets them only.">
+  <meta name="description" content="The options that the options key of a rule can set. An option changes how the rule that sets it matches; the other rules of the scan keep the defaults.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="flags.html">Flags</a></summary><ul>
-<li><a href="flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="flags/audit-on.html">--audit-on</a></li>
 <li><a href="flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="flags/config.html">--config</a></li>
 <li><a href="flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="flags/debug.html">--debug</a></li>
-<li><a href="flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="flags/dryrun.html">--dryrun</a></li>
 <li><a href="flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="flags/emacs.html">--emacs</a></li>
 <li><a href="flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="flags/error.html">--error</a></li>
 <li><a href="flags/exclude.html">--exclude</a></li>
 <li><a href="flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="flags/experimental.html">--experimental</a></li>
 <li><a href="flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="flags/force-color.html">--force-color</a></li>
 <li><a href="flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="flags/jobs.html">--jobs</a></li>
 <li><a href="flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="flags/strict.html">--strict</a></li>
 <li><a href="flags/subdir.html">--subdir</a></li>
 <li><a href="flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="flags/test.html">--test</a></li>
 <li><a href="flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="rule-syntax/control.html">control</a></li>
+<li><a href="rule-syntax/exact.html">exact</a></li>
 <li><a href="rule-syntax/fix.html">fix</a></li>
 <li><a href="rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="rule-syntax/id.html">id</a></li>
+<li><a href="rule-syntax/label.html">label</a></li>
+<li><a href="rule-syntax/languages.html">languages</a></li>
 <li><a href="rule-syntax/message.html">message</a></li>
+<li><a href="rule-syntax/metadata.html">metadata</a></li>
 <li><a href="rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="rule-syntax/min-version.html">min-version</a></li>
 <li><a href="rule-syntax/mode.html">mode</a></li>
 <li><a href="rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="rule-syntax/options.html">options</a></li>
 <li><a href="rule-syntax/paths.html">paths</a></li>
 <li><a href="rule-syntax/pattern.html">pattern</a></li>
 <li><a href="rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="rule-syntax/patterns.html">patterns</a></li>
 <li><a href="rule-syntax/rules.html">rules</a></li>
 <li><a href="rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details open><summary><a href="rule-options.html" aria-current="page">Rule options</a></summary><ul>
 <li><a href="rule-options/ac_matching.html">ac_matching</a></li>
@@ -239,14 +256,15 @@
     <main class="docs-main">
 <p class="docs-crumb"><a href="index.html">reference</a></p>
 <h1>Rule options</h1>
-<p>The <code>options:</code> key of a rule tunes how that rule matches. Options apply to the rule that sets them only.</p>
+<p>The options that the <a href="rule-syntax/options.html"><code>options</code></a> key of a rule can set. An option changes how the rule that sets it matches; the other rules of the scan keep the defaults.</p>
 <div class="file"><pre class="snip"><code><span class="k">rules</span>:
   - <span class="k">id</span>: example
     <span class="k">pattern</span>: <span class="mv">...</span>
     <span class="k">options</span>:
       <span class="k">symbolic_propagation</span>: true</code></pre></div>
-<p>An option name that opengrep does not know is an error: the run stops with exit status 2 and reports <code>Found unknown JSON field &lt;name&gt;</code>. Note that this differs from an unknown key elsewhere in a rule, which only produces a warning.</p>
-<p>Some options have an equivalent command-line flag that enables the same behaviour for every rule. Such a flag cannot switch an option off for a rule that enables it.</p>
+<p>An option that opengrep does not know makes the rule invalid: the run stops with exit status 2 and reports <code>Found unknown JSON field &lt;name&gt;</code>. An unknown key elsewhere in a rule produces only a warning.</p>
+<p>Some options have a command-line flag that enables the same behaviour for every rule of a scan. Such a flag cannot turn the option off for a rule that enables it.</p>
+<h2 id="index"><a class="hash" href="#index" aria-hidden="true" tabindex="-1">##</a> Index</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Name</th><th>Summary</th></tr></thead>
 <tbody>
@@ -257,9 +275,9 @@
 <tr><td><a href="rule-options/constant_propagation.html"><code>constant_propagation</code></a></td><td>Let a literal in a pattern match a variable known to hold that value.</td></tr>
 <tr><td><a href="rule-options/cpp_parsing_pref.html"><code>cpp_parsing_pref</code></a></td><td>Read an ambiguous C++ pattern such as foo $X(...); as a function declaration or a constructed variable.</td></tr>
 <tr><td><a href="rule-options/decorators_order_matters.html"><code>decorators_order_matters</code></a></td><td>Require decorators and annotations to appear in the order the pattern gives.</td></tr>
-<tr><td><a href="rule-options/dynamic_timeout.html"><code>dynamic_timeout</code></a></td><td>Scale this rule's time limit with the size of each file; needs --allow-rule-timeout-control.</td></tr>
-<tr><td><a href="rule-options/dynamic_timeout_max_multiplier.html"><code>dynamic_timeout_max_multiplier</code></a></td><td>For this rule, the most that file size may multiply its time limit; needs --allow-rule-timeout-control.</td></tr>
-<tr><td><a href="rule-options/dynamic_timeout_unit_kb.html"><code>dynamic_timeout_unit_kb</code></a></td><td>For this rule, how many KB of file earn one more time limit; needs --allow-rule-timeout-control.</td></tr>
+<tr><td><a href="rule-options/dynamic_timeout.html"><code>dynamic_timeout</code></a></td><td>Scale the time limit of this rule with the size of the file; requires --allow-rule-timeout-control.</td></tr>
+<tr><td><a href="rule-options/dynamic_timeout_max_multiplier.html"><code>dynamic_timeout_max_multiplier</code></a></td><td>The largest factor of the dynamic timeout of this rule; requires --allow-rule-timeout-control.</td></tr>
+<tr><td><a href="rule-options/dynamic_timeout_unit_kb.html"><code>dynamic_timeout_unit_kb</code></a></td><td>The file size, in KB, of one step of the dynamic timeout of this rule; requires --allow-rule-timeout-control.</td></tr>
 <tr><td><a href="rule-options/flddef_assign.html"><code>flddef_assign</code></a></td><td>Let a pattern assigning a function match methods and fields that hold functions.</td></tr>
 <tr><td><a href="rule-options/generic_braces.html"><code>generic_braces</code></a></td><td>With aliengrep, replace the pairs of braces that an ellipsis keeps balanced.</td></tr>
 <tr><td><a href="rule-options/generic_caseless.html"><code>generic_caseless</code></a></td><td>With aliengrep, match text regardless of letter case.</td></tr>
@@ -285,13 +303,13 @@
 <tr><td><a href="rule-options/taint_assume_safe_indexes.html"><code>taint_assume_safe_indexes</code></a></td><td>Assume that a tainted index does not taint the element it selects.</td></tr>
 <tr><td><a href="rule-options/taint_assume_safe_numbers.html"><code>taint_assume_safe_numbers</code></a></td><td>Assume that a number is clean, even when it was computed from tainted data.</td></tr>
 <tr><td><a href="rule-options/taint_focus_on.html"><code>taint_focus_on</code></a></td><td>Report a taint finding at the source instead of at the sink.</td></tr>
-<tr><td><a href="rule-options/taint_interfile.html"><code>taint_interfile</code></a></td><td>Follow taint across files, through calls to functions defined in other files.</td></tr>
-<tr><td><a href="rule-options/taint_interfile_depth.html"><code>taint_interfile_depth</code></a></td><td>How many calls deep this rule's cross-file taint analysis follows a chain.</td></tr>
+<tr><td><a href="rule-options/taint_interfile.html"><code>taint_interfile</code></a></td><td>Mark a taint rule for cross-file analysis under --enable-interfile.</td></tr>
+<tr><td><a href="rule-options/taint_interfile_depth.html"><code>taint_interfile_depth</code></a></td><td>The longest call chain that the cross-file taint analysis of this rule follows.</td></tr>
 <tr><td><a href="rule-options/taint_intrafile.html"><code>taint_intrafile</code></a></td><td>Follow taint through calls to functions defined in the same file.</td></tr>
 <tr><td><a href="rule-options/taint_only_propagate_through_assignments.html"><code>taint_only_propagate_through_assignments</code></a></td><td>Let taint move only by assignment, not through operators or calls.</td></tr>
 <tr><td><a href="rule-options/taint_unify_mvars.html"><code>taint_unify_mvars</code></a></td><td>Require a metavariable used in both a source and a sink to bind the same code in both.</td></tr>
-<tr><td><a href="rule-options/timeout.html"><code>timeout</code></a></td><td>This rule's time limit on each file, in seconds; needs --allow-rule-timeout-control.</td></tr>
-<tr><td><a href="rule-options/unify_ids_strictly.html"><code>unify_ids_strictly</code></a></td><td>Require a metavariable bound twice to name the same variable, not just the same name.</td></tr>
+<tr><td><a href="rule-options/timeout.html"><code>timeout</code></a></td><td>The time limit of this rule on each file, in seconds; requires --allow-rule-timeout-control.</td></tr>
+<tr><td><a href="rule-options/unify_ids_strictly.html"><code>unify_ids_strictly</code></a></td><td>Require a metavariable bound twice to name the same variable, not only the same name.</td></tr>
 <tr><td><a href="rule-options/vardef_assign.html"><code>vardef_assign</code></a></td><td>Let an assignment pattern match a variable declaration with an initial value.</td></tr>
 <tr><td><a href="rule-options/xml_attrs_implicit_ellipsis.html"><code>xml_attrs_implicit_ellipsis</code></a></td><td>Let an XML pattern match elements with more attributes than it lists.</td></tr>
 <tr><td><a href="rule-options/xml_children_ordered.html"><code>xml_children_ordered</code></a></td><td>Require the children of an XML element to appear in the order the pattern gives.</td></tr>

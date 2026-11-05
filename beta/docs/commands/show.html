@@ -42,7 +42,6 @@
 <li><a href="validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="../flags/audit-on.html">--audit-on</a></li>
 <li><a href="../flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="../flags/config.html">--config</a></li>
 <li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="../flags/debug.html">--debug</a></li>
-<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="../flags/dryrun.html">--dryrun</a></li>
 <li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="../flags/emacs.html">--emacs</a></li>
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="../flags/experimental.html">--experimental</a></li>
 <li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="../flags/force-color.html">--force-color</a></li>
 <li><a href="../flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="../flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="../flags/jobs.html">--jobs</a></li>
 <li><a href="../flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="../flags/strict.html">--strict</a></li>
 <li><a href="../flags/subdir.html">--subdir</a></li>
 <li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="../flags/test.html">--test</a></li>
 <li><a href="../flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="../flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,7 +254,7 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../commands.html">Commands</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../commands.html">Commands</a></p>
 <h1><code>opengrep show</code></h1>
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="../flags/html.html"><code>--html</code></a>, <a href="../flags/show-supported-languages.html"><code>--show-supported-languages</code></a>, <a href="../flags/version.html"><code>--version</code></a></dd></div>
@@ -247,23 +264,22 @@
 <thead><tr><th>KIND</th><th>Prints</th></tr></thead>
 <tbody>
 <tr><td><code>version</code></td><td>The opengrep version, the same as <code>opengrep --version</code>.</td></tr>
-<tr><td><code>supported-languages</code></td><td>The language names accepted in a rule's <code>languages</code> and by <code>--lang</code>, aliases included.</td></tr>
+<tr><td><code>supported-languages</code></td><td>The language names accepted by the <code>languages</code> of a rule and by <code>--lang</code>, aliases included.</td></tr>
 <tr><td><code>dump-*</code></td><td>Internal representations of rules, patterns and code. See <a href="../internal.html#opengrep-show-dump-commands">Internal and debugging interfaces</a>.</td></tr>
 </tbody>
 </table></div>
-<p>An unknown KIND is an error: <code>opengrep show</code> exits with status 2.</p>
+<p>An unknown KIND is an error, and <code>opengrep show</code> exits with status 2.</p>
 <h2 id="flags"><a class="hash" href="#flags" aria-hidden="true" tabindex="-1">##</a> Flags</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Flag</th><th>Summary</th></tr></thead>
 <tbody>
-<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log everything --verbose does and the engine's own diagnostics as well.</td></tr>
+<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log what --verbose logs, and the diagnostics of the engine.</td></tr>
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/experimental.html"><code>--experimental</code></a></td><td>Accepted for compatibility; opengrep has only the one implementation.</td></tr>
-<tr><td><a href="../flags/html.html"><code>--html</code></a></td><td>Render a show dump as an HTML page instead of plain text.</td></tr>
-<tr><td><a href="../flags/json.html"><code>--json</code></a></td><td>Print the findings as a JSON document instead of the text report.</td></tr>
+<tr><td><a href="../flags/html.html"><code>--html</code></a></td><td>Print the output of opengrep show as an HTML page.</td></tr>
+<tr><td><a href="../flags/json.html"><code>--json</code></a></td><td>Print the findings as a JSON document.</td></tr>
 <tr><td><code>--profile</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print the findings and nothing else.</td></tr>
-<tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log what the scan is doing, at the info level.</td></tr>
+<tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log the progress of the run, at the info level.</td></tr>
 </tbody>
 </table></div>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

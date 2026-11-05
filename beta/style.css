@@ -388,6 +388,7 @@ pre.out .n { color: var(--dim); }
 .notes { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 6px; }
 .notes li { display: grid; grid-template-columns: 9ch 1fr; }
 .notes .ref { color: var(--accent); }
+.notes.flags li { grid-template-columns: 30ch 1fr; }
 
 /* ---------- docs ---------- */
 /* The text sits in the site's own column, the middle one, so it starts right
@@ -531,6 +532,7 @@ pre.out .sev { color: var(--fg); font-weight: 500; }
 }
 @media (max-width: 900px) {
   .facts div { grid-template-columns: 1fr; gap: 0; }
+  .notes.flags li { grid-template-columns: 1fr; }
 }
 
 /* ---------- small screens ---------- */

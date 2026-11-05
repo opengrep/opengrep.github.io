@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--pattern · Opengrep</title>
-  <meta name="description" content="Search with a single pattern given on the command line, instead of a rule file.">
+  <meta name="description" content="Search with a pattern given on the command line instead of a rule file.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="audit-on.html">--audit-on</a></li>
 <li><a href="autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="config.html">--config</a></li>
 <li><a href="dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="debug.html">--debug</a></li>
-<li><a href="disable-interfile.html">--disable-interfile</a></li>
 <li><a href="disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="dryrun.html">--dryrun</a></li>
 <li><a href="dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="emacs.html">--emacs</a></li>
 <li><a href="emacs-output.html">--emacs-output</a></li>
+<li><a href="enable-interfile.html">--enable-interfile</a></li>
 <li><a href="enable-nosem.html">--enable-nosem</a></li>
-<li><a href="enable-version-check.html">--enable-version-check</a></li>
 <li><a href="error.html">--error</a></li>
 <li><a href="exclude.html">--exclude</a></li>
 <li><a href="exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="exclude-rule.html">--exclude-rule</a></li>
-<li><a href="experimental.html">--experimental</a></li>
 <li><a href="files-with-matches.html">--files-with-matches</a></li>
 <li><a href="force-color.html">--force-color</a></li>
 <li><a href="force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="incremental-output.html">--incremental-output</a></li>
 <li><a href="inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="interfile-depth.html">--interfile-depth</a></li>
 <li><a href="interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="jobs.html">--jobs</a></li>
 <li><a href="json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="strict.html">--strict</a></li>
 <li><a href="subdir.html">--subdir</a></li>
 <li><a href="suppress-errors.html">--suppress-errors</a></li>
-<li><a href="taint-interfile.html">--taint-interfile</a></li>
-<li><a href="taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="test.html">--test</a></li>
 <li><a href="text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,7 +254,7 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../flags.html">Flags</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../flags.html">Flags</a></p>
 <h1><code>--pattern</code></h1>
 <dl class="facts">
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a></dd></div>
@@ -245,15 +262,15 @@
 <div><dt>Value</dt><dd><code>PATTERN</code></dd></div>
 <div><dt>See also</dt><dd><a href="lang.html"><code>--lang</code></a>, <a href="replacement.html"><code>--replacement</code></a>, <a href="config.html"><code>--config</code></a>, <a href="../rule-syntax/patterns.html"><code>patterns</code></a>, <a href="../rule-syntax/pattern.html"><code>pattern</code></a></dd></div>
 </dl>
-<p>Runs one pattern without writing a rule, which is what you want when grepping a codebase for a shape rather than a string. The pattern syntax is the one a rule's <code>pattern:</code> key uses, so <code>eval(...)</code> matches any call to <code>eval</code>.</p>
-<p><code>-e</code> and <a href="lang.html"><code>-l</code>/<code>--lang</code></a> must be given together: the pattern has to be parsed as some language. Without <code>-l</code>, opengrep stops with <code class="long">-e/--pattern and -l/--lang must both be specified</code> and exit status 2.</p>
-<p>A finding from a command-line pattern has no rule behind it, so it is reported with <code>-</code> as its rule id, the pattern as its message, and error severity. The text report leaves those out and shows the matched lines alone. <a href="replacement.html"><code>--replacement</code></a> adds a fix to it.</p>
+<p>Searches with one pattern, without a rule file, to find code by its structure rather than by its text. The pattern uses the <a href="../pattern-syntax.html">pattern syntax</a> of a rule: <code>eval(...)</code> matches any call to <code>eval</code>.</p>
+<p><code>-e</code> and <a href="lang.html"><code>-l</code>/<code>--lang</code></a> must be given together, since the pattern is parsed as code of a language. Without <code>-l</code>, opengrep stops with <code class="long">-e/--pattern and -l/--lang must both be specified</code> and exit status 2.</p>
+<p>A finding of a command-line pattern has no rule: it is reported with <code>-</code> as its rule id, the pattern as its message, and the severity <code>ERROR</code>. The text output shows only the matched lines. <a href="replacement.html"><code>--replacement</code></a> adds a fix to the pattern.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="searching-for-a-call"><a class="hash" href="#searching-for-a-call" aria-hidden="true" tabindex="-1">###</a> Searching for a call</h3>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span><span class="line">print(2)</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -e &#x27;eval(...)&#x27; -l python app.py
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q -e &#x27;eval(...)&#x27; -l python app.py
 opengrep scan -e &#x27;eval(...)&#x27; app.py 2&gt;&amp;1 &gt;/dev/null | tail -1
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -e <span class="s">&#x27;eval(...)&#x27;</span> -l python app.py</span>
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q -e <span class="s">&#x27;eval(...)&#x27;</span> -l python app.py</span>
 app.py
 
 <span class="n">     1:</span><span class="b"> eval(1)</span>

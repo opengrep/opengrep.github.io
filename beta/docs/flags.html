@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Flags · Opengrep</title>
-  <meta name="description" content="A flag is documented once, even when several commands accept it. The Accepted by column lists those commands. Flags may come before or after the targets. A flag with a value takes it either as --flag=VALUE or as --flag VALUE.">
+  <meta name="description" content="The command-line flags of opengrep, one entry per flag. A flag accepted by several commands has a single entry; the Accepted by column lists the commands, and each command page lists the flags it accepts.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details open><summary><a href="flags.html" aria-current="page">Flags</a></summary><ul>
-<li><a href="flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="flags/audit-on.html">--audit-on</a></li>
 <li><a href="flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="flags/config.html">--config</a></li>
 <li><a href="flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="flags/debug.html">--debug</a></li>
-<li><a href="flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="flags/dryrun.html">--dryrun</a></li>
 <li><a href="flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="flags/emacs.html">--emacs</a></li>
 <li><a href="flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="flags/error.html">--error</a></li>
 <li><a href="flags/exclude.html">--exclude</a></li>
 <li><a href="flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="flags/experimental.html">--experimental</a></li>
 <li><a href="flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="flags/force-color.html">--force-color</a></li>
 <li><a href="flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="flags/jobs.html">--jobs</a></li>
 <li><a href="flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="flags/strict.html">--strict</a></li>
 <li><a href="flags/subdir.html">--subdir</a></li>
 <li><a href="flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="flags/test.html">--test</a></li>
 <li><a href="flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="rule-syntax/control.html">control</a></li>
+<li><a href="rule-syntax/exact.html">exact</a></li>
 <li><a href="rule-syntax/fix.html">fix</a></li>
 <li><a href="rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="rule-syntax/id.html">id</a></li>
+<li><a href="rule-syntax/label.html">label</a></li>
+<li><a href="rule-syntax/languages.html">languages</a></li>
 <li><a href="rule-syntax/message.html">message</a></li>
+<li><a href="rule-syntax/metadata.html">metadata</a></li>
 <li><a href="rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="rule-syntax/min-version.html">min-version</a></li>
 <li><a href="rule-syntax/mode.html">mode</a></li>
 <li><a href="rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="rule-syntax/options.html">options</a></li>
 <li><a href="rule-syntax/paths.html">paths</a></li>
 <li><a href="rule-syntax/pattern.html">pattern</a></li>
 <li><a href="rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="rule-syntax/patterns.html">patterns</a></li>
 <li><a href="rule-syntax/rules.html">rules</a></li>
 <li><a href="rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="rule-options.html">Rule options</a></summary><ul>
 <li><a href="rule-options/ac_matching.html">ac_matching</a></li>
@@ -239,120 +256,131 @@
     <main class="docs-main">
 <p class="docs-crumb"><a href="index.html">reference</a></p>
 <h1>Flags</h1>
-<p>A flag is documented once, even when several commands accept it. The <em>Accepted by</em> column lists those commands. Flags may come before or after the targets. A flag with a value takes it either as <code>--flag=VALUE</code> or as <code>--flag VALUE</code>.</p>
-<p>When a flag has an equivalent environment variable and both are given, the flag wins and opengrep logs a warning naming the ignored variable. See <a href="environment.html">Environment variables</a>.</p>
+<p>The command-line flags of opengrep, one entry per flag. A flag accepted by several commands has a single entry; the <em>Accepted by</em> column lists the commands, and each <a href="commands.html">command</a> page lists the flags it accepts.</p>
+<h2 id="syntax"><a class="hash" href="#syntax" aria-hidden="true" tabindex="-1">##</a> Syntax</h2>
+<p>Flags can be given before or after the targets. A flag that takes a value accepts it as <code>--flag=VALUE</code> or as <code>--flag VALUE</code>. Some flags also have a one-letter form, such as <code>-q</code> for <code>--quiet</code>, listed on their entry.</p>
+<h2 id="environment-variables"><a class="hash" href="#environment-variables" aria-hidden="true" tabindex="-1">##</a> Environment variables</h2>
+<p>Some flags can also be set with an <a href="environment.html">environment variable</a>, shown in the <em>Environment</em> column. When both are given, the flag takes precedence, and opengrep logs a warning that names the ignored variable.</p>
+<h2 id="flags-accepted-for-compatibility"><a class="hash" href="#flags-accepted-for-compatibility" aria-hidden="true" tabindex="-1">##</a> Flags accepted for compatibility</h2>
+<p>The following flags are accepted so that existing scripts and CI configurations that pass them keep working. They have no effect, and opengrep logs a warning for each of them:</p>
+<ul>
+<li><code>--allow-local-builds</code>, <code>--enable-version-check</code> and <code>--disable-version-check</code>, accepted by <code>opengrep scan</code> and <code>opengrep ci</code>;</li>
+<li><code>--test-ignore-todo</code> and <code>--no-test-ignore-todo</code>, accepted by <code>opengrep test</code>.</li>
+</ul>
+<p>Every command also accepts <code>--experimental</code>, which has no effect and logs no warning.</p>
+<h2 id="index"><a class="hash" href="#index" aria-hidden="true" tabindex="-1">##</a> Index</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Flag</th><th>Accepted by</th><th>Environment</th><th>Summary</th></tr></thead>
 <tbody>
-<tr><td><a href="flags/allow-local-builds.html"><code>--allow-local-builds</code></a></td><td>scan, ci</td><td></td><td>Let opengrep build the project to work out its dependencies; it has nothing to act on in opengrep.</td></tr>
-<tr><td><a href="flags/allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a></td><td>scan, ci</td><td></td><td>Let rules set their own time limits, which opengrep otherwise ignores.</td></tr>
-<tr><td><a href="flags/audit-on.html"><code>--audit-on</code></a></td><td>ci</td><td><code>OPENGREP_AUDIT_ON</code></td><td>Report blocking findings but exit 0 when the CI event has one of these names.</td></tr>
-<tr><td><a href="flags/autofix.html"><code>--autofix</code></a></td><td>scan</td><td></td><td>Apply the fixes rules suggest, rewriting your files.</td></tr>
-<tr><td><a href="flags/baseline-commit.html"><code>--baseline-commit</code></a></td><td>scan, ci</td><td><code>OPENGREP_BASELINE_COMMIT</code>, <code>OPENGREP_BASELINE_REF</code></td><td>Report only the findings that are not already present in the given commit.</td></tr>
-<tr><td><a href="flags/config.html"><code>--config</code></a></td><td>scan, ci, test</td><td><code>OPENGREP_RULES</code></td><td>Load rules from a file, a directory, a URL, a git repository or the Semgrep registry.</td></tr>
-<tr><td><a href="flags/dataflow-traces.html"><code>--dataflow-traces</code></a></td><td>scan, ci</td><td></td><td>Show how a value reaches the finding, for taint rules.</td></tr>
-<tr><td><a href="flags/debug.html"><code>--debug</code></a></td><td>scan, ci, test, validate, show, lsp</td><td></td><td>Log everything --verbose does and the engine's own diagnostics as well.</td></tr>
-<tr><td><a href="flags/disable-interfile.html"><code>--disable-interfile</code></a></td><td>scan, ci</td><td></td><td>Keep every taint rule within single files, even rules that ask to follow taint across files.</td></tr>
-<tr><td><a href="flags/disable-intrafile.html"><code>--disable-intrafile</code></a></td><td>scan, ci</td><td></td><td>Keep every taint rule within single functions, even rules that ask to follow calls.</td></tr>
+<tr><td><a href="flags/allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a></td><td>scan, ci</td><td></td><td>Let rules set their own time limits, which are otherwise ignored.</td></tr>
+<tr><td><a href="flags/audit-on.html"><code>--audit-on</code></a></td><td>ci</td><td><code>OPENGREP_AUDIT_ON</code></td><td>Report blocking findings but exit with status 0 when the CI event has one of these names.</td></tr>
+<tr><td><a href="flags/autofix.html"><code>--autofix</code></a></td><td>scan</td><td></td><td>Apply the fixes of the rules to the scanned files.</td></tr>
+<tr><td><a href="flags/baseline-commit.html"><code>--baseline-commit</code></a></td><td>scan, ci</td><td><code>OPENGREP_BASELINE_COMMIT</code>, <code>OPENGREP_BASELINE_REF</code></td><td>Report only the findings that are not present in the given commit.</td></tr>
+<tr><td><a href="flags/config.html"><code>--config</code></a></td><td>scan, ci, test</td><td><code>OPENGREP_RULES</code></td><td>Load rules from a file, a directory, a URL, a git repository or the registry.</td></tr>
+<tr><td><a href="flags/dataflow-traces.html"><code>--dataflow-traces</code></a></td><td>scan, ci</td><td></td><td>Show the path from source to sink in the findings of taint rules.</td></tr>
+<tr><td><a href="flags/debug.html"><code>--debug</code></a></td><td>scan, ci, test, validate, show, lsp</td><td></td><td>Log what --verbose logs, and the diagnostics of the engine.</td></tr>
+<tr><td><a href="flags/disable-intrafile.html"><code>--disable-intrafile</code></a></td><td>scan, ci</td><td></td><td>Analyse every taint rule one function at a time, including rules that ask to follow calls.</td></tr>
 <tr><td><a href="flags/dryrun.html"><code>--dryrun</code></a></td><td>scan</td><td></td><td>Show the fixes --autofix would make, without writing them to the files.</td></tr>
-<tr><td><a href="flags/dynamic-timeout.html"><code>--dynamic-timeout</code></a></td><td>scan, ci</td><td></td><td>Scale each rule's time limit with the size of the file being scanned.</td></tr>
-<tr><td><a href="flags/dynamic-timeout-max-multiplier.html"><code>--dynamic-timeout-max-multiplier</code></a></td><td>scan, ci</td><td></td><td>The ceiling on how much a file's size may stretch the timeout.</td></tr>
-<tr><td><a href="flags/dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a></td><td>scan, ci</td><td></td><td>The file size, in KB, that counts as one step when scaling the timeout.</td></tr>
-<tr><td><a href="flags/emacs.html"><code>--emacs</code></a></td><td>scan, ci</td><td></td><td>Print one line per finding, in the form Emacs compilation buffers parse.</td></tr>
-<tr><td><a href="flags/emacs-output.html"><code>--emacs-output</code></a></td><td>scan, ci</td><td></td><td>Also write the findings in Emacs single-line format to a file.</td></tr>
-<tr><td><a href="flags/enable-nosem.html"><code>--enable-nosem</code></a></td><td>scan, ci</td><td></td><td>Whether a nosem comment silences findings on its line; on by default.</td></tr>
-<tr><td><a href="flags/enable-version-check.html"><code>--enable-version-check</code></a></td><td>scan, ci</td><td></td><td>Accepted for compatibility; opengrep never checks for a newer version.</td></tr>
-<tr><td><a href="flags/error.html"><code>--error</code></a></td><td>scan</td><td></td><td>Exit 1 when there are findings, so a script or CI job fails on them.</td></tr>
+<tr><td><a href="flags/dynamic-timeout.html"><code>--dynamic-timeout</code></a></td><td>scan, ci</td><td></td><td>Scale the time limit of each rule with the size of the file.</td></tr>
+<tr><td><a href="flags/dynamic-timeout-max-multiplier.html"><code>--dynamic-timeout-max-multiplier</code></a></td><td>scan, ci</td><td></td><td>The largest factor by which --dynamic-timeout multiplies the timeout.</td></tr>
+<tr><td><a href="flags/dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a></td><td>scan, ci</td><td></td><td>The file size, in KB, of one step of --dynamic-timeout.</td></tr>
+<tr><td><a href="flags/emacs.html"><code>--emacs</code></a></td><td>scan, ci</td><td></td><td>Print one line per finding, in the format of Emacs compilation buffers.</td></tr>
+<tr><td><a href="flags/emacs-output.html"><code>--emacs-output</code></a></td><td>scan, ci</td><td></td><td>Write the findings in the Emacs format to a file as well.</td></tr>
+<tr><td><a href="flags/enable-interfile.html"><code>--enable-interfile</code></a></td><td>scan, ci, test</td><td></td><td>Run cross-file taint analysis for the rules that set the taint_interfile option.</td></tr>
+<tr><td><a href="flags/enable-nosem.html"><code>--enable-nosem</code></a></td><td>scan, ci</td><td></td><td>Whether nosem comments suppress findings; on by default.</td></tr>
+<tr><td><a href="flags/error.html"><code>--error</code></a></td><td>scan</td><td></td><td>Exit with status 1 when there are findings.</td></tr>
 <tr><td><a href="flags/exclude.html"><code>--exclude</code></a></td><td>scan, ci</td><td></td><td>Skip files and directories whose path matches a gitignore-style pattern.</td></tr>
 <tr><td><a href="flags/exclude-minified-files.html"><code>--exclude-minified-files</code></a></td><td>scan</td><td></td><td>Skip files that look minified.</td></tr>
-<tr><td><a href="flags/exclude-rule.html"><code>--exclude-rule</code></a></td><td>scan, ci</td><td></td><td>Skip a rule by its id, whichever config it came from.</td></tr>
-<tr><td><a href="flags/experimental.html"><code>--experimental</code></a></td><td>scan, ci, test, validate, show, lsp</td><td></td><td>Accepted for compatibility; opengrep has only the one implementation.</td></tr>
+<tr><td><a href="flags/exclude-rule.html"><code>--exclude-rule</code></a></td><td>scan, ci</td><td></td><td>Skip a rule, by its id.</td></tr>
 <tr><td><a href="flags/files-with-matches.html"><code>--files-with-matches</code></a></td><td>scan, ci</td><td></td><td>Print only the paths of the files that have findings.</td></tr>
-<tr><td><a href="flags/force-color.html"><code>--force-color</code></a></td><td>scan, ci, test, validate</td><td><code>OPENGREP_FORCE_COLOR</code></td><td>Style the output even when it is not going to a terminal.</td></tr>
+<tr><td><a href="flags/force-color.html"><code>--force-color</code></a></td><td>scan, ci, test, validate</td><td><code>OPENGREP_FORCE_COLOR</code></td><td>Style the output even when it does not go to a terminal.</td></tr>
 <tr><td><a href="flags/force-exclude.html"><code>--force-exclude</code></a></td><td>scan, ci</td><td></td><td>Apply --include and --exclude to files named on the command line as well.</td></tr>
 <tr><td><a href="flags/gitlab-sast.html"><code>--gitlab-sast</code></a></td><td>scan, ci</td><td></td><td>Print the findings as a GitLab SAST report.</td></tr>
-<tr><td><a href="flags/gitlab-sast-output.html"><code>--gitlab-sast-output</code></a></td><td>scan, ci</td><td></td><td>Also write the findings as a GitLab SAST report to a file.</td></tr>
+<tr><td><a href="flags/gitlab-sast-output.html"><code>--gitlab-sast-output</code></a></td><td>scan, ci</td><td></td><td>Write the findings as a GitLab SAST report to a file as well.</td></tr>
 <tr><td><a href="flags/gitlab-secrets.html"><code>--gitlab-secrets</code></a></td><td>scan, ci</td><td></td><td>Print the findings as a GitLab secret detection report.</td></tr>
-<tr><td><a href="flags/gitlab-secrets-output.html"><code>--gitlab-secrets-output</code></a></td><td>scan, ci</td><td></td><td>Also write the findings as a GitLab secret detection report to a file.</td></tr>
-<tr><td><a href="flags/guarded-taint-signatures.html"><code>--guarded-taint-signatures</code></a></td><td>scan</td><td></td><td>Drop a cross-function taint finding when the branch leading to the sink cannot be taken.</td></tr>
-<tr><td><a href="flags/html.html"><code>--html</code></a></td><td>show</td><td></td><td>Render a show dump as an HTML page instead of plain text.</td></tr>
+<tr><td><a href="flags/gitlab-secrets-output.html"><code>--gitlab-secrets-output</code></a></td><td>scan, ci</td><td></td><td>Write the findings as a GitLab secret detection report to a file as well.</td></tr>
+<tr><td><a href="flags/guarded-taint-signatures.html"><code>--guarded-taint-signatures</code></a></td><td>scan</td><td></td><td>Drop a cross-function taint finding when the condition leading to the sink cannot hold for the call.</td></tr>
+<tr><td><a href="flags/html.html"><code>--html</code></a></td><td>show</td><td></td><td>Print the output of opengrep show as an HTML page.</td></tr>
 <tr><td><a href="flags/include.html"><code>--include</code></a></td><td>scan, ci</td><td></td><td>Scan only the files whose path matches one of these patterns.</td></tr>
-<tr><td><a href="flags/incremental-output.html"><code>--incremental-output</code></a></td><td>scan</td><td></td><td>Print each finding as it is produced instead of all of them at the end.</td></tr>
-<tr><td><a href="flags/inline-metavariables.html"><code>--inline-metavariables</code></a></td><td>scan, ci</td><td></td><td>Replace metavariables in a rule's metadata with what they matched.</td></tr>
-<tr><td><a href="flags/interfile-dedup-by.html"><code>--interfile-dedup-by</code></a></td><td>scan, ci</td><td></td><td>Whether a sink that several sources reach across files is one finding or one per source.</td></tr>
-<tr><td><a href="flags/interfile-timeout.html"><code>--interfile-timeout</code></a></td><td>scan, ci</td><td></td><td>Time a rule may spend on the cross-file analysis.</td></tr>
-<tr><td><a href="flags/jobs.html"><code>--jobs</code></a></td><td>scan, ci</td><td></td><td>How many cores run rules in parallel.</td></tr>
-<tr><td><a href="flags/json.html"><code>--json</code></a></td><td>scan, ci, test, show</td><td></td><td>Print the findings as a JSON document instead of the text report.</td></tr>
-<tr><td><a href="flags/json-output.html"><code>--json-output</code></a></td><td>scan, ci</td><td></td><td>Also write the findings as JSON to a file.</td></tr>
-<tr><td><a href="flags/junit-xml.html"><code>--junit-xml</code></a></td><td>scan, ci</td><td></td><td>Print the findings as a JUnit XML report, so a CI system shows them as failed tests.</td></tr>
-<tr><td><a href="flags/junit-xml-output.html"><code>--junit-xml-output</code></a></td><td>scan, ci</td><td></td><td>Also write the findings as a JUnit XML report to a file.</td></tr>
-<tr><td><a href="flags/lang.html"><code>--lang</code></a></td><td>scan</td><td></td><td>The language of a command-line pattern, and of the files it is run on.</td></tr>
+<tr><td><a href="flags/incremental-output.html"><code>--incremental-output</code></a></td><td>scan</td><td></td><td>Print each finding as soon as it is found.</td></tr>
+<tr><td><a href="flags/inline-metavariables.html"><code>--inline-metavariables</code></a></td><td>scan, ci</td><td></td><td>Replace the metavariables in the metadata of a rule with the code they matched.</td></tr>
+<tr><td><a href="flags/interfile-dedup-by.html"><code>--interfile-dedup-by</code></a></td><td>scan, ci</td><td></td><td>Whether a sink that several sources reach across files makes one finding or one per source.</td></tr>
+<tr><td><a href="flags/interfile-depth.html"><code>--interfile-depth</code></a></td><td>scan, ci, test</td><td></td><td>The longest call chain the cross-file taint analysis follows.</td></tr>
+<tr><td><a href="flags/interfile-timeout.html"><code>--interfile-timeout</code></a></td><td>scan, ci</td><td></td><td>The time a rule may spend on the cross-file taint analysis.</td></tr>
+<tr><td><a href="flags/jobs.html"><code>--jobs</code></a></td><td>scan, ci</td><td></td><td>The number of cores that run rules in parallel.</td></tr>
+<tr><td><a href="flags/json.html"><code>--json</code></a></td><td>scan, ci, test, show</td><td></td><td>Print the findings as a JSON document.</td></tr>
+<tr><td><a href="flags/json-output.html"><code>--json-output</code></a></td><td>scan, ci</td><td></td><td>Write the findings as JSON to a file as well.</td></tr>
+<tr><td><a href="flags/junit-xml.html"><code>--junit-xml</code></a></td><td>scan, ci</td><td></td><td>Print the findings as a JUnit XML report, one failed test per finding.</td></tr>
+<tr><td><a href="flags/junit-xml-output.html"><code>--junit-xml-output</code></a></td><td>scan, ci</td><td></td><td>Write the findings as a JUnit XML report to a file as well.</td></tr>
+<tr><td><a href="flags/lang.html"><code>--lang</code></a></td><td>scan</td><td></td><td>The language of a pattern given on the command line.</td></tr>
 <tr><td><a href="flags/matching-diagnosis.html"><code>--matching-diagnosis</code></a></td><td>test</td><td></td><td>Explain why a failing rule test did not match.</td></tr>
-<tr><td><a href="flags/matching-explanations.html"><code>--matching-explanations</code></a></td><td>scan, ci</td><td></td><td>Add to the JSON output a trace of how each part of a rule matched.</td></tr>
-<tr><td><a href="flags/max-chars-per-line.html"><code>--max-chars-per-line</code></a></td><td>scan, ci</td><td></td><td>Width at which a finding's code lines are wrapped in the text report.</td></tr>
-<tr><td><a href="flags/max-lines-per-finding.html"><code>--max-lines-per-finding</code></a></td><td>scan, ci</td><td></td><td>How many lines of code a finding may show before the rest is trimmed.</td></tr>
-<tr><td><a href="flags/max-log-list-entries.html"><code>--max-log-list-entries</code></a></td><td>scan, ci</td><td></td><td>How many items a list in the logs may show before it is replaced by a note.</td></tr>
-<tr><td><a href="flags/max-match-per-file.html"><code>--max-match-per-file</code></a></td><td>scan, ci</td><td></td><td>How many findings one file may have, across all rules, before they are all dropped.</td></tr>
-<tr><td><a href="flags/max-memory.html"><code>--max-memory</code></a></td><td>scan, ci, test</td><td></td><td>Memory a single file's analysis may use before it is abandoned.</td></tr>
-<tr><td><a href="flags/max-target-bytes.html"><code>--max-target-bytes</code></a></td><td>scan, ci</td><td></td><td>Skip files larger than this when walking a directory.</td></tr>
-<tr><td><a href="flags/no-progress-bar.html"><code>--no-progress-bar</code></a></td><td>scan</td><td></td><td>Do not draw the line that shows the progress of a scan on the terminal.</td></tr>
-<tr><td><a href="flags/opengrep-ignore-pattern.html"><code>--opengrep-ignore-pattern</code></a></td><td>scan, ci, test</td><td></td><td>Recognise one more comment prefix that silences findings on a line.</td></tr>
-<tr><td><a href="flags/optimizations.html"><code>--optimizations</code></a></td><td>scan, ci</td><td></td><td>Turn the engine's optimizations, chiefly the prefilter, on or off.</td></tr>
-<tr><td><a href="flags/output.html"><code>--output</code></a></td><td>scan, ci</td><td></td><td>Write the findings to a file instead of standard output.</td></tr>
-<tr><td><a href="flags/output-enclosing-context.html"><code>--output-enclosing-context</code></a></td><td>scan</td><td></td><td>Record which function or class each finding sits in.</td></tr>
-<tr><td><a href="flags/pattern.html"><code>--pattern</code></a></td><td>scan</td><td></td><td>Search with a single pattern given on the command line, instead of a rule file.</td></tr>
-<tr><td><a href="flags/project-root.html"><code>--project-root</code></a></td><td>scan</td><td></td><td>Treat this folder as the project root, so its ignore files are read.</td></tr>
+<tr><td><a href="flags/matching-explanations.html"><code>--matching-explanations</code></a></td><td>scan, ci</td><td></td><td>Add to the JSON output a record of how each part of a rule matched.</td></tr>
+<tr><td><a href="flags/max-chars-per-line.html"><code>--max-chars-per-line</code></a></td><td>scan, ci</td><td></td><td>The width at which lines of code are wrapped in the text output.</td></tr>
+<tr><td><a href="flags/max-lines-per-finding.html"><code>--max-lines-per-finding</code></a></td><td>scan, ci</td><td></td><td>The number of lines of code shown for a finding in the text output.</td></tr>
+<tr><td><a href="flags/max-log-list-entries.html"><code>--max-log-list-entries</code></a></td><td>scan, ci</td><td></td><td>The number of items above which a list in the logs is replaced by a note.</td></tr>
+<tr><td><a href="flags/max-match-per-file.html"><code>--max-match-per-file</code></a></td><td>scan, ci</td><td></td><td>The number of matches in a file, across all rules, above which all its findings are dropped.</td></tr>
+<tr><td><a href="flags/max-memory.html"><code>--max-memory</code></a></td><td>scan, ci, test</td><td></td><td>The memory that the analysis of one file may use before it is abandoned.</td></tr>
+<tr><td><a href="flags/max-target-bytes.html"><code>--max-target-bytes</code></a></td><td>scan, ci</td><td></td><td>Skip files larger than this size.</td></tr>
+<tr><td><a href="flags/no-progress-bar.html"><code>--no-progress-bar</code></a></td><td>scan</td><td></td><td>Do not draw the status line that shows the progress of a scan.</td></tr>
+<tr><td><a href="flags/opengrep-ignore-pattern.html"><code>--opengrep-ignore-pattern</code></a></td><td>scan, ci, test</td><td></td><td>An additional comment prefix that suppresses the findings on a line.</td></tr>
+<tr><td><a href="flags/optimizations.html"><code>--optimizations</code></a></td><td>scan, ci</td><td></td><td>Turn the optimizations of the engine, such as the prefilter, on or off.</td></tr>
+<tr><td><a href="flags/output.html"><code>--output</code></a></td><td>scan, ci</td><td></td><td>Write the output to a file instead of standard output.</td></tr>
+<tr><td><a href="flags/output-enclosing-context.html"><code>--output-enclosing-context</code></a></td><td>scan</td><td></td><td>Record the function or class that contains each finding.</td></tr>
+<tr><td><a href="flags/pattern.html"><code>--pattern</code></a></td><td>scan</td><td></td><td>Search with a pattern given on the command line instead of a rule file.</td></tr>
+<tr><td><a href="flags/project-root.html"><code>--project-root</code></a></td><td>scan</td><td></td><td>The project root, where .gitignore and .semgrepignore are read.</td></tr>
 <tr><td><a href="flags/quiet.html"><code>--quiet</code></a></td><td>scan, ci, test, validate, show, lsp</td><td></td><td>Print the findings and nothing else.</td></tr>
-<tr><td><a href="flags/replacement.html"><code>--replacement</code></a></td><td>scan</td><td></td><td>The fix for a command-line pattern, as a rule's fix key would give it.</td></tr>
-<tr><td><a href="flags/rewrite-rule-ids.html"><code>--rewrite-rule-ids</code></a></td><td>scan, ci</td><td></td><td>Whether a rule loaded from a directory gets its path as a prefix; on by default.</td></tr>
+<tr><td><a href="flags/replacement.html"><code>--replacement</code></a></td><td>scan</td><td></td><td>The fix of a pattern given on the command line.</td></tr>
+<tr><td><a href="flags/rewrite-rule-ids.html"><code>--rewrite-rule-ids</code></a></td><td>scan, ci</td><td></td><td>Whether the ids of rules from a subdirectory are prefixed with its path; on by default.</td></tr>
 <tr><td><a href="flags/sarif.html"><code>--sarif</code></a></td><td>scan, ci</td><td></td><td>Print the findings as a SARIF 2.1.0 document.</td></tr>
-<tr><td><a href="flags/sarif-output.html"><code>--sarif-output</code></a></td><td>scan, ci</td><td></td><td>Also write the findings as SARIF to a file, suppressed findings included.</td></tr>
-<tr><td><a href="flags/scan-unknown-extensions.html"><code>--scan-unknown-extensions</code></a></td><td>scan, ci</td><td></td><td>Scan a file named on the command line even when its extension names no language.</td></tr>
-<tr><td><a href="flags/semgrepignore-filename.html"><code>--semgrepignore-filename</code></a></td><td>scan</td><td></td><td>Read the list of skipped paths from a differently named file.</td></tr>
+<tr><td><a href="flags/sarif-output.html"><code>--sarif-output</code></a></td><td>scan, ci</td><td></td><td>Write the findings as SARIF to a file as well, including suppressed findings.</td></tr>
+<tr><td><a href="flags/scan-unknown-extensions.html"><code>--scan-unknown-extensions</code></a></td><td>scan, ci</td><td></td><td>Scan a file named on the command line even when its extension belongs to no language.</td></tr>
+<tr><td><a href="flags/semgrepignore-filename.html"><code>--semgrepignore-filename</code></a></td><td>scan</td><td></td><td>Read the ignored paths from a file with another name than .semgrepignore.</td></tr>
 <tr><td><a href="flags/severity.html"><code>--severity</code></a></td><td>scan</td><td></td><td>Report only the findings of rules with these severities.</td></tr>
-<tr><td><a href="flags/show-supported-languages.html"><code>--show-supported-languages</code></a></td><td>scan</td><td></td><td>Print the languages opengrep can parse, and exit.</td></tr>
-<tr><td><a href="flags/skin.html"><code>--skin</code></a></td><td>scan, ci, validate</td><td><code>OPENGREP_SKIN</code></td><td>Which layout the text report uses.</td></tr>
-<tr><td><a href="flags/skip-invalid-configs.html"><code>--skip-invalid-configs</code></a></td><td>scan</td><td></td><td>Skip files in a rules directory that are not rule configs, instead of stopping.</td></tr>
-<tr><td><a href="flags/strict.html"><code>--strict</code></a></td><td>scan, test</td><td></td><td>Fail the run when a file could not be parsed or another warning-level error occurred.</td></tr>
-<tr><td><a href="flags/subdir.html"><code>--subdir</code></a></td><td>ci</td><td></td><td>Scan only this directory, while the repository still provides the CI metadata.</td></tr>
-<tr><td><a href="flags/suppress-errors.html"><code>--suppress-errors</code></a></td><td>ci</td><td><code>OPENGREP_SUPPRESS_ERRORS</code></td><td>Whether an error fails opengrep ci; on by default, so errors exit 0.</td></tr>
-<tr><td><a href="flags/taint-interfile.html"><code>--taint-interfile</code></a></td><td>scan, ci</td><td></td><td>Follow taint across files, for every taint rule.</td></tr>
-<tr><td><a href="flags/taint-interfile-depth.html"><code>--taint-interfile-depth</code></a></td><td>scan, ci</td><td></td><td>How many calls deep the cross-file taint analysis follows a chain.</td></tr>
-<tr><td><a href="flags/taint-intrafile.html"><code>--taint-intrafile</code></a></td><td>scan, ci, test</td><td></td><td>Follow taint through calls to functions defined in the same file, for every taint rule.</td></tr>
-<tr><td><a href="flags/test.html"><code>--test</code></a></td><td>scan</td><td></td><td>Run the rule tests and scan nothing; the older spelling of the test command.</td></tr>
-<tr><td><a href="flags/text.html"><code>--text</code></a></td><td>scan, ci</td><td></td><td>Print the human-readable report, which is what a scan does anyway.</td></tr>
-<tr><td><a href="flags/text-output.html"><code>--text-output</code></a></td><td>scan, ci</td><td></td><td>Also write the text report to a file.</td></tr>
-<tr><td><a href="flags/time.html"><code>--time</code></a></td><td>scan, ci</td><td></td><td>Report how long the scan took, per rule and per file.</td></tr>
-<tr><td><a href="flags/timeout.html"><code>--timeout</code></a></td><td>scan, ci, test</td><td><code>OPENGREP_TIMEOUT</code></td><td>Maximum time in seconds for one rule on one file; 0 means no limit.</td></tr>
-<tr><td><a href="flags/timeout-threshold.html"><code>--timeout-threshold</code></a></td><td>scan, ci, test</td><td></td><td>How many rules may time out on a file before opengrep gives up on that file.</td></tr>
-<tr><td><a href="flags/use-git-ignore.html"><code>--use-git-ignore</code></a></td><td>scan, ci</td><td></td><td>Whether .gitignore decides which files are scanned; on by default.</td></tr>
-<tr><td><a href="flags/validate.html"><code>--validate</code></a></td><td>scan</td><td></td><td>Check the rules and scan nothing; the older spelling of the validate command.</td></tr>
-<tr><td><a href="flags/verbose.html"><code>--verbose</code></a></td><td>scan, ci, test, validate, show, lsp</td><td></td><td>Log what the scan is doing, at the info level.</td></tr>
+<tr><td><a href="flags/show-supported-languages.html"><code>--show-supported-languages</code></a></td><td>scan</td><td></td><td>Print the supported languages and exit.</td></tr>
+<tr><td><a href="flags/skin.html"><code>--skin</code></a></td><td>scan, ci, validate</td><td><code>OPENGREP_SKIN</code></td><td>The layout of the text output.</td></tr>
+<tr><td><a href="flags/skip-invalid-configs.html"><code>--skip-invalid-configs</code></a></td><td>scan</td><td></td><td>Skip invalid rule files in a directory or a git repository instead of stopping.</td></tr>
+<tr><td><a href="flags/strict.html"><code>--strict</code></a></td><td>scan, test</td><td></td><td>Fail the run when a file cannot be parsed or another warning-level error occurs.</td></tr>
+<tr><td><a href="flags/subdir.html"><code>--subdir</code></a></td><td>ci</td><td></td><td>Scan only this directory, with the CI metadata of the whole repository.</td></tr>
+<tr><td><a href="flags/suppress-errors.html"><code>--suppress-errors</code></a></td><td>ci</td><td><code>OPENGREP_SUPPRESS_ERRORS</code></td><td>Whether errors fail opengrep ci; on by default, so that errors exit with status 0.</td></tr>
+<tr><td><a href="flags/taint-intrafile.html"><code>--taint-intrafile</code></a></td><td>scan, ci, test</td><td></td><td>Follow taint through calls to functions in the same file, for every taint rule.</td></tr>
+<tr><td><a href="flags/test.html"><code>--test</code></a></td><td>scan</td><td></td><td>Run the rule tests instead of scanning, as opengrep test does.</td></tr>
+<tr><td><a href="flags/text.html"><code>--text</code></a></td><td>scan, ci</td><td></td><td>Print the text output, the default format.</td></tr>
+<tr><td><a href="flags/text-output.html"><code>--text-output</code></a></td><td>scan, ci</td><td></td><td>Write the text output to a file as well.</td></tr>
+<tr><td><a href="flags/time.html"><code>--time</code></a></td><td>scan, ci</td><td></td><td>Report the time the scan took, per rule and per file.</td></tr>
+<tr><td><a href="flags/timeout.html"><code>--timeout</code></a></td><td>scan, ci, test</td><td><code>OPENGREP_TIMEOUT</code></td><td>The time limit of a rule on a file, in seconds; 0 sets no limit.</td></tr>
+<tr><td><a href="flags/timeout-threshold.html"><code>--timeout-threshold</code></a></td><td>scan, ci, test</td><td></td><td>The number of rules that may time out on a file before the file is skipped.</td></tr>
+<tr><td><a href="flags/use-git-ignore.html"><code>--use-git-ignore</code></a></td><td>scan, ci</td><td></td><td>Whether files ignored by git are skipped; on by default.</td></tr>
+<tr><td><a href="flags/validate.html"><code>--validate</code></a></td><td>scan</td><td></td><td>Check the rules instead of scanning, as opengrep validate does.</td></tr>
+<tr><td><a href="flags/verbose.html"><code>--verbose</code></a></td><td>scan, ci, test, validate, show, lsp</td><td></td><td>Log the progress of the run, at the info level.</td></tr>
 <tr><td><a href="flags/version.html"><code>--version</code></a></td><td>scan</td><td></td><td>Print the opengrep version and exit.</td></tr>
-<tr><td><a href="flags/vim.html"><code>--vim</code></a></td><td>scan, ci</td><td></td><td>Print one line per finding, in the form Vim quickfix lists parse.</td></tr>
-<tr><td><a href="flags/vim-output.html"><code>--vim-output</code></a></td><td>scan, ci</td><td></td><td>Also write the findings in Vim quickfix format to a file.</td></tr>
+<tr><td><a href="flags/vim.html"><code>--vim</code></a></td><td>scan, ci</td><td></td><td>Print one line per finding, in the format of Vim quickfix lists.</td></tr>
+<tr><td><a href="flags/vim-output.html"><code>--vim-output</code></a></td><td>scan, ci</td><td></td><td>Write the findings in the Vim quickfix format to a file as well.</td></tr>
 </tbody>
 </table></div>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="where-a-flag-may-stand-and-how-it-takes-its-value"><a class="hash" href="#where-a-flag-may-stand-and-how-it-takes-its-value" aria-hidden="true" tabindex="-1">###</a> Where a flag may stand, and how it takes its value</h3>
+<h3 id="flag-position-and-values"><a class="hash" href="#flag-position-and-values" aria-hidden="true" tabindex="-1">###</a> Flag position and values</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config=rule.yaml app.py
-opengrep scan app.py --config rule.yaml
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config=rule.yaml app.py</span>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config=rule.yaml app.py
+opengrep scan app.py -q --config rule.yaml
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config=rule.yaml app.py</span>
 app.py
 
   <span class="sev">warn</span>  <span class="rule">find-eval</span>
   found eval
 
 <span class="n">     1:</span><span class="b"> eval(1)</span>
-<span class="p">$ </span><span class="cmd">opengrep scan app.py --config rule.yaml</span>
+<span class="p">$ </span><span class="cmd">opengrep scan app.py -q --config rule.yaml</span>
 app.py
 
   <span class="sev">warn</span>  <span class="rule">find-eval</span>
   found eval
 
 <span class="n">     1:</span><span class="b"> eval(1)</span></code></pre></div>
+<h3 id="a-flag-accepted-for-compatibility"><a class="hash" href="#a-flag-accepted-for-compatibility" aria-hidden="true" tabindex="-1">###</a> A flag accepted for compatibility</h3>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml --disable-version-check app.py 2&gt;&amp;1 &gt;/dev/null | grep warning
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --disable-version-check app.py 2&gt;&amp;1 &gt;/dev/null | grep warning</span>
+warning  --disable-version-check is not supported by opengrep and has no effect</code></pre></div>
     </main>
   </div>
 

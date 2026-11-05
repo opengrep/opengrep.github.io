@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>opengrep test · Opengrep</title>
-  <meta name="description" content="Check rules against example files annotated with the lines they must and must not match.">
+  <meta name="description" content="Test rules against files annotated with the lines they must and must not match.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="../flags/audit-on.html">--audit-on</a></li>
 <li><a href="../flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="../flags/config.html">--config</a></li>
 <li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="../flags/debug.html">--debug</a></li>
-<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="../flags/dryrun.html">--dryrun</a></li>
 <li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="../flags/emacs.html">--emacs</a></li>
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="../flags/experimental.html">--experimental</a></li>
 <li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="../flags/force-color.html">--force-color</a></li>
 <li><a href="../flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="../flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="../flags/jobs.html">--jobs</a></li>
 <li><a href="../flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="../flags/strict.html">--strict</a></li>
 <li><a href="../flags/subdir.html">--subdir</a></li>
 <li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="../flags/test.html">--test</a></li>
 <li><a href="../flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="../flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,16 +254,16 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../commands.html">Commands</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../commands.html">Commands</a></p>
 <h1><code>opengrep test</code></h1>
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="scan.html"><code>opengrep scan</code></a>, <a href="../flags/config.html"><code>--config</code></a>, <a href="validate.html"><code>opengrep validate</code></a>, <a href="../flags/autofix.html"><code>--autofix</code></a>, <a href="../flags/matching-diagnosis.html"><code>--matching-diagnosis</code></a>, <a href="../flags/test.html"><code>--test</code></a>, <a href="../rule-syntax/fix.html"><code>fix</code></a></dd></div>
 </dl>
 <div class="file"><pre class="snip"><code>opengrep test [FLAGS] [PATHS...]
 opengrep test --config RULES [FLAGS] TARGETS...</code></pre></div>
-<p>Runs rules on example files and compares the findings with annotations in those files. The default PATH is the current directory.</p>
+<p>Runs rules on test files and compares the findings with the annotations in those files. The default PATH is the current directory.</p>
 <h2 id="pairing-rules-with-targets"><a class="hash" href="#pairing-rules-with-targets" aria-hidden="true" tabindex="-1">##</a> Pairing rules with targets</h2>
-<p>Without <code>--config</code>, every rule file (<code>.yaml</code> or <code>.yml</code>) found under PATHS is tested against the files in the same directory that have the same name up to the extensions. For example, <code>find-eval.yaml</code> is tested against <code>find-eval.py</code> and <code>find-eval.test.yaml</code>. A directory named like the rule file, such as <code>find-eval/</code>, provides all the files under it.</p>
+<p>Without <code>--config</code>, each rule file (<code>.yaml</code> or <code>.yml</code>) found under PATHS is tested against the files in the same directory whose names are the same up to the extensions. For example, <code>find-eval.yaml</code> is tested against <code>find-eval.py</code> and <code>find-eval.test.yaml</code>. A directory named like the rule file, such as <code>find-eval/</code>, provides all the files under it.</p>
 <p>With <a href="../flags/config.html"><code>--config</code></a>, the given rules run on the given targets, whatever their names.</p>
 <h2 id="annotations"><a class="hash" href="#annotations" aria-hidden="true" tabindex="-1">##</a> Annotations</h2>
 <p>An annotation is a comment on the line before the code it is about, or on the same line. The comment is written in the target language, for example <code>#</code>, <code>//</code>, <code>/* */</code>, <code>&lt;!-- --&gt;</code> or <code>(* *)</code>.</p>
@@ -261,30 +278,30 @@ opengrep test --config RULES [FLAGS] TARGETS...</code></pre></div>
 </table></div>
 <p>Several rule ids can be given, separated by commas: <code># ruleid: rule-a, rule-b</code>. The test fails when a rule misses a <code>ruleid:</code> line ("missed lines") or reports a line that no <code>ruleid:</code> annotation names ("incorrect lines"). A <code>todoruleid:</code> or <code>todook:</code> line never fails a test, whichever way the rule behaves on it. The <code>deepok:</code>, <code>deepruleid:</code>, <code>prook:</code> and <code>proruleid:</code> prefixes are accepted for compatibility and are ignored.</p>
 <h2 id="autofix-tests"><a class="hash" href="#autofix-tests" aria-hidden="true" tabindex="-1">##</a> Autofix tests</h2>
-<p>If a target <code>x.py</code> has a file <code>x.fixed.py</code> next to it, <code>opengrep test</code> also applies the rules' <code>fix</code> to <code>x.py</code> and checks that the result equals <code>x.fixed.py</code>. The line <code>No tests for fixes found.</code> means there was no such file.</p>
+<p>When a target <code>x.py</code> has a file <code>x.fixed.py</code> next to it, <code>opengrep test</code> also applies the fixes of the rules to <code>x.py</code> and checks that the result equals <code>x.fixed.py</code>. The line <code>No tests for fixes found.</code> means that there is no such file.</p>
 <h2 id="exit-status"><a class="hash" href="#exit-status" aria-hidden="true" tabindex="-1">##</a> Exit status</h2>
 <p>0 when all tests pass, 1 when a test fails, and 2 on a fatal error.</p>
 <h2 id="flags"><a class="hash" href="#flags" aria-hidden="true" tabindex="-1">##</a> Flags</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Flag</th><th>Summary</th></tr></thead>
 <tbody>
-<tr><td><a href="../flags/config.html"><code>--config</code></a></td><td>Load rules from a file, a directory, a URL, a git repository or the Semgrep registry.</td></tr>
-<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log everything --verbose does and the engine's own diagnostics as well.</td></tr>
+<tr><td><a href="../flags/config.html"><code>--config</code></a></td><td>Load rules from a file, a directory, a URL, a git repository or the registry.</td></tr>
+<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log what --verbose logs, and the diagnostics of the engine.</td></tr>
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/experimental.html"><code>--experimental</code></a></td><td>Accepted for compatibility; opengrep has only the one implementation.</td></tr>
-<tr><td><a href="../flags/force-color.html"><code>--force-color</code></a></td><td>Style the output even when it is not going to a terminal.</td></tr>
-<tr><td><a href="../flags/json.html"><code>--json</code></a></td><td>Print the findings as a JSON document instead of the text report.</td></tr>
+<tr><td><a href="../flags/enable-interfile.html"><code>--enable-interfile</code></a></td><td>Run cross-file taint analysis for the rules that set the taint_interfile option.</td></tr>
+<tr><td><a href="../flags/force-color.html"><code>--force-color</code></a></td><td>Style the output even when it does not go to a terminal.</td></tr>
+<tr><td><a href="../flags/interfile-depth.html"><code>--interfile-depth</code></a></td><td>The longest call chain the cross-file taint analysis follows.</td></tr>
+<tr><td><a href="../flags/json.html"><code>--json</code></a></td><td>Print the findings as a JSON document.</td></tr>
 <tr><td><a href="../flags/matching-diagnosis.html"><code>--matching-diagnosis</code></a></td><td>Explain why a failing rule test did not match.</td></tr>
-<tr><td><a href="../flags/max-memory.html"><code>--max-memory</code></a></td><td>Memory a single file's analysis may use before it is abandoned.</td></tr>
-<tr><td><a href="../flags/opengrep-ignore-pattern.html"><code>--opengrep-ignore-pattern</code></a></td><td>Recognise one more comment prefix that silences findings on a line.</td></tr>
+<tr><td><a href="../flags/max-memory.html"><code>--max-memory</code></a></td><td>The memory that the analysis of one file may use before it is abandoned.</td></tr>
+<tr><td><a href="../flags/opengrep-ignore-pattern.html"><code>--opengrep-ignore-pattern</code></a></td><td>An additional comment prefix that suppresses the findings on a line.</td></tr>
 <tr><td><code>--profile</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print the findings and nothing else.</td></tr>
-<tr><td><a href="../flags/strict.html"><code>--strict</code></a></td><td>Fail the run when a file could not be parsed or another warning-level error occurred.</td></tr>
-<tr><td><a href="../flags/taint-intrafile.html"><code>--taint-intrafile</code></a></td><td>Follow taint through calls to functions defined in the same file, for every taint rule.</td></tr>
-<tr><td><code>--test-ignore-todo</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/timeout.html"><code>--timeout</code></a></td><td>Maximum time in seconds for one rule on one file; 0 means no limit.</td></tr>
-<tr><td><a href="../flags/timeout-threshold.html"><code>--timeout-threshold</code></a></td><td>How many rules may time out on a file before opengrep gives up on that file.</td></tr>
-<tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log what the scan is doing, at the info level.</td></tr>
+<tr><td><a href="../flags/strict.html"><code>--strict</code></a></td><td>Fail the run when a file cannot be parsed or another warning-level error occurs.</td></tr>
+<tr><td><a href="../flags/taint-intrafile.html"><code>--taint-intrafile</code></a></td><td>Follow taint through calls to functions in the same file, for every taint rule.</td></tr>
+<tr><td><a href="../flags/timeout.html"><code>--timeout</code></a></td><td>The time limit of a rule on a file, in seconds; 0 sets no limit.</td></tr>
+<tr><td><a href="../flags/timeout-threshold.html"><code>--timeout-threshold</code></a></td><td>The number of rules that may time out on a file before the file is skipped.</td></tr>
+<tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log the progress of the run, at the info level.</td></tr>
 </tbody>
 </table></div>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

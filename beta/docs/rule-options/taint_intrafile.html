@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="../flags/audit-on.html">--audit-on</a></li>
 <li><a href="../flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="../flags/config.html">--config</a></li>
 <li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="../flags/debug.html">--debug</a></li>
-<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="../flags/dryrun.html">--dryrun</a></li>
 <li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="../flags/emacs.html">--emacs</a></li>
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="../flags/experimental.html">--experimental</a></li>
 <li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="../flags/force-color.html">--force-color</a></li>
 <li><a href="../flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="../flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="../flags/jobs.html">--jobs</a></li>
 <li><a href="../flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="../flags/strict.html">--strict</a></li>
 <li><a href="../flags/subdir.html">--subdir</a></li>
 <li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="../flags/test.html">--test</a></li>
 <li><a href="../flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="../flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="ac_matching.html">ac_matching</a></li>
@@ -237,16 +254,16 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../rule-options.html">Rule options</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../rule-options.html">Rule options</a></p>
 <h1><code>taint_intrafile</code></h1>
 <dl class="facts">
 <div><dt>Value</dt><dd><code>true</code> or <code>false</code></dd></div>
 <div><dt>Default</dt><dd><code>false</code></dd></div>
-<div><dt>See also</dt><dd><a href="../flags/taint-intrafile.html"><code>--taint-intrafile</code></a>, <a href="taint_interfile.html"><code>taint_interfile</code></a>, <a href="../rule-syntax/taint-mode.html"><code>mode: taint</code></a>, <a href="../flags/dataflow-traces.html"><code>--dataflow-traces</code></a>, <a href="../flags/disable-intrafile.html"><code>--disable-intrafile</code></a>, <a href="../flags/guarded-taint-signatures.html"><code>--guarded-taint-signatures</code></a>, <a href="guarded_taint_signatures.html"><code>guarded_taint_signatures</code></a></dd></div>
+<div><dt>See also</dt><dd><a href="../flags/taint-intrafile.html"><code>--taint-intrafile</code></a>, <a href="taint_interfile.html"><code>taint_interfile</code></a>, <a href="../rule-syntax/taint-mode.html"><code>mode: taint</code></a>, <a href="../flags/dataflow-traces.html"><code>--dataflow-traces</code></a>, <a href="../flags/disable-intrafile.html"><code>--disable-intrafile</code></a>, <a href="../flags/guarded-taint-signatures.html"><code>--guarded-taint-signatures</code></a>, <a href="../rule-syntax/options.html"><code>options</code></a>, <a href="guarded_taint_signatures.html"><code>guarded_taint_signatures</code></a></dd></div>
 </dl>
-<p>By default a <a href="../rule-syntax/taint-mode.html">taint rule</a> analyses each function on its own. Taint passed as an argument to another function is not followed into that function. With <code>taint_intrafile: true</code>, opengrep computes a summary of each function in the file, recording how taint flows from its parameters to its result and to sinks. It applies these summaries at call sites. The finding is reported at the sink, inside the called function.</p>
-<p>The flag <code>--taint-intrafile</code> turns this on for every taint rule of the scan. The option can turn it on for one rule, but it cannot turn off the flag. <a href="taint_interfile.html"><code>taint_interfile</code></a> implies <code>taint_intrafile</code>.</p>
-<p>Supported languages are Apex, C, C++, C#, Clojure, Dart, Elixir, Go, Java, JavaScript, Julia, Kotlin, Lua, Python, Ruby, Rust, Scala, Swift, TypeScript and Visual Basic. For other languages opengrep logs a warning, and the analysis may stay within single functions.</p>
+<p>By default, a <a href="../rule-syntax/taint-mode.html">taint rule</a> analyses each function on its own. Taint passed as an argument to another function is not followed into that function. With <code>taint_intrafile: true</code>, opengrep computes a summary of each function in the file, recording how taint flows from its parameters to its result and to sinks. It applies these summaries at call sites. The finding is reported at the sink, inside the called function.</p>
+<p>The flag <code>--taint-intrafile</code> turns this on for every taint rule of the scan. The option can turn it on for one rule, but it cannot turn off the flag. Under <a href="../flags/enable-interfile.html"><code>--enable-interfile</code></a>, a rule that sets <a href="taint_interfile.html"><code>taint_interfile</code></a> is analysed this way as well.</p>
+<p>The supported languages are Apex, C, C++, C#, Clojure, Dart, Elixir, Go, Java, JavaScript, Julia, Kotlin, Lua, Python, Ruby, Rust, Scala, Swift, TypeScript and Visual Basic. For other languages, opengrep logs a warning and analyses each function on its own.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="taint-through-a-helper-function"><a class="hash" href="#taint-through-a-helper-function" aria-hidden="true" tabindex="-1">###</a> Taint through a helper function</h3>
 <div class="file"><div class="file-head">user-input-to-system.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: user-input-to-system</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: os.system(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: user input reaches os.system</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">taint_intrafile</span>: true</span></code></pre></div>
@@ -258,10 +275,10 @@ No tests for fixes found.</code></pre></div>
 <h3 id="the-flag-instead-of-the-option"><a class="hash" href="#the-flag-instead-of-the-option" aria-hidden="true" tabindex="-1">###</a> The flag instead of the option</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: user-input-to-system</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: os.system(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: user input reaches os.system</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">import</span> os</span><span class="line"></span><span class="line"><span class="k">def</span> run(cmd):</span><span class="line">    os.system(cmd)</span><span class="line"></span><span class="line">run(input())</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml app.py
-opengrep scan --config rule.yaml --taint-intrafile app.py
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml app.py</span>
-<span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --taint-intrafile app.py</span>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rule.yaml app.py
+opengrep scan -q --config rule.yaml --taint-intrafile app.py
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml app.py</span>
+<span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --taint-intrafile app.py</span>
 app.py
 
   <span class="err">error</span>  <span class="rule">user-input-to-system</span>

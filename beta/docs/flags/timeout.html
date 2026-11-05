@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--timeout · Opengrep</title>
-  <meta name="description" content="Maximum time in seconds for one rule on one file; 0 means no limit.">
+  <meta name="description" content="The time limit of a rule on a file, in seconds; 0 sets no limit.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="audit-on.html">--audit-on</a></li>
 <li><a href="autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="config.html">--config</a></li>
 <li><a href="dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="debug.html">--debug</a></li>
-<li><a href="disable-interfile.html">--disable-interfile</a></li>
 <li><a href="disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="dryrun.html">--dryrun</a></li>
 <li><a href="dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="emacs.html">--emacs</a></li>
 <li><a href="emacs-output.html">--emacs-output</a></li>
+<li><a href="enable-interfile.html">--enable-interfile</a></li>
 <li><a href="enable-nosem.html">--enable-nosem</a></li>
-<li><a href="enable-version-check.html">--enable-version-check</a></li>
 <li><a href="error.html">--error</a></li>
 <li><a href="exclude.html">--exclude</a></li>
 <li><a href="exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="exclude-rule.html">--exclude-rule</a></li>
-<li><a href="experimental.html">--experimental</a></li>
 <li><a href="files-with-matches.html">--files-with-matches</a></li>
 <li><a href="force-color.html">--force-color</a></li>
 <li><a href="force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="incremental-output.html">--incremental-output</a></li>
 <li><a href="inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="interfile-depth.html">--interfile-depth</a></li>
 <li><a href="interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="jobs.html">--jobs</a></li>
 <li><a href="json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="strict.html">--strict</a></li>
 <li><a href="subdir.html">--subdir</a></li>
 <li><a href="suppress-errors.html">--suppress-errors</a></li>
-<li><a href="taint-interfile.html">--taint-interfile</a></li>
-<li><a href="taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="test.html">--test</a></li>
 <li><a href="text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,7 +254,7 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../flags.html">Flags</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../flags.html">Flags</a></p>
 <h1><code>--timeout</code></h1>
 <dl class="facts">
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a>, <a href="../commands/ci.html"><code>opengrep ci</code></a>, <a href="../commands/test.html"><code>opengrep test</code></a></dd></div>
@@ -246,15 +263,15 @@
 <div><dt>Environment</dt><dd><a href="../env/OPENGREP_TIMEOUT.html"><code>OPENGREP_TIMEOUT</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="timeout-threshold.html"><code>--timeout-threshold</code></a>, <a href="interfile-timeout.html"><code>--interfile-timeout</code></a>, <a href="dynamic-timeout.html"><code>--dynamic-timeout</code></a>, <a href="allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a>, <a href="../rule-options/timeout.html"><code>timeout</code></a>, <a href="../rule-options/dynamic_timeout.html"><code>dynamic_timeout</code></a>, <a href="dynamic-timeout-max-multiplier.html"><code>--dynamic-timeout-max-multiplier</code></a>, <a href="dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a>, <a href="jobs.html"><code>--jobs</code></a>, <a href="max-match-per-file.html"><code>--max-match-per-file</code></a>, <a href="max-memory.html"><code>--max-memory</code></a>, <a href="optimizations.html"><code>--optimizations</code></a>, <a href="time.html"><code>--time</code></a></dd></div>
 </dl>
-<p>Limits the time each rule may spend on each file. The limit applies to every rule and file pair separately. <code>0</code> removes the limit.</p>
-<p>When a rule runs out of time on a file, opengrep stops that rule on that file. It drops the rule's findings for the file, records a timeout error and continues with the other rules. The error appears in the <code>errors</code> of <code>--json</code> output, and a warning names the file and the rules. Once <a href="../flags.html"><code>--timeout-threshold</code></a> rules have timed out on a file, opengrep skips the rest of the rules on that file.</p>
+<p>Limits the time that a rule may spend on a file. The limit applies to each pair of a rule and a file separately. <code>0</code> removes the limit.</p>
+<p>When a rule exceeds the limit on a file, opengrep stops that rule on the file, drops its findings there, records a timeout error and continues with the other rules. The error is listed in the <code>errors</code> of the <code>--json</code> output, and a warning names the file and the rules. After <a href="timeout-threshold.html"><code>--timeout-threshold</code></a> rules have timed out on a file, opengrep runs no further rules on it.</p>
 <p>Other limits:</p>
 <ul>
-<li><code>--interfile-timeout</code> limits the interfile analysis of a rule (see <a href="../rule-options/taint_interfile.html"><code>taint_interfile</code></a>).</li>
-<li>With <code>--dynamic-timeout</code>, the limit grows with the size of the file.</li>
-<li>With <code>--allow-rule-timeout-control</code>, a rule can set its own limit with its <code>timeout</code> and <a href="../rule-options/dynamic_timeout.html"><code>dynamic_timeout</code></a> options. A rule's options have no effect when <code>--timeout</code> is <code>0</code>.</li>
+<li><a href="interfile-timeout.html"><code>--interfile-timeout</code></a> limits the cross-file taint analysis of a rule.</li>
+<li>With <a href="dynamic-timeout.html"><code>--dynamic-timeout</code></a>, the limit grows with the size of the file.</li>
+<li>With <a href="allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a>, a rule can set its own limit with its options <code>timeout</code> and <a href="../rule-options/dynamic_timeout.html"><code>dynamic_timeout</code></a>. These options have no effect when <code>--timeout</code> is <code>0</code>.</li>
 </ul>
-<p><a href="../env/OPENGREP_TIMEOUT.html"><code>OPENGREP_TIMEOUT</code></a> sets the value for <code>scan</code> and <code>ci</code> when the flag is not given.</p>
+<p><a href="../env/OPENGREP_TIMEOUT.html"><code>OPENGREP_TIMEOUT</code></a> sets the value for <code>opengrep scan</code> and <code>opengrep ci</code> when the flag is not given.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-rule-that-runs-out-of-time"><a class="hash" href="#a-rule-that-runs-out-of-time" aria-hidden="true" tabindex="-1">###</a> A rule that runs out of time</h3>
 <div class="file"><div class="file-head">slow.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: slow</span><span class="line">    <span class="k">patterns</span>:</span><span class="line">      - <span class="k">pattern</span>: <span class="mv">$F</span>(<span class="mv">...</span>, <span class="mv">$X</span>, <span class="mv">...</span>) + <span class="mv">$G</span>(<span class="mv">...</span>, <span class="mv">$Y</span>, <span class="mv">...</span>)</span><span class="line">      - <span class="k">pattern-not</span>: <span class="mv">$F</span>(<span class="mv">$X</span>, <span class="mv">$X</span>, <span class="mv">...</span>) + <span class="mv">$G</span>(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: slow</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: INFO</span></code></pre></div>

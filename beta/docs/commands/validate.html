@@ -42,7 +42,6 @@
 <li><a href="validate.html" aria-current="page">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="../flags/audit-on.html">--audit-on</a></li>
 <li><a href="../flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="../flags/config.html">--config</a></li>
 <li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="../flags/debug.html">--debug</a></li>
-<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="../flags/dryrun.html">--dryrun</a></li>
 <li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="../flags/emacs.html">--emacs</a></li>
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="../flags/experimental.html">--experimental</a></li>
 <li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="../flags/force-color.html">--force-color</a></li>
 <li><a href="../flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="../flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="../flags/jobs.html">--jobs</a></li>
 <li><a href="../flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="../flags/strict.html">--strict</a></li>
 <li><a href="../flags/subdir.html">--subdir</a></li>
 <li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="../flags/test.html">--test</a></li>
 <li><a href="../flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="../flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,47 +254,46 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../commands.html">Commands</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../commands.html">Commands</a></p>
 <h1><code>opengrep validate</code></h1>
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="test.html"><code>opengrep test</code></a>, <a href="scan.html"><code>opengrep scan</code></a>, <a href="../flags/config.html"><code>--config</code></a>, <a href="../flags/skip-invalid-configs.html"><code>--skip-invalid-configs</code></a>, <a href="../flags/strict.html"><code>--strict</code></a>, <a href="../flags/validate.html"><code>--validate</code></a>, <a href="../rule-syntax/rules.html"><code>rules</code></a></dd></div>
 </dl>
 <div class="file"><pre class="snip"><code>opengrep validate [FLAGS] PATHS...</code></pre></div>
-<p>Reads the rules under PATHS and reports whether they are valid. PATHS are rule files or directories holding them, given as positional arguments: unlike <a href="scan.html"><code>scan</code></a> and <a href="test.html"><code>test</code></a>, <code>validate</code> has no <code>--config</code>. Without any path it stops with <code class="long">Nothing to validate, pass a directory or rule file</code> and exit status 2.</p>
-<p>A rule is checked in three ways:</p>
+<p>Reads the rules under PATHS and reports whether they are valid. PATHS are rule files, or directories that contain them, given as arguments: unlike <a href="scan.html"><code>scan</code></a> and <a href="test.html"><code>test</code></a>, <code>validate</code> has no <code>--config</code>. Without a path, it stops with <code class="long">Nothing to validate, pass a directory or rule file</code> and exit status 2.</p>
+<p>Each rule is checked in three ways:</p>
 <ul>
 <li>the file must be YAML;</li>
 <li>each rule must fit the rule schema, which is the same parsing a scan does, so patterns are parsed as well;</li>
-<li>the rule files are then scanned with opengrep's own rules about rules, the metachecks, which look for mistakes that are valid syntax. A metacheck match is an error.</li>
+<li>the rule files are scanned with the metachecks, rules about rules that look for mistakes in valid syntax. A match of a metacheck is an error.</li>
 </ul>
-<p>Metachecks run on rule <em>files</em>, so they only reach rules that came from a local file or directory. Rules from the registry, a URL or a git repository are parsed but not metachecked, and <code>validate</code> warns when that leaves nothing to metacheck.</p>
-<p>Everything <code>validate</code> prints, the verdict included, goes to standard error. Before the verdict comes the count of the metachecks' scan: the rule files and the metacheck rules run on them, such as <code>1 file · 6 rules</code>.</p>
+<p>The metachecks run on rule files, so they apply only to rules from a local file or directory. Rules from the registry, a URL or a git repository are parsed but not checked by the metachecks, and <code>validate</code> logs a warning when no rule file is left for them.</p>
+<p>All the output of <code>validate</code>, the result included, goes to standard error. Before the result, it reports the scan of the metachecks: the number of rule files and of metachecks, such as <code>1 file · 6 rules</code>.</p>
 <h2 id="exit-status"><a class="hash" href="#exit-status" aria-hidden="true" tabindex="-1">##</a> Exit status</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
 <tbody>
 <tr><td>0</td><td>Every rule is valid.</td></tr>
-<tr><td>2</td><td>Fatal error, such as no path given.</td></tr>
+<tr><td>2</td><td>A fatal error, such as a missing path.</td></tr>
 <tr><td>3</td><td>A rule file could not be parsed as a target of the metachecks.</td></tr>
 <tr><td>4</td><td>A rule does not fit the schema, or a pattern could not be parsed.</td></tr>
 <tr><td>5</td><td>A rule file is not valid YAML.</td></tr>
 <tr><td>7</td><td>No rules could be loaded at all.</td></tr>
 <tr><td>8</td><td>A rule names an unsupported language.</td></tr>
-<tr><td>141</td><td>The reader of the output closed the pipe.</td></tr>
+<tr><td>141</td><td>The program that reads the output closed the pipe.</td></tr>
 </tbody>
 </table></div>
 <h2 id="flags"><a class="hash" href="#flags" aria-hidden="true" tabindex="-1">##</a> Flags</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Flag</th><th>Summary</th></tr></thead>
 <tbody>
-<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log everything --verbose does and the engine's own diagnostics as well.</td></tr>
+<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log what --verbose logs, and the diagnostics of the engine.</td></tr>
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/experimental.html"><code>--experimental</code></a></td><td>Accepted for compatibility; opengrep has only the one implementation.</td></tr>
-<tr><td><a href="../flags/force-color.html"><code>--force-color</code></a></td><td>Style the output even when it is not going to a terminal.</td></tr>
+<tr><td><a href="../flags/force-color.html"><code>--force-color</code></a></td><td>Style the output even when it does not go to a terminal.</td></tr>
 <tr><td><code>--profile</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print the findings and nothing else.</td></tr>
-<tr><td><a href="../flags/skin.html"><code>--skin</code></a></td><td>Which layout the text report uses.</td></tr>
-<tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log what the scan is doing, at the info level.</td></tr>
+<tr><td><a href="../flags/skin.html"><code>--skin</code></a></td><td>The layout of the text output.</td></tr>
+<tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log the progress of the run, at the info level.</td></tr>
 </tbody>
 </table></div>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

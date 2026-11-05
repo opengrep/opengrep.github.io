@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>opengrep lsp · Opengrep</title>
-  <meta name="description" content="Run opengrep as a language server, speaking LSP on standard input and output.">
+  <meta name="description" content="Run opengrep as a language server, over standard input and output.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="../flags/audit-on.html">--audit-on</a></li>
 <li><a href="../flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="../flags/config.html">--config</a></li>
 <li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="../flags/debug.html">--debug</a></li>
-<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="../flags/dryrun.html">--dryrun</a></li>
 <li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="../flags/emacs.html">--emacs</a></li>
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="../flags/experimental.html">--experimental</a></li>
 <li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="../flags/force-color.html">--force-color</a></li>
 <li><a href="../flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="../flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="../flags/jobs.html">--jobs</a></li>
 <li><a href="../flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="../flags/strict.html">--strict</a></li>
 <li><a href="../flags/subdir.html">--subdir</a></li>
 <li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="../flags/test.html">--test</a></li>
 <li><a href="../flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="../flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="../rule-syntax/by-side-effect.html">by-side-effect</a></li>
+<li><a href="../rule-syntax/control.html">control</a></li>
+<li><a href="../rule-syntax/exact.html">exact</a></li>
 <li><a href="../rule-syntax/fix.html">fix</a></li>
 <li><a href="../rule-syntax/fix-regex.html">fix-regex</a></li>
 <li><a href="../rule-syntax/focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="../rule-syntax/id.html">id</a></li>
+<li><a href="../rule-syntax/label.html">label</a></li>
+<li><a href="../rule-syntax/languages.html">languages</a></li>
 <li><a href="../rule-syntax/message.html">message</a></li>
+<li><a href="../rule-syntax/metadata.html">metadata</a></li>
 <li><a href="../rule-syntax/metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="../rule-syntax/metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="../rule-syntax/metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="../rule-syntax/metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="../rule-syntax/metavariable-type.html">metavariable-type</a></li>
+<li><a href="../rule-syntax/min-version.html">min-version</a></li>
 <li><a href="../rule-syntax/mode.html">mode</a></li>
 <li><a href="../rule-syntax/taint-mode.html">mode: taint</a></li>
+<li><a href="../rule-syntax/options.html">options</a></li>
 <li><a href="../rule-syntax/paths.html">paths</a></li>
 <li><a href="../rule-syntax/pattern.html">pattern</a></li>
 <li><a href="../rule-syntax/pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="../rule-syntax/pattern-not.html">pattern-not</a></li>
 <li><a href="../rule-syntax/pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="../rule-syntax/pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="../rule-syntax/pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="../rule-syntax/pattern-regex.html">pattern-regex</a></li>
+<li><a href="../rule-syntax/pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="../rule-syntax/pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="../rule-syntax/pattern-sources.html">pattern-sources</a></li>
 <li><a href="../rule-syntax/patterns.html">patterns</a></li>
 <li><a href="../rule-syntax/rules.html">rules</a></li>
 <li><a href="../rule-syntax/severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,31 +254,60 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../commands.html">Commands</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../commands.html">Commands</a></p>
 <h1><code>opengrep lsp</code></h1>
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="scan.html"><code>opengrep scan</code></a>, <a href="../env/HOME.html"><code>HOME</code></a></dd></div>
 </dl>
 <div class="file"><pre class="snip"><code>opengrep lsp [FLAGS]</code></pre></div>
-<p>Starts a <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> server that scans the files an editor opens and reports the findings as diagnostics. It is meant to be started by an editor, not by hand: it reads JSON-RPC messages with <code>Content-Length</code> framing on standard input and answers on standard output.</p>
-<p>The transport is fixed to standard input and output; there are no <code>--stdio</code> or <code>--socket</code> flags. Beyond the flags every command takes, <code>lsp</code> has none of its own, so the rules and the scan settings come from the client, which sends them as LSP configuration when the session starts.</p>
+<p>Starts a <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> server that scans the files open in an editor and reports the findings as diagnostics. The command is meant to be started by an editor. It reads JSON-RPC messages with <code>Content-Length</code> framing on standard input and writes its responses to standard output; there is no other transport.</p>
+<h2 id="settings"><a class="hash" href="#settings" aria-hidden="true" tabindex="-1">##</a> Settings</h2>
+<p>The rules and the scan settings come from the client, in the <code>scan</code> object of the <code>initializationOptions</code> of the <code>initialize</code> request:</p>
+<div class="file"><pre class="snip"><code>{
+  <span class="k">&quot;scan&quot;</span>: {
+    <span class="k">&quot;configuration&quot;</span>: [<span class="s">&quot;/path/to/rules.yaml&quot;</span>],
+    <span class="k">&quot;exclude&quot;</span>: [<span class="s">&quot;tests/&quot;</span>],
+    <span class="k">&quot;onlyGitDirty&quot;</span>: <span class="s">false</span>,
+    <span class="k">&quot;taintIntrafile&quot;</span>: <span class="s">true</span>
+  }
+}</code></pre></div>
+<div class="table-wrap"><table>
+<thead><tr><th>Setting</th><th>Equivalent flag</th><th>Default</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>configuration</code></td><td><a href="../flags/config.html"><code>--config</code></a></td><td>none</td><td>The rules, as a list of files, directories or other configuration sources.</td></tr>
+<tr><td><code>include</code></td><td><a href="../flags/include.html"><code>--include</code></a></td><td>none</td><td>Scan only the files that match one of these patterns.</td></tr>
+<tr><td><code>exclude</code></td><td><a href="../flags/exclude.html"><code>--exclude</code></a></td><td>none</td><td>Skip the files that match one of these patterns.</td></tr>
+<tr><td><code>onlyGitDirty</code></td><td></td><td><code>true</code></td><td>In a git repository, report only the findings on lines that differ from the last commit.</td></tr>
+<tr><td><code>taintIntrafile</code></td><td><a href="../flags/taint-intrafile.html"><code>--taint-intrafile</code></a></td><td><code>false</code></td><td>Follow taint through calls to functions in the same file.</td></tr>
+<tr><td><code>maxTargetBytes</code></td><td><a href="../flags/max-target-bytes.html"><code>--max-target-bytes</code></a></td><td><code>1000000</code></td><td>Skip files larger than this many bytes.</td></tr>
+<tr><td><code>maxMatchPerFile</code></td><td><a href="../flags/max-match-per-file.html"><code>--max-match-per-file</code></a></td><td><code>10000</code></td><td>The number of matches in a file above which its findings are dropped.</td></tr>
+<tr><td><code>jobs</code></td><td><a href="../flags/jobs.html"><code>--jobs</code></a></td><td>the number of cores</td><td>The number of parallel workers.</td></tr>
+<tr><td><code>maxMemory</code></td><td><a href="../flags/max-memory.html"><code>--max-memory</code></a></td><td><code>0</code>, no limit</td><td>The memory limit of a scan, in MiB.</td></tr>
+<tr><td><code>timeout</code></td><td><a href="../flags/timeout.html"><code>--timeout</code></a></td><td><code>30</code></td><td>The time limit of a rule on a file, in seconds.</td></tr>
+<tr><td><code>timeoutThreshold</code></td><td><a href="../flags/timeout-threshold.html"><code>--timeout-threshold</code></a></td><td><code>3</code></td><td>The number of timeouts after which a file is skipped.</td></tr>
+<tr><td><code>dynamicTimeout</code></td><td><a href="../flags/dynamic-timeout.html"><code>--dynamic-timeout</code></a></td><td><code>false</code></td><td>Scale the timeout with the size of the file.</td></tr>
+<tr><td><code>dynamicTimeoutMaxMultiplier</code></td><td><a href="../flags/dynamic-timeout-max-multiplier.html"><code>--dynamic-timeout-max-multiplier</code></a></td><td><code>20</code></td><td>The largest factor by which the timeout is scaled.</td></tr>
+<tr><td><code>dynamicTimeoutUnitKb</code></td><td><a href="../flags/dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a></td><td><code>30</code></td><td>The file size, in KB, of one step of the scaling.</td></tr>
+<tr><td><code>allowRuleTimeoutControl</code></td><td><a href="../flags/allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a></td><td><code>false</code></td><td>Let rules set their own time limits.</td></tr>
+</tbody>
+</table></div>
+<p>The server scans each document that the editor opens.</p>
 <h2 id="exit-status"><a class="hash" href="#exit-status" aria-hidden="true" tabindex="-1">##</a> Exit status</h2>
-<p>0 when the client ends the session, 2 on a fatal error, 141 when the reader of the output closed the pipe.</p>
+<p>0 when the client ends the session, 2 on a fatal error, and 141 when the program that reads the output closed the pipe.</p>
 <h2 id="flags"><a class="hash" href="#flags" aria-hidden="true" tabindex="-1">##</a> Flags</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Flag</th><th>Summary</th></tr></thead>
 <tbody>
-<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log everything --verbose does and the engine's own diagnostics as well.</td></tr>
+<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log what --verbose logs, and the diagnostics of the engine.</td></tr>
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/experimental.html"><code>--experimental</code></a></td><td>Accepted for compatibility; opengrep has only the one implementation.</td></tr>
 <tr><td><code>--profile</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print the findings and nothing else.</td></tr>
-<tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log what the scan is doing, at the info level.</td></tr>
+<tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log the progress of the run, at the info level.</td></tr>
 </tbody>
 </table></div>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="starting-the-server"><a class="hash" href="#starting-the-server" aria-hidden="true" tabindex="-1">###</a> Starting the server</h3>
-<p>An editor runs the command and then drives the session. There is nothing to see when starting it by hand: the server waits for the client's <code>initialize</code> request and answers on standard output.</p>
+<p>An editor starts the command and then conducts the session. Started from a shell, the server prints nothing: it waits for the <code>initialize</code> request of a client and answers on standard output.</p>
 <div class="file console"><div class="file-head">Command</div><button class="copy" type="button" data-copy="opengrep lsp
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep lsp</span></code></pre></div>
     </main>

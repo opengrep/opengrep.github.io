@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>fix · Opengrep</title>
-  <meta name="description" content="Replacement code for each match, applied by --autofix.">
+  <meta name="description" content="The code that replaces each match, applied by --autofix.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -42,7 +42,6 @@
 <li><a href="../commands/validate.html">opengrep validate</a></li>
 </ul></details></li>
 <li><details><summary><a href="../flags.html">Flags</a></summary><ul>
-<li><a href="../flags/allow-local-builds.html">--allow-local-builds</a></li>
 <li><a href="../flags/allow-rule-timeout-control.html">--allow-rule-timeout-control</a></li>
 <li><a href="../flags/audit-on.html">--audit-on</a></li>
 <li><a href="../flags/autofix.html">--autofix</a></li>
@@ -50,7 +49,6 @@
 <li><a href="../flags/config.html">--config</a></li>
 <li><a href="../flags/dataflow-traces.html">--dataflow-traces</a></li>
 <li><a href="../flags/debug.html">--debug</a></li>
-<li><a href="../flags/disable-interfile.html">--disable-interfile</a></li>
 <li><a href="../flags/disable-intrafile.html">--disable-intrafile</a></li>
 <li><a href="../flags/dryrun.html">--dryrun</a></li>
 <li><a href="../flags/dynamic-timeout.html">--dynamic-timeout</a></li>
@@ -58,13 +56,12 @@
 <li><a href="../flags/dynamic-timeout-unit-kb.html">--dynamic-timeout-unit-kb</a></li>
 <li><a href="../flags/emacs.html">--emacs</a></li>
 <li><a href="../flags/emacs-output.html">--emacs-output</a></li>
+<li><a href="../flags/enable-interfile.html">--enable-interfile</a></li>
 <li><a href="../flags/enable-nosem.html">--enable-nosem</a></li>
-<li><a href="../flags/enable-version-check.html">--enable-version-check</a></li>
 <li><a href="../flags/error.html">--error</a></li>
 <li><a href="../flags/exclude.html">--exclude</a></li>
 <li><a href="../flags/exclude-minified-files.html">--exclude-minified-files</a></li>
 <li><a href="../flags/exclude-rule.html">--exclude-rule</a></li>
-<li><a href="../flags/experimental.html">--experimental</a></li>
 <li><a href="../flags/files-with-matches.html">--files-with-matches</a></li>
 <li><a href="../flags/force-color.html">--force-color</a></li>
 <li><a href="../flags/force-exclude.html">--force-exclude</a></li>
@@ -78,6 +75,7 @@
 <li><a href="../flags/incremental-output.html">--incremental-output</a></li>
 <li><a href="../flags/inline-metavariables.html">--inline-metavariables</a></li>
 <li><a href="../flags/interfile-dedup-by.html">--interfile-dedup-by</a></li>
+<li><a href="../flags/interfile-depth.html">--interfile-depth</a></li>
 <li><a href="../flags/interfile-timeout.html">--interfile-timeout</a></li>
 <li><a href="../flags/jobs.html">--jobs</a></li>
 <li><a href="../flags/json.html">--json</a></li>
@@ -114,8 +112,6 @@
 <li><a href="../flags/strict.html">--strict</a></li>
 <li><a href="../flags/subdir.html">--subdir</a></li>
 <li><a href="../flags/suppress-errors.html">--suppress-errors</a></li>
-<li><a href="../flags/taint-interfile.html">--taint-interfile</a></li>
-<li><a href="../flags/taint-interfile-depth.html">--taint-interfile-depth</a></li>
 <li><a href="../flags/taint-intrafile.html">--taint-intrafile</a></li>
 <li><a href="../flags/test.html">--test</a></li>
 <li><a href="../flags/text.html">--text</a></li>
@@ -131,17 +127,26 @@
 <li><a href="../flags/vim-output.html">--vim-output</a></li>
 </ul></details></li>
 <li><details open><summary><a href="../rule-syntax.html">Rule syntax</a></summary><ul>
+<li><a href="by-side-effect.html">by-side-effect</a></li>
+<li><a href="control.html">control</a></li>
+<li><a href="exact.html">exact</a></li>
 <li><a href="fix.html" aria-current="page">fix</a></li>
 <li><a href="fix-regex.html">fix-regex</a></li>
 <li><a href="focus-metavariable.html">focus-metavariable</a></li>
+<li><a href="id.html">id</a></li>
+<li><a href="label.html">label</a></li>
+<li><a href="languages.html">languages</a></li>
 <li><a href="message.html">message</a></li>
+<li><a href="metadata.html">metadata</a></li>
 <li><a href="metavariable-analysis.html">metavariable-analysis</a></li>
 <li><a href="metavariable-comparison.html">metavariable-comparison</a></li>
 <li><a href="metavariable-pattern.html">metavariable-pattern</a></li>
 <li><a href="metavariable-regex.html">metavariable-regex</a></li>
 <li><a href="metavariable-type.html">metavariable-type</a></li>
+<li><a href="min-version.html">min-version</a></li>
 <li><a href="mode.html">mode</a></li>
 <li><a href="taint-mode.html">mode: taint</a></li>
+<li><a href="options.html">options</a></li>
 <li><a href="paths.html">paths</a></li>
 <li><a href="pattern.html">pattern</a></li>
 <li><a href="pattern-either.html">pattern-either</a></li>
@@ -149,10 +154,22 @@
 <li><a href="pattern-not.html">pattern-not</a></li>
 <li><a href="pattern-not-inside.html">pattern-not-inside</a></li>
 <li><a href="pattern-not-regex.html">pattern-not-regex</a></li>
+<li><a href="pattern-propagators.html">pattern-propagators</a></li>
 <li><a href="pattern-regex.html">pattern-regex</a></li>
+<li><a href="pattern-sanitizers.html">pattern-sanitizers</a></li>
+<li><a href="pattern-sinks.html">pattern-sinks</a></li>
+<li><a href="pattern-sources.html">pattern-sources</a></li>
 <li><a href="patterns.html">patterns</a></li>
 <li><a href="rules.html">rules</a></li>
 <li><a href="severity.html">severity</a></li>
+</ul></details></li>
+<li><details><summary><a href="../pattern-syntax.html">Pattern syntax</a></summary><ul>
+<li><a href="../pattern-syntax/ellipsis.html">...</a></li>
+<li><a href="../pattern-syntax/metavariables.html">$X</a></li>
+<li><a href="../pattern-syntax/typed-metavariables.html">(TYPE $X)</a></li>
+<li><a href="../pattern-syntax/deep-expression.html">&lt;... ...&gt;</a></li>
+<li><a href="../pattern-syntax/strings.html">&quot;...&quot;</a></li>
+<li><a href="../pattern-syntax/imports.html">imports and aliases</a></li>
 </ul></details></li>
 <li><details><summary><a href="../rule-options.html">Rule options</a></summary><ul>
 <li><a href="../rule-options/ac_matching.html">ac_matching</a></li>
@@ -237,24 +254,24 @@
     </aside>
 
     <main class="docs-main">
-<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">/</span> <a href="../rule-syntax.html">Rule syntax</a></p>
+<p class="docs-crumb"><a href="../index.html">reference</a> <span aria-hidden="true">&gt;</span> <a href="../rule-syntax.html">Rule syntax</a></p>
 <h1><code>fix</code></h1>
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="../flags/autofix.html"><code>--autofix</code></a>, <a href="../flags/dryrun.html"><code>--dryrun</code></a>, <a href="fix-regex.html"><code>fix-regex</code></a>, <a href="../commands/test.html"><code>opengrep test</code></a>, <a href="../flags/replacement.html"><code>--replacement</code></a></dd></div>
 </dl>
-<p><code>fix</code> is the code that replaces each match of the rule. Metavariables in it are replaced by the code they matched, so the fix can keep the parts of the original that stay. <a href="../flags/autofix.html"><code>--autofix</code></a> rewrites the files with it, and <a href="../flags/dryrun.html"><code>--dryrun</code></a> together with <code>--autofix</code> shows the fixed line under each finding without writing anything.</p>
-<p><a href="../commands/test.html"><code>opengrep test</code></a> checks a fix when the target <code>x.js</code> has a file <code>x.fixed.js</code> next to it: it applies the fix to <code>x.js</code> and compares the result with <code>x.fixed.js</code>.</p>
+<p>The code that replaces each match of the rule. The metavariables in it are replaced by the code they matched, so that the fix can reuse parts of the matched code. <a href="../flags/autofix.html"><code>--autofix</code></a> writes the fixes to the files; with <a href="../flags/dryrun.html"><code>--dryrun</code></a> as well, the text output shows the fixed code under each finding and the files are not changed.</p>
+<p><a href="../commands/test.html"><code>opengrep test</code></a> checks the fix of a rule when the target <code>x.js</code> has a file <code>x.fixed.js</code> next to it: it applies the fix to <code>x.js</code> and compares the result with <code>x.fixed.js</code>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="innerhtml-to-textcontent"><a class="hash" href="#innerhtml-to-textcontent" aria-hidden="true" tabindex="-1">###</a> <code>innerHTML</code> to <code>textContent</code></h3>
 <div class="file"><div class="file-head">inner-html.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: inner-html</span><span class="line">    <span class="k">pattern</span>: <span class="mv">$EL</span>.innerHTML = <span class="mv">$VALUE</span></span><span class="line">    <span class="k">fix</span>: <span class="mv">$EL</span>.textContent = <span class="mv">$VALUE</span></span><span class="line">    <span class="k">message</span>: assigning to innerHTML can run injected scripts</span><span class="line">    <span class="k">languages</span>: [javascript]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">inner-html.js</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">function</span> showComment(el, comment) {</span><span class="line">  <span class="c">// ruleid: inner-html</span></span><span class="line">  el.innerHTML = comment;</span><span class="line">}</span></code></pre></div>
 <div class="file"><div class="file-head">inner-html.fixed.js</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">function</span> showComment(el, comment) {</span><span class="line">  <span class="c">// ruleid: inner-html</span></span><span class="line">  el.textContent = comment;</span><span class="line">}</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep test .
-opengrep scan --config inner-html.yaml --autofix --dryrun inner-html.js
+opengrep scan -q --config inner-html.yaml --autofix --dryrun inner-html.js
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep test .</span>
 1/1: ✓ All tests passed
 1/1: ✓ All fix tests passed
-<span class="p">$ </span><span class="cmd">opengrep scan --config inner-html.yaml --autofix --dryrun inner-html.js</span>
+<span class="p">$ </span><span class="cmd">opengrep scan -q --config inner-html.yaml --autofix --dryrun inner-html.js</span>
 inner-html.js
 
   <span class="sev">warn</span>  <span class="rule">inner-html</span>

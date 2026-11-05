@@ -29,7 +29,7 @@
   <main class="wrap">
 
     <header class="hero">
-      <h1 class="crumb"><a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="Opengrep" width="582" height="100"></a><span class="sep" aria-hidden="true">/</span>about</h1>
+      <h1 class="crumb"><a class="brand" href="index.html"><img class="logo" src="assets/logo.svg" alt="Opengrep" width="582" height="100"></a><span class="sep" aria-hidden="true">&gt;</span>about</h1>
       <p class="lede"><strong>Opengrep</strong> is a <strong>SAST</strong> (static application security testing) engine. It finds vulnerabilities by analyzing source code without executing it. It checks the code against a set of <a class="quiet" href="docs/rule-syntax.html">rules</a>. A rule can match <a class="quiet" href="docs/rule-syntax/pattern.html">a code pattern</a>, or <a class="quiet" href="docs/rule-syntax/taint-mode.html">track untrusted data</a> as it flows through the program, for example from an HTTP request into a SQL query.</p>
     </header>
 
@@ -67,7 +67,7 @@
         </details></li>
         <li><details>
           <summary><h3>cross-function &amp; cross-file taint</h3></summary>
-          <p>With <a class="plain" href="docs/flags/taint-intrafile.html"><code>--taint-intrafile</code></a>, Opengrep summarises how each function passes tainted data along, and follows it through calls, return values, lambdas and higher-order functions like <code>map</code>. For a whole project, <a class="plain" href="docs/flags/taint-interfile.html"><code>--taint-interfile</code></a> builds a call graph and follows data from a source in one file to a sink in another, for example from a request handler to a SQL query in a separate data-access module. Taint is also tracked through standard library functions and classes, so user input stored in a list or map and read back later is still tainted.</p>
+          <p>With <a class="plain" href="docs/flags/taint-intrafile.html"><code>--taint-intrafile</code></a>, Opengrep summarises how each function passes tainted data along, and follows it through calls, return values, lambdas and higher-order functions like <code>map</code>. Across a whole project, <a class="plain" href="docs/flags/enable-interfile.html"><code>--enable-interfile</code></a> builds a call graph, and rules with the <a class="quiet" href="docs/rule-options/taint_interfile.html">interfile option</a> follow data from a source in one file to a sink in another, for example from a request handler to a SQL query in a separate data-access module. Taint is also tracked through standard library functions and classes, so user input stored in a list or map and read back later is still tainted.</p>
         </details></li>
       </ul>
     </section>
