@@ -307,7 +307,7 @@ pre .p { color: var(--accent); user-select: none; text-shadow: var(--glow); }
   gap: 24px;
 }
 
-/* subpage title next to the logo: "Opengrep / about" */
+/* subpage title next to the logo: "Opengrep: about" */
 .crumb {
   --logo-w: min(320px, 46vw);
   margin: 0;
@@ -326,7 +326,7 @@ pre .p { color: var(--accent); user-select: none; text-shadow: var(--glow); }
   /* sit the wordmark's baseline (77.5% down the svg) on the text baseline */
   vertical-align: calc(var(--logo-w) * -0.0387);
 }
-.crumb .sep { margin: 0 0.3em; color: var(--accent); text-shadow: var(--glow); }
+.crumb .sep { margin: 0 0.3em 0 0.08em; color: var(--accent); text-shadow: var(--glow); }
 
 /* ---------- about page ---------- */
 .lede { margin: 20px 0 0; max-width: 66ch; }
