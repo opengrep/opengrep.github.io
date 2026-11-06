@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Reference · Opengrep</title>
-  <meta name="description" content="The reference of the opengrep command line and of the rule format.">
+  <meta name="description" content="This reference describes the Opengrep command line and the rule format.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -255,24 +255,22 @@
 
     <main class="docs-main">
 <header class="hero"><h1 class="crumb"><a class="brand" href="../index.html"><img class="logo" src="../assets/logo.svg" alt="Opengrep" width="582" height="100"></a><span class="sep" aria-hidden="true">:</span>docs</h1></header>
-<p>The reference of the opengrep command line and of the rule format.</p>
+<p>This reference describes the Opengrep command line and the rule format.</p>
 <ul>
-<li><a href="commands.html">Commands</a>: <code>opengrep scan</code>, <code>opengrep test</code> and the other commands.</li>
-<li><a href="flags.html">Flags</a>: the command-line flags, with the commands that accept them.</li>
-<li><a href="rule-syntax.html">Rule syntax</a>: the keys of a rule.</li>
-<li><a href="pattern-syntax.html">Pattern syntax</a>: the placeholders of a pattern, such as <code>...</code> and <code>$X</code>.</li>
-<li><a href="rule-options.html">Rule options</a>: the keys of the <code>options</code> of a rule.</li>
-<li><a href="environment.html">Environment variables</a>: the variables that opengrep reads.</li>
-<li><a href="internal.html">Internal and debugging interfaces</a>: interfaces for the development of opengrep, listed without full documentation.</li>
+<li><a href="commands.html">Commands</a>: <code>opengrep scan</code>, <code>opengrep test</code>, etc.</li>
+<li><a href="flags.html">Flags</a>: command-line flags and the commands that accept them.</li>
+<li><a href="rule-syntax.html">Rule syntax</a>: elements of the YAML definition of a rule.</li>
+<li><a href="pattern-syntax.html">Pattern syntax</a>: code patterns and their placeholders, such as <code>...</code> and <code>$X</code>.</li>
+<li><a href="rule-options.html">Rule options</a>: settings under the <code>options</code> key of a rule.</li>
+<li><a href="environment.html">Environment variables</a>: variables read by Opengrep.</li>
+<li><a href="internal.html">Internal and debugging interfaces</a>: interfaces for the development and testing of Opengrep.</li>
 </ul>
-<h2 id="conventions"><a class="hash" href="#conventions" aria-hidden="true" tabindex="-1">##</a> Conventions</h2>
-<p>The examples show the output that a command prints on standard output, and add <code>2&gt;&amp;1</code> when the output of interest is on standard error. Commands whose output goes to the terminal pass <a href="flags/quiet.html"><code>--quiet</code></a>, which leaves out the banner, the progress and the summary that opengrep prints on standard error. In the output, the version is shown as <code>X.Y.Z</code>, and <code>&lt;tmp&gt;</code> stands for the directory of the example.</p>
 <h2 id="further-reading"><a class="hash" href="#further-reading" aria-hidden="true" tabindex="-1">##</a> Further reading</h2>
-<p>The <a href="https://github.com/opengrep/opengrep/wiki">Opengrep wiki</a> on GitHub goes deeper into parts of the taint analysis than this reference does. Its pages are tutorials with worked examples, and notes on the internals of the analysis:</p>
+<p>The <a href="https://github.com/opengrep/opengrep/wiki">Opengrep wiki</a> on GitHub describes parts of the taint analysis in more detail, with tutorials, worked examples and notes on the internals of the analysis:</p>
 <ul>
 <li><a href="https://github.com/opengrep/opengrep/wiki/Intrafile-tainting-tutorial">Intrafile taint tracking</a>: following tainted data from function to function within one file, with <code>--taint-intrafile</code>.</li>
 <li><a href="https://github.com/opengrep/opengrep/wiki/Higher-order-functions-tutorial">Taint tracking in higher-order functions</a>: taint carried through callbacks such as <code>map</code> and <code>forEach</code>.</li>
-<li><a href="https://github.com/opengrep/opengrep/wiki/Methods-that-taint">Built-in methods that taint</a>: the standard library methods, such as <code>list.add</code> and <code>map.get</code>, that carry taint into and out of a collection, language by language.</li>
+<li><a href="https://github.com/opengrep/opengrep/wiki/Methods-that-taint">Built-in methods that taint</a>: standard library methods, such as <code>list.add</code> and <code>map.get</code>, that carry taint into and out of collections, for each language.</li>
 <li><a href="https://github.com/opengrep/opengrep/wiki/Guarded-taint-signatures">Guarded taint signatures</a>: an experimental refinement that drops a finding when the condition leading to the sink can never hold for a call.</li>
 </ul>
     </main>

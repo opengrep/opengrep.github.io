@@ -261,7 +261,7 @@
 <div><dt>Default</dt><dd><code>true</code></dd></div>
 <div><dt>See also</dt><dd><a href="decorators_order_matters.html"><code>decorators_order_matters</code></a></dd></div>
 </dl>
-<p>A call pattern such as <code>route(...)</code> also matches an attribute written like a call: a Python decorator <code>@route(&quot;/admin&quot;)</code>, or a Java annotation <code>@RequestMapping(&quot;/admin&quot;)</code> for the pattern <code>RequestMapping(...)</code>. The arguments of the attribute then count as inside a call, so <code>pattern-inside: route(...)</code> covers them.</p>
+<p>A call pattern such as <code>route(...)</code> also matches an attribute written like a call: a Python decorator <code>@route(&quot;/admin&quot;)</code>, or a Java annotation <code>@RequestMapping(&quot;/admin&quot;)</code> for the pattern <code>RequestMapping(...)</code>. The arguments of the attribute are then inside a call, so <code>pattern-inside: route(...)</code> covers them.</p>
 <p>With <code>attr_expr: false</code>, attributes are not matched as calls.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-decorator-and-a-call"><a class="hash" href="#a-decorator-and-a-call" aria-hidden="true" tabindex="-1">###</a> A decorator and a call</h3>

@@ -262,7 +262,7 @@
 <div><dt>See also</dt><dd><a href="taint_assume_safe_booleans.html"><code>taint_assume_safe_booleans</code></a></dd></div>
 </dl>
 <p>With <code>taint_assume_safe_numbers: true</code>, a value of integer or floating-point type is clean, even when it was computed from tainted data, as <code>Integer.parseInt(page)</code> is from <code>page</code>.</p>
-<p>Like <a href="taint_assume_safe_booleans.html"><code>taint_assume_safe_booleans</code></a>, this depends on opengrep knowing the type. In Java it does, from declared variable types and method return types. In Go and TypeScript, only the declared type of a variable counts. In Python the option has no effect.</p>
+<p>Like <a href="taint_assume_safe_booleans.html"><code>taint_assume_safe_booleans</code></a>, this depends on Opengrep knowing the type. In Java it does, from declared variable types and method return types. In Go and TypeScript, only the declared type of a variable is used. In Python the option has no effect.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="numbers-in-java"><a class="hash" href="#numbers-in-java" aria-hidden="true" tabindex="-1">###</a> Numbers in Java</h3>
 <p>The rule <code>page-logged</code> turns the option on.</p>

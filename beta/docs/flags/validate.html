@@ -264,13 +264,13 @@
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="checking-a-rule-file"><a class="hash" href="#checking-a-rule-file" aria-hidden="true" tabindex="-1">###</a> Checking a rule file</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --validate --config rule.yaml 2&gt;&amp;1 &gt;/dev/null
-opengrep validate rule.yaml 2&gt;&amp;1 &gt;/dev/null
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --validate --config rule.yaml 2&gt;&amp;1 &gt;/dev/null</span>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --validate --config rule.yaml 2&gt;&amp;1
+opengrep validate rule.yaml 2&gt;&amp;1
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --validate --config rule.yaml 2&gt;&amp;1</span>
 1 file · 6 rules
 
 Configuration is valid - found 0 fatal errors, 0 skippable error(s), and 1 rule(s).
-<span class="p">$ </span><span class="cmd">opengrep validate rule.yaml 2&gt;&amp;1 &gt;/dev/null</span>
+<span class="p">$ </span><span class="cmd">opengrep validate rule.yaml 2&gt;&amp;1</span>
 1 file · 6 rules
 
 Configuration is valid - found 0 fatal errors, 0 skippable error(s), and 1 rule(s).</code></pre></div>

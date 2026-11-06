@@ -261,9 +261,9 @@
 <div><dt>Default</dt><dd><code>true</code></dd></div>
 <div><dt>See also</dt><dd><a href="go_deeper_expr.html"><code>go_deeper_expr</code></a></dd></div>
 </dl>
-<p>In a statement pattern, an expression statement such as <code>finish()</code> also matches a statement that contains the expression: <code>result = finish()</code> or <code>log(finish())</code>. It works through <a href="go_deeper_expr.html"><code>go_deeper_expr</code></a>, and has no effect when that option is <code>false</code>.</p>
+<p>In a statement pattern, an expression statement such as <code>finish()</code> also matches a statement that contains the expression: <code>result = finish()</code> or <code>log(finish())</code>. It depends on <a href="go_deeper_expr.html"><code>go_deeper_expr</code></a>, and has no effect when that option is <code>false</code>.</p>
 <p>With <code>implicit_deep_exprstmt: false</code>, it matches the statement <code>finish()</code> only.</p>
-<p>A pattern made of a single expression is not a statement pattern: it matches the expression wherever it occurs, whatever this option says.</p>
+<p>A pattern made of a single expression is not a statement pattern: it matches the expression wherever it occurs, regardless of this option.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-call-whose-result-is-used"><a class="hash" href="#a-call-whose-result-is-used" aria-hidden="true" tabindex="-1">###</a> A call whose result is used</h3>
 <p>The rule <code>start-then-finish</code> turns the option off.</p>

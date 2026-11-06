@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>generic_multiline · Opengrep</title>
-  <meta name="description" content="With aliengrep, whether an ellipsis may span lines; false keeps it within one.">
+  <meta name="description" content="With aliengrep, whether an ellipsis may span several lines.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -262,10 +262,10 @@
 <div><dt>See also</dt><dd><a href="generic_engine.html"><code>generic_engine</code></a></dd></div>
 </dl>
 <p>With <a href="generic_engine.html"><code>generic_engine: aliengrep</code></a>, an ellipsis <code>...</code> or a metavariable ellipsis <code>$...X</code> may span lines. With <code>generic_multiline: false</code>, they stay within one line.</p>
-<p>In that line mode, the long ellipsis <code>....</code>, and <code>$....X</code>, may still cross a line break: <code>begin....end</code> matches <code>begin</code> followed by <code>x end</code> on the next line.</p>
+<p>In this mode, the long ellipsis <code>....</code>, and <code>$....X</code>, may still cross a line break: <code>begin....end</code> matches <code>begin</code> followed by <code>x end</code> on the next line.</p>
 <p>The option has no effect with the default engine, spacegrep.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="three-ellipses-on-one-block"><a class="hash" href="#three-ellipses-on-one-block" aria-hidden="true" tabindex="-1">###</a> Three ellipses on one block</h3>
+<h3 id="three-kinds-of-ellipsis-on-one-block"><a class="hash" href="#three-kinds-of-ellipsis-on-one-block" aria-hidden="true" tabindex="-1">###</a> Three kinds of ellipsis on one block</h3>
 <div class="file"><div class="file-head">blocks.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: dots-default</span><span class="line">    <span class="k">pattern</span>: begin <span class="mv">...</span> end</span><span class="line">    <span class="k">message</span>: block</span><span class="line">    <span class="k">languages</span>: [generic]</span><span class="line">    <span class="k">severity</span>: INFO</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">generic_engine</span>: aliengrep</span><span class="line">  - <span class="k">id</span>: dots</span><span class="line">    <span class="k">pattern</span>: begin <span class="mv">...</span> end</span><span class="line">    <span class="k">message</span>: block</span><span class="line">    <span class="k">languages</span>: [generic]</span><span class="line">    <span class="k">severity</span>: INFO</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">generic_engine</span>: aliengrep</span><span class="line">      <span class="k">generic_multiline</span>: false</span><span class="line">  - <span class="k">id</span>: long-dots</span><span class="line">    <span class="k">pattern</span>: begin<span class="mv">...</span>.end</span><span class="line">    <span class="k">message</span>: block</span><span class="line">    <span class="k">languages</span>: [generic]</span><span class="line">    <span class="k">severity</span>: INFO</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">generic_engine</span>: aliengrep</span><span class="line">      <span class="k">generic_multiline</span>: false</span></code></pre></div>
 <div class="file"><div class="file-head">blocks.txt</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">begin</span><span class="line">x end</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config blocks.yaml --json blocks.txt 2&gt;/dev/null | jq .
@@ -333,7 +333,7 @@
   <span class="k">&quot;interfile_languages_used&quot;</span>: [],
   <span class="k">&quot;skipped_rules&quot;</span>: []
 }</code></pre></div>
-<p><code>dots-default</code> finds the block. In line mode, <code>dots</code> does not, and <code>long-dots</code> does.</p>
+<p><code>dots-default</code> finds the block. With <code>generic_multiline: false</code>, <code>dots</code> does not, and <code>long-dots</code> does.</p>
     </main>
   </div>
 

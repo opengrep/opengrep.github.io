@@ -260,7 +260,7 @@
 <div><dt>Value</dt><dd>a positive whole number</dd></div>
 <div><dt>See also</dt><dd><a href="../flags/max-chars-per-line.html"><code>--max-chars-per-line</code></a>, <a href="../flags/skin.html"><code>--skin</code></a></dd></div>
 </dl>
-<p>The width, in characters, for which the text output is laid out. Opengrep uses <code>COLUMNS</code> when it holds a positive integer, and the width of the terminal otherwise. The width is kept between 40 and 120: a smaller value counts as 40, a larger one as 120. Output to a pipe or a file, without <code>COLUMNS</code>, is laid out for 120 characters.</p>
+<p>The width, in characters, for which the text output is laid out. Opengrep uses <code>COLUMNS</code> when it holds a positive integer, and the width of the terminal otherwise. The width is kept between 40 and 120: a smaller value is treated as 40, and a larger one as 120. Output to a pipe or a file, without <code>COLUMNS</code>, is laid out for 120 characters.</p>
 <p>The width determines where long lines of code wrap, and the length of the horizontal rules of the <code>vivid</code> <a href="../flags/skin.html">skin</a>. It affects only the text output. The variable has no <code>OPENGREP_</code> form.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-narrow-report"><a class="hash" href="#a-narrow-report" aria-hidden="true" tabindex="-1">###</a> A narrow report</h3>

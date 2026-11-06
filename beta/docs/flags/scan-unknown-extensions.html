@@ -268,9 +268,13 @@
 <h3 id="a-file-whose-extension-names-no-language"><a class="hash" href="#a-file-whose-extension-names-no-language" aria-hidden="true" tabindex="-1">###</a> A file whose extension names no language</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">script.unknown</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml script.unknown 2&gt;&amp;1 &gt;/dev/null
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml script.unknown 2&gt;&amp;1
 opengrep scan -q --config rule.yaml --scan-unknown-extensions script.unknown
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml script.unknown 2&gt;&amp;1 &gt;/dev/null</span>
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml script.unknown 2&gt;&amp;1</span>
+ ╭┮┭╮ Opengrep
+┌┼┼┼┘ the open source static code analysis engine
+╰┶┵╯  version X.Y.Z
+
 nothing to scan
 
 no findings
@@ -281,7 +285,7 @@ script.unknown
   found eval
 
 <span class="n">     1:</span><span class="b"> eval(1)</span></code></pre></div>
-<p>The first command prints nothing on standard output: the message quoted here is on standard error.</p>
+<p>Without the flag, the file is not scanned, and Opengrep reports that there is nothing to scan.</p>
     </main>
   </div>
 

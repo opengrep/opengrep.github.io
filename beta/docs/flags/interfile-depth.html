@@ -262,11 +262,11 @@
 <div><dt>Default</dt><dd><code>3</code></dd></div>
 <div><dt>See also</dt><dd><a href="enable-interfile.html"><code>--enable-interfile</code></a>, <a href="../rule-options/taint_interfile_depth.html"><code>taint_interfile_depth</code></a>, <a href="interfile-timeout.html"><code>--interfile-timeout</code></a>, <a href="../rule-options/taint_interfile.html"><code>taint_interfile</code></a></dd></div>
 </dl>
-<p>Sets how many calls deep the cross-file taint analysis of <a href="enable-interfile.html"><code>--enable-interfile</code></a> follows the call graph when it gathers the files to analyse together. With the default of 3, a source reaches a sink three calls away, but not four. A negative value removes the limit.</p>
+<p>Sets how many calls deep the cross-file taint analysis of <a href="enable-interfile.html"><code>--enable-interfile</code></a> follows the call graph when it gathers the files to analyze together. With the default of 3, a source reaches a sink three calls away, but not four. A negative value removes the limit.</p>
 <p>Each additional level can bring more files into the analysis, so the cost of a scan grows with the depth.</p>
 <p>A rule can set its own depth with the option <a href="../rule-options/taint_interfile_depth.html"><code>taint_interfile_depth</code></a>, which takes precedence over this flag. Without <code>--enable-interfile</code> the flag has no effect.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="a-chain-four-calls-long"><a class="hash" href="#a-chain-four-calls-long" aria-hidden="true" tabindex="-1">###</a> A chain four calls long</h3>
+<h3 id="a-chain-of-three-calls"><a class="hash" href="#a-chain-of-three-calls" aria-hidden="true" tabindex="-1">###</a> A chain of three calls</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: input-to-system</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: os.system(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: input reaches os.system</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">taint_interfile</span>: true</span></code></pre></div>
 <div class="file"><div class="file-head">d.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">import</span> os</span><span class="line"></span><span class="line"><span class="k">def</span> sink_it(cmd):</span><span class="line">    os.system(cmd)</span></code></pre></div>
 <div class="file"><div class="file-head">c.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">from</span> d <span class="k">import</span> sink_it</span><span class="line"></span><span class="line"><span class="k">def</span> step_c(x):</span><span class="line">    sink_it(x)</span></code></pre></div>
@@ -277,7 +277,7 @@ opengrep scan -q --config rule.yaml --enable-interfile --interfile-depth 3 --fil
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --enable-interfile --interfile-depth 2 --files-with-matches .</span>
 <span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --enable-interfile --interfile-depth 3 --files-with-matches .</span>
 d.py</code></pre></div>
-<p>The source in <code>a.py</code> is three calls away from the sink in <code>d.py</code>. At depth 2 the first scan does not reach it and reports nothing.</p>
+<p>The source in <code>a.py</code> is three calls away from the sink in <code>d.py</code>. At depth 2, the first scan does not reach it and reports nothing.</p>
     </main>
   </div>
 

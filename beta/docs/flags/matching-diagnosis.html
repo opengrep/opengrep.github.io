@@ -260,7 +260,7 @@
 <div><dt>Accepted by</dt><dd><a href="../commands/test.html"><code>opengrep test</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="../commands/test.html"><code>opengrep test</code></a>, <a href="matching-explanations.html"><code>--matching-explanations</code></a></dd></div>
 </dl>
-<p>A failing test of <a href="../commands/test.html"><code>opengrep test</code></a> lists the lines that were missed or reported in error. With <code>--matching-diagnosis</code>, the output also has a section that explains each of these lines: which part of the pattern did not match, or which condition removed the match.</p>
+<p>A failing test of <a href="../commands/test.html"><code>opengrep test</code></a> lists the lines that were missed or reported incorrectly. With <code>--matching-diagnosis</code>, the output also has a section that explains each of these lines: which part of the pattern did not match, or which condition removed the match.</p>
 <p><a href="matching-explanations.html"><code>--matching-explanations</code></a> provides similar information in the JSON output of a scan.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="why-a-line-was-not-matched"><a class="hash" href="#why-a-line-was-not-matched" aria-hidden="true" tabindex="-1">###</a> Why a line was not matched</h3>
@@ -271,7 +271,7 @@
 Matching diagnosis:
 find-eval.py: Unexpected lack of match at line 2
 This line was never matched by any base pattern, nor introduced by any `focus-metavariable`.</code></pre></div>
-<p>The annotation asks for a match on line 2, which <code>evaluate(1)</code> does not give, so the test fails and the diagnosis says the line matched no pattern at all.</p>
+<p>The annotation asks for a match on line 2, which <code>evaluate(1)</code> does not produce, so the test fails and the diagnosis says the line matched no pattern at all.</p>
     </main>
   </div>
 

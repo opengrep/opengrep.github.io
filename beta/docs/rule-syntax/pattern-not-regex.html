@@ -259,7 +259,7 @@
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="pattern-regex.html"><code>pattern-regex</code></a>, <a href="pattern-not.html"><code>pattern-not</code></a></dd></div>
 </dl>
-<p>An item of <a href="patterns.html"><code>patterns</code></a>. It matches a PCRE regular expression against the text of the file and drops each match of the other items that contains a match of the regex. A regex match counts only when it lies entirely within the finding: one that starts or ends outside it, such as a comment later on the same line, drops nothing.</p>
+<p>An item of <a href="patterns.html"><code>patterns</code></a>. It matches a PCRE regular expression against the text of the file and drops each match of the other items that contains a match of the regex. A regex match is taken into account only when it lies entirely within the finding: one that starts or ends outside it, such as a comment later on the same line, drops nothing.</p>
 <p>It is a negative item, like <a href="pattern-not.html"><code>pattern-not</code></a>: <code>patterns</code> needs a positive item next to it.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="placeholder-passwords"><a class="hash" href="#placeholder-passwords" aria-hidden="true" tabindex="-1">###</a> Placeholder passwords</h3>

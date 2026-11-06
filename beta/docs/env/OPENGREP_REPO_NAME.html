@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>OPENGREP_REPO_NAME · Opengrep</title>
-  <meta name="description" content="On GitHub Actions, the repository that opengrep ci asks for the merge base of a pull request.">
+  <meta name="description" content="On GitHub Actions, the repository for which opengrep ci requests the merge base of a pull request.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -261,7 +261,7 @@
 <div><dt>Value</dt><dd>a repository name</dd></div>
 <div><dt>See also</dt><dd><a href="../commands/ci.html"><code>opengrep ci</code></a></dd></div>
 </dl>
-<p>On GitHub Actions, when <a href="../commands/ci.html"><code>opengrep ci</code></a> scans a pull request and <code>GH_TOKEN</code> is set, it asks the GitHub API for the merge base of the pull request. The variable names the repository, as <code>owner/repo</code>; when it is unset, <code>GITHUB_REPOSITORY</code>, set by GitHub Actions, is used. If the lookup fails, for example because of a wrong name, opengrep fetches the history and computes the merge base locally, which takes longer.</p>
+<p>On GitHub Actions, when <a href="../commands/ci.html"><code>opengrep ci</code></a> scans a pull request and <code>GH_TOKEN</code> is set, it asks the GitHub API for the merge base of the pull request. The variable names the repository, as <code>owner/repo</code>; when it is unset, <code>GITHUB_REPOSITORY</code>, set by GitHub Actions, is used. If the lookup fails, for example because of a wrong name, Opengrep fetches the history and computes the merge base locally, which takes longer.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="naming-the-repository-on-github-actions"><a class="hash" href="#naming-the-repository-on-github-actions" aria-hidden="true" tabindex="-1">###</a> Naming the repository on GitHub Actions</h3>
 <div class="file console"><div class="file-head">Command</div><button class="copy" type="button" data-copy="OPENGREP_REPO_NAME=my-org/my-repo opengrep ci -q --config rule.yaml

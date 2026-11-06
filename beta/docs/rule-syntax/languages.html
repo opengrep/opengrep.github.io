@@ -261,14 +261,14 @@
 </dl>
 <p>A list of languages. The rule runs on the files of each of these languages, and its patterns are parsed as code of the first language of the list. Every rule must have <code>languages</code>, with at least one language; a single language is still written as a list, <code>[python]</code>.</p>
 <p>Each language has a name and some aliases: <code>python</code> can also be written <code>py</code>, <code>javascript</code> <code>js</code>, <code>typescript</code> <code>ts</code>. <a href="../flags/show-supported-languages.html"><code>--show-supported-languages</code></a> lists them. An unknown name makes the rule invalid, and the scan exits with status 8.</p>
-<p>Since the patterns are parsed in the first language only, a rule with several languages works best for languages that share their syntax, such as JavaScript and TypeScript, or C and C++.</p>
+<p>Since the patterns are parsed in the first language only, a rule with several languages is suited to languages that share a syntax, such as JavaScript and TypeScript, or C and C++.</p>
 <p>Two values are not programming languages:</p>
 <ul>
-<li><code>generic</code> runs the rule on every file, whatever its extension. Its patterns are matched as text in which brackets and quotes nest; see <a href="../rule-options/generic_engine.html"><code>generic_engine</code></a>.</li>
+<li><code>generic</code> runs the rule on every file, regardless of its extension. Its patterns are matched as text in which brackets and quotes nest; see <a href="../rule-options/generic_engine.html"><code>generic_engine</code></a>.</li>
 <li><code>regex</code>, also spelled <code>none</code>, runs the rule on every file with <a href="pattern-regex.html"><code>pattern-regex</code></a> and the other regular-expression keys only.</li>
 </ul>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="two-languages-with-one-syntax"><a class="hash" href="#two-languages-with-one-syntax" aria-hidden="true" tabindex="-1">###</a> Two languages with one syntax</h3>
+<h3 id="two-languages-with-a-shared-syntax"><a class="hash" href="#two-languages-with-a-shared-syntax" aria-hidden="true" tabindex="-1">###</a> Two languages with a shared syntax</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: inner-html</span><span class="line">    <span class="k">pattern</span>: <span class="mv">$EL</span>.innerHTML = <span class="mv">$VALUE</span></span><span class="line">    <span class="k">message</span>: assignment to innerHTML</span><span class="line">    <span class="k">languages</span>: [javascript, typescript]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.js</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">el.innerHTML = comment;</span></code></pre></div>
 <div class="file"><div class="file-head">app.ts</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">el.innerHTML = comment;</span></code></pre></div>

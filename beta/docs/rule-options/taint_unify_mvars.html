@@ -260,7 +260,7 @@
 <div><dt>Value</dt><dd><code>true</code> or <code>false</code></dd></div>
 <div><dt>Default</dt><dd><code>false</code></dd></div>
 </dl>
-<p>In a <a href="../rule-syntax/taint-mode.html">taint rule</a>, the metavariables of the sources and of the sinks are independent by default: a source <code>session.get($KEY)</code> and a sink <code>response.set_cookie($KEY, ...)</code> match whatever key each of them names.</p>
+<p>In a <a href="../rule-syntax/taint-mode.html">taint rule</a>, the metavariables of the sources and of the sinks are independent by default: a source <code>session.get($KEY)</code> and a sink <code>response.set_cookie($KEY, ...)</code> match regardless of the key that each of them names.</p>
 <p>With <code>taint_unify_mvars: true</code>, a metavariable that appears in both a source and a sink must bind the same code in both, or the flow is not reported.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-session-value-written-to-a-cookie-of-the-same-name"><a class="hash" href="#a-session-value-written-to-a-cookie-of-the-same-name" aria-hidden="true" tabindex="-1">###</a> A session value written to a cookie of the same name</h3>

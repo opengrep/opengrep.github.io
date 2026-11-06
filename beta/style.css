@@ -326,7 +326,7 @@ pre .p { color: var(--accent); user-select: none; text-shadow: var(--glow); }
   /* sit the wordmark's baseline (77.5% down the svg) on the text baseline */
   vertical-align: calc(var(--logo-w) * -0.0387);
 }
-.crumb .sep { margin: 0 0.3em 0 0.08em; color: var(--accent); text-shadow: var(--glow); }
+.crumb .sep { margin: 0 0.16em 0 0.22em; color: var(--accent); text-shadow: var(--glow); }
 
 /* ---------- about page ---------- */
 .lede { margin: 20px 0 0; max-width: 66ch; }
@@ -511,6 +511,8 @@ pre.out .n { color: var(--dim); }
 .docs-main th { background: var(--bg-raised); color: var(--fg); font-weight: 500; }
 .docs-main tr:last-child td { border-bottom: 0; }
 .docs-main td:first-child code { white-space: nowrap; }
+/* the environment variables under a flag in the flags index, as quiet as the cells beside them */
+.docs-main td br ~ code { color: inherit; font-weight: inherit; }
 
 .docs-main .file { margin: 0 0 16px; }
 pre.snip { padding: 14px 18px; }

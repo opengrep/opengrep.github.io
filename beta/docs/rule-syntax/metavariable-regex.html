@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>metavariable-regex · Opengrep</title>
-  <meta name="description" content="Keep the matches where the code a metavariable matched fits a regular expression.">
+  <meta name="description" content="Keep the matches where the code bound to a metavariable matches a regular expression.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -282,7 +282,7 @@ No tests for fixes found.</code></pre></div>
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep test .</span>
 2/2: ✓ All tests passed
 No tests for fixes found.</code></pre></div>
-<p><code>weak-alg-default</code> matches the literal with its quotes and misses the variable. <code>weak-alg</code> matches the value in both places.</p>
+<p><code>weak-alg-default</code> matches the literal with its quotes and does not match the variable. <code>weak-alg</code> matches the value in both places.</p>
     </main>
   </div>
 

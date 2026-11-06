@@ -261,10 +261,10 @@
 <div><dt>Default</dt><dd><code>true</code></dd></div>
 <div><dt>See also</dt><dd><a href="commutative_boolop.html"><code>commutative_boolop</code></a>, <a href="symmetric_eq.html"><code>symmetric_eq</code></a></dd></div>
 </dl>
-<p><code>a | b | c</code> is parsed as <code>(a | b) | c</code>. With <code>ac_matching</code>, on by default, a chain of one associative operator is matched as a flat list of operands, not as the nested pairs the parser produces. Two cases follow.</p>
+<p><code>a | b | c</code> is parsed as <code>(a | b) | c</code>. With <code>ac_matching</code>, on by default, a chain of one associative operator is matched as a flat list of operands, not as the nested pairs the parser produces. The effect depends on the operator:</p>
 <ul>
 <li>The bitwise operators <code>|</code>, <code>&amp;</code> and <code>^</code> are also commutative: the operands of the pattern may appear in any order, among other operands. <code>os.O_CREAT | os.O_TRUNC</code> matches <code>os.O_TRUNC | os.O_WRONLY | os.O_CREAT</code>.</li>
-<li>For <code>&amp;&amp;</code> and <code>||</code>, the order is kept, but a metavariable can stand for several operands in a row: <code>a() &amp;&amp; $X &amp;&amp; c()</code> matches <code>a() &amp;&amp; b() &amp;&amp; d() &amp;&amp; c()</code>. <a href="commutative_boolop.html"><code>commutative_boolop</code></a> drops the order too.</li>
+<li>For <code>&amp;&amp;</code> and <code>||</code>, the order is kept, but a metavariable can stand for several operands in a row: <code>a() &amp;&amp; $X &amp;&amp; c()</code> matches <code>a() &amp;&amp; b() &amp;&amp; d() &amp;&amp; c()</code>. <a href="commutative_boolop.html"><code>commutative_boolop</code></a> removes the order requirement as well.</li>
 </ul>
 <p>With <code>ac_matching: false</code>, operators are matched as the parser nests them. <a href="commutative_boolop.html"><code>commutative_boolop</code></a> and <a href="symmetric_eq.html"><code>symmetric_eq</code></a> then have no effect.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

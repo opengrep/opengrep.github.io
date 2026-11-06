@@ -263,11 +263,11 @@
 <p>Reads the rules under PATHS and reports whether they are valid. PATHS are rule files, or directories that contain them, given as arguments: unlike <a href="scan.html"><code>scan</code></a> and <a href="test.html"><code>test</code></a>, <code>validate</code> has no <code>--config</code>. Without a path, it stops with <code class="long">Nothing to validate, pass a directory or rule file</code> and exit status 2.</p>
 <p>Each rule is checked in three ways:</p>
 <ul>
-<li>the file must be YAML;</li>
-<li>each rule must fit the rule schema, which is the same parsing a scan does, so patterns are parsed as well;</li>
-<li>the rule files are scanned with the metachecks, rules about rules that look for mistakes in valid syntax. A match of a metacheck is an error.</li>
+<li>the file must be valid YAML;</li>
+<li>each rule must conform to the rule schema. This is the same parsing that a scan performs, so the patterns are parsed as well;</li>
+<li>the rule files are scanned with the metachecks: rules that look for mistakes in rules whose syntax is valid. A match of a metacheck is an error.</li>
 </ul>
-<p>The metachecks run on rule files, so they apply only to rules from a local file or directory. Rules from the registry, a URL or a git repository are parsed but not checked by the metachecks, and <code>validate</code> logs a warning when no rule file is left for them.</p>
+<p>The metachecks run on rule files, so they apply only to rules from a local file or directory. Rules from the registry, a URL or a git repository are parsed but not checked by the metachecks, and <code>validate</code> logs a warning when no local rule file remains for them to check.</p>
 <p>All the output of <code>validate</code>, the result included, goes to standard error. Before the result, it reports the scan of the metachecks: the number of rule files and of metachecks, such as <code>1 file · 6 rules</code>.</p>
 <h2 id="exit-status"><a class="hash" href="#exit-status" aria-hidden="true" tabindex="-1">##</a> Exit status</h2>
 <div class="table-wrap"><table>
@@ -276,7 +276,7 @@
 <tr><td>0</td><td>Every rule is valid.</td></tr>
 <tr><td>2</td><td>A fatal error, such as a missing path.</td></tr>
 <tr><td>3</td><td>A rule file could not be parsed as a target of the metachecks.</td></tr>
-<tr><td>4</td><td>A rule does not fit the schema, or a pattern could not be parsed.</td></tr>
+<tr><td>4</td><td>A rule does not conform to the schema, or a pattern could not be parsed.</td></tr>
 <tr><td>5</td><td>A rule file is not valid YAML.</td></tr>
 <tr><td>7</td><td>No rules could be loaded at all.</td></tr>
 <tr><td>8</td><td>A rule names an unsupported language.</td></tr>
@@ -287,11 +287,11 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Flag</th><th>Summary</th></tr></thead>
 <tbody>
-<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log what --verbose logs, and the diagnostics of the engine.</td></tr>
+<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log the messages of --verbose and the diagnostics of the engine.</td></tr>
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><a href="../flags/force-color.html"><code>--force-color</code></a></td><td>Style the output even when it does not go to a terminal.</td></tr>
 <tr><td><code>--profile</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print the findings and nothing else.</td></tr>
+<tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print only the findings, and nothing on standard error.</td></tr>
 <tr><td><a href="../flags/skin.html"><code>--skin</code></a></td><td>The layout of the text output.</td></tr>
 <tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log the progress of the run, at the info level.</td></tr>
 </tbody>
@@ -307,7 +307,7 @@ opengrep validate good.yaml &gt; /dev/null 2&gt;&amp;1; echo &quot;exit status: 
 Configuration is valid - found 0 fatal errors, 0 skippable error(s), and 1 rule(s).
 <span class="p">$ </span><span class="cmd">opengrep validate good.yaml &gt; /dev/null 2&gt;&amp;1; echo <span class="s">&quot;exit status: $?&quot;</span></span>
 exit status: 0</code></pre></div>
-<h3 id="a-rule-that-does-not-fit-the-schema"><a class="hash" href="#a-rule-that-does-not-fit-the-schema" aria-hidden="true" tabindex="-1">###</a> A rule that does not fit the schema</h3>
+<h3 id="a-rule-that-does-not-conform-to-the-schema"><a class="hash" href="#a-rule-that-does-not-conform-to-the-schema" aria-hidden="true" tabindex="-1">###</a> A rule that does not conform to the schema</h3>
 <div class="file"><div class="file-head">bad.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: broken</span><span class="line">    <span class="k">patterns</span>:</span><span class="line">      - <span class="k">pattern-not</span>: eval(<span class="s">&quot;...&quot;</span>)</span><span class="line">    <span class="k">message</span>: no positive term</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep validate bad.yaml 2&gt;&amp;1 &gt;/dev/null
 opengrep validate bad.yaml &gt; /dev/null 2&gt;&amp;1; echo &quot;exit status: $?&quot;

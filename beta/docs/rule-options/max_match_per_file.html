@@ -260,8 +260,8 @@
 <div><dt>Value</dt><dd>an integer</dd></div>
 <div><dt>See also</dt><dd><a href="../flags/max-match-per-file.html"><code>--max-match-per-file</code></a></dd></div>
 </dl>
-<p>With <code>max_match_per_file: N</code>, opengrep keeps the first N findings of this rule in each file, in order of position, and drops the rest without an error. <code>0</code> or a negative number keeps none. The option requires no flag.</p>
-<p>The limit of the scan, <a href="../flags/max-match-per-file.html"><code>--max-match-per-file</code></a> is checked first, on the matches of all rules in the file together. When a file has more than that, every finding in it is dropped with a <code>Too many matches</code> error, whatever this option says.</p>
+<p>With <code>max_match_per_file: N</code>, Opengrep keeps the first N findings of this rule in each file, in order of position, and drops the rest without an error. <code>0</code> or a negative number keeps none. The option requires no flag.</p>
+<p>The limit of the scan, <a href="../flags/max-match-per-file.html"><code>--max-match-per-file</code></a>, is checked first, on the matches of all rules in the file together. When a file has more than that, every finding in it is dropped with a <code>Too many matches</code> error, regardless of this option.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="the-first-two-findings"><a class="hash" href="#the-first-two-findings" aria-hidden="true" tabindex="-1">###</a> The first two findings</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">max_match_per_file</span>: 2</span></code></pre></div>
@@ -354,7 +354,7 @@ opengrep scan --config rule.yaml --json --max-match-per-file 3 many.py 2&gt;/dev
   <span class="k">&quot;interfile_languages_used&quot;</span>: [],
   <span class="k">&quot;skipped_rules&quot;</span>: []
 }</code></pre></div>
-<p>The first scan reports the findings on lines 1 and 2 only. The second scan allows 3 matches per file. The rule matches 4 times before its own option trims it to 2, so the file passes the scan's limit and loses all its findings.</p>
+<p>The first scan reports the findings on lines 1 and 2 only. The second scan allows 3 matches per file. The rule matches 4 times before its own option trims it to 2, so the file exceeds the scan's limit and loses all its findings.</p>
     </main>
   </div>
 

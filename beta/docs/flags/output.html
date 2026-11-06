@@ -269,7 +269,7 @@
 <li>Missing parent directories are created.</li>
 <li>The file is written even when the scan finds nothing. A text, Emacs or Vim file is then empty.</li>
 <li>Two formats cannot go to the same file. The run stops before the scan, with exit status 2 and the message <code class="long">Cannot write both --json-output and --sarif-output to FILE</code>, or, when one of them is <code>-o</code>, <code class="long">Invalid output configuration: same output destination (FILE) with multiple formats.</code></li>
-<li>A destination that is a symbolic link is refused before the scan, with <code>Output is symlink: FILE</code>, and the file it points to is left alone.</li>
+<li>A destination that is a symbolic link is refused before the scan, with <code>Output is symlink: FILE</code>, and the file it points to is not modified.</li>
 <li>A URL is refused before the scan: <code class="long">Sending output to a URL (URL) is not supported yet by opengrep</code>.</li>
 <li>A destination that cannot be written, such as a file in a read-only directory, stops the run with exit status 2 once the scan has finished: <code class="long">Cannot write output: FILE: Permission denied</code>.</li>
 <li>With <a href="incremental-output.html"><code>--incremental-output</code></a>, <code>-o</code> is ignored with the warning <code class="long">Writing incremental output to a file is not supported</code>. The per-format flags still write their files.</li>

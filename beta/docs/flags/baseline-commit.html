@@ -262,15 +262,15 @@
 <div><dt>Environment</dt><dd><a href="../env/OPENGREP_BASELINE_COMMIT.html"><code>OPENGREP_BASELINE_COMMIT</code></a>, <a href="../env/OPENGREP_BASELINE_REF.html"><code>OPENGREP_BASELINE_REF</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="../commands/ci.html"><code>opengrep ci</code></a></dd></div>
 </dl>
-<p>Reports only the findings that are new relative to COMMIT. COMMIT is any revision that git accepts, such as a hash, a branch, a tag or <code>HEAD~1</code>. The current directory must be in a git repository. With a baseline, opengrep proceeds as follows:</p>
+<p>Reports only the findings that are new relative to COMMIT. COMMIT is any revision that git accepts, such as a hash, a branch, a tag or <code>HEAD~1</code>. The current directory must be in a git repository. With a baseline, Opengrep proceeds as follows:</p>
 <ol>
 <li>It takes the merge base of COMMIT and <code>HEAD</code> as the baseline. When COMMIT is an ancestor of <code>HEAD</code>, the merge base is COMMIT itself. For a branch name, it is the point where the current branch forked from that branch, so new commits on the other branch do not matter.</li>
 <li>It lists the files that differ between the baseline and the git index, which holds the committed and staged changes. Unstaged changes and untracked files are not part of the list.</li>
 <li>It scans those files.</li>
 <li>It scans the same files as they were in the baseline, in a separate checkout.</li>
-<li>It reports the findings of step 3 that step 4 did not have. Two findings are the same when they have the same rule id, file path and matched code. Line numbers do not count, so code that moved is not reported again.</li>
+<li>It reports the findings of step 3 that step 4 did not have. Two findings are the same when they have the same rule id, file path and matched code. Line numbers are not compared, so code that moved is not reported as new.</li>
 </ol>
-<p>When git cannot compute the merge base, opengrep stops with exit status 2, for example outside a git repository or in a shallow clone that lacks the history.</p>
+<p>When git cannot compute the merge base, Opengrep stops with exit status 2, for example outside a git repository or in a shallow clone that lacks the history.</p>
 <p>The summary on standard error says <code class="long">Scan was limited to files changed since baseline commit.</code> An empty value, as in <code>--baseline-commit &quot;&quot;</code>, means no baseline.</p>
 <p>When the flag is not given, the baseline is taken from the first of these variables that is set: <code>OPENGREP_BASELINE_COMMIT</code>, <code>SEMGREP_BASELINE_COMMIT</code>, <code>OPENGREP_BASELINE_REF</code>, <code>SEMGREP_BASELINE_REF</code>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

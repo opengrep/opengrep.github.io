@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--exclude-rule · Opengrep</title>
-  <meta name="description" content="Skip a rule, by its id.">
+  <meta name="description" content="Skip the rule with this id.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -263,7 +263,7 @@
 </dl>
 <p>Removes the rule with this id from the scan. The flag can be repeated. It applies to rules from any source, such as a registry pack or a shared directory that cannot be edited; the other rules of the source still run.</p>
 <p>The id is the one reported in the findings. It includes the prefix that <a href="config.html"><code>--config</code></a> adds to the rules of a file in a subdirectory, as in <code>rules.python.find-eval</code>.</p>
-<p>To suppress a finding on one line, use a <code>nosem</code> comment. To keep a rule away from some files, give it a <a href="../rule-syntax/paths.html"><code>paths</code></a> key.</p>
+<p>To suppress a finding on one line, use a <code>nosem</code> comment. To exclude some files from a rule, give the rule a <a href="../rule-syntax/paths.html"><code>paths</code></a> key.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="running-a-config-without-one-of-its-rules"><a class="hash" href="#running-a-config-without-one-of-its-rules" aria-hidden="true" tabindex="-1">###</a> Running a config without one of its rules</h3>
 <div class="file"><div class="file-head">rules.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span><span class="line">  - <span class="k">id</span>: find-print</span><span class="line">    <span class="k">pattern</span>: print(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found print</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: INFO</span></code></pre></div>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--jobs · Opengrep</title>
-  <meta name="description" content="The number of cores that run rules in parallel.">
+  <meta name="description" content="The number of workers that run rules in parallel.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -263,11 +263,11 @@
 <div><dt>Default</dt><dd><code>the number of cores detected</code></dd></div>
 <div><dt>See also</dt><dd><a href="max-memory.html"><code>--max-memory</code></a>, <a href="timeout.html"><code>--timeout</code></a>, <a href="optimizations.html"><code>--optimizations</code></a>, <a href="incremental-output.html"><code>--incremental-output</code></a>, <a href="time.html"><code>--time</code></a></dd></div>
 </dl>
-<p>By default, opengrep runs as many parallel workers as there are cores. <code>--jobs N</code> sets the number of workers.</p>
-<p>Each worker holds its own analysis, and the limit of <a href="max-memory.html"><code>--max-memory</code></a> applies to each worker, so fewer workers use less memory in total. With <code>--jobs 1</code>, log messages do not interleave, which makes the logs easier to follow when investigating a slow or failing rule.</p>
+<p>By default, Opengrep runs as many parallel workers as there are cores. <code>--jobs N</code> sets the number of workers.</p>
+<p>Each worker analyzes its own files, and the limit of <a href="max-memory.html"><code>--max-memory</code></a> applies to each worker separately, so fewer workers use less memory in total. With <code>--jobs 1</code>, log messages do not interleave, which makes the logs easier to follow when investigating a slow or failing rule.</p>
 <p>The findings do not depend on the number of workers.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="scanning-on-one-core"><a class="hash" href="#scanning-on-one-core" aria-hidden="true" tabindex="-1">###</a> Scanning on one core</h3>
+<h3 id="scanning-with-one-worker"><a class="hash" href="#scanning-with-one-worker" aria-hidden="true" tabindex="-1">###</a> Scanning with one worker</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rule.yaml --jobs 1 app.py

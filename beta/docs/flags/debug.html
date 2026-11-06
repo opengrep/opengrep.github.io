@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--debug · Opengrep</title>
-  <meta name="description" content="Log what --verbose logs, and the diagnostics of the engine.">
+  <meta name="description" content="Log the messages of --verbose and the diagnostics of the engine.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -260,7 +260,7 @@
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a>, <a href="../commands/ci.html"><code>opengrep ci</code></a>, <a href="../commands/test.html"><code>opengrep test</code></a>, <a href="../commands/validate.html"><code>opengrep validate</code></a>, <a href="../commands/show.html"><code>opengrep show</code></a>, <a href="../commands/lsp.html"><code>opengrep lsp</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="verbose.html"><code>--verbose</code></a>, <a href="quiet.html"><code>--quiet</code></a>, <a href="../env/OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a>, <a href="../env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a>, <a href="../env/OPENGREP_LOG_FILE.html"><code>OPENGREP_LOG_FILE</code></a></dd></div>
 </dl>
-<p>Sets the log level on standard error to debug. In addition to what <a href="verbose.html"><code>--verbose</code></a> shows, the logs include the internals of the run: the targets as they are selected, the rules as they are prepared, and the progress of the engine. Even a scan of one file logs hundreds of lines, so the output is best redirected to a file.</p>
+<p>Sets the log level on standard error to debug. In addition to what <a href="verbose.html"><code>--verbose</code></a> shows, the logs include the internals of the run: the targets as they are selected, the rules as they are prepared, and the progress of the engine. Even a scan of one file logs hundreds of lines.</p>
 <p><a href="../env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a> and <a href="../env/OPENGREP_LOG_TAGS.html"><code>OPENGREP_LOG_TAGS</code></a> restrict the output to parts of opengrep. <a href="../env/OPENGREP_LOG_FILE.html"><code>OPENGREP_LOG_FILE</code></a> writes a copy of the logs to a file.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-higher-log-level"><a class="hash" href="#a-higher-log-level" aria-hidden="true" tabindex="-1">###</a> A higher log level</h3>

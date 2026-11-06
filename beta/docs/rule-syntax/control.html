@@ -259,7 +259,7 @@
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="pattern-sources.html"><code>pattern-sources</code></a>, <a href="taint-mode.html"><code>mode: taint</code></a></dd></div>
 </dl>
-<p>A key of the items of <a href="pattern-sources.html"><code>pattern-sources</code></a>, with the value <code>true</code> or <code>false</code>, <code>false</code> by default. With <code>control: true</code>, the source does not taint data but the flow of control: every sink that the program can reach after the source is reported, whatever data it receives.</p>
+<p>A key of the items of <a href="pattern-sources.html"><code>pattern-sources</code></a>, with the value <code>true</code> or <code>false</code>, <code>false</code> by default. With <code>control: true</code>, the source does not taint data but the flow of control: every sink that the program can reach after the source is reported, regardless of the data it receives.</p>
 <p>Such a rule reports an operation that must not happen after another one, rather than a flow of data.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="session-data-read-after-logout"><a class="hash" href="#session-data-read-after-logout" aria-hidden="true" tabindex="-1">###</a> Session data read after logout</h3>

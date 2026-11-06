@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>label · Opengrep</title>
-  <meta name="description" content="Tell kinds of taint apart in a taint rule, and require some of them at a sink.">
+  <meta name="description" content="Distinguish kinds of taint in a taint rule, and require some of them at a sink.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -266,11 +266,11 @@
 <p>A source without <code>label</code> produces taint with the label <code>__SOURCE__</code>.</p>
 <p><code>requires</code> takes an expression over labels, built with <code>and</code>, <code>or</code>, <code>not</code> and parentheses. It is true for a piece of tainted data when the data carries the labels the expression asks for:</p>
 <ul>
-<li>on a <a href="pattern-sinks.html">sink</a>, a finding is reported only for tainted data for which the expression is true. A sink without <code>requires</code> reports the taint labelled <code>__SOURCE__</code>, so in a rule whose sources all have labels, every sink needs <code>requires</code>;</li>
+<li>on a <a href="pattern-sinks.html">sink</a>, a finding is reported only for tainted data for which the expression is true. A sink without <code>requires</code> reports the taint labeled <code>__SOURCE__</code>, so in a rule whose sources all have labels, every sink needs <code>requires</code>;</li>
 <li>on a <a href="pattern-sources.html">source</a>, the source applies only to data for which the expression is true. Such a source adds its label to data that already carries others, to mark a later stage of the flow;</li>
 <li>on a <a href="pattern-propagators.html">propagator</a>, only the taint for which the expression is true is passed on.</li>
 </ul>
-<p>A propagator can also relabel the taint it passes on. With <code>label</code>, the taint receives that label instead of its own. With <code>replace-labels</code>, a list of labels, only the taint that carries one of them is relabelled; other taint is passed on unchanged.</p>
+<p>A propagator can also relabel the taint it passes on. With <code>label</code>, the taint receives that label instead of its own. With <code>replace-labels</code>, a list of labels, only the taint that carries one of them is relabeled; other taint is passed on unchanged.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-path-built-from-user-input"><a class="hash" href="#a-path-built-from-user-input" aria-hidden="true" tabindex="-1">###</a> A path built from user input</h3>
 <p>The second source applies only to a path joined from data that carries the label <code>USER</code>, and the sink requires the label <code>PATH</code>. User input opened directly, or a path built from constants, is not reported.</p>
@@ -280,7 +280,7 @@
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep test .</span>
 1/1: ✓ All tests passed
 No tests for fixes found.</code></pre></div>
-<h3 id="relabelling-in-a-propagator"><a class="hash" href="#relabelling-in-a-propagator" aria-hidden="true" tabindex="-1">###</a> Relabelling in a propagator</h3>
+<h3 id="relabeling-in-a-propagator"><a class="hash" href="#relabeling-in-a-propagator" aria-hidden="true" tabindex="-1">###</a> Relabeling in a propagator</h3>
 <p>The propagator turns <code>RAW</code> taint into <code>ESCAPED</code> taint, and passes the <code>TRUSTED</code> taint on unchanged.</p>
 <div class="file"><div class="file-head">relabel.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: relabel</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">label</span>: RAW</span><span class="line">        <span class="k">pattern</span>: request.args.get(<span class="mv">...</span>)</span><span class="line">      - <span class="k">label</span>: TRUSTED</span><span class="line">        <span class="k">pattern</span>: settings.get(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-propagators</span>:</span><span class="line">      - <span class="k">pattern</span>: <span class="mv">$TO</span>.update(<span class="mv">$FROM</span>)</span><span class="line">        <span class="k">from</span>: <span class="mv">$FROM</span></span><span class="line">        <span class="k">to</span>: <span class="mv">$TO</span></span><span class="line">        <span class="k">label</span>: ESCAPED</span><span class="line">        <span class="k">replace-labels</span>: [RAW]</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">requires</span>: ESCAPED</span><span class="line">        <span class="k">pattern</span>: render_escaped(<span class="mv">...</span>)</span><span class="line">      - <span class="k">requires</span>: RAW</span><span class="line">        <span class="k">pattern</span>: render_raw(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: data reaches a template of the wrong kind</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
 <div class="file"><div class="file-head">relabel.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">user = request.args.get(<span class="s">&quot;name&quot;</span>)</span><span class="line">config = settings.get(<span class="s">&quot;name&quot;</span>)</span><span class="line">context = {}</span><span class="line">context.update(user)</span><span class="line"><span class="c"># ruleid: relabel</span></span><span class="line">render_escaped(context)</span><span class="line"><span class="c"># ok: relabel</span></span><span class="line">render_raw(context)</span><span class="line">defaults = {}</span><span class="line">defaults.update(config)</span><span class="line"><span class="c"># ok: relabel</span></span><span class="line">render_escaped(defaults)</span></code></pre></div>

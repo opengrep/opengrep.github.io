@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>opengrep lsp · Opengrep</title>
-  <meta name="description" content="Run opengrep as a language server, over standard input and output.">
+  <meta name="description" content="Run Opengrep as a language server over standard input and output.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -298,16 +298,16 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Flag</th><th>Summary</th></tr></thead>
 <tbody>
-<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log what --verbose logs, and the diagnostics of the engine.</td></tr>
+<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log the messages of --verbose and the diagnostics of the engine.</td></tr>
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><code>--profile</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print the findings and nothing else.</td></tr>
+<tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print only the findings, and nothing on standard error.</td></tr>
 <tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log the progress of the run, at the info level.</td></tr>
 </tbody>
 </table></div>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="starting-the-server"><a class="hash" href="#starting-the-server" aria-hidden="true" tabindex="-1">###</a> Starting the server</h3>
-<p>An editor starts the command and then conducts the session. Started from a shell, the server prints nothing: it waits for the <code>initialize</code> request of a client and answers on standard output.</p>
+<p>An editor starts the command and then communicates with it over standard input and output. When started from a shell, the server prints nothing: it waits for the <code>initialize</code> request of a client and answers on standard output.</p>
 <div class="file console"><div class="file-head">Command</div><button class="copy" type="button" data-copy="opengrep lsp
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep lsp</span></code></pre></div>
     </main>

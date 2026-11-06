@@ -261,11 +261,11 @@
 <div><dt>Value</dt><dd>a proxy URL with a scheme, such as <code>http://proxy.example.com:3128</code></dd></div>
 <div><dt>See also</dt><dd><a href="HTTP_PROXY.html"><code>HTTP_PROXY</code></a>, <a href="HTTPS_PROXY.html"><code>HTTPS_PROXY</code></a></dd></div>
 </dl>
-<p>The proxy for all downloads that opengrep makes, over <code>http</code> and <code>https</code>. <a href="HTTPS_PROXY.html"><code>HTTPS_PROXY</code></a> and <a href="HTTP_PROXY.html"><code>HTTP_PROXY</code></a> take precedence for their own scheme, and the hosts listed in <a href="NO_PROXY.html"><code>NO_PROXY</code></a> are reached directly.</p>
+<p>The proxy for all downloads that Opengrep makes, over <code>http</code> and <code>https</code>. <a href="HTTPS_PROXY.html"><code>HTTPS_PROXY</code></a> and <a href="HTTP_PROXY.html"><code>HTTP_PROXY</code></a> take precedence for their own scheme, and the hosts listed in <a href="NO_PROXY.html"><code>NO_PROXY</code></a> are reached directly.</p>
 <p>The lowercase <code>all_proxy</code> is also read; when both are set, <code>ALL_PROXY</code> takes precedence. The variable has no <code>OPENGREP_</code> form.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="both-schemes-through-one-proxy"><a class="hash" href="#both-schemes-through-one-proxy" aria-hidden="true" tabindex="-1">###</a> Both schemes through one proxy</h3>
-<p>The host <code>proxy.invalid</code> does not exist, so a download through the proxy fails when opengrep resolves the proxy.</p>
+<p>The host <code>proxy.invalid</code> does not exist, so a download through the proxy fails when Opengrep resolves the proxy.</p>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="ALL_PROXY=http://proxy.invalid:3128 opengrep scan --config http://example.invalid/rules.yaml app.py 2&gt;&amp;1 | grep &#x27;Failed to download&#x27;
 ALL_PROXY=http://proxy.invalid:3128 opengrep scan --config https://example.invalid/rules.yaml app.py 2&gt;&amp;1 | grep &#x27;Failed to download&#x27;

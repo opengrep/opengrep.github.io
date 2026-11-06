@@ -265,13 +265,13 @@
 <tr><td><a href="pattern-syntax/metavariables.html"><code>$X</code></a></td><td>Match any expression or name, bind it, and require the same code where the name repeats.</td></tr>
 <tr><td><a href="pattern-syntax/typed-metavariables.html"><code>(TYPE $X)</code></a></td><td>Match an expression only when it has a given type.</td></tr>
 <tr><td><a href="pattern-syntax/deep-expression.html"><code>&lt;... ...&gt;</code></a></td><td>Match an expression that contains code matching an inner pattern, at any depth.</td></tr>
-<tr><td><a href="pattern-syntax/strings.html"><code>&quot;...&quot;</code></a></td><td>Match string literals: any string, a bound string, or a string that fits a regular expression.</td></tr>
+<tr><td><a href="pattern-syntax/strings.html"><code>&quot;...&quot;</code></a></td><td>Match string literals: any string, a bound string, or a string that matches a regular expression.</td></tr>
 <tr><td><a href="pattern-syntax/imports.html">imports and aliases</a></td><td>A qualified name in a pattern also matches the same name imported under another name.</td></tr>
 </tbody>
 </table></div>
-<p>Some <a href="rule-options.html">rule options</a> widen what a pattern matches, for example <a href="rule-options/constant_propagation.html"><code>constant_propagation</code></a>, on by default, which lets a pattern for a value match a variable that holds it.</p>
+<p>Some <a href="rule-options.html">rule options</a> extend what a pattern matches. For example, <a href="rule-options/constant_propagation.html"><code>constant_propagation</code></a>, which is on by default, lets a literal in a pattern match a variable known to hold that value.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="formatting-and-comments-do-not-matter"><a class="hash" href="#formatting-and-comments-do-not-matter" aria-hidden="true" tabindex="-1">###</a> Formatting and comments do not matter</h3>
+<h3 id="formatting-and-comments-are-ignored"><a class="hash" href="#formatting-and-comments-are-ignored" aria-hidden="true" tabindex="-1">###</a> Formatting and comments are ignored</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: shell-true</span><span class="line">    <span class="k">pattern</span>: subprocess.run(<span class="mv">$CMD</span>, shell=<span class="s">True</span>)</span><span class="line">    <span class="k">message</span>: a command is run through the shell</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">subprocess.run(</span><span class="line">    cmd,  <span class="c"># built above</span></span><span class="line">    shell = <span class="s">True</span>,</span><span class="line">)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rule.yaml app.py

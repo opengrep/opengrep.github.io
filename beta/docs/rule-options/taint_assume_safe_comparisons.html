@@ -261,7 +261,7 @@
 <div><dt>Default</dt><dd><code>false</code></dd></div>
 </dl>
 <p>By default, an operation on tainted data gives a tainted result, and a comparison is no exception: <code>answer == &quot;yes&quot;</code> is tainted when <code>answer</code> is.</p>
-<p>With <code>taint_assume_safe_comparisons: true</code>, the result of a comparison is clean. In Python that covers <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>in</code> and <code>is</code>, among the others. Operators that are not comparisons, such as <code>+</code> and <code>not</code>, still spread taint.</p>
+<p>With <code>taint_assume_safe_comparisons: true</code>, the result of a comparison is clean. In Python that covers <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>in</code> and <code>is</code>, among others. Operators that are not comparisons, such as <code>+</code> and <code>not</code>, still propagate taint.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="comparisons-on-user-input"><a class="hash" href="#comparisons-on-user-input" aria-hidden="true" tabindex="-1">###</a> Comparisons on user input</h3>
 <p>The rule <code>logged</code> turns the option on.</p>

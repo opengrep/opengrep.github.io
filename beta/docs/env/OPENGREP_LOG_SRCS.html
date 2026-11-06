@@ -261,7 +261,7 @@
 <div><dt>Value</dt><dd>comma-separated regular expressions</dd></div>
 <div><dt>See also</dt><dd><a href="../flags/debug.html"><code>--debug</code></a>, <a href="OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a></dd></div>
 </dl>
-<p>Log messages come from sources: the application code of opengrep, and named components such as <code>semgrep.targeting</code>, <code>networking.http</code>, <code>cohttp.lwt.client</code> or <code>tls.config</code>. By default, only the messages of the application are shown; <a href="../flags/debug.html"><code>--debug</code></a> lists the other sources as <code>Skipping logs for &lt;name&gt;</code>.</p>
+<p>Log messages come from sources: the application code of Opengrep, and named components such as <code>semgrep.targeting</code>, <code>networking.http</code>, <code>cohttp.lwt.client</code> or <code>tls.config</code>. By default, only the messages of the application are shown; <a href="../flags/debug.html"><code>--debug</code></a> lists the other sources as <code>Skipping logs for &lt;name&gt;</code>.</p>
 <p>The variable names the sources whose messages are shown as well, as comma-separated regular expressions, each matched anywhere in the name of a source. The log level still applies: a source enabled this way shows only the messages at or above the level set by <code>--verbose</code>, <code>--debug</code> or <a href="OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a>.</p>
 <p>The first of <code>PYTEST_OPENGREP_LOG_SRCS</code>, <code>OPENGREP_LOG_SRCS</code>, <code>PYTEST_SEMGREP_LOG_SRCS</code> and <code>SEMGREP_LOG_SRCS</code> that is set takes precedence.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

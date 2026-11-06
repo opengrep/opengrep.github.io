@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>TERM · Opengrep</title>
-  <meta name="description" content="The terminal type; unset, dumb or unknown turns off the status line.">
+  <meta name="description" content="The terminal type; the values dumb and unknown, or no value, turn off the status line.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -261,7 +261,7 @@
 <div><dt>See also</dt><dd><a href="../flags/no-progress-bar.html"><code>--no-progress-bar</code></a></dd></div>
 </dl>
 <p>The type of the terminal, set by terminal emulators. When it is unset, <code>dumb</code> or <code>unknown</code>, <code>opengrep scan</code> does not draw the status line that shows the progress of the scan, since a terminal of that kind, such as an Emacs shell buffer, would show each redraw as a separate line.</p>
-<p>The variable has no other effect; in particular, colour does not depend on it. It has no <code>OPENGREP_</code> form.</p>
+<p>The variable has no other effect; in particular, color does not depend on it. It has no <code>OPENGREP_</code> form.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-scan-on-a-terminal-that-cannot-redraw-a-line"><a class="hash" href="#a-scan-on-a-terminal-that-cannot-redraw-a-line" aria-hidden="true" tabindex="-1">###</a> A scan on a terminal that cannot redraw a line</h3>
 <div class="file console"><div class="file-head">Command</div><button class="copy" type="button" data-copy="TERM=dumb opengrep scan -q --config rule.yaml .

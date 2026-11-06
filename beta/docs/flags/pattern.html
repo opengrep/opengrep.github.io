@@ -263,7 +263,7 @@
 <div><dt>See also</dt><dd><a href="lang.html"><code>--lang</code></a>, <a href="replacement.html"><code>--replacement</code></a>, <a href="config.html"><code>--config</code></a>, <a href="../rule-syntax/patterns.html"><code>patterns</code></a>, <a href="../rule-syntax/pattern.html"><code>pattern</code></a></dd></div>
 </dl>
 <p>Searches with one pattern, without a rule file, to find code by its structure rather than by its text. The pattern uses the <a href="../pattern-syntax.html">pattern syntax</a> of a rule: <code>eval(...)</code> matches any call to <code>eval</code>.</p>
-<p><code>-e</code> and <a href="lang.html"><code>-l</code>/<code>--lang</code></a> must be given together, since the pattern is parsed as code of a language. Without <code>-l</code>, opengrep stops with <code class="long">-e/--pattern and -l/--lang must both be specified</code> and exit status 2.</p>
+<p><code>-e</code> and <a href="lang.html"><code>-l</code>/<code>--lang</code></a> must be given together, since the pattern is parsed as code of a language. Without <code>-l</code>, Opengrep stops with <code class="long">-e/--pattern and -l/--lang must both be specified</code> and exit status 2.</p>
 <p>A finding of a command-line pattern has no rule: it is reported with <code>-</code> as its rule id, the pattern as its message, and the severity <code>ERROR</code>. The text output shows only the matched lines. <a href="replacement.html"><code>--replacement</code></a> adds a fix to the pattern.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="searching-for-a-call"><a class="hash" href="#searching-for-a-call" aria-hidden="true" tabindex="-1">###</a> Searching for a call</h3>

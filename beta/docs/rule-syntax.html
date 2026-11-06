@@ -270,13 +270,13 @@
 <tr><td><a href="rule-syntax/id.html"><code>id</code></a></td><td>The identifier of the rule.</td></tr>
 <tr><td><a href="rule-syntax/languages.html"><code>languages</code></a></td><td>The languages of the files the rule runs on.</td></tr>
 <tr><td><a href="rule-syntax/message.html"><code>message</code></a></td><td>The text reported with each finding.</td></tr>
-<tr><td><a href="rule-syntax/severity.html"><code>severity</code></a></td><td>How serious a finding is.</td></tr>
-<tr><td>a way to match code</td><td>In the default <a href="rule-syntax/mode.html">search mode</a>, one of <a href="rule-syntax/pattern.html"><code>pattern</code></a>, <a href="rule-syntax/patterns.html"><code>patterns</code></a>, <a href="rule-syntax/pattern-either.html"><code>pattern-either</code></a> and <a href="rule-syntax/pattern-regex.html"><code>pattern-regex</code></a>. In <a href="rule-syntax/taint-mode.html">taint mode</a>, sources and sinks.</td></tr>
+<tr><td><a href="rule-syntax/severity.html"><code>severity</code></a></td><td>The severity of the findings.</td></tr>
+<tr><td>pattern keys</td><td>In the default <a href="rule-syntax/mode.html">search mode</a>, one of <a href="rule-syntax/pattern.html"><code>pattern</code></a>, <a href="rule-syntax/patterns.html"><code>patterns</code></a>, <a href="rule-syntax/pattern-either.html"><code>pattern-either</code></a> and <a href="rule-syntax/pattern-regex.html"><code>pattern-regex</code></a>. In <a href="rule-syntax/taint-mode.html">taint mode</a>, <a href="rule-syntax/pattern-sources.html"><code>pattern-sources</code></a> and <a href="rule-syntax/pattern-sinks.html"><code>pattern-sinks</code></a>.</td></tr>
 </tbody>
 </table></div>
-<p>The patterns themselves are written in the <a href="pattern-syntax.html">pattern syntax</a>.</p>
+<p>Patterns are written in the <a href="pattern-syntax.html">pattern syntax</a>.</p>
 <h2 id="unknown-keys"><a class="hash" href="#unknown-keys" aria-hidden="true" tabindex="-1">##</a> Unknown keys</h2>
-<p>Opengrep skips an unknown key at the top level of a rule, with a warning such as <code class="long">Skipping unknown field &#x27;nosuchkey&#x27; in rule &quot;find-eval&quot;</code>, and runs the rule. An unknown key where the set of keys is fixed, such as under <a href="rule-syntax/paths.html"><code>paths</code></a> or <a href="rule-syntax/options.html"><code>options</code></a>, makes the rule invalid.</p>
+<p>Opengrep ignores an unknown key at the top level of a rule, logs a warning such as <code class="long">Skipping unknown field &#x27;nosuchkey&#x27; in rule &quot;find-eval&quot;</code>, and runs the rule. An unknown key where the set of keys is fixed, such as under <a href="rule-syntax/paths.html"><code>paths</code></a> or <a href="rule-syntax/options.html"><code>options</code></a>, makes the rule invalid.</p>
 <h2 id="index"><a class="hash" href="#index" aria-hidden="true" tabindex="-1">##</a> Index</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Name</th><th>Summary</th></tr></thead>
@@ -288,21 +288,21 @@
 <tr><td><a href="rule-syntax/fix-regex.html"><code>fix-regex</code></a></td><td>Fix each match by replacing what a regular expression matches inside it.</td></tr>
 <tr><td><a href="rule-syntax/focus-metavariable.html"><code>focus-metavariable</code></a></td><td>Report only the code a metavariable matched, not the whole match.</td></tr>
 <tr><td><a href="rule-syntax/id.html"><code>id</code></a></td><td>The identifier of a rule, reported with each of its findings.</td></tr>
-<tr><td><a href="rule-syntax/label.html"><code>label</code></a></td><td>Tell kinds of taint apart in a taint rule, and require some of them at a sink.</td></tr>
+<tr><td><a href="rule-syntax/label.html"><code>label</code></a></td><td>Distinguish kinds of taint in a taint rule, and require some of them at a sink.</td></tr>
 <tr><td><a href="rule-syntax/languages.html"><code>languages</code></a></td><td>The languages of the files a rule runs on, and the language its patterns are written in.</td></tr>
 <tr><td><a href="rule-syntax/message.html"><code>message</code></a></td><td>The text reported with each finding; metavariables in it are replaced by the code they matched.</td></tr>
 <tr><td><a href="rule-syntax/metadata.html"><code>metadata</code></a></td><td>Data attached to a rule and copied into its findings, such as CWE and OWASP references.</td></tr>
 <tr><td><a href="rule-syntax/metavariable-analysis.html"><code>metavariable-analysis</code></a></td><td>Keep the matches where a metavariable passes an analysis: entropy for secrets, redos for regular expressions.</td></tr>
 <tr><td><a href="rule-syntax/metavariable-comparison.html"><code>metavariable-comparison</code></a></td><td>Keep the matches where an expression over metavariables is true.</td></tr>
 <tr><td><a href="rule-syntax/metavariable-pattern.html"><code>metavariable-pattern</code></a></td><td>Keep the matches where the code a metavariable matched also matches a further pattern.</td></tr>
-<tr><td><a href="rule-syntax/metavariable-regex.html"><code>metavariable-regex</code></a></td><td>Keep the matches where the code a metavariable matched fits a regular expression.</td></tr>
+<tr><td><a href="rule-syntax/metavariable-regex.html"><code>metavariable-regex</code></a></td><td>Keep the matches where the code bound to a metavariable matches a regular expression.</td></tr>
 <tr><td><a href="rule-syntax/metavariable-type.html"><code>metavariable-type</code></a></td><td>Keep the matches where the expression of a metavariable has a given type.</td></tr>
 <tr><td><a href="rule-syntax/min-version.html"><code>min-version</code></a></td><td>Skip a rule written for a newer or an older rule format, by Semgrep version number.</td></tr>
-<tr><td><a href="rule-syntax/mode.html"><code>mode</code></a></td><td>How the rule finds code: search, the default, or taint.</td></tr>
+<tr><td><a href="rule-syntax/mode.html"><code>mode</code></a></td><td>The matching mode of a rule: search, the default, or taint.</td></tr>
 <tr><td><a href="rule-syntax/taint-mode.html"><code>mode: taint</code></a></td><td>Find data that flows from sources to sinks without passing through a sanitizer.</td></tr>
 <tr><td><a href="rule-syntax/options.html"><code>options</code></a></td><td>Settings that change how a rule matches, for that rule only.</td></tr>
 <tr><td><a href="rule-syntax/paths.html"><code>paths</code></a></td><td>Limit a rule to files whose paths match, or do not match, glob patterns.</td></tr>
-<tr><td><a href="rule-syntax/pattern.html"><code>pattern</code></a></td><td>Match code that looks like the pattern, written in the language of the rule.</td></tr>
+<tr><td><a href="rule-syntax/pattern.html"><code>pattern</code></a></td><td>Match code against a pattern written in the language of the rule.</td></tr>
 <tr><td><a href="rule-syntax/pattern-either.html"><code>pattern-either</code></a></td><td>Match code that matches any one of a list of patterns.</td></tr>
 <tr><td><a href="rule-syntax/pattern-inside.html"><code>pattern-inside</code></a></td><td>Keep only the matches that lie inside code matching this pattern.</td></tr>
 <tr><td><a href="rule-syntax/pattern-not.html"><code>pattern-not</code></a></td><td>Drop the matches that also match this pattern.</td></tr>
@@ -315,11 +315,11 @@
 <tr><td><a href="rule-syntax/pattern-sources.html"><code>pattern-sources</code></a></td><td>In a taint rule, the code that produces untrusted data.</td></tr>
 <tr><td><a href="rule-syntax/patterns.html"><code>patterns</code></a></td><td>Match code that satisfies every condition of a list.</td></tr>
 <tr><td><a href="rule-syntax/rules.html"><code>rules</code></a></td><td>The top-level list of a rule file, one entry per rule.</td></tr>
-<tr><td><a href="rule-syntax/severity.html"><code>severity</code></a></td><td>How serious a finding is: ERROR, WARNING or INFO, or CRITICAL, HIGH, MEDIUM or LOW.</td></tr>
+<tr><td><a href="rule-syntax/severity.html"><code>severity</code></a></td><td>The severity of the findings: ERROR, WARNING or INFO, or CRITICAL, HIGH, MEDIUM or LOW.</td></tr>
 </tbody>
 </table></div>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="an-unknown-key-only-warns"><a class="hash" href="#an-unknown-key-only-warns" aria-hidden="true" tabindex="-1">###</a> An unknown key only warns</h3>
+<h3 id="an-unknown-key-produces-a-warning"><a class="hash" href="#an-unknown-key-produces-a-warning" aria-hidden="true" tabindex="-1">###</a> An unknown key produces a warning</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span><span class="line">    <span class="k">nosuchkey</span>: whatever</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml app.py 2&gt;&amp;1 | grep Skipping

@@ -260,13 +260,13 @@
 <div><dt>See also</dt><dd><a href="scan.html"><code>opengrep scan</code></a>, <a href="../flags/audit-on.html"><code>--audit-on</code></a>, <a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a>, <a href="../flags/subdir.html"><code>--subdir</code></a>, <a href="../flags/baseline-commit.html"><code>--baseline-commit</code></a>, <a href="../flags/error.html"><code>--error</code></a>, <a href="../env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a>, <a href="../env/OPENGREP_REPO_NAME.html"><code>OPENGREP_REPO_NAME</code></a></dd></div>
 </dl>
 <div class="file"><pre class="snip"><code>opengrep ci [FLAGS]</code></pre></div>
-<p>Runs the engine of <a href="scan.html"><code>opengrep scan</code></a>, with defaults suited to continuous integration. The command takes no targets: it scans the current directory, or the directory given by <a href="../flags/subdir.html"><code>--subdir</code></a>, and is meant to run at the root of a git repository. Run elsewhere, it logs a warning and continues with the information it can determine.</p>
+<p>Runs the engine of <a href="scan.html"><code>opengrep scan</code></a>, with defaults suited to continuous integration. The command takes no targets: it scans the current directory, or the directory given by <a href="../flags/subdir.html"><code>--subdir</code></a>, and is meant to run at the root of a git repository. When run elsewhere, it logs a warning and continues with the information it can determine.</p>
 <p>The rules come from <a href="../flags/config.html"><code>--config</code></a> or <a href="../env/OPENGREP_RULES.html"><code>OPENGREP_RULES</code></a>, as for a scan. Without either, <code>opengrep ci</code> uses <code>--config auto</code> and downloads rules from the registry.</p>
 <p>In addition to a scan, <code>opengrep ci</code> provides:</p>
 <ul>
 <li><strong>Repository metadata.</strong> The CI provider is detected from the environment (GitHub Actions, GitLab CI, CircleCI, Jenkins, Bitbucket, Azure Pipelines, Buildkite or Travis, and plain git otherwise). The first line printed on standard error names the provider and the event that triggered the run, such as <code>git · unknown</code> or <code>gitlab-ci · push</code>. Variables such as <a href="../env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a> can set parts of the metadata; see <a href="../environment.html">Environment variables</a>.</li>
 <li><strong>A baseline.</strong> The baseline is derived from the metadata, so that in a pull or merge request, only the findings that the request introduces are reported. <a href="../flags/baseline-commit.html"><code>--baseline-commit</code></a> overrides it.</li>
-<li><strong>Blocking findings.</strong> Whether a finding is blocking depends on the metadata of its rule. <code>opengrep ci</code> lists the rules of the blocking findings under <code>blocking rules fired</code>, and exits with status 1 when there is at least one, without <code>--error</code>. <a href="../flags/audit-on.html"><code>--audit-on</code></a> keeps the status at 0 for given CI events.</li>
+<li><strong>Blocking findings.</strong> Whether a finding is blocking depends on the metadata of its rule. <code>opengrep ci</code> lists the rules of the blocking findings under <code>blocking rules fired</code>, and exits with status 1 when there is at least one, even without <code>--error</code>. <a href="../flags/audit-on.html"><code>--audit-on</code></a> keeps the status at 0 for the CI events it names.</li>
 <li><strong>Suppressed errors.</strong> By default, any other failure ends the run with exit status 0, so that, for example, an invalid rule file does not fail the build. See <a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a>.</li>
 </ul>
 <h2 id="exit-status"><a class="hash" href="#exit-status" aria-hidden="true" tabindex="-1">##</a> Exit status</h2>
@@ -287,9 +287,9 @@
 <tr><td><a href="../flags/baseline-commit.html"><code>--baseline-commit</code></a></td><td>Report only the findings that are not present in the given commit.</td></tr>
 <tr><td><a href="../flags/config.html"><code>--config</code></a></td><td>Load rules from a file, a directory, a URL, a git repository or the registry.</td></tr>
 <tr><td><a href="../flags/dataflow-traces.html"><code>--dataflow-traces</code></a></td><td>Show the path from source to sink in the findings of taint rules.</td></tr>
-<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log what --verbose logs, and the diagnostics of the engine.</td></tr>
+<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log the messages of --verbose and the diagnostics of the engine.</td></tr>
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/disable-intrafile.html"><code>--disable-intrafile</code></a></td><td>Analyse every taint rule one function at a time, including rules that ask to follow calls.</td></tr>
+<tr><td><a href="../flags/disable-intrafile.html"><code>--disable-intrafile</code></a></td><td>Analyze every taint rule one function at a time, including rules that set taint_intrafile or taint_interfile.</td></tr>
 <tr><td><a href="../flags/dynamic-timeout.html"><code>--dynamic-timeout</code></a></td><td>Scale the time limit of each rule with the size of the file.</td></tr>
 <tr><td><a href="../flags/dynamic-timeout-max-multiplier.html"><code>--dynamic-timeout-max-multiplier</code></a></td><td>The largest factor by which --dynamic-timeout multiplies the timeout.</td></tr>
 <tr><td><a href="../flags/dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a></td><td>The file size, in KB, of one step of --dynamic-timeout.</td></tr>
@@ -298,7 +298,7 @@
 <tr><td><a href="../flags/enable-interfile.html"><code>--enable-interfile</code></a></td><td>Run cross-file taint analysis for the rules that set the taint_interfile option.</td></tr>
 <tr><td><a href="../flags/enable-nosem.html"><code>--enable-nosem</code></a></td><td>Whether nosem comments suppress findings; on by default.</td></tr>
 <tr><td><a href="../flags/exclude.html"><code>--exclude</code></a></td><td>Skip files and directories whose path matches a gitignore-style pattern.</td></tr>
-<tr><td><a href="../flags/exclude-rule.html"><code>--exclude-rule</code></a></td><td>Skip a rule, by its id.</td></tr>
+<tr><td><a href="../flags/exclude-rule.html"><code>--exclude-rule</code></a></td><td>Skip the rule with this id.</td></tr>
 <tr><td><a href="../flags/files-with-matches.html"><code>--files-with-matches</code></a></td><td>Print only the paths of the files that have findings.</td></tr>
 <tr><td><a href="../flags/force-color.html"><code>--force-color</code></a></td><td>Style the output even when it does not go to a terminal.</td></tr>
 <tr><td><a href="../flags/force-exclude.html"><code>--force-exclude</code></a></td><td>Apply --include and --exclude to files named on the command line as well.</td></tr>
@@ -308,10 +308,10 @@
 <tr><td><a href="../flags/gitlab-secrets-output.html"><code>--gitlab-secrets-output</code></a></td><td>Write the findings as a GitLab secret detection report to a file as well.</td></tr>
 <tr><td><a href="../flags/include.html"><code>--include</code></a></td><td>Scan only the files whose path matches one of these patterns.</td></tr>
 <tr><td><a href="../flags/inline-metavariables.html"><code>--inline-metavariables</code></a></td><td>Replace the metavariables in the metadata of a rule with the code they matched.</td></tr>
-<tr><td><a href="../flags/interfile-dedup-by.html"><code>--interfile-dedup-by</code></a></td><td>Whether a sink that several sources reach across files makes one finding or one per source.</td></tr>
+<tr><td><a href="../flags/interfile-dedup-by.html"><code>--interfile-dedup-by</code></a></td><td>Whether a sink reached by several sources across files produces one finding or one per source.</td></tr>
 <tr><td><a href="../flags/interfile-depth.html"><code>--interfile-depth</code></a></td><td>The longest call chain the cross-file taint analysis follows.</td></tr>
 <tr><td><a href="../flags/interfile-timeout.html"><code>--interfile-timeout</code></a></td><td>The time a rule may spend on the cross-file taint analysis.</td></tr>
-<tr><td><a href="../flags/jobs.html"><code>--jobs</code></a></td><td>The number of cores that run rules in parallel.</td></tr>
+<tr><td><a href="../flags/jobs.html"><code>--jobs</code></a></td><td>The number of workers that run rules in parallel.</td></tr>
 <tr><td><a href="../flags/json.html"><code>--json</code></a></td><td>Print the findings as a JSON document.</td></tr>
 <tr><td><a href="../flags/json-output.html"><code>--json-output</code></a></td><td>Write the findings as JSON to a file as well.</td></tr>
 <tr><td><a href="../flags/junit-xml.html"><code>--junit-xml</code></a></td><td>Print the findings as a JUnit XML report, one failed test per finding.</td></tr>
@@ -327,14 +327,14 @@
 <tr><td><a href="../flags/optimizations.html"><code>--optimizations</code></a></td><td>Turn the optimizations of the engine, such as the prefilter, on or off.</td></tr>
 <tr><td><a href="../flags/output.html"><code>--output</code></a></td><td>Write the output to a file instead of standard output.</td></tr>
 <tr><td><code>--profile</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print the findings and nothing else.</td></tr>
+<tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print only the findings, and nothing on standard error.</td></tr>
 <tr><td><a href="../flags/rewrite-rule-ids.html"><code>--rewrite-rule-ids</code></a></td><td>Whether the ids of rules from a subdirectory are prefixed with its path; on by default.</td></tr>
 <tr><td><a href="../flags/sarif.html"><code>--sarif</code></a></td><td>Print the findings as a SARIF 2.1.0 document.</td></tr>
 <tr><td><a href="../flags/sarif-output.html"><code>--sarif-output</code></a></td><td>Write the findings as SARIF to a file as well, including suppressed findings.</td></tr>
 <tr><td><a href="../flags/scan-unknown-extensions.html"><code>--scan-unknown-extensions</code></a></td><td>Scan a file named on the command line even when its extension belongs to no language.</td></tr>
 <tr><td><a href="../flags/skin.html"><code>--skin</code></a></td><td>The layout of the text output.</td></tr>
 <tr><td><a href="../flags/subdir.html"><code>--subdir</code></a></td><td>Scan only this directory, with the CI metadata of the whole repository.</td></tr>
-<tr><td><a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a></td><td>Whether errors fail opengrep ci; on by default, so that errors exit with status 0.</td></tr>
+<tr><td><a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a></td><td>Make opengrep ci exit with status 0 on errors; on by default.</td></tr>
 <tr><td><a href="../flags/taint-intrafile.html"><code>--taint-intrafile</code></a></td><td>Follow taint through calls to functions in the same file, for every taint rule.</td></tr>
 <tr><td><a href="../flags/text.html"><code>--text</code></a></td><td>Print the text output, the default format.</td></tr>
 <tr><td><a href="../flags/text-output.html"><code>--text-output</code></a></td><td>Write the text output to a file as well.</td></tr>

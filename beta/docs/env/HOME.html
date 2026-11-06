@@ -261,10 +261,10 @@
 <div><dt>See also</dt><dd><a href="../commands/lsp.html"><code>opengrep lsp</code></a></dd></div>
 </dl>
 <p>The home directory of the user. <code>XDG_CONFIG_HOME</code> takes its place when it names an existing directory, and <code>USERPROFILE</code> does on Windows. The variable has no <code>OPENGREP_</code> form.</p>
-<p>The only data that opengrep keeps under the home directory is the cache of <a href="../commands/lsp.html"><code>opengrep lsp</code></a>, in <code>.semgrep/cache</code>. Scans, tests and validation write nothing there.</p>
-<p>Programs that opengrep runs may read <code>HOME</code> themselves: git, when it clones a <code>git+</code> configuration, reads its own configuration from there.</p>
+<p>The only data that Opengrep keeps under the home directory is the cache of <a href="../commands/lsp.html"><code>opengrep lsp</code></a>, in <code>.semgrep/cache</code>. Scans, tests and validation write nothing there.</p>
+<p>Programs that Opengrep runs may read <code>HOME</code> themselves: git, when it clones a <code>git+</code> configuration, reads its own configuration from there.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="a-scan-leaves-the-home-directory-alone"><a class="hash" href="#a-scan-leaves-the-home-directory-alone" aria-hidden="true" tabindex="-1">###</a> A scan leaves the home directory alone</h3>
+<h3 id="a-scan-writes-nothing-to-the-home-directory"><a class="hash" href="#a-scan-writes-nothing-to-the-home-directory" aria-hidden="true" tabindex="-1">###</a> A scan writes nothing to the home directory</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="mkdir home

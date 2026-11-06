@@ -262,7 +262,7 @@
 <div><dt>See also</dt><dd><a href="taint_assume_safe_numbers.html"><code>taint_assume_safe_numbers</code></a></dd></div>
 </dl>
 <p>With <code>taint_assume_safe_booleans: true</code>, a value of boolean type is clean, even when it was computed from tainted data, as <code>query.isEmpty()</code> is from <code>query</code>.</p>
-<p>This depends on opengrep knowing the type. In Java it does, both from the declared type of a variable and from the return type of a method, including library methods such as <code>String.isEmpty()</code>. In Go and TypeScript, the declared type of a variable counts, but the return type of a function does not. In Python the option has no effect, even with type annotations.</p>
+<p>This depends on Opengrep knowing the type. In Java it does, both from the declared type of a variable and from the return type of a method, including library methods such as <code>String.isEmpty()</code>. In Go and TypeScript, the declared type of a variable is used, but the return type of a function is not. In Python the option has no effect, even with type annotations.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="booleans-in-java"><a class="hash" href="#booleans-in-java" aria-hidden="true" tabindex="-1">###</a> Booleans in Java</h3>
 <p>The rule <code>query-logged</code> turns the option on.</p>

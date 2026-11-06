@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>OPENGREP_SUPPRESS_ERRORS · Opengrep</title>
-  <meta name="description" content="Whether errors fail opengrep ci, when --suppress-errors is not given.">
+  <meta name="description" content="Whether opengrep ci suppresses errors, when --suppress-errors is not given.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -261,10 +261,10 @@
 <div><dt>Value</dt><dd><code>true</code>, <code>yes</code>, <code>1</code> or <code>false</code>, <code>no</code>, <code>0</code></dd></div>
 <div><dt>Equivalent to</dt><dd><a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a></dd></div>
 </dl>
-<p>Read by <code>opengrep ci</code> when neither <a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a> nor <code>--no-suppress-errors</code> is given. A true value keeps the default, in which an error ends the run with exit status 0. A false value keeps the real exit status, so that, for example, an invalid rule file fails the job.</p>
+<p>Read by <code>opengrep ci</code> when neither <a href="../flags/suppress-errors.html"><code>--suppress-errors</code></a> nor <code>--no-suppress-errors</code> is given. A true value keeps the default, in which an error ends the run with exit status 0. A false value keeps the original exit status, so that, for example, an invalid rule file fails the job.</p>
 <p>The accepted values are <code>true</code>, <code>TRUE</code>, <code>yes</code> and <code>1</code> for true, and <code>false</code>, <code>FALSE</code>, <code>no</code> and <code>0</code> for false. Any other value, including <code>on</code> and <code>off</code>, is rejected like an invalid flag value, and <code>opengrep ci</code> exits with status 2.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="letting-a-broken-rule-file-fail-the-job"><a class="hash" href="#letting-a-broken-rule-file-fail-the-job" aria-hidden="true" tabindex="-1">###</a> Letting a broken rule file fail the job</h3>
+<h3 id="failing-the-job-on-an-invalid-rule-file"><a class="hash" href="#failing-the-job-on-an-invalid-rule-file" aria-hidden="true" tabindex="-1">###</a> Failing the job on an invalid rule file</h3>
 <div class="file"><div class="file-head">broken.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: broken</span><span class="line">    <span class="k">patterns</span>:</span><span class="line">      - <span class="k">pattern-not</span>: eval(<span class="s">&quot;...&quot;</span>)</span><span class="line">    <span class="k">message</span>: a rule that cannot work</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="git init -q &amp;&amp; git add . &amp;&amp; git commit -qm init

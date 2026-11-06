@@ -261,7 +261,7 @@
 <div><dt>Value</dt><dd>comma-separated tag names, or <code>all</code></dd></div>
 <div><dt>See also</dt><dd><a href="OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a></dd></div>
 </dl>
-<p>Debug messages can carry tags; those of opengrep itself carry the tag <code>default</code>. By default, a debug message is shown only when it is tagged <code>default</code>. The variable replaces that list: a debug message is shown when it carries one of the named tags, and <code>all</code> shows every debug message.</p>
+<p>Debug messages can carry tags; those of Opengrep itself carry the tag <code>default</code>. By default, a debug message is shown only when it is tagged <code>default</code>. The variable replaces that list: a debug message is shown when it carries one of the named tags, and <code>all</code> shows every debug message.</p>
 <p>Only debug messages are filtered by tag. Info messages, warnings and errors depend on the log level alone, and the level also decides whether debug messages are shown at all: the tags narrow what <a href="../flags/debug.html"><code>--debug</code></a> shows, and do not enable it.</p>
 <p>The first of <code>PYTEST_OPENGREP_LOG_TAGS</code>, <code>OPENGREP_LOG_TAGS</code>, <code>PYTEST_SEMGREP_LOG_TAGS</code> and <code>SEMGREP_LOG_TAGS</code> that is set takes precedence.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
@@ -277,7 +277,7 @@ shown
 hidden
 <span class="p">$ </span><span class="cmd">OPENGREP_LOG_TAGS=nosuchtag opengrep scan --config rule.yaml --debug app.py 2&gt;&amp;1 &gt;/dev/null | grep -q <span class="s">&#x27;\[INFO\]&#x27;</span> &amp;&amp; echo shown || echo hidden</span>
 shown</code></pre></div>
-<p>No debug message carries the tag <code>nosuchtag</code>, so they all disappear, while the info messages are untouched.</p>
+<p>No debug message carries the tag <code>nosuchtag</code>, so no debug message is shown. The info messages are not affected.</p>
     </main>
   </div>
 

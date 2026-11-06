@@ -266,7 +266,7 @@
 <p>With the default of 30, a file of 30 KB gets one timeout, and a file of 120 KB four. A smaller unit gives large files more time; a larger unit keeps the limit closer to <code>--timeout</code> for all but the largest files.</p>
 <p>The flag has no effect unless <code>--dynamic-timeout</code> is given, or a rule sets the option <code>dynamic_timeout</code> and the scan allows it with <a href="allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="a-smaller-unit-more-generous-limits"><a class="hash" href="#a-smaller-unit-more-generous-limits" aria-hidden="true" tabindex="-1">###</a> A smaller unit, more generous limits</h3>
+<h3 id="a-smaller-unit-gives-longer-limits"><a class="hash" href="#a-smaller-unit-gives-longer-limits" aria-hidden="true" tabindex="-1">###</a> A smaller unit gives longer limits</h3>
 <div class="file console"><div class="file-head">Command</div><button class="copy" type="button" data-copy="opengrep scan -q --config rules/ --dynamic-timeout --dynamic-timeout-unit-kb 10 .
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rules/ --dynamic-timeout --dynamic-timeout-unit-kb 10 .</span></code></pre></div>
     </main>

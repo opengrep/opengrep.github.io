@@ -260,12 +260,12 @@
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="skin.html"><code>--skin</code></a>, <a href="incremental-output.html"><code>--incremental-output</code></a>, <a href="../env/CI.html"><code>CI</code></a>, <a href="../env/TERM.html"><code>TERM</code></a></dd></div>
 </dl>
-<p>During a scan, opengrep draws a status line on the terminal that shows its progress, such as loading the rules or analysing the targets. The line is erased when the scan ends and is not part of the output. The flag turns it off.</p>
+<p>During a scan, Opengrep draws a status line on the terminal that shows its progress, such as loading the rules or analyzing the targets. The line is erased when the scan ends and is not part of the output. The flag turns it off.</p>
 <p>The line is drawn on standard error, and only when all of these conditions hold:</p>
 <ul>
 <li>standard error is a terminal, and <a href="../env/TERM.html"><code>TERM</code></a> is set to a value other than <code>dumb</code> or <code>unknown</code>;</li>
 <li><a href="../env/CI.html"><code>CI</code></a> is unset, <code>false</code> or <code>0</code>;</li>
-<li>opengrep does not run on Windows;</li>
+<li>the operating system is not Windows;</li>
 <li>the <a href="skin.html">skin</a> is <code>simple</code> or <code>vivid</code>;</li>
 <li><a href="incremental-output.html"><code>--incremental-output</code></a> is not given;</li>
 <li>none of <code>--quiet</code>, <code>--verbose</code> and <code>--debug</code> is given.</li>

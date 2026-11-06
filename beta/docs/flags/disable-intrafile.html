@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--disable-intrafile · Opengrep</title>
-  <meta name="description" content="Analyse every taint rule one function at a time, including rules that ask to follow calls.">
+  <meta name="description" content="Analyze every taint rule one function at a time, including rules that set taint_intrafile or taint_interfile.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -262,7 +262,7 @@
 </dl>
 <p>Turns off the analysis that follows taint through calls to functions defined in the same file, for every <a href="../rule-syntax/taint-mode.html">taint rule</a> of the scan. It takes precedence over <a href="taint-intrafile.html"><code>--taint-intrafile</code></a> and over the rule option <a href="../rule-options/taint_intrafile.html"><code>taint_intrafile</code></a>.</p>
 <p>The cross-file analysis is built on the same per-function summaries, so it is turned off as well: <a href="enable-interfile.html"><code>--enable-interfile</code></a> and the rule option <a href="../rule-options/taint_interfile.html"><code>taint_interfile</code></a> have no effect.</p>
-<p>Each taint rule then analyses one function at a time. Taint that flows from a source to a sink within a single function is still reported.</p>
+<p>Each taint rule then analyzes one function at a time. Taint that flows from a source to a sink within a single function is still reported.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-rule-that-asks-to-follow-calls"><a class="hash" href="#a-rule-that-asks-to-follow-calls" aria-hidden="true" tabindex="-1">###</a> A rule that asks to follow calls</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: input-to-system</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: os.system(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: input reaches os.system</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">taint_intrafile</span>: true</span></code></pre></div>

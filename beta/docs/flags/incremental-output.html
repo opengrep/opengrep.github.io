@@ -260,8 +260,8 @@
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="json.html"><code>--json</code></a>, <a href="output.html"><code>--output</code></a>, <a href="jobs.html"><code>--jobs</code></a>, <a href="no-progress-bar.html"><code>--no-progress-bar</code></a></dd></div>
 </dl>
-<p>By default, opengrep prints the output when the scan ends. With this flag, it prints each finding as soon as it is found, so that an editor or another program can show results while a long scan is running.</p>
-<p>The flag changes the <a href="json.html">JSON output</a>. Instead of one document with a <code>results</code> array, opengrep prints one JSON object per finding, each on its own line, as newline-delimited JSON. The other fields of the JSON document, such as <code>version</code>, <code>errors</code> and <code>paths</code>, are not printed.</p>
+<p>By default, Opengrep prints the output when the scan ends. With this flag, it prints each finding as soon as it is found, so that an editor or another program can show results while a long scan is running.</p>
+<p>The flag changes the <a href="json.html">JSON output</a>. Instead of one document with a <code>results</code> array, Opengrep prints one JSON object per finding, each on its own line, as newline-delimited JSON. The other fields of the JSON document, such as <code>version</code>, <code>errors</code> and <code>paths</code>, are not printed.</p>
 <p><code>--incremental-output-postprocess</code>, together with <code>--incremental-output</code>, applies the post-processing steps to the stream.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="one-object-per-finding"><a class="hash" href="#one-object-per-finding" aria-hidden="true" tabindex="-1">###</a> One object per finding</h3>

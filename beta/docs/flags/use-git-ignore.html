@@ -262,7 +262,7 @@
 <div><dt>Default</dt><dd><code>true</code></dd></div>
 <div><dt>See also</dt><dd><a href="exclude.html"><code>--exclude</code></a>, <a href="semgrepignore-filename.html"><code>--semgrepignore-filename</code></a>, <a href="project-root.html"><code>--project-root</code></a></dd></div>
 </dl>
-<p>In a git repository, opengrep skips the files that git ignores: those that <code>.gitignore</code> excludes, and git submodules. This is the default; <code>--use-git-ignore</code> requests it explicitly.</p>
+<p>In a git repository, Opengrep skips the files that git ignores: those that <code>.gitignore</code> excludes, and git submodules. This is the default; <code>--use-git-ignore</code> requests it explicitly.</p>
 <p><code>--no-git-ignore</code> scans these files as well, for example when code of interest is generated into an ignored directory, or to scan a vendored dependency.</p>
 <p>Outside a git repository, the flag has no effect. <code>.semgrepignore</code> applies in either case; see <a href="semgrepignore-filename.html"><code>--semgrepignore-filename</code></a>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

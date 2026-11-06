@@ -265,7 +265,7 @@
 <p>The lowercase <code>http_proxy</code> is also read; when both are set, <code>HTTP_PROXY</code> takes precedence. The variable has no <code>OPENGREP_</code> form.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="which-downloads-it-covers"><a class="hash" href="#which-downloads-it-covers" aria-hidden="true" tabindex="-1">###</a> Which downloads it covers</h3>
-<p>The host <code>proxy.invalid</code> does not exist, so a download through the proxy fails when opengrep resolves the proxy.</p>
+<p>The host <code>proxy.invalid</code> does not exist, so a download through the proxy fails when Opengrep resolves the proxy.</p>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="HTTP_PROXY=http://proxy.invalid:3128 opengrep scan --config http://example.invalid/rules.yaml app.py 2&gt;&amp;1 | grep &#x27;Failed to download&#x27;
 HTTP_PROXY=http://proxy.invalid:3128 opengrep scan --config https://example.invalid/rules.yaml app.py 2&gt;&amp;1 | grep &#x27;Failed to download&#x27;

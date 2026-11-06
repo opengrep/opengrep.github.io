@@ -259,12 +259,12 @@
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="rules.html"><code>rules</code></a></dd></div>
 </dl>
-<p>Restrict a rule to the versions of the rule format it was written for. The values are version numbers of the form <code>X.Y.Z</code>, quoted when YAML would read them as numbers. They are compared with the version of Semgrep whose rule format opengrep implements, so that rules published for Semgrep keep their meaning:</p>
+<p>Restricts a rule to the versions of the rule format it was written for. The values are version numbers of the form <code>X.Y.Z</code>, quoted when YAML would read them as numbers. They are compared with the version of Semgrep whose rule format Opengrep implements, so that rules published for Semgrep keep their meaning:</p>
 <ul>
 <li>a rule whose <code>min-version</code> is higher than that version is skipped;</li>
 <li>a rule whose <code>max-version</code> is lower than that version is skipped.</li>
 </ul>
-<p>A skipped rule is reported as an incompatible rule, with the version opengrep is compatible with, and the scan goes on with the other rules.</p>
+<p>A skipped rule is reported as an incompatible rule, with the version Opengrep is compatible with, and the scan continues with the other rules.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-rule-for-a-newer-rule-format"><a class="hash" href="#a-rule-for-a-newer-rule-format" aria-hidden="true" tabindex="-1">###</a> A rule for a newer rule format</h3>
 <div class="file"><div class="file-head">rules.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: future-rule</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span><span class="line">    <span class="k">min-version</span>: 99.0.0</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

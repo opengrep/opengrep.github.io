@@ -261,7 +261,7 @@
 </dl>
 <p>Identifies the rule. Every rule must have an <code>id</code>. The findings of a rule carry its id, and flags such as <a href="../flags/exclude-rule.html"><code>--exclude-rule</code></a> select rules by it.</p>
 <p>An id consists of letters, digits, <code>.</code>, <code>_</code> and <code>-</code>. A rule whose id contains any other character is invalid.</p>
-<p>When a rule file is in a subdirectory of the current directory, opengrep prefixes the ids of its rules with the path of that directory, with dots in place of the slashes: the rule <code>find-eval</code> in <code>rules/eval.yaml</code> is reported as <code>rules.find-eval</code>. <a href="../flags/rewrite-rule-ids.html"><code>--no-rewrite-rule-ids</code></a> keeps the ids as written.</p>
+<p>When a rule file is in a subdirectory of the current directory, Opengrep prefixes the ids of its rules with the path of that directory, with dots in place of the slashes: the rule <code>find-eval</code> in <code>rules/eval.yaml</code> is reported as <code>rules.find-eval</code>. <a href="../flags/rewrite-rule-ids.html"><code>--no-rewrite-rule-ids</code></a> keeps the ids as written.</p>
 <p>Ids must be unique within a scan. When two rules have the same id, the second one is ignored, with a warning.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="the-id-in-a-finding"><a class="hash" href="#the-id-in-a-finding" aria-hidden="true" tabindex="-1">###</a> The id in a finding</h3>

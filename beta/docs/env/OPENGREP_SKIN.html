@@ -260,7 +260,7 @@
 <div><dt>Value</dt><dd><code>legacy</code>, <code>simple</code> or <code>vivid</code></dd></div>
 <div><dt>Equivalent to</dt><dd><a href="../flags/skin.html"><code>--skin</code></a></dd></div>
 </dl>
-<p>The layout of the text output, as set by <a href="../flags/skin.html"><code>--skin</code></a>, for every <code>opengrep scan</code>, <code>opengrep ci</code> and <code>opengrep validate</code> that does not pass the flag. The flag takes precedence, with a warning that the variable is ignored. An empty value counts as unset; any value other than the names of the skins stops the command with exit status 2.</p>
+<p>The layout of the text output, as set by <a href="../flags/skin.html"><code>--skin</code></a>, for every <code>opengrep scan</code>, <code>opengrep ci</code> and <code>opengrep validate</code> that does not pass the flag. The flag takes precedence, with a warning that the variable is ignored. An empty value is treated as unset; any value other than the names of the skins stops the command with exit status 2.</p>
 <p>The variable has no <code>SEMGREP_</code> form.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="the-layout-from-the-environment"><a class="hash" href="#the-layout-from-the-environment" aria-hidden="true" tabindex="-1">###</a> The layout from the environment</h3>

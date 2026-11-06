@@ -261,7 +261,7 @@
 <div><dt>Value</dt><dd>a number of seconds</dd></div>
 <div><dt>Equivalent to</dt><dd><a href="../flags/timeout.html"><code>--timeout</code></a></dd></div>
 </dl>
-<p>The value of <a href="../flags/timeout.html"><code>--timeout</code></a> for <code>opengrep scan</code> and <code>opengrep ci</code>, used when the flag is not given. A value that is not a number is an error, and opengrep exits with status 2.</p>
+<p>The value of <a href="../flags/timeout.html"><code>--timeout</code></a> for <code>opengrep scan</code> and <code>opengrep ci</code>, used when the flag is not given. A value that is not a number is an error, and Opengrep exits with status 2.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="the-flag-takes-precedence"><a class="hash" href="#the-flag-takes-precedence" aria-hidden="true" tabindex="-1">###</a> The flag takes precedence</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

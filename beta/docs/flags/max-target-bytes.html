@@ -264,9 +264,9 @@
 </dl>
 <p>Files larger than this are not scanned. The default is 1,000,000 bytes, which keeps generated bundles and data files out of a scan. Zero or a negative value turns the limit off.</p>
 <p>The value is a number of bytes, or a size with a unit, as in <code>1.5MB</code>.</p>
-<p>Like the other path filters, the limit applies to the files found under directory targets; a file named on the command line is scanned whatever its size. The summary gives the number of skipped files, as in <code>skipped: 1 files larger than 100 bytes</code>.</p>
+<p>Like the other path filters, the limit applies to the files found under directory targets; a file named on the command line is scanned regardless of its size. The summary gives the number of skipped files, as in <code>skipped: 1 files larger than 100 bytes</code>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="leaving-a-large-file-out"><a class="hash" href="#leaving-a-large-file-out" aria-hidden="true" tabindex="-1">###</a> Leaving a large file out</h3>
+<h3 id="skipping-a-large-file"><a class="hash" href="#skipping-a-large-file" aria-hidden="true" tabindex="-1">###</a> Skipping a large file</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">src/a.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="seq 500 | sed &#x27;s/.*/# pad/&#x27; &gt; big.py &amp;&amp; echo &#x27;eval(1)&#x27; &gt;&gt; big.py

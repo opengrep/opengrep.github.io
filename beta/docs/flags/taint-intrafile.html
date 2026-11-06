@@ -260,10 +260,10 @@
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a>, <a href="../commands/ci.html"><code>opengrep ci</code></a>, <a href="../commands/test.html"><code>opengrep test</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="../rule-options/taint_intrafile.html"><code>taint_intrafile</code></a>, <a href="../rule-syntax/taint-mode.html"><code>mode: taint</code></a>, <a href="enable-interfile.html"><code>--enable-interfile</code></a>, <a href="guarded-taint-signatures.html"><code>--guarded-taint-signatures</code></a>, <a href="disable-intrafile.html"><code>--disable-intrafile</code></a></dd></div>
 </dl>
-<p>By default, a <a href="../rule-syntax/taint-mode.html">taint rule</a> analyses one function at a time: taint passed to another function is not followed into it. This flag enables the analysis across the functions of each file, for every taint rule of the scan. Opengrep computes a summary of what each function does with its arguments and applies the summaries at the calls, whatever the length of the chain of calls.</p>
+<p>By default, a <a href="../rule-syntax/taint-mode.html">taint rule</a> analyzes one function at a time: taint passed to another function is not followed into it. This flag enables the analysis across the functions of each file, for every taint rule of the scan. Opengrep computes a summary of what each function does with its arguments and applies the summaries at the calls, regardless of the length of the chain of calls.</p>
 <p>The finding is reported at the sink, inside the function that contains it, not at the call that starts the chain.</p>
 <p>The rule option <a href="../rule-options/taint_intrafile.html"><code>taint_intrafile</code></a> enables the same analysis for one rule. The flag can only turn the analysis on; a rule cannot turn it off.</p>
-<p>The supported languages are Apex, C, C++, C#, Clojure, Dart, Elixir, Go, Java, JavaScript, Julia, Kotlin, Lua, Python, Ruby, Rust, Scala, Swift, TypeScript and Visual Basic. For other languages, opengrep logs a warning and analyses each function on its own.</p>
+<p>The supported languages are Apex, C, C++, C#, Clojure, Dart, Elixir, Go, Java, JavaScript, Julia, Kotlin, Lua, Python, Ruby, Rust, Scala, Swift, TypeScript and Visual Basic. For other languages, Opengrep logs a warning and analyzes each function on its own.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-chain-of-calls-in-one-file"><a class="hash" href="#a-chain-of-calls-in-one-file" aria-hidden="true" tabindex="-1">###</a> A chain of calls in one file</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: input-to-system</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: os.system(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: input reaches os.system</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
@@ -278,7 +278,7 @@ chain.py
   input reaches os.system
 
 <span class="n">     4:</span><span class="b"> os.system(x)</span></code></pre></div>
-<p>The first command prints nothing: without the flag the taint stops at the call to <code>c</code>.</p>
+<p>The first command prints nothing: without the flag, the taint is not followed into the call to <code>c</code>.</p>
     </main>
   </div>
 

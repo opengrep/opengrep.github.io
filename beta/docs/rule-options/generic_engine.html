@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>generic_engine · Opengrep</title>
-  <meta name="description" content="Choose the engine behind languages: [generic], spacegrep or aliengrep.">
+  <meta name="description" content="The engine of rules for the generic language: spacegrep or aliengrep.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -262,7 +262,7 @@
 <div><dt>See also</dt><dd><a href="../rule-syntax/languages.html"><code>languages</code></a>, <a href="generic_multiline.html"><code>generic_multiline</code></a></dd></div>
 </dl>
 <p>A rule with <code>languages: [generic]</code> matches plain text, with one of two engines. <code>spacegrep</code>, the default, splits text into words and brackets, and an ellipsis <code>...</code> spans at most 10 line breaks. <code>aliengrep</code> lets <code>...</code> span any number of lines, and can be configured further.</p>
-<p>Each engine reads its own options and ignores the others':</p>
+<p>Each engine reads its own options and ignores those of the other engine:</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Engine</th><th>Options</th></tr></thead>
 <tbody>

@@ -262,8 +262,8 @@
 <div><dt>See also</dt><dd><a href="../rule-syntax/taint-mode.html"><code>mode: taint</code></a>, <a href="taint_assume_safe_indexes.html"><code>taint_assume_safe_indexes</code></a>, <a href="../rule-syntax/pattern-sanitizers.html"><code>pattern-sanitizers</code></a>, <a href="taint_only_propagate_through_assignments.html"><code>taint_only_propagate_through_assignments</code></a></dd></div>
 </dl>
 <p>By default, a <a href="../rule-syntax/taint-mode.html">taint rule</a> assumes that a call returns tainted data when one of its arguments is tainted, and that a method called on a tainted object does too: <code>quote(name)</code> and <code>name.strip()</code> are tainted when <code>name</code> is.</p>
-<p>With <code>taint_assume_safe_functions: true</code>, the result of such a call is clean. Operators still spread taint, so <code>&quot;ls &quot; + name</code> stays tainted, and a tainted argument passed straight to a sink is still reported.</p>
-<p>A function whose behaviour opengrep has worked out is the exception. With <a href="taint_intrafile.html"><code>taint_intrafile</code></a>, a call to a function defined in the same file still returns the taint its body passes on.</p>
+<p>With <code>taint_assume_safe_functions: true</code>, the result of such a call is clean. Operators still propagate taint, so <code>&quot;ls &quot; + name</code> stays tainted, and a tainted argument passed straight to a sink is still reported.</p>
+<p>Functions that Opengrep analyzes are an exception. With <a href="taint_intrafile.html"><code>taint_intrafile</code></a>, a call to a function defined in the same file still returns the taint its body passes on.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="calls-that-take-tainted-data"><a class="hash" href="#calls-that-take-tainted-data" aria-hidden="true" tabindex="-1">###</a> Calls that take tainted data</h3>
 <p>The rule <code>shell</code> turns the option on.</p>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Internal and debugging interfaces · Opengrep</title>
-  <meta name="description" content="Interfaces meant for opengrep&#x27;s own development and tests.">
+  <meta name="description" content="Interfaces for the development and testing of Opengrep.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -256,9 +256,9 @@
     <main class="docs-main">
 <p class="docs-crumb"><a href="index.html">reference</a></p>
 <h1>Internal and debugging interfaces</h1>
-<p>These interfaces exist for opengrep's own development, tests, and packaging. They are listed so the reference is complete, and they may change or disappear in any release.</p>
+<p>These interfaces exist for the development, testing and packaging of Opengrep. They may change or be removed in any release.</p>
 <h2 id="opengrep---core"><a class="hash" href="#opengrep---core" aria-hidden="true" tabindex="-1">##</a> <code>opengrep --core</code></h2>
-<p>The opengrep binary also contains the low-level engine CLI. It runs when the first argument is <code>--core</code>, and <code>opengrep --core -help</code> lists its options. The <code>opengrep</code> commands build on the same engine, and this reference does not document the engine CLI. The engine CLI appends the whitespace-separated words of <code>OPENGREP_CORE_EXTRA</code> (or <code>SEMGREP_CORE_EXTRA</code>) to its own arguments.</p>
+<p>The Opengrep binary also contains the command-line interface of the engine, which runs when the first argument is <code>--core</code>; <code>opengrep --core -help</code> lists its options. The <code>opengrep</code> commands are built on the same engine. This reference does not describe the command-line interface of the engine. The engine appends the whitespace-separated words of <code>OPENGREP_CORE_EXTRA</code> (or <code>SEMGREP_CORE_EXTRA</code>) to its own arguments.</p>
 <h2 id="opengrep-show-dump-commands"><a class="hash" href="#opengrep-show-dump-commands" aria-hidden="true" tabindex="-1">##</a> <code>opengrep show</code> dump commands</h2>
 <p><code>opengrep show</code> prints internal representations with <code>dump-config</code>, <code>dump-rule</code>, <code>dump-rule-v2</code>, <code>dump-patterns-of-rule</code>, <code>dump-ast</code>, <code>dump-il</code>, <code>dump-il-pp</code>, <code>dump-cst</code>, <code>dump-pattern</code>, <code>dump-intrafile-graph</code>, <code>dump-interfile-graph</code> and <code>dump-taint-signatures</code>. <code>opengrep show --help</code> describes their arguments.</p>
 <h2 id="flags"><a class="hash" href="#flags" aria-hidden="true" tabindex="-1">##</a> Flags</h2>
@@ -276,10 +276,10 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Variable</th><th>Purpose</th></tr></thead>
 <tbody>
-<tr><td><code>OPENGREP_IN_TEST</code></td><td>Set by opengrep's test suite.</td></tr>
-<tr><td><code>OPENGREP_IN_DOCKER</code></td><td>Set in opengrep's Docker image.</td></tr>
+<tr><td><code>OPENGREP_IN_TEST</code></td><td>Set by the test suite of Opengrep.</td></tr>
+<tr><td><code>OPENGREP_IN_DOCKER</code></td><td>Set in the Docker image of Opengrep.</td></tr>
 <tr><td><code>OPENGREP_PROJIDX_BATCH</code></td><td>Batch size of the project index. Read only under this name, with no <code>SEMGREP_</code> alias.</td></tr>
-<tr><td><code>OPENGREP_FAIL_OPEN_URL</code></td><td>Not used: its only mention in the sources is commented out.</td></tr>
+<tr><td><code>OPENGREP_FAIL_OPEN_URL</code></td><td>Not used.</td></tr>
 <tr><td><code>OPENGREP_GHA_MIN_FETCH_DEPTH</code></td><td>Deprecated: minimum git fetch depth for <code>opengrep ci</code> on GitHub Actions.</td></tr>
 <tr><td><code>OPENGREP_BRANCH</code>, <code>OPENGREP_COMMIT</code>, <code>OPENGREP_JOB_URL</code>, <code>OPENGREP_PR_TITLE</code>, <code>OPENGREP_REPO_DISPLAY_NAME</code>, <code>OPENGREP_REPO_URL</code>, and their <code>SEMGREP_</code> names</td><td>For <code>opengrep ci</code>: the branch, commit, CI job URL, pull request title, repository display name and repository URL, recorded in the metadata of the scan.</td></tr>
 <tr><td><code>PYTEST_OPENGREP_LOG_*</code>, <code>PYTEST_SEMGREP_LOG_*</code></td><td>Log settings for test runners that clear the environment except <code>PYTEST_*</code>. They take precedence over <a href="env/OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a> and the related variables.</td></tr>
@@ -290,19 +290,19 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Option</th><th>Purpose</th></tr></thead>
 <tbody>
-<tr><td><code>taint_fixpoint_timeout</code></td><td>For taint rules: concerns the time spent on the analysis of one function.</td></tr>
+<tr><td><code>taint_fixpoint_timeout</code></td><td>For taint rules: intended to limit the time spent on the analysis of one function.</td></tr>
 </tbody>
 </table></div>
 <h2 id="rule-keys"><a class="hash" href="#rule-keys" aria-hidden="true" tabindex="-1">##</a> Rule keys</h2>
-<p>Rule keys starting with <code>semgrep-internal-</code> or <code>r2c-internal-</code> are internal, among them <code>semgrep-internal-metavariable-name</code> with its keys <code>metavariable</code>, <code>kind</code>, <code>module</code> and <code>modules</code>. A rule using <code>r2c-internal-project-depends-on</code> (supply-chain rules) is rejected.</p>
+<p>Rule keys starting with <code>semgrep-internal-</code> or <code>r2c-internal-</code> are internal, among them <code>semgrep-internal-metavariable-name</code> with its keys <code>metavariable</code>, <code>kind</code>, <code>module</code> and <code>modules</code>. A rule that uses <code>r2c-internal-project-depends-on</code>, a key of supply-chain rules, is invalid.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Key</th><th>Purpose</th></tr></thead>
 <tbody>
 <tr><td><code>equivalences</code></td><td>Declares code equivalences for the patterns of a rule.</td></tr>
-<tr><td><code>base</code></td><td>In <code>metavariable-comparison</code>: concerns the base of integer literals.</td></tr>
-<tr><td><code>at-exit</code></td><td>In <code>pattern-sinks</code>: concerns sinks at the exit of a function.</td></tr>
-<tr><td><code>mode: extract</code>, with <code>extract</code>, <code>dest-language</code>, <code>dest-rules</code>, <code>transform</code> and <code>reduce</code></td><td>Concerns code embedded in a file, such as a script in a YAML file, to be scanned as another language.</td></tr>
-<tr><td><code>mode: step</code>, with <code>steps</code></td><td>Concerns rules made of several steps.</td></tr>
+<tr><td><code>base</code></td><td>In <code>metavariable-comparison</code>: intended to set the base of integer literals.</td></tr>
+<tr><td><code>at-exit</code></td><td>In <code>pattern-sinks</code>: intended to mark sinks at the exit of a function.</td></tr>
+<tr><td><code>mode: extract</code>, with <code>extract</code>, <code>dest-language</code>, <code>dest-rules</code>, <code>transform</code> and <code>reduce</code></td><td>Intended for code embedded in a file, such as a script in a YAML file, to be scanned as another language.</td></tr>
+<tr><td><code>mode: step</code>, with <code>steps</code></td><td>Intended for rules made of several steps.</td></tr>
 <tr><td><code>pattern-where-python</code></td><td>A rule that uses it is invalid.</td></tr>
 </tbody>
 </table></div>

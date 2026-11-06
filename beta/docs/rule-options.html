@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Rule options · Opengrep</title>
-  <meta name="description" content="The options that the options key of a rule can set. An option changes how the rule that sets it matches; the other rules of the scan keep the defaults.">
+  <meta name="description" content="This section describes the options that the options key of a rule can set. An option changes how the rule that sets it matches; the other rules of the scan keep the defaults.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -256,14 +256,14 @@
     <main class="docs-main">
 <p class="docs-crumb"><a href="index.html">reference</a></p>
 <h1>Rule options</h1>
-<p>The options that the <a href="rule-syntax/options.html"><code>options</code></a> key of a rule can set. An option changes how the rule that sets it matches; the other rules of the scan keep the defaults.</p>
+<p>This section describes the options that the <a href="rule-syntax/options.html"><code>options</code></a> key of a rule can set. An option changes how the rule that sets it matches; the other rules of the scan keep the defaults.</p>
 <div class="file"><pre class="snip"><code><span class="k">rules</span>:
   - <span class="k">id</span>: example
     <span class="k">pattern</span>: <span class="mv">...</span>
     <span class="k">options</span>:
       <span class="k">symbolic_propagation</span>: true</code></pre></div>
-<p>An option that opengrep does not know makes the rule invalid: the run stops with exit status 2 and reports <code>Found unknown JSON field &lt;name&gt;</code>. An unknown key elsewhere in a rule produces only a warning.</p>
-<p>Some options have a command-line flag that enables the same behaviour for every rule of a scan. Such a flag cannot turn the option off for a rule that enables it.</p>
+<p>An unknown option makes the rule invalid: the run stops with exit status 2 and reports <code>Found unknown JSON field &lt;name&gt;</code>. An unknown key elsewhere in a rule produces only a warning.</p>
+<p>Some options have a command-line flag that enables the same behavior for every rule of a scan. Such a flag cannot turn the option off for a rule that enables it.</p>
 <h2 id="index"><a class="hash" href="#index" aria-hidden="true" tabindex="-1">##</a> Index</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Name</th><th>Summary</th></tr></thead>
@@ -271,7 +271,7 @@
 <tr><td><a href="rule-options/ac_matching.html"><code>ac_matching</code></a></td><td>Match chains of an associative operator as a flat list of operands.</td></tr>
 <tr><td><a href="rule-options/arrow_is_function.html"><code>arrow_is_function</code></a></td><td>Match arrow functions and function expressions like other functions.</td></tr>
 <tr><td><a href="rule-options/attr_expr.html"><code>attr_expr</code></a></td><td>Let a call pattern match a decorator or an annotation written like a call.</td></tr>
-<tr><td><a href="rule-options/commutative_boolop.html"><code>commutative_boolop</code></a></td><td>Match the operands of &amp;&amp; and</td><td></td><td>in any order.</td></tr>
+<tr><td><a href="rule-options/commutative_boolop.html"><code>commutative_boolop</code></a></td><td>Match the operands of &amp;&amp; and || in any order.</td></tr>
 <tr><td><a href="rule-options/constant_propagation.html"><code>constant_propagation</code></a></td><td>Let a literal in a pattern match a variable known to hold that value.</td></tr>
 <tr><td><a href="rule-options/cpp_parsing_pref.html"><code>cpp_parsing_pref</code></a></td><td>Read an ambiguous C++ pattern such as foo $X(...); as a function declaration or a constructed variable.</td></tr>
 <tr><td><a href="rule-options/decorators_order_matters.html"><code>decorators_order_matters</code></a></td><td>Require decorators and annotations to appear in the order the pattern gives.</td></tr>
@@ -282,20 +282,20 @@
 <tr><td><a href="rule-options/generic_braces.html"><code>generic_braces</code></a></td><td>With aliengrep, replace the pairs of braces that an ellipsis keeps balanced.</td></tr>
 <tr><td><a href="rule-options/generic_caseless.html"><code>generic_caseless</code></a></td><td>With aliengrep, match text regardless of letter case.</td></tr>
 <tr><td><a href="rule-options/generic_comment_style.html"><code>generic_comment_style</code></a></td><td>With spacegrep, remove comments of one style from the target before matching.</td></tr>
-<tr><td><a href="rule-options/generic_ellipsis_max_span.html"><code>generic_ellipsis_max_span</code></a></td><td>With spacegrep, the most line breaks an ellipsis may span.</td></tr>
-<tr><td><a href="rule-options/generic_engine.html"><code>generic_engine</code></a></td><td>Choose the engine behind languages: [generic], spacegrep or aliengrep.</td></tr>
+<tr><td><a href="rule-options/generic_ellipsis_max_span.html"><code>generic_ellipsis_max_span</code></a></td><td>With spacegrep, the maximum number of line breaks that an ellipsis may span.</td></tr>
+<tr><td><a href="rule-options/generic_engine.html"><code>generic_engine</code></a></td><td>The engine of rules for the generic language: spacegrep or aliengrep.</td></tr>
 <tr><td><a href="rule-options/generic_extra_braces.html"><code>generic_extra_braces</code></a></td><td>With aliengrep, add pairs of braces that an ellipsis keeps balanced.</td></tr>
 <tr><td><a href="rule-options/generic_extra_word_characters.html"><code>generic_extra_word_characters</code></a></td><td>With aliengrep, add characters that a metavariable may capture as part of a word.</td></tr>
-<tr><td><a href="rule-options/generic_multiline.html"><code>generic_multiline</code></a></td><td>With aliengrep, whether an ellipsis may span lines; false keeps it within one.</td></tr>
+<tr><td><a href="rule-options/generic_multiline.html"><code>generic_multiline</code></a></td><td>With aliengrep, whether an ellipsis may span several lines.</td></tr>
 <tr><td><a href="rule-options/go_deeper_expr.html"><code>go_deeper_expr</code></a></td><td>Let deep expression patterns and statements look inside expressions.</td></tr>
-<tr><td><a href="rule-options/go_deeper_stmt.html"><code>go_deeper_stmt</code></a></td><td>Let ... between statements reach statements nested in later blocks.</td></tr>
+<tr><td><a href="rule-options/go_deeper_stmt.html"><code>go_deeper_stmt</code></a></td><td>Let ... between statements match statements nested in later blocks.</td></tr>
 <tr><td><a href="rule-options/guarded_taint_signatures.html"><code>guarded_taint_signatures</code></a></td><td>Drop a cross-function taint finding when the branch leading to the sink cannot be taken.</td></tr>
 <tr><td><a href="rule-options/implicit_deep_exprstmt.html"><code>implicit_deep_exprstmt</code></a></td><td>Let an expression statement in a statement pattern match a statement containing it.</td></tr>
 <tr><td><a href="rule-options/implicit_ellipsis.html"><code>implicit_ellipsis</code></a></td><td>Let a record or class pattern match targets with more fields than it lists.</td></tr>
 <tr><td><a href="rule-options/implicit_return.html"><code>implicit_return</code></a></td><td>Let a return pattern match the value a function returns without the return keyword.</td></tr>
 <tr><td><a href="rule-options/let_is_var.html"><code>let_is_var</code></a></td><td>Let a var declaration pattern match let and const declarations.</td></tr>
 <tr><td><a href="rule-options/max_match_per_file.html"><code>max_match_per_file</code></a></td><td>Keep only the first findings of this rule in each file.</td></tr>
-<tr><td><a href="rule-options/symbolic_propagation.html"><code>symbolic_propagation</code></a></td><td>Let patterns see through variables that hold the result of an expression.</td></tr>
+<tr><td><a href="rule-options/symbolic_propagation.html"><code>symbolic_propagation</code></a></td><td>Let a variable assigned an expression match that expression.</td></tr>
 <tr><td><a href="rule-options/symmetric_eq.html"><code>symmetric_eq</code></a></td><td>Match the operands of == and != in either order.</td></tr>
 <tr><td><a href="rule-options/taint_assume_safe_booleans.html"><code>taint_assume_safe_booleans</code></a></td><td>Assume that a boolean value is clean, even when it was computed from tainted data.</td></tr>
 <tr><td><a href="rule-options/taint_assume_safe_comparisons.html"><code>taint_assume_safe_comparisons</code></a></td><td>Assume that the result of a comparison is clean, even when an operand is tainted.</td></tr>
@@ -306,7 +306,7 @@
 <tr><td><a href="rule-options/taint_interfile.html"><code>taint_interfile</code></a></td><td>Mark a taint rule for cross-file analysis under --enable-interfile.</td></tr>
 <tr><td><a href="rule-options/taint_interfile_depth.html"><code>taint_interfile_depth</code></a></td><td>The longest call chain that the cross-file taint analysis of this rule follows.</td></tr>
 <tr><td><a href="rule-options/taint_intrafile.html"><code>taint_intrafile</code></a></td><td>Follow taint through calls to functions defined in the same file.</td></tr>
-<tr><td><a href="rule-options/taint_only_propagate_through_assignments.html"><code>taint_only_propagate_through_assignments</code></a></td><td>Let taint move only by assignment, not through operators or calls.</td></tr>
+<tr><td><a href="rule-options/taint_only_propagate_through_assignments.html"><code>taint_only_propagate_through_assignments</code></a></td><td>Propagate taint only through assignments, not through operators or calls.</td></tr>
 <tr><td><a href="rule-options/taint_unify_mvars.html"><code>taint_unify_mvars</code></a></td><td>Require a metavariable used in both a source and a sink to bind the same code in both.</td></tr>
 <tr><td><a href="rule-options/timeout.html"><code>timeout</code></a></td><td>The time limit of this rule on each file, in seconds; requires --allow-rule-timeout-control.</td></tr>
 <tr><td><a href="rule-options/unify_ids_strictly.html"><code>unify_ids_strictly</code></a></td><td>Require a metavariable bound twice to name the same variable, not only the same name.</td></tr>

@@ -262,8 +262,8 @@
 <div class="file"><pre class="snip"><code>opengrep scan [FLAGS] [TARGETS...]</code></pre></div>
 <p>Runs rules on the files under TARGETS and reports the findings. TARGETS are files or directories; the default is the current directory. <code>scan</code> is the default command: <code>opengrep --config rule.yaml .</code> is equivalent to <code>opengrep scan --config rule.yaml .</code>.</p>
 <p>The rules come from <a href="../flags/config.html"><code>--config</code></a> or <a href="../env/OPENGREP_RULES.html"><code>OPENGREP_RULES</code></a>, or from a single pattern given with <code>-e</code>/<code>--pattern</code> and <code>-l</code>/<code>--lang</code>. Without any of them, <code>opengrep scan</code> uses <code>--config auto</code>, which downloads rules from the Semgrep registry.</p>
-<p>Under a directory, opengrep skips the files that <code>.gitignore</code> and <code>.semgrepignore</code> exclude. When the project has no <code>.semgrepignore</code>, a default list applies, which includes <code>node_modules/</code>, <code>vendor/</code>, <code>test/</code> and <code>tests/</code>. Files named on the command line are always scanned. See <a href="../flags/exclude.html"><code>--exclude</code></a>.</p>
-<p>The findings go to standard output, in the text format unless another format is selected, such as <code>--json</code> or <code>--sarif</code>. The progress and the summary go to standard error. When standard output is a terminal, the scan starts with a banner that shows the opengrep logo and version; <a href="../flags/quiet.html"><code>--quiet</code></a> leaves out everything on standard error.</p>
+<p>In a directory target, Opengrep skips the files that <code>.gitignore</code> and <code>.semgrepignore</code> exclude. When the project has no <code>.semgrepignore</code>, a default list applies, which includes <code>node_modules/</code>, <code>vendor/</code>, <code>test/</code> and <code>tests/</code>. Files named on the command line are always scanned. See <a href="../flags/exclude.html"><code>--exclude</code></a>.</p>
+<p>The findings go to standard output, in the text format unless another format is selected, such as <code>--json</code> or <code>--sarif</code>. The progress and the summary go to standard error. When standard output is a terminal, the scan starts with a banner that shows the Opengrep logo and version; <a href="../flags/quiet.html"><code>--quiet</code></a> leaves out everything on standard error.</p>
 <h2 id="exit-status"><a class="hash" href="#exit-status" aria-hidden="true" tabindex="-1">##</a> Exit status</h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
@@ -288,9 +288,9 @@
 <tr><td><a href="../flags/baseline-commit.html"><code>--baseline-commit</code></a></td><td>Report only the findings that are not present in the given commit.</td></tr>
 <tr><td><a href="../flags/config.html"><code>--config</code></a></td><td>Load rules from a file, a directory, a URL, a git repository or the registry.</td></tr>
 <tr><td><a href="../flags/dataflow-traces.html"><code>--dataflow-traces</code></a></td><td>Show the path from source to sink in the findings of taint rules.</td></tr>
-<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log what --verbose logs, and the diagnostics of the engine.</td></tr>
+<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log the messages of --verbose and the diagnostics of the engine.</td></tr>
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/disable-intrafile.html"><code>--disable-intrafile</code></a></td><td>Analyse every taint rule one function at a time, including rules that ask to follow calls.</td></tr>
+<tr><td><a href="../flags/disable-intrafile.html"><code>--disable-intrafile</code></a></td><td>Analyze every taint rule one function at a time, including rules that set taint_intrafile or taint_interfile.</td></tr>
 <tr><td><a href="../flags/dryrun.html"><code>--dryrun</code></a></td><td>Show the fixes --autofix would make, without writing them to the files.</td></tr>
 <tr><td><code>--dump-ast</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><a href="../flags/dynamic-timeout.html"><code>--dynamic-timeout</code></a></td><td>Scale the time limit of each rule with the size of the file.</td></tr>
@@ -303,7 +303,7 @@
 <tr><td><a href="../flags/error.html"><code>--error</code></a></td><td>Exit with status 1 when there are findings.</td></tr>
 <tr><td><a href="../flags/exclude.html"><code>--exclude</code></a></td><td>Skip files and directories whose path matches a gitignore-style pattern.</td></tr>
 <tr><td><a href="../flags/exclude-minified-files.html"><code>--exclude-minified-files</code></a></td><td>Skip files that look minified.</td></tr>
-<tr><td><a href="../flags/exclude-rule.html"><code>--exclude-rule</code></a></td><td>Skip a rule, by its id.</td></tr>
+<tr><td><a href="../flags/exclude-rule.html"><code>--exclude-rule</code></a></td><td>Skip the rule with this id.</td></tr>
 <tr><td><a href="../flags/files-with-matches.html"><code>--files-with-matches</code></a></td><td>Print only the paths of the files that have findings.</td></tr>
 <tr><td><a href="../flags/force-color.html"><code>--force-color</code></a></td><td>Style the output even when it does not go to a terminal.</td></tr>
 <tr><td><a href="../flags/force-exclude.html"><code>--force-exclude</code></a></td><td>Apply --include and --exclude to files named on the command line as well.</td></tr>
@@ -316,10 +316,10 @@
 <tr><td><a href="../flags/incremental-output.html"><code>--incremental-output</code></a></td><td>Print each finding as soon as it is found.</td></tr>
 <tr><td><a href="../flags/incremental-output.html"><code>--incremental-output-postprocess</code></a></td><td></td></tr>
 <tr><td><a href="../flags/inline-metavariables.html"><code>--inline-metavariables</code></a></td><td>Replace the metavariables in the metadata of a rule with the code they matched.</td></tr>
-<tr><td><a href="../flags/interfile-dedup-by.html"><code>--interfile-dedup-by</code></a></td><td>Whether a sink that several sources reach across files makes one finding or one per source.</td></tr>
+<tr><td><a href="../flags/interfile-dedup-by.html"><code>--interfile-dedup-by</code></a></td><td>Whether a sink reached by several sources across files produces one finding or one per source.</td></tr>
 <tr><td><a href="../flags/interfile-depth.html"><code>--interfile-depth</code></a></td><td>The longest call chain the cross-file taint analysis follows.</td></tr>
 <tr><td><a href="../flags/interfile-timeout.html"><code>--interfile-timeout</code></a></td><td>The time a rule may spend on the cross-file taint analysis.</td></tr>
-<tr><td><a href="../flags/jobs.html"><code>--jobs</code></a></td><td>The number of cores that run rules in parallel.</td></tr>
+<tr><td><a href="../flags/jobs.html"><code>--jobs</code></a></td><td>The number of workers that run rules in parallel.</td></tr>
 <tr><td><a href="../flags/json.html"><code>--json</code></a></td><td>Print the findings as a JSON document.</td></tr>
 <tr><td><a href="../flags/json-output.html"><code>--json-output</code></a></td><td>Write the findings as JSON to a file as well.</td></tr>
 <tr><td><a href="../flags/junit-xml.html"><code>--junit-xml</code></a></td><td>Print the findings as a JUnit XML report, one failed test per finding.</td></tr>
@@ -340,13 +340,13 @@
 <tr><td><a href="../flags/pattern.html"><code>--pattern</code></a></td><td>Search with a pattern given on the command line instead of a rule file.</td></tr>
 <tr><td><code>--profile</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><a href="../flags/project-root.html"><code>--project-root</code></a></td><td>The project root, where .gitignore and .semgrepignore are read.</td></tr>
-<tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print the findings and nothing else.</td></tr>
+<tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print only the findings, and nothing on standard error.</td></tr>
 <tr><td><a href="../flags/replacement.html"><code>--replacement</code></a></td><td>The fix of a pattern given on the command line.</td></tr>
 <tr><td><a href="../flags/rewrite-rule-ids.html"><code>--rewrite-rule-ids</code></a></td><td>Whether the ids of rules from a subdirectory are prefixed with its path; on by default.</td></tr>
 <tr><td><a href="../flags/sarif.html"><code>--sarif</code></a></td><td>Print the findings as a SARIF 2.1.0 document.</td></tr>
 <tr><td><a href="../flags/sarif-output.html"><code>--sarif-output</code></a></td><td>Write the findings as SARIF to a file as well, including suppressed findings.</td></tr>
 <tr><td><a href="../flags/scan-unknown-extensions.html"><code>--scan-unknown-extensions</code></a></td><td>Scan a file named on the command line even when its extension belongs to no language.</td></tr>
-<tr><td><a href="../flags/semgrepignore-filename.html"><code>--semgrepignore-filename</code></a></td><td>Read the ignored paths from a file with another name than .semgrepignore.</td></tr>
+<tr><td><a href="../flags/semgrepignore-filename.html"><code>--semgrepignore-filename</code></a></td><td>Read the ignored paths from a file with a name other than .semgrepignore.</td></tr>
 <tr><td><a href="../flags/severity.html"><code>--severity</code></a></td><td>Report only the findings of rules with these severities.</td></tr>
 <tr><td><a href="../flags/show-supported-languages.html"><code>--show-supported-languages</code></a></td><td>Print the supported languages and exit.</td></tr>
 <tr><td><a href="../flags/skin.html"><code>--skin</code></a></td><td>The layout of the text output.</td></tr>
@@ -362,7 +362,7 @@
 <tr><td><a href="../flags/use-git-ignore.html"><code>--use-git-ignore</code></a></td><td>Whether files ignored by git are skipped; on by default.</td></tr>
 <tr><td><a href="../flags/validate.html"><code>--validate</code></a></td><td>Check the rules instead of scanning, as opengrep validate does.</td></tr>
 <tr><td><a href="../flags/verbose.html"><code>--verbose</code></a></td><td>Log the progress of the run, at the info level.</td></tr>
-<tr><td><a href="../flags/version.html"><code>--version</code></a></td><td>Print the opengrep version and exit.</td></tr>
+<tr><td><a href="../flags/version.html"><code>--version</code></a></td><td>Print the Opengrep version and exit.</td></tr>
 <tr><td><a href="../flags/vim.html"><code>--vim</code></a></td><td>Print one line per finding, in the format of Vim quickfix lists.</td></tr>
 <tr><td><a href="../flags/vim-output.html"><code>--vim-output</code></a></td><td>Write the findings in the Vim quickfix format to a file as well.</td></tr>
 <tr><td><code>--x-ignore-semgrepignore-files</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>

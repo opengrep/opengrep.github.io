@@ -272,7 +272,7 @@ opengrep scan -q --config rule.yaml --taint-intrafile --guarded-taint-signatures
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --taint-intrafile --files-with-matches guard.py</span>
 guard.py
 <span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --taint-intrafile --guarded-taint-signatures --files-with-matches guard.py</span></code></pre></div>
-<p>The call passes <code>2</code>, so the sink under <code>mode == 1</code> is unreachable. The second command prints nothing, having dropped the finding the first one reports.</p>
+<p>The call passes <code>2</code>, so the sink under <code>mode == 1</code> is unreachable. The second command drops the finding that the first one reports, and prints nothing.</p>
     </main>
   </div>
 

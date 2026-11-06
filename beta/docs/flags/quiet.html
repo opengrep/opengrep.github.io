@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--quiet · Opengrep</title>
-  <meta name="description" content="Print the findings and nothing else.">
+  <meta name="description" content="Print only the findings, and nothing on standard error.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -261,21 +261,30 @@
 <div><dt>Also spelled</dt><dd><code>-q</code></dd></div>
 <div><dt>See also</dt><dd><a href="verbose.html"><code>--verbose</code></a>, <a href="debug.html"><code>--debug</code></a>, <a href="../env/OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a>, <a href="max-log-list-entries.html"><code>--max-log-list-entries</code></a></dd></div>
 </dl>
-<p>Suppresses everything opengrep writes to standard error: the banner, the progress display, the summary, warnings and error messages. The findings on standard output are not affected. A failed run still ends with a non-zero <a href="../commands/scan.html#exit-status">exit status</a>.</p>
+<p>Suppresses everything Opengrep writes to standard error: the banner, the progress display, the summary, warnings and error messages. The findings on standard output are not affected. A failed run still ends with a non-zero <a href="../commands/scan.html#exit-status">exit status</a>.</p>
 <p><code>--quiet</code>, <a href="verbose.html"><code>--verbose</code></a> and <a href="debug.html"><code>--debug</code></a> select the log level; without any of them, warnings and errors are shown. <a href="../env/OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a> takes precedence over these flags.</p>
-<p>When standard output is a terminal, <code>opengrep scan</code> starts by printing a banner with the opengrep logo and version to standard error; <code>--quiet</code> leaves it out.</p>
+<p>When standard output is a terminal, <code>opengrep scan</code> starts by printing a banner with the Opengrep logo and version to standard error; <code>--quiet</code> leaves it out.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="only-the-findings"><a class="hash" href="#only-the-findings" aria-hidden="true" tabindex="-1">###</a> Only the findings</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml app.py 2&gt;&amp;1 &gt;/dev/null
-opengrep scan --config rule.yaml --quiet app.py 2&gt;&amp;1 &gt;/dev/null
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml app.py 2&gt;&amp;1
 opengrep scan --config rule.yaml --quiet app.py 2&gt;&amp;1
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml app.py 2&gt;&amp;1 &gt;/dev/null</span>
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml app.py 2&gt;&amp;1</span>
+ ╭┮┭╮ Opengrep
+┌┼┼┼┘ the open source static code analysis engine
+╰┶┵╯  version X.Y.Z
+
 1 file · 1 rule
 
+app.py
+
+  <span class="sev">warn</span>  <span class="rule">find-eval</span>
+  found eval
+
+<span class="n">     1:</span><span class="b"> eval(1)</span>
+
 1 finding in 1 file
-<span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --quiet app.py 2&gt;&amp;1 &gt;/dev/null</span>
 <span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --quiet app.py 2&gt;&amp;1</span>
 app.py
 
@@ -283,7 +292,7 @@ app.py
   found eval
 
 <span class="n">     1:</span><span class="b"> eval(1)</span></code></pre></div>
-<p>With <code>--quiet</code>, the second command prints nothing to standard error.</p>
+<p>Without <code>--quiet</code>, the banner, the number of files and rules, and the number of findings surround the findings. With <code>--quiet</code>, only the findings are printed.</p>
 <h3 id="an-error-is-not-reported"><a class="hash" href="#an-error-is-not-reported" aria-hidden="true" tabindex="-1">###</a> An error is not reported</h3>
 <div class="file"><div class="file-head">broken.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>

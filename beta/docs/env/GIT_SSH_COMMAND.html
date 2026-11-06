@@ -260,8 +260,8 @@
 <div><dt>Value</dt><dd>a shell command</dd></div>
 <div><dt>See also</dt><dd><a href="../flags/config.html"><code>--config</code></a></dd></div>
 </dl>
-<p>The ssh command that git uses. A <a href="../flags/config.html"><code>--config</code></a> of the form <code>git+ssh://…</code> makes opengrep clone the repository with git, which connects with this command. When the variable is set, opengrep passes it on unchanged, so it can select a deploy key (<code>ssh -i deploy_key</code>) or set other ssh options.</p>
-<p>When the variable is unset, opengrep sets it to <code>ssh -oBatchMode=yes</code> for the clone. It also always sets <code>GIT_TERMINAL_PROMPT=0</code>. Neither ssh nor git can then prompt for a password, a passphrase or a host key: a clone that cannot authenticate fails immediately instead of waiting for input.</p>
+<p>The ssh command that git uses. A <a href="../flags/config.html"><code>--config</code></a> of the form <code>git+ssh://…</code> makes Opengrep clone the repository with git, which connects with this command. When the variable is set, Opengrep passes it on unchanged, so it can select a deploy key (<code>ssh -i deploy_key</code>) or set other ssh options.</p>
+<p>When the variable is unset, Opengrep sets it to <code>ssh -oBatchMode=yes</code> for the clone. It also always sets <code>GIT_TERMINAL_PROMPT=0</code>. Neither ssh nor git can then prompt for a password, a passphrase or a host key: a clone that cannot authenticate fails immediately instead of waiting for input.</p>
 <p>A clone that fails is reported as <code class="long">Could not clone git repo … (ensure it is accessible non-interactively: ssh-agent / credential helper)</code>. The variable has no <code>OPENGREP_</code> form.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-custom-ssh-command"><a class="hash" href="#a-custom-ssh-command" aria-hidden="true" tabindex="-1">###</a> A custom ssh command</h3>

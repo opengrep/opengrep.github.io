@@ -265,8 +265,8 @@
 <p>An entry matches the host itself and every host under it: <code>example.com</code>, <code>.example.com</code> and <code>com</code> all match <code>rules.example.com</code>, and <code>example.com</code> does not match <code>notexample.com</code>. Ports are not part of the match, so an entry such as <code>example.com:443</code> matches no host. <code>*</code> matches every host.</p>
 <p>The lowercase <code>no_proxy</code> is also read; when both are set, <code>NO_PROXY</code> takes precedence. The variable has no <code>OPENGREP_</code> form.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="one-host-past-the-proxy"><a class="hash" href="#one-host-past-the-proxy" aria-hidden="true" tabindex="-1">###</a> One host past the proxy</h3>
-<p>The host <code>proxy.invalid</code> does not exist, so a download through the proxy fails when opengrep resolves the proxy.</p>
+<h3 id="one-host-that-bypasses-the-proxy"><a class="hash" href="#one-host-that-bypasses-the-proxy" aria-hidden="true" tabindex="-1">###</a> One host that bypasses the proxy</h3>
+<p>The host <code>proxy.invalid</code> does not exist, so a download through the proxy fails when Opengrep resolves the proxy.</p>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="HTTPS_PROXY=http://proxy.invalid:3128 opengrep scan --config https://example.invalid/rules.yaml app.py 2&gt;&amp;1 | grep &#x27;Failed to download&#x27;
 HTTPS_PROXY=http://proxy.invalid:3128 NO_PROXY=example.invalid opengrep scan --config https://example.invalid/rules.yaml app.py 2&gt;&amp;1 | grep &#x27;Failed to download&#x27;

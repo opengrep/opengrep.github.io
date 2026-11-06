@@ -266,7 +266,7 @@
 <li>a deep expression pattern <code>&lt;... e ...&gt;</code> matches any expression that contains <code>e</code>;</li>
 <li>in a statement pattern, a statement such as <code>finish()</code> also matches a statement that contains it, such as <code>result = finish()</code>; see <a href="implicit_deep_exprstmt.html"><code>implicit_deep_exprstmt</code></a>.</li>
 </ul>
-<p>With <code>go_deeper_expr: false</code>, both match at the top only: <code>&lt;... e ...&gt;</code> matches <code>e</code> itself, and <code>finish()</code> matches the statement <code>finish()</code>.</p>
+<p>With <code>go_deeper_expr: false</code>, both match only at the top level: <code>&lt;... e ...&gt;</code> matches <code>e</code> itself, and <code>finish()</code> matches the statement <code>finish()</code>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-condition-that-contains-the-check"><a class="hash" href="#a-condition-that-contains-the-check" aria-hidden="true" tabindex="-1">###</a> A condition that contains the check</h3>
 <p>The rule <code>admin-branch</code> turns the option off.</p>

@@ -262,7 +262,7 @@
 <div><dt>Default</dt><dd><code>true</code></dd></div>
 <div><dt>See also</dt><dd><a href="config.html"><code>--config</code></a>, <a href="exclude-rule.html"><code>--exclude-rule</code></a>, <a href="../rule-syntax/id.html"><code>id</code></a></dd></div>
 </dl>
-<p>When a rule file is in a subdirectory of the current directory, opengrep prefixes the ids of its rules with the path of that directory, with dots in place of the slashes: the rule <code>find-eval</code> in <code>rules/eval.yaml</code> is reported as <code>rules.find-eval</code>. Rules in different files can then have the same id, and the id of a finding shows where its rule is defined. This is the default.</p>
+<p>When a rule file is in a subdirectory of the current directory, Opengrep prefixes the ids of its rules with the path of that directory, with dots in place of the slashes: the rule <code>find-eval</code> in <code>rules/eval.yaml</code> is reported as <code>rules.find-eval</code>. Rules in different files can then have the same id, and the id of a finding shows where its rule is defined. This is the default.</p>
 <p><code>--no-rewrite-rule-ids</code> keeps the ids as written in the rule files, for example when a triage database or a suppression list refers to rules by id and must not depend on the directory layout.</p>
 <p><a href="exclude-rule.html"><code>--exclude-rule</code></a> takes the ids as reported, with the prefix.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

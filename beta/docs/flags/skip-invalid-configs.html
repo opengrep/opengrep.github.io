@@ -261,7 +261,7 @@
 <div><dt>See also</dt><dd><a href="config.html"><code>--config</code></a>, <a href="../commands/validate.html"><code>opengrep validate</code></a>, <a href="strict.html"><code>--strict</code></a></dd></div>
 </dl>
 <p>A directory of rules can contain YAML files that are not rule files, such as a CI workflow. By default, loading such a directory stops the scan with exit status 7, since one of its files is not a valid rule file.</p>
-<p>With this flag, opengrep logs a warning for each such file and scans with the rules it could load. The flag applies to rules loaded from a directory or from a <code>git+&lt;url&gt;</code> repository. A rule file named directly in <code>--config</code> must still be valid.</p>
+<p>With this flag, Opengrep logs a warning for each such file and scans with the rules it could load. The flag applies to rules loaded from a directory or from a <code>git+&lt;url&gt;</code> repository. A rule file named directly in <code>--config</code> must still be valid.</p>
 <p><a href="../commands/validate.html"><code>opengrep validate</code></a> lists the invalid files of a directory, as the example below shows.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-workflow-file-among-the-rules"><a class="hash" href="#a-workflow-file-among-the-rules" aria-hidden="true" tabindex="-1">###</a> A workflow file among the rules</h3>

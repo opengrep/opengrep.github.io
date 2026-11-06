@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--suppress-errors · Opengrep</title>
-  <meta name="description" content="Whether errors fail opengrep ci; on by default, so that errors exit with status 0.">
+  <meta name="description" content="Make opengrep ci exit with status 0 on errors; on by default.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -267,9 +267,9 @@
 <div class="file"><pre class="snip"><code>There were errors during analysis but the scan will succeed because there
 were no blocking findings, use --no-suppress-errors if you want it to fail
 when there are errors.</code></pre></div>
-<p><code>--no-suppress-errors</code> keeps the real exit status, the one that <a href="../commands/scan.html"><code>opengrep scan</code></a> would return: 7 for a rule file that cannot be loaded, 2 for a fatal error, and so on. Blocking findings are not errors, so exit status 1 is not affected. <a href="../env/OPENGREP_SUPPRESS_ERRORS.html"><code>OPENGREP_SUPPRESS_ERRORS</code></a> sets the same value.</p>
+<p><code>--no-suppress-errors</code> keeps the original exit status, the one that <a href="../commands/scan.html"><code>opengrep scan</code></a> would return: 7 for a rule file that cannot be loaded, 2 for a fatal error, and so on. Blocking findings are not errors, so exit status 1 is not affected. <a href="../env/OPENGREP_SUPPRESS_ERRORS.html"><code>OPENGREP_SUPPRESS_ERRORS</code></a> sets the same value.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="a-rule-file-that-does-not-load"><a class="hash" href="#a-rule-file-that-does-not-load" aria-hidden="true" tabindex="-1">###</a> A rule file that does not load</h3>
+<h3 id="a-rule-file-that-cannot-be-loaded"><a class="hash" href="#a-rule-file-that-cannot-be-loaded" aria-hidden="true" tabindex="-1">###</a> A rule file that cannot be loaded</h3>
 <div class="file"><div class="file-head">broken.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: broken</span><span class="line">    <span class="k">patterns</span>:</span><span class="line">      - <span class="k">pattern-not</span>: eval(<span class="s">&quot;...&quot;</span>)</span><span class="line">    <span class="k">message</span>: a rule that cannot work</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="git init -q &amp;&amp; git add . &amp;&amp; git commit -qm init

@@ -266,7 +266,7 @@
 <p>The variable can point to a mirror or an internal copy of the registry. Configurations that are files, directories, URLs or <code>git+</code> repositories do not use the registry.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="where-a-registry-config-is-fetched-from"><a class="hash" href="#where-a-registry-config-is-fetched-from" aria-hidden="true" tabindex="-1">###</a> Where a registry config is fetched from</h3>
-<p>The host <code>registry.invalid</code> does not exist, so the download fails at once, and the error shows the address opengrep tried.</p>
+<p>The host <code>registry.invalid</code> does not exist, so the download fails at once, and the error shows the address Opengrep tried.</p>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="OPENGREP_URL=http://registry.invalid opengrep scan --config p/python app.py 2&gt;&amp;1 | grep &#x27;Failed to download&#x27;
 OPENGREP_URL=http://registry.invalid opengrep scan --config p/python app.py &gt; /dev/null 2&gt;&amp;1; echo &quot;exit status: $?&quot;

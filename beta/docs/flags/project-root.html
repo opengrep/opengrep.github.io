@@ -261,7 +261,7 @@
 <div><dt>Value</dt><dd><code>PATH</code></dd></div>
 <div><dt>See also</dt><dd><a href="semgrepignore-filename.html"><code>--semgrepignore-filename</code></a>, <a href="use-git-ignore.html"><code>--use-git-ignore</code></a></dd></div>
 </dl>
-<p>By default, opengrep determines the project root itself: the git repository that contains the scanning root, or, without version control, the scanned directory. The project root is where opengrep reads <code>.gitignore</code> and <code>.semgrepignore</code>.</p>
+<p>By default, Opengrep determines the project root itself: the git repository that contains the scanning root, or, without version control, the scanned directory. The project root is where Opengrep reads <code>.gitignore</code> and <code>.semgrepignore</code>.</p>
 <p>When a scan covers a subdirectory of a project whose ignore file is higher up, that file is not read, and the paths it lists are scanned. <code>--project-root PATH</code> sets the root explicitly, and treats the project as one without version control.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="scanning-a-subdirectory-of-a-project"><a class="hash" href="#scanning-a-subdirectory-of-a-project" aria-hidden="true" tabindex="-1">###</a> Scanning a subdirectory of a project</h3>

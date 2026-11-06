@@ -263,8 +263,8 @@
 opengrep test --config RULES [FLAGS] TARGETS...</code></pre></div>
 <p>Runs rules on test files and compares the findings with the annotations in those files. The default PATH is the current directory.</p>
 <h2 id="pairing-rules-with-targets"><a class="hash" href="#pairing-rules-with-targets" aria-hidden="true" tabindex="-1">##</a> Pairing rules with targets</h2>
-<p>Without <code>--config</code>, each rule file (<code>.yaml</code> or <code>.yml</code>) found under PATHS is tested against the files in the same directory whose names are the same up to the extensions. For example, <code>find-eval.yaml</code> is tested against <code>find-eval.py</code> and <code>find-eval.test.yaml</code>. A directory named like the rule file, such as <code>find-eval/</code>, provides all the files under it.</p>
-<p>With <a href="../flags/config.html"><code>--config</code></a>, the given rules run on the given targets, whatever their names.</p>
+<p>Without <code>--config</code>, each rule file (<code>.yaml</code> or <code>.yml</code>) found under PATHS is tested against the files in the same directory whose names are the same except for the extensions. For example, <code>find-eval.yaml</code> is tested against <code>find-eval.py</code> and <code>find-eval.test.yaml</code>. A directory with the same name as the rule file, such as <code>find-eval/</code>, provides all the files under it as targets.</p>
+<p>With <a href="../flags/config.html"><code>--config</code></a>, the given rules run on the given targets, regardless of their names.</p>
 <h2 id="annotations"><a class="hash" href="#annotations" aria-hidden="true" tabindex="-1">##</a> Annotations</h2>
 <p>An annotation is a comment on the line before the code it is about, or on the same line. The comment is written in the target language, for example <code>#</code>, <code>//</code>, <code>/* */</code>, <code>&lt;!-- --&gt;</code> or <code>(* *)</code>.</p>
 <div class="table-wrap"><table>
@@ -276,7 +276,7 @@ opengrep test --config RULES [FLAGS] TARGETS...</code></pre></div>
 <tr><td><code>todook: &lt;id&gt;</code></td><td>The rule reports this line but should not. The test passes either way.</td></tr>
 </tbody>
 </table></div>
-<p>Several rule ids can be given, separated by commas: <code># ruleid: rule-a, rule-b</code>. The test fails when a rule misses a <code>ruleid:</code> line ("missed lines") or reports a line that no <code>ruleid:</code> annotation names ("incorrect lines"). A <code>todoruleid:</code> or <code>todook:</code> line never fails a test, whichever way the rule behaves on it. The <code>deepok:</code>, <code>deepruleid:</code>, <code>prook:</code> and <code>proruleid:</code> prefixes are accepted for compatibility and are ignored.</p>
+<p>Several rule ids can be given, separated by commas: <code># ruleid: rule-a, rule-b</code>. The test fails when a rule misses a <code>ruleid:</code> line ("missed lines") or reports a line that no <code>ruleid:</code> annotation names ("incorrect lines"). A <code>todoruleid:</code> or <code>todook:</code> line never fails a test, regardless of whether the rule reports it. The <code>deepok:</code>, <code>deepruleid:</code>, <code>prook:</code> and <code>proruleid:</code> prefixes are accepted for compatibility and are ignored.</p>
 <h2 id="autofix-tests"><a class="hash" href="#autofix-tests" aria-hidden="true" tabindex="-1">##</a> Autofix tests</h2>
 <p>When a target <code>x.py</code> has a file <code>x.fixed.py</code> next to it, <code>opengrep test</code> also applies the fixes of the rules to <code>x.py</code> and checks that the result equals <code>x.fixed.py</code>. The line <code>No tests for fixes found.</code> means that there is no such file.</p>
 <h2 id="exit-status"><a class="hash" href="#exit-status" aria-hidden="true" tabindex="-1">##</a> Exit status</h2>
@@ -286,7 +286,7 @@ opengrep test --config RULES [FLAGS] TARGETS...</code></pre></div>
 <thead><tr><th>Flag</th><th>Summary</th></tr></thead>
 <tbody>
 <tr><td><a href="../flags/config.html"><code>--config</code></a></td><td>Load rules from a file, a directory, a URL, a git repository or the registry.</td></tr>
-<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log what --verbose logs, and the diagnostics of the engine.</td></tr>
+<tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log the messages of --verbose and the diagnostics of the engine.</td></tr>
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
 <tr><td><a href="../flags/enable-interfile.html"><code>--enable-interfile</code></a></td><td>Run cross-file taint analysis for the rules that set the taint_interfile option.</td></tr>
 <tr><td><a href="../flags/force-color.html"><code>--force-color</code></a></td><td>Style the output even when it does not go to a terminal.</td></tr>
@@ -296,7 +296,7 @@ opengrep test --config RULES [FLAGS] TARGETS...</code></pre></div>
 <tr><td><a href="../flags/max-memory.html"><code>--max-memory</code></a></td><td>The memory that the analysis of one file may use before it is abandoned.</td></tr>
 <tr><td><a href="../flags/opengrep-ignore-pattern.html"><code>--opengrep-ignore-pattern</code></a></td><td>An additional comment prefix that suppresses the findings on a line.</td></tr>
 <tr><td><code>--profile</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
-<tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print the findings and nothing else.</td></tr>
+<tr><td><a href="../flags/quiet.html"><code>--quiet</code></a></td><td>Print only the findings, and nothing on standard error.</td></tr>
 <tr><td><a href="../flags/strict.html"><code>--strict</code></a></td><td>Fail the run when a file cannot be parsed or another warning-level error occurs.</td></tr>
 <tr><td><a href="../flags/taint-intrafile.html"><code>--taint-intrafile</code></a></td><td>Follow taint through calls to functions in the same file, for every taint rule.</td></tr>
 <tr><td><a href="../flags/timeout.html"><code>--timeout</code></a></td><td>The time limit of a rule on a file, in seconds; 0 sets no limit.</td></tr>
@@ -313,7 +313,7 @@ opengrep test --config RULES [FLAGS] TARGETS...</code></pre></div>
 1/1: ✓ All tests passed
 No tests for fixes found.</code></pre></div>
 <h3 id="a-failing-test"><a class="hash" href="#a-failing-test" aria-hidden="true" tabindex="-1">###</a> A failing test</h3>
-<p>The second <code>eval</code> call is wrongly annotated <code>ok:</code>.</p>
+<p>The second <code>eval</code> call is incorrectly annotated <code>ok:</code>.</p>
 <div class="file"><div class="file-head">find-eval.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">find-eval.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="c"># ruleid: find-eval</span></span><span class="line">eval(a)</span><span class="line"><span class="c"># ok: find-eval</span></span><span class="line">eval(b)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep test .; echo &quot;exit status: $?&quot;

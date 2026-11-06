@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>&quot;...&quot; · Opengrep</title>
-  <meta name="description" content="Match string literals: any string, a bound string, or a string that fits a regular expression.">
+  <meta name="description" content="Match string literals: any string, a bound string, or a string that matches a regular expression.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -277,7 +277,7 @@
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep test .</span>
 1/1: ✓ All tests passed
 No tests for fixes found.</code></pre></div>
-<h3 id="a-string-that-fits-a-regular-expression"><a class="hash" href="#a-string-that-fits-a-regular-expression" aria-hidden="true" tabindex="-1">###</a> A string that fits a regular expression</h3>
+<h3 id="a-string-that-matches-a-regular-expression"><a class="hash" href="#a-string-that-matches-a-regular-expression" aria-hidden="true" tabindex="-1">###</a> A string that matches a regular expression</h3>
 <div class="file"><div class="file-head">http-url.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: http-url</span><span class="line">    <span class="k">pattern</span>: requests.get(<span class="s">&quot;=~/^http:\/\//&quot;</span>, <span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: a request is sent over plain HTTP</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">http-url.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="c"># ruleid: http-url</span></span><span class="line">requests.get(<span class="s">&quot;http://api.example.com/users&quot;</span>)</span><span class="line"><span class="c"># ok: http-url</span></span><span class="line">requests.get(<span class="s">&quot;https://api.example.com/users&quot;</span>)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep test .

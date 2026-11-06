@@ -266,7 +266,7 @@
 <p>The value is split at whitespace: <code>&quot;push schedule&quot;</code> names two events. An <code>--audit-on</code> on the command line replaces the whole list, with a warning.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="audit-mode-set-in-the-environment"><a class="hash" href="#audit-mode-set-in-the-environment" aria-hidden="true" tabindex="-1">###</a> Audit mode set in the environment</h3>
-<p>Outside a CI provider the event is <code>unknown</code>.</p>
+<p>Outside a CI provider, the event is <code>unknown</code>.</p>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="git init -q &amp;&amp; git add . &amp;&amp; git commit -qm init

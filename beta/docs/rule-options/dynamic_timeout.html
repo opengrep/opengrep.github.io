@@ -261,7 +261,7 @@
 <div><dt>Default</dt><dd><code class="long">unset, the scan&#x27;s --dynamic-timeout applies</code></dd></div>
 <div><dt>See also</dt><dd><a href="../flags/allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a>, <a href="../flags/dynamic-timeout.html"><code>--dynamic-timeout</code></a>, <a href="../flags/timeout.html"><code>--timeout</code></a>, <a href="timeout.html"><code>timeout</code></a>, <a href="dynamic_timeout_unit_kb.html"><code>dynamic_timeout_unit_kb</code></a>, <a href="dynamic_timeout_max_multiplier.html"><code>dynamic_timeout_max_multiplier</code></a></dd></div>
 </dl>
-<p>Opengrep ignores this option unless the scan runs with <code>--allow-rule-timeout-control</code>. The same holds for the other timeout options of a rule: <code>timeout</code>, <code>dynamic_timeout_unit_kb</code> and <code>dynamic_timeout_max_multiplier</code>. When allowed, <code>dynamic_timeout: true</code> makes the rule's time limit on a file grow with the size of the file:</p>
+<p>Opengrep ignores this option unless the scan runs with <code>--allow-rule-timeout-control</code>. The same holds for the other timeout options of a rule: <code>timeout</code>, <code>dynamic_timeout_unit_kb</code> and <code>dynamic_timeout_max_multiplier</code>. When the flag is given, <code>dynamic_timeout: true</code> makes the rule's time limit on a file grow with the size of the file:</p>
 <div class="file"><pre class="snip"><code>limit = base × clamp(size in KB / unit, 1, max multiplier)</code></pre></div>
 <div class="table-wrap"><table>
 <thead><tr><th>Term</th><th>Rule option</th><th>Otherwise</th></tr></thead>

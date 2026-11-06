@@ -261,7 +261,7 @@
 <div><dt>Value</dt><dd><code>PATH</code>, relative to the current directory</dd></div>
 <div><dt>See also</dt><dd><a href="../commands/ci.html"><code>opengrep ci</code></a>, <a href="exclude.html"><code>--exclude</code></a></dd></div>
 </dl>
-<p><a href="../commands/ci.html"><code>opengrep ci</code></a> scans the directory it runs in, which is expected to be the root of the repository. <code>--subdir PATH</code> restricts the scan to PATH, while the repository, branch, commit and baseline still come from the whole repository. This serves monorepos, in which one repository holds several projects that are scanned separately.</p>
+<p><a href="../commands/ci.html"><code>opengrep ci</code></a> scans the directory it runs in, which is expected to be the root of the repository. <code>--subdir PATH</code> restricts the scan to PATH, while the repository, branch, commit and baseline still come from the whole repository. This is intended for monorepos, in which one repository holds several projects that are scanned separately.</p>
 <p>PATH must be a directory inside the current directory. Otherwise, <code>opengrep ci</code> reports:</p>
 <div class="file"><pre class="snip"><code>`opengrep ci --subdir` must be given a directory that is actually a subdirectory of the current directory</code></pre></div>
 <p>Since errors are suppressed by default, <code>opengrep ci</code> then exits with status</p>

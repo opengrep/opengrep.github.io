@@ -261,8 +261,8 @@
 <div><dt>Default</dt><dd><code>false</code></dd></div>
 <div><dt>See also</dt><dd><a href="../flags/guarded-taint-signatures.html"><code>--guarded-taint-signatures</code></a>, <a href="taint_intrafile.html"><code>taint_intrafile</code></a></dd></div>
 </dl>
-<p>This is the rule option behind <a href="../flags/guarded-taint-signatures.html"><code>--guarded-taint-signatures</code></a>. When a function is analysed for its callers, the conditions under which its tainted arguments reach a sink are recorded as well, and a call that cannot meet them does not produce a finding. It is experimental.</p>
-<p>It works on calls between functions, so it matters only when the rule follows them, with <a href="taint_intrafile.html"><code>taint_intrafile</code></a> or the flag <code>--taint-intrafile</code>.</p>
+<p>This is the rule option behind <a href="../flags/guarded-taint-signatures.html"><code>--guarded-taint-signatures</code></a>. When a function is analyzed for its callers, the conditions under which its tainted arguments reach a sink are recorded as well, and a call that cannot meet them does not produce a finding. It is experimental.</p>
+<p>It applies to calls between functions, so it has an effect only when the rule follows them, with <a href="taint_intrafile.html"><code>taint_intrafile</code></a> or the flag <code>--taint-intrafile</code>.</p>
 <p>The flag turns it on for every rule of the scan. A rule cannot turn it off while the flag is given: <code>guarded_taint_signatures: false</code> then has no effect.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-sink-behind-a-condition-the-caller-does-not-meet"><a class="hash" href="#a-sink-behind-a-condition-the-caller-does-not-meet" aria-hidden="true" tabindex="-1">###</a> A sink behind a condition the caller does not meet</h3>

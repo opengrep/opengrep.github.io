@@ -262,11 +262,11 @@
 <div><dt>Default</dt><dd><code>0, no limit</code></dd></div>
 <div><dt>See also</dt><dd><a href="timeout.html"><code>--timeout</code></a>, <a href="max-target-bytes.html"><code>--max-target-bytes</code></a>, <a href="jobs.html"><code>--jobs</code></a>, <a href="max-match-per-file.html"><code>--max-match-per-file</code></a>, <a href="timeout-threshold.html"><code>--timeout-threshold</code></a></dd></div>
 </dl>
-<p>Limits the memory used by the analysis of one file, and by the cross-file analysis. When the limit is exceeded, opengrep abandons the file, logs the warning <code>ExceededMemoryLimit on &lt;file&gt;</code>, counts the file as partially analysed, and continues. The scan still exits with status 0, unless <a href="strict.html"><code>--strict</code></a> is given.</p>
+<p>Limits the memory used by the analysis of one file, and by the cross-file analysis. When the limit is exceeded, Opengrep abandons the file, logs the warning <code>ExceededMemoryLimit on &lt;file&gt;</code>, counts the file as partially analyzed, and continues. The scan still exits with status 0, unless <a href="strict.html"><code>--strict</code></a> is given.</p>
 <p><code>0</code>, the default, sets no limit. The value is in MiB.</p>
-<p>Each of the <a href="jobs.html"><code>--jobs</code></a> workers holds its own analysis, so a smaller number of workers also reduces the memory that a scan uses.</p>
+<p>Each of the <a href="jobs.html"><code>--jobs</code></a> workers analyzes its own files, so a smaller number of workers also reduces the memory that a scan uses.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="a-limit-too-small-to-analyse-anything"><a class="hash" href="#a-limit-too-small-to-analyse-anything" aria-hidden="true" tabindex="-1">###</a> A limit too small to analyse anything</h3>
+<h3 id="a-limit-too-small-to-analyze-anything"><a class="hash" href="#a-limit-too-small-to-analyze-anything" aria-hidden="true" tabindex="-1">###</a> A limit too small to analyze anything</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="seq 20000 | sed &#x27;s/.*/x&amp; = f(&amp;)/&#x27; &gt; big.py &amp;&amp; echo &#x27;eval(1)&#x27; &gt;&gt; big.py
 opengrep scan -q --config rule.yaml --files-with-matches big.py
@@ -278,7 +278,7 @@ big.py
 <span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --files-with-matches --max-memory 1 big.py</span>
 <span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --max-memory 1 big.py 2&gt;&amp;1 &gt;/dev/null | grep ExceededMemoryLimit</span>
 warning  ExceededMemoryLimit on big.py</code></pre></div>
-<p>With the limit, the third command prints nothing: the file was abandoned and has no findings. The warning names the file, and the summary counts it as partially analysed.</p>
+<p>With the limit, the third command prints nothing: the file was abandoned and has no findings. The warning names the file, and the summary counts it as partially analyzed.</p>
     </main>
   </div>
 

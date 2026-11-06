@@ -260,7 +260,7 @@
 <div><dt>Value</dt><dd><code>as_vardef_with_ctor</code> or <code>as_fundef</code></dd></div>
 <div><dt>Default</dt><dd><code>as_vardef_with_ctor</code></dd></div>
 </dl>
-<p>In C++, <code>foo bar(x);</code> can declare a function <code>bar</code> that takes an <code>x</code> and returns a <code>foo</code>, or define a variable <code>bar</code> of type <code>foo</code> built with the argument <code>x</code>. In a function body opengrep reads it as a variable; elsewhere, as in a class body, as a declaration. A pattern has no such context, and this option chooses how a pattern like <code>foo $X(...);</code> is read:</p>
+<p>In C++, <code>foo bar(x);</code> can declare a function <code>bar</code> that takes an <code>x</code> and returns a <code>foo</code>, or define a variable <code>bar</code> of type <code>foo</code> built with the argument <code>x</code>. In a function body, Opengrep reads it as a variable; elsewhere, as in a class body, as a declaration. A pattern has no such context, and this option chooses how a pattern like <code>foo $X(...);</code> is read:</p>
 <ul>
 <li><code>as_vardef_with_ctor</code>: as a variable built with a constructor, which matches <code>foo obj(1);</code> in a function body;</li>
 <li><code>as_fundef</code>: as a function declaration, which matches <code>foo bar(x);</code> in a class body.</li>

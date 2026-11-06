@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>--interfile-dedup-by · Opengrep</title>
-  <meta name="description" content="Whether a sink that several sources reach across files makes one finding or one per source.">
+  <meta name="description" content="Whether a sink reached by several sources across files produces one finding or one per source.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -271,7 +271,7 @@
 </tbody>
 </table></div>
 <p>With <code>source-sink</code>, the JSON and SARIF outputs contain one result per source. The text output shows the sink once, with a <code>from:</code> line for each source.</p>
-<p>The flag applies only to rules analysed across files. Other rules report each sink once.</p>
+<p>The flag applies only to rules analyzed across files. Other rules report each sink once.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="two-callers-in-other-files"><a class="hash" href="#two-callers-in-other-files" aria-hidden="true" tabindex="-1">###</a> Two callers in other files</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: input-to-system</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: os.system(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: input reaches os.system</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">taint_interfile</span>: true</span></code></pre></div>

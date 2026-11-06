@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>go_deeper_stmt · Opengrep</title>
-  <meta name="description" content="Let ... between statements reach statements nested in later blocks.">
+  <meta name="description" content="Let ... between statements match statements nested in later blocks.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 
@@ -261,7 +261,7 @@
 <div><dt>Default</dt><dd><code>true</code></dd></div>
 <div><dt>See also</dt><dd><a href="go_deeper_expr.html"><code>go_deeper_expr</code></a></dd></div>
 </dl>
-<p>In a statement pattern, <code>...</code> between two statements also reaches statements nested in the blocks that follow. <code>lock.acquire()</code>, <code>...</code>, <code>lock.release()</code> matches when <code>lock.release()</code> sits in an <code>if</code> or a <code>finally</code> after the call to <code>acquire</code>.</p>
+<p>In a statement pattern, <code>...</code> between two statements also reaches statements nested in the blocks that follow. <code>lock.acquire()</code>, <code>...</code>, <code>lock.release()</code> matches when <code>lock.release()</code> is in an <code>if</code> or a <code>finally</code> after the call to <code>acquire</code>.</p>
 <p>With <code>go_deeper_stmt: false</code>, the statement after <code>...</code> must be in the same block as the one before it.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-release-in-a-nested-block"><a class="hash" href="#a-release-in-a-nested-block" aria-hidden="true" tabindex="-1">###</a> A release in a nested block</h3>

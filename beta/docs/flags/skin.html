@@ -268,12 +268,12 @@
 <thead><tr><th>Value</th><th>Layout</th></tr></thead>
 <tbody>
 <tr><td><code>simple</code></td><td>The default. For each file, its path, then for each finding the severity, the rule id, the message and the matched lines.</td></tr>
-<tr><td><code>vivid</code></td><td>Colour, with horizontal rules across the width of the terminal.</td></tr>
+<tr><td><code>vivid</code></td><td>Colored output, with horizontal rules across the width of the terminal.</td></tr>
 <tr><td><code>legacy</code></td><td>Findings in drawn boxes, under a heading with their number.</td></tr>
 </tbody>
 </table></div>
-<p>The skin also determines what opengrep prints on standard error around the output, such as the numbers of files and rules before it and the number of findings after it, and whether a status line shows the progress of the scan (see <a href="no-progress-bar.html"><code>--no-progress-bar</code></a>). <code>opengrep validate</code> uses the skin for these lines only.</p>
-<p>The width comes from the terminal, or from <a href="../env/COLUMNS.html"><code>COLUMNS</code></a> when the output is not a terminal. Colour follows the usual rules: it is used on a terminal unless <code>NO_COLOR</code> is set, and always with <a href="force-color.html"><code>--force-color</code></a>.</p>
+<p>The skin also determines what Opengrep prints on standard error around the output, such as the numbers of files and rules before it and the number of findings after it, and whether a status line shows the progress of the scan (see <a href="no-progress-bar.html"><code>--no-progress-bar</code></a>). <code>opengrep validate</code> uses the skin for these lines only.</p>
+<p>The width comes from the terminal, or from <a href="../env/COLUMNS.html"><code>COLUMNS</code></a> when the output is not a terminal. Color is used on a terminal unless <code>NO_COLOR</code> is set, and always with <a href="force-color.html"><code>--force-color</code></a>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="the-same-finding-in-each-layout"><a class="hash" href="#the-same-finding-in-each-layout" aria-hidden="true" tabindex="-1">###</a> The same finding in each layout</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

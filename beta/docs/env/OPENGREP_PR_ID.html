@@ -265,7 +265,7 @@
 <p>This applies when no CI provider is detected, and on Azure Pipelines, Bitbucket, Buildkite, CircleCI, Jenkins and Travis, where the variable is read before the provider's own pull-request variable. GitHub Actions and GitLab CI take the event from their own variables, <code>GITHUB_EVENT_NAME</code> and <code>CI_PIPELINE_SOURCE</code>, and the variable does not change it.</p>
 <p>The event name is what <a href="../flags/audit-on.html"><code>--audit-on</code></a> is matched against. The id itself does not appear in the output.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="a-run-that-counts-as-a-pull-request"><a class="hash" href="#a-run-that-counts-as-a-pull-request" aria-hidden="true" tabindex="-1">###</a> A run that counts as a pull request</h3>
+<h3 id="a-run-treated-as-a-pull-request"><a class="hash" href="#a-run-treated-as-a-pull-request" aria-hidden="true" tabindex="-1">###</a> A run treated as a pull request</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="git init -q &amp;&amp; git add . &amp;&amp; git commit -qm init
@@ -279,7 +279,7 @@ git · pull_request
 exit status: 1
 <span class="p">$ </span><span class="cmd">OPENGREP_PR_ID=17 opengrep ci --config rule.yaml --audit-on pull_request &gt; /dev/null 2&gt;&amp;1; echo <span class="s">&quot;exit status: $?&quot;</span></span>
 exit status: 0</code></pre></div>
-<h3 id="providers-that-honour-it-and-one-that-does-not"><a class="hash" href="#providers-that-honour-it-and-one-that-does-not" aria-hidden="true" tabindex="-1">###</a> Providers that honour it, and one that does not</h3>
+<h3 id="providers-that-read-it-and-one-that-does-not"><a class="hash" href="#providers-that-read-it-and-one-that-does-not" aria-hidden="true" tabindex="-1">###</a> Providers that read it, and one that does not</h3>
 <p>The CI provider is detected from its own variables, which the example sets.</p>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
