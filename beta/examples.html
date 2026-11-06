@@ -91,7 +91,7 @@
       <div class="file">
         <div class="file-head">server.js</div>
         <button class="copy" type="button">copy</button>
-<pre class="code"><code><span class="line"><span class="k">const</span> express = require(<span class="s">&quot;express&quot;</span>);</span><span class="line"><span class="k">const</span> { exec } = require(<span class="s">&quot;child_process&quot;</span>);</span><span class="line"><span class="k">const</span> shellescape = require(<span class="s">&quot;shell-escape&quot;</span>);</span><span class="line"></span><span class="line"><span class="k">const</span> app = express();</span><span class="line"></span><span class="line"><span class="k">function</span> tarCommand(dir) {</span><span class="line">  <span class="k">return</span> <span class="s">&quot;tar czf /backups/latest.tgz &quot;</span> + dir;</span><span class="line">}</span><span class="line"></span><span class="line"><span class="k">function</span> escape(dir) {</span><span class="line">  <span class="k">return</span> shellescape([dir]);</span><span class="line">}</span><span class="line"></span><span class="line"><span class="k">function</span> backup(req, res) {</span><span class="line hit">  exec(tarCommand(req.query.dir));</span><span class="line">}</span><span class="line"></span><span class="line"><span class="k">function</span> backupAll(req, res) {</span><span class="line hit">  req.body.dirs.map(tarCommand).forEach((cmd) =&gt; exec(cmd));</span><span class="line">}</span><span class="line"></span><span class="line"><span class="k">function</span> backupSafe(req, res) {</span><span class="line">  exec(tarCommand(escape(req.query.dir)));</span><span class="line">}</span><span class="line"></span><span class="line">app.get(<span class="s">&quot;/backup&quot;</span>, backup);</span><span class="line">app.post(<span class="s">&quot;/backup-all&quot;</span>, backupAll);</span><span class="line">app.get(<span class="s">&quot;/backup-safe&quot;</span>, backupSafe);</span></code></pre>
+<pre class="code"><code><span class="line"><span class="k">const</span> express = require(<span class="s">&quot;express&quot;</span>);</span><span class="line"><span class="k">const</span> { exec } = require(<span class="s">&quot;child_process&quot;</span>);</span><span class="line"><span class="k">const</span> shellescape = require(<span class="s">&quot;shell-escape&quot;</span>);</span><span class="line"></span><span class="line"><span class="k">const</span> app = express();</span><span class="line"></span><span class="line"><span class="k">function</span> tarCommand(dir) {</span><span class="line">  <span class="k">return</span> <span class="s">&quot;tar czf /backups/latest.tgz &quot;</span> + dir;</span><span class="line">}</span><span class="line"></span><span class="line"><span class="k">function</span> escape(dir) {</span><span class="line">  <span class="k">return</span> shellescape([dir]);</span><span class="line">}</span><span class="line"></span><span class="line"><span class="k">function</span> backup(req, res) {</span><span class="line hit">  exec(tarCommand(req.query.dir));</span><span class="line">}</span><span class="line"></span><span class="line"><span class="k">function</span> backupAll(req, res) {</span><span class="line hit">  req.body.dirs.map(tarCommand)</span><span class="line hit">    .forEach((cmd) =&gt; exec(cmd));</span><span class="line">}</span><span class="line"></span><span class="line"><span class="k">function</span> backupSafe(req, res) {</span><span class="line">  exec(tarCommand(escape(req.query.dir)));</span><span class="line">}</span><span class="line"></span><span class="line">app.get(<span class="s">&quot;/backup&quot;</span>, backup);</span><span class="line">app.post(<span class="s">&quot;/backup-all&quot;</span>, backupAll);</span><span class="line">app.get(<span class="s">&quot;/backup-safe&quot;</span>, backupSafe);</span></code></pre>
       </div>
       <div class="file">
         <div class="file-head">output</div>
@@ -112,17 +112,17 @@
         <span class="n">└─ </span>sink             <span class="n">16: </span>exec(tarCommand(req.query.dir))<span class="n">;</span>
 
 <span class="n">    in: </span><span class="n">function</span> backupAll
-<span class="n">    20: </span><span class="n">req.body.dirs.map(tarCommand).forEach((cmd) =&gt; </span>exec(cmd)<span class="n">);</span>
+<span class="n">    21: </span><span class="n">.forEach((cmd) =&gt; </span>exec(cmd)<span class="n">);</span>
         <span class="n">│</span>
-        <span class="n">├─ </span>source           <span class="n">20: </span>req.body<span class="n">.dirs.map(tarCommand).forEach((cmd) =&gt; exec(cmd));</span>
-        <span class="n">├─ </span>through call     <span class="n">20: </span><span class="n">req.body.dirs.map(tarCommand).</span>forEach<span class="n">((cmd) =&gt; exec(cmd));</span>
-        <span class="n">└─ </span>sink             <span class="n">20: </span><span class="n">req.body.dirs.map(tarCommand).forEach((cmd) =&gt; </span>exec(cmd)<span class="n">);</span></code></pre>
+        <span class="n">├─ </span>source           <span class="n">20: </span>req.body<span class="n">.dirs.map(tarCommand)</span>
+        <span class="n">├─ </span>through call     <span class="n">21: </span><span class="n">.</span>forEach<span class="n">((cmd) =&gt; exec(cmd));</span>
+        <span class="n">└─ </span>sink             <span class="n">21: </span><span class="n">.forEach((cmd) =&gt; </span>exec(cmd)<span class="n">);</span></code></pre>
       </div>
 
       <ul class="notes">
         <li><span class="ref">line 16</span><span><code>req.query.dir</code> flows through <code>tarCommand()</code> and its return value into <code>exec</code>.</span></li>
         <li><span class="ref">line 20</span><span>each entry of <code>req.body.dirs</code> passes through <code>map(tarCommand)</code> and a lambda before reaching <code>exec</code>.</span></li>
-        <li><span class="ref">line 24</span><span>no finding: the input goes through <code>escape()</code>, which calls the sanitizer.</span></li>
+        <li><span class="ref">line 25</span><span>no finding: the input goes through <code>escape()</code>, which calls the sanitizer.</span></li>
       </ul>
     </section>
 
