@@ -257,7 +257,7 @@
 <p class="docs-crumb"><a href="index.html">reference</a></p>
 <h1>Pattern syntax</h1>
 <p>A pattern is a piece of code in the language of the rule, with placeholders that make it match more than one piece of code. Opengrep parses the pattern and the target files into syntax trees and compares the trees, so line breaks, spacing, comments and the kind of quotes around a string make no difference.</p>
-<p>Patterns are used by <a href="rule-syntax/pattern.html"><code>pattern</code></a> and the other pattern keys of a rule, by the items of a <a href="rule-syntax/taint-mode.html">taint rule</a>, and by <a href="flags/pattern.html"><code>--pattern</code></a> on the command line. A pattern must be valid code of the language, except for the placeholders below; a pattern that does not parse makes the rule invalid.</p>
+<p>Patterns are used by <a href="rule-syntax/pattern.html"><code>pattern</code></a> and the other pattern keys of a rule, by the items of a <a href="rule-syntax/taint-mode.html">taint rule</a>, and by <a href="flags/pattern.html"><code>--pattern</code></a> on the command line. A pattern must be valid code of the language, apart from its placeholders; a pattern that does not parse makes the rule invalid.</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Name</th><th>Summary</th></tr></thead>
 <tbody>

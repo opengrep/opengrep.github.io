@@ -263,7 +263,7 @@
 <div><dt>See also</dt><dd><a href="json.html"><code>--json</code></a>, <a href="jobs.html"><code>--jobs</code></a>, <a href="timeout.html"><code>--timeout</code></a></dd></div>
 </dl>
 <p>Adds timing data to the run. With the text output, standard error shows a summary: the total time, the time spent loading the rules and running the engine, and the slowest files and rules. With <a href="json.html"><code>--json</code></a>, the document has a <code>time</code> object with the time of each pair of rule and target, the parse times, the peak memory use and the number of bytes scanned.</p>
-<p>The numbers depend on the machine and on the run; they serve to find the rules and files that take the most time. The format of the timing data is meant for internal use and may change.</p>
+<p>The numbers depend on the machine and on the run. The format of the timing data is internal and may change.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="the-timing-object-in-the-json-output"><a class="hash" href="#the-timing-object-in-the-json-output" aria-hidden="true" tabindex="-1">###</a> The timing object in the JSON output</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

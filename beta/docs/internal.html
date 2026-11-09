@@ -258,7 +258,7 @@
 <h1>Internal and debugging interfaces</h1>
 <p>These interfaces exist for the development, testing and packaging of Opengrep. They may change or be removed in any release.</p>
 <h2 id="opengrep---core"><a class="hash" href="#opengrep---core" aria-hidden="true" tabindex="-1">##</a> <code>opengrep --core</code></h2>
-<p>The Opengrep binary also contains the command-line interface of the engine, which runs when the first argument is <code>--core</code>; <code>opengrep --core -help</code> lists its options. The <code>opengrep</code> commands are built on the same engine. This reference does not describe the command-line interface of the engine. The engine appends the whitespace-separated words of <code>OPENGREP_CORE_EXTRA</code> (or <code>SEMGREP_CORE_EXTRA</code>) to its own arguments.</p>
+<p>The Opengrep binary also contains the command-line interface of the engine, which runs when the first argument is <code>--core</code>; <code>opengrep --core -help</code> lists its options. The <code>opengrep</code> commands are built on the same engine. The engine appends the whitespace-separated words of <code>OPENGREP_CORE_EXTRA</code> (or <code>SEMGREP_CORE_EXTRA</code>) to its own arguments.</p>
 <h2 id="opengrep-show-dump-commands"><a class="hash" href="#opengrep-show-dump-commands" aria-hidden="true" tabindex="-1">##</a> <code>opengrep show</code> dump commands</h2>
 <p><code>opengrep show</code> prints internal representations with <code>dump-config</code>, <code>dump-rule</code>, <code>dump-rule-v2</code>, <code>dump-patterns-of-rule</code>, <code>dump-ast</code>, <code>dump-il</code>, <code>dump-il-pp</code>, <code>dump-cst</code>, <code>dump-pattern</code>, <code>dump-intrafile-graph</code>, <code>dump-interfile-graph</code> and <code>dump-taint-signatures</code>. <code>opengrep show --help</code> describes their arguments.</p>
 <h2 id="flags"><a class="hash" href="#flags" aria-hidden="true" tabindex="-1">##</a> Flags</h2>
@@ -307,7 +307,7 @@
 </tbody>
 </table></div>
 <h2 id="the-second-rule-syntax"><a class="hash" href="#the-second-rule-syntax" aria-hidden="true" tabindex="-1">##</a> The second rule syntax</h2>
-<p>Opengrep also parses an experimental second syntax for rules, in which a rule matches with <code>match:</code> instead of <code>pattern:</code> and <code>patterns:</code>, and combines conditions with <code>all</code>, <code>any</code>, <code>not</code>, <code>inside</code>, <code>anywhere</code>, <code>as</code>, <code>where</code> and <code>focus</code>. A taint rule written in it uses a <code>taint:</code> block with <code>sources</code>, <code>sinks</code>, <code>sanitizers</code> and <code>propagators</code>. This reference does not document that syntax, because it may still change.</p>
+<p>Opengrep also parses an experimental second syntax for rules, in which a rule matches with <code>match:</code> instead of <code>pattern:</code> and <code>patterns:</code>, and combines conditions with <code>all</code>, <code>any</code>, <code>not</code>, <code>inside</code>, <code>anywhere</code>, <code>as</code>, <code>where</code> and <code>focus</code>. A taint rule written in it uses a <code>taint:</code> block with <code>sources</code>, <code>sinks</code>, <code>sanitizers</code> and <code>propagators</code>.</p>
     </main>
   </div>
 

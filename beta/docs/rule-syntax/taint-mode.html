@@ -271,7 +271,7 @@
 <tr><td><a href="pattern-sources.html"><code>pattern-sources</code></a></td><td>Code that produces untrusted data, such as reading a request parameter.</td></tr>
 <tr><td><a href="pattern-sinks.html"><code>pattern-sinks</code></a></td><td>Code that must not receive untrusted data, such as running a SQL query.</td></tr>
 <tr><td><a href="pattern-sanitizers.html"><code>pattern-sanitizers</code></a></td><td>Code that makes data safe, such as escaping it. Optional.</td></tr>
-<tr><td><a href="pattern-propagators.html"><code>pattern-propagators</code></a></td><td>Operations that pass taint from one value to another where the analysis does not see it. Optional.</td></tr>
+<tr><td><a href="pattern-propagators.html"><code>pattern-propagators</code></a></td><td>Operations that pass taint from one value to another where the analysis does not detect it. Optional.</td></tr>
 </tbody>
 </table></div>
 <p>Each item is a mapping with a pattern, written with the keys of a search rule (<code>pattern</code>, <code>patterns</code>, <code>pattern-either</code>, <code>pattern-regex</code>, …), and optional keys that refine it: <a href="label.html"><code>label</code></a> and <code>requires</code> to distinguish kinds of taint, <a href="exact.html"><code>exact</code></a>, <a href="by-side-effect.html"><code>by-side-effect</code></a> and <a href="control.html"><code>control</code></a>.</p>

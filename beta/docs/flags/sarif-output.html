@@ -261,9 +261,9 @@
 <div><dt>Value</dt><dd><code>FILE</code></dd></div>
 <div><dt>See also</dt><dd><a href="sarif.html"><code>--sarif</code></a>, <a href="output.html"><code>--output</code></a>, <a href="opengrep-ignore-pattern.html"><code>--opengrep-ignore-pattern</code></a></dd></div>
 </dl>
-<p>Writes the SARIF document that <a href="sarif.html"><code>--sarif</code></a> prints to FILE, in addition to the output on standard output, for example to upload to a code scanning service while the job log shows the text output.</p>
+<p>Writes the SARIF document that <a href="sarif.html"><code>--sarif</code></a> prints to FILE, in addition to the output on standard output.</p>
 <p>Unlike the other formats, the SARIF file includes the findings that a <code>nosemgrep</code> comment suppresses, each marked with a suppression of kind <code>inSource</code>. Standard output and the other output files leave them out.</p>
-<p>The flag can be repeated to write several files. The file is written even when the scan finds nothing. <a href="output.html"><code>--output</code></a> describes the rules that apply to all output files.</p>
+<p>The flag can be repeated to write several files. The file is written even when the scan finds nothing.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-suppressed-finding-in-the-sarif-file"><a class="hash" href="#a-suppressed-finding-in-the-sarif-file" aria-hidden="true" tabindex="-1">###</a> A suppressed finding in the SARIF file</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

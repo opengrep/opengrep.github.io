@@ -259,7 +259,7 @@
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="taint-mode.html"><code>mode: taint</code></a>, <a href="label.html"><code>label</code></a>, <a href="by-side-effect.html"><code>by-side-effect</code></a></dd></div>
 </dl>
-<p>The list of propagators of a <a href="taint-mode.html">taint rule</a>. A propagator declares that some code passes taint from one value to another, where the analysis would not see it, such as a method that stores its argument in the object it is called on. Each item has a pattern with two metavariables and the keys <code>from</code> and <code>to</code>, which name them: when the pattern matches and the value of <code>from</code> is tainted, the value of <code>to</code> becomes tainted too.</p>
+<p>The list of propagators of a <a href="taint-mode.html">taint rule</a>. A propagator declares that some code passes taint from one value to another, where the analysis does not detect it, such as a method that stores its argument in the object it is called on. Each item has a pattern with two metavariables and the keys <code>from</code> and <code>to</code>, which name them: when the pattern matches and the value of <code>from</code> is tainted, the value of <code>to</code> becomes tainted too.</p>
 <p>An item takes these keys besides its pattern:</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Key</th><th>Effect</th></tr></thead>

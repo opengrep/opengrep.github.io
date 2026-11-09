@@ -262,7 +262,7 @@
 <div><dt>Default</dt><dd><code>20</code></dd></div>
 <div><dt>See also</dt><dd><a href="dynamic-timeout.html"><code>--dynamic-timeout</code></a>, <a href="dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a>, <a href="timeout.html"><code>--timeout</code></a>, <a href="allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a>, <a href="../rule-options/dynamic_timeout_max_multiplier.html"><code>dynamic_timeout_max_multiplier</code></a></dd></div>
 </dl>
-<p>Limits the multiplier that <a href="dynamic-timeout.html"><code>--dynamic-timeout</code></a> computes from the size of a file, so that a very large file cannot take an unlimited share of a scan. With the default of 20 and a <a href="timeout.html"><code>--timeout</code></a> of 5 seconds, no rule spends more than 100 seconds on a file, regardless of its size.</p>
+<p>Limits the multiplier that <a href="dynamic-timeout.html"><code>--dynamic-timeout</code></a> computes from the size of a file. With the default of 20 and a <a href="timeout.html"><code>--timeout</code></a> of 5 seconds, no rule spends more than 100 seconds on a file, regardless of its size.</p>
 <p>The multiplier reaches this limit for files whose size in KB is at least this value times <a href="dynamic-timeout-unit-kb.html"><code>--dynamic-timeout-unit-kb</code></a>: 600 KB with both defaults.</p>
 <p>The flag has no effect unless <code>--dynamic-timeout</code> is given, or a rule sets the option <code>dynamic_timeout</code> and the scan allows it with <a href="allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

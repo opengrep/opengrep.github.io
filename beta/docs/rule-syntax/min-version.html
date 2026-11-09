@@ -259,7 +259,7 @@
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="rules.html"><code>rules</code></a></dd></div>
 </dl>
-<p>Restricts a rule to the versions of the rule format it was written for. The values are version numbers of the form <code>X.Y.Z</code>, quoted when YAML would read them as numbers. They are compared with the version of Semgrep whose rule format Opengrep implements, so that rules published for Semgrep keep their meaning:</p>
+<p>Restricts a rule to the versions of the rule format it was written for. The values are version numbers of the form <code>X.Y.Z</code>, quoted when YAML would read them as numbers. They are compared with the version of Semgrep whose rule format Opengrep implements:</p>
 <ul>
 <li>a rule whose <code>min-version</code> is higher than that version is skipped;</li>
 <li>a rule whose <code>max-version</code> is lower than that version is skipped.</li>

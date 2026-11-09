@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Flags · Opengrep</title>
-  <meta name="description" content="This section describes the command-line flags of Opengrep. A flag that several commands accept has a single entry; the Accepted by column lists those commands, and the page of each command lists the flags it accepts.">
+  <meta name="description" content="Flags can be given before or after the targets. A flag that takes a value accepts it as --flag=VALUE or as --flag VALUE. Some flags also have a one-letter form, such as -q for --quiet.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -256,11 +256,9 @@
     <main class="docs-main">
 <p class="docs-crumb"><a href="index.html">reference</a></p>
 <h1>Flags</h1>
-<p>This section describes the command-line flags of Opengrep. A flag that several commands accept has a single entry; the <em>Accepted by</em> column lists those commands, and the page of each <a href="commands.html">command</a> lists the flags it accepts.</p>
-<h2 id="syntax"><a class="hash" href="#syntax" aria-hidden="true" tabindex="-1">##</a> Syntax</h2>
-<p>Flags can be given before or after the targets. A flag that takes a value accepts it as <code>--flag=VALUE</code> or as <code>--flag VALUE</code>. Some flags also have a one-letter form, such as <code>-q</code> for <code>--quiet</code>, which is listed in the entry of the flag.</p>
+<p>Flags can be given before or after the targets. A flag that takes a value accepts it as <code>--flag=VALUE</code> or as <code>--flag VALUE</code>. Some flags also have a one-letter form, such as <code>-q</code> for <code>--quiet</code>.</p>
 <h2 id="environment-variables"><a class="hash" href="#environment-variables" aria-hidden="true" tabindex="-1">##</a> Environment variables</h2>
-<p>Some flags can also be set with an <a href="environment.html">environment variable</a>, shown under the flag in the <em>Flag / Environment</em> column. When both are given, the flag takes precedence, and Opengrep logs a warning that names the ignored variable.</p>
+<p>Some flags can also be set with an <a href="environment.html">environment variable</a>. When both are given, the flag takes precedence, and Opengrep logs a warning that names the ignored variable.</p>
 <h2 id="flags-accepted-for-compatibility"><a class="hash" href="#flags-accepted-for-compatibility" aria-hidden="true" tabindex="-1">##</a> Flags accepted for compatibility</h2>
 <p>The following flags are accepted for compatibility with existing scripts and CI configurations. They have no effect, and Opengrep logs a warning for each of them:</p>
 <ul>

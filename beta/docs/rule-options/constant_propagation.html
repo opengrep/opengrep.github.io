@@ -262,7 +262,7 @@
 <div><dt>See also</dt><dd><a href="../rule-syntax/options.html"><code>options</code></a>, <a href="symbolic_propagation.html"><code>symbolic_propagation</code></a></dd></div>
 </dl>
 <p>A variable that is assigned a constant is matched as that constant. After <code>path = &quot;/etc/passwd&quot;</code>, the pattern <code>open(&quot;/etc/passwd&quot;)</code> also matches <code>open(path)</code>. Constant expressions are evaluated first, so a variable holding <code>&quot;/etc/&quot; + &quot;passwd&quot;</code> matches too. A variable that is assigned another value afterwards is no longer treated as constant.</p>
-<p>With <code>constant_propagation: false</code>, a literal in a pattern matches only the literal itself. The option also controls two features that depend on it: <code>metavariable-regex</code> with <code>constant-propagation: true</code>, which then sees only literals, and <a href="symbolic_propagation.html"><code>symbolic_propagation</code></a>.</p>
+<p>With <code>constant_propagation: false</code>, a literal in a pattern matches only the literal itself. The option also controls two features that depend on it: <code>metavariable-regex</code> with <code>constant-propagation: true</code>, which then applies only to literals, and <a href="symbolic_propagation.html"><code>symbolic_propagation</code></a>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-path-held-in-a-variable"><a class="hash" href="#a-path-held-in-a-variable" aria-hidden="true" tabindex="-1">###</a> A path held in a variable</h3>
 <p>The rule <code>passwd-file-default</code> leaves the option on; <code>passwd-file</code> turns it off, and matches only the literal.</p>

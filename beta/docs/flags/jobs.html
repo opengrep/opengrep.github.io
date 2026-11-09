@@ -264,7 +264,7 @@
 <div><dt>See also</dt><dd><a href="max-memory.html"><code>--max-memory</code></a>, <a href="timeout.html"><code>--timeout</code></a>, <a href="optimizations.html"><code>--optimizations</code></a>, <a href="incremental-output.html"><code>--incremental-output</code></a>, <a href="time.html"><code>--time</code></a></dd></div>
 </dl>
 <p>By default, Opengrep runs as many parallel workers as there are cores. <code>--jobs N</code> sets the number of workers.</p>
-<p>Each worker analyzes its own files, and the limit of <a href="max-memory.html"><code>--max-memory</code></a> applies to each worker separately, so fewer workers use less memory in total. With <code>--jobs 1</code>, log messages do not interleave, which makes the logs easier to follow when investigating a slow or failing rule.</p>
+<p>Each worker analyzes its own files, and the limit of <a href="max-memory.html"><code>--max-memory</code></a> applies to each worker separately, so fewer workers use less memory in total. With <code>--jobs 1</code>, log messages do not interleave.</p>
 <p>The findings do not depend on the number of workers.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="scanning-with-one-worker"><a class="hash" href="#scanning-with-one-worker" aria-hidden="true" tabindex="-1">###</a> Scanning with one worker</h3>

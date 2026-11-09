@@ -262,7 +262,7 @@
 <div><dt>Default</dt><dd><code>.semgrepignore</code></dd></div>
 <div><dt>See also</dt><dd><a href="exclude.html"><code>--exclude</code></a>, <a href="use-git-ignore.html"><code>--use-git-ignore</code></a>, <a href="project-root.html"><code>--project-root</code></a></dd></div>
 </dl>
-<p>Opengrep skips the paths listed in <code>.semgrepignore</code> at the project root. This flag reads the list from FILENAME instead, for example when one repository is scanned with different ignore lists.</p>
+<p>Opengrep skips the paths listed in <code>.semgrepignore</code> at the project root. This flag reads the list from FILENAME instead.</p>
 <p>The file uses the pattern syntax of <code>.gitignore</code>. When the project has no such file, a built-in list applies, which skips directories such as <code>node_modules/</code>, <code>vendor/</code>, <code>test/</code> and <code>tests/</code>. The project root is set by <a href="project-root.html"><code>--project-root</code></a>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="an-ignore-list-under-another-name"><a class="hash" href="#an-ignore-list-under-another-name" aria-hidden="true" tabindex="-1">###</a> An ignore list under another name</h3>

@@ -262,7 +262,7 @@
 <div><dt>Environment</dt><dd><a href="../env/OPENGREP_AUDIT_ON.html"><code>OPENGREP_AUDIT_ON</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="../commands/ci.html"><code>opengrep ci</code></a>, <a href="suppress-errors.html"><code>--suppress-errors</code></a></dd></div>
 </dl>
-<p><a href="../commands/ci.html"><code>opengrep ci</code></a> exits with status 1 when the scan reports a blocking finding. With <code>--audit-on EVENT</code>, it still reports the findings, but exits with status 0 when the event that triggered the run is named EVENT. A new rule set can then run on a repository without failing its jobs while the findings are triaged.</p>
+<p><a href="../commands/ci.html"><code>opengrep ci</code></a> exits with status 1 when the scan reports a blocking finding. With <code>--audit-on EVENT</code>, it still reports the findings, but exits with status 0 when the event that triggered the run is named EVENT.</p>
 <p>The event name is the one that <code>opengrep ci</code> prints at the end of the first line on standard error, such as <code>push</code> or <code>pull_request</code> on GitHub Actions. Outside a CI provider, it is <code>unknown</code>. The flag can be repeated to name several events; <code>OPENGREP_AUDIT_ON</code> sets a whitespace-separated list.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="findings-without-a-failing-job"><a class="hash" href="#findings-without-a-failing-job" aria-hidden="true" tabindex="-1">###</a> Findings without a failing job</h3>

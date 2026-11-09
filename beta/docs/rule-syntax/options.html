@@ -263,7 +263,7 @@
 <div class="file"><pre class="snip"><code><span class="k">options</span>:
   <span class="k">symbolic_propagation</span>: true
   <span class="k">taint_intrafile</span>: true</code></pre></div>
-<p>The values and defaults of the options are described under <a href="../rule-options.html">Rule options</a>. An option that Opengrep does not know makes the rule invalid, unlike an unknown key elsewhere in the rule, which only produces a warning.</p>
+<p>An unknown option makes the rule invalid, unlike an unknown key elsewhere in the rule, which only produces a warning.</p>
 <p>Some options have a command-line flag that turns on the same behavior for every rule of a scan, such as <a href="../flags/taint-intrafile.html"><code>--taint-intrafile</code></a> for <code>taint_intrafile</code>. The flag cannot turn the option off for a rule that sets it.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="an-option-for-one-rule"><a class="hash" href="#an-option-for-one-rule" aria-hidden="true" tabindex="-1">###</a> An option for one rule</h3>

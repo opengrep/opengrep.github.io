@@ -263,7 +263,7 @@
 <div><dt>See also</dt><dd><a href="dryrun.html"><code>--dryrun</code></a>, <a href="replacement.html"><code>--replacement</code></a>, <a href="../rule-syntax/fix.html"><code>fix</code></a>, <a href="../commands/test.html"><code>opengrep test</code></a>, <a href="../rule-syntax/fix-regex.html"><code>fix-regex</code></a></dd></div>
 </dl>
 <p>Writes the fixes of the rules to the files. A rule with a <a href="../rule-syntax/fix.html"><code>fix</code></a> or <a href="../rule-syntax/fix-regex.html"><code>fix-regex</code></a> key describes the code that should replace each of its matches. The text output shows each change on a <code>fix:</code> line, with or without the flag; with the flag, the file is also changed.</p>
-<p>The flag modifies the scanned files in place. On files under version control, the changes can be reviewed before they are committed. The autofix mode is experimental. <a href="dryrun.html"><code>--dryrun</code></a> shows the changes without writing them.</p>
+<p>The flag modifies the scanned files in place. The autofix mode is experimental. <a href="dryrun.html"><code>--dryrun</code></a> shows the changes without writing them.</p>
 <p>A fix can be tested before it is applied: <a href="../commands/test.html"><code>opengrep test</code></a> compares the result of the fixes with a <code>&lt;name&gt;.fixed.&lt;ext&gt;</code> file.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="rewriting-a-file"><a class="hash" href="#rewriting-a-file" aria-hidden="true" tabindex="-1">###</a> Rewriting a file</h3>

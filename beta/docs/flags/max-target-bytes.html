@@ -262,7 +262,7 @@
 <div><dt>Default</dt><dd><code>1000000</code></dd></div>
 <div><dt>See also</dt><dd><a href="exclude-minified-files.html"><code>--exclude-minified-files</code></a>, <a href="exclude.html"><code>--exclude</code></a>, <a href="max-memory.html"><code>--max-memory</code></a></dd></div>
 </dl>
-<p>Files larger than this are not scanned. The default is 1,000,000 bytes, which keeps generated bundles and data files out of a scan. Zero or a negative value turns the limit off.</p>
+<p>Files larger than this are not scanned. The default is 1,000,000 bytes. Zero or a negative value turns the limit off.</p>
 <p>The value is a number of bytes, or a size with a unit, as in <code>1.5MB</code>.</p>
 <p>Like the other path filters, the limit applies to the files found under directory targets; a file named on the command line is scanned regardless of its size. The summary gives the number of skipped files, as in <code>skipped: 1 files larger than 100 bytes</code>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

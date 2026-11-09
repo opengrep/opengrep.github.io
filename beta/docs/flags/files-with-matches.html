@@ -260,7 +260,7 @@
 <div><dt>Accepted by</dt><dd><a href="../commands/scan.html"><code>opengrep scan</code></a>, <a href="../commands/ci.html"><code>opengrep ci</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="emacs.html"><code>--emacs</code></a>, <a href="vim.html"><code>--vim</code></a>, <a href="json.html"><code>--json</code></a>, <a href="output.html"><code>--output</code></a></dd></div>
 </dl>
-<p>Replaces the output with the list of files that have at least one finding, one path per line, as <code>grep -l</code> does. The list does not say which rules matched or where, so it can be passed directly to another command.</p>
+<p>Replaces the output with the list of files that have at least one finding, one path per line, as <code>grep -l</code> does.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="the-files-not-the-findings"><a class="hash" href="#the-files-not-the-findings" aria-hidden="true" tabindex="-1">###</a> The files, not the findings</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

@@ -261,7 +261,7 @@
 <div><dt>Value</dt><dd><code>INT</code></dd></div>
 <div><dt>See also</dt><dd><a href="timeout.html"><code>--timeout</code></a>, <a href="max-memory.html"><code>--max-memory</code></a>, <a href="strict.html"><code>--strict</code></a></dd></div>
 </dl>
-<p>When a rule exceeds its <a href="timeout.html"><code>--timeout</code></a> on a file, Opengrep drops the findings of that rule on the file and continues with the other rules. A file on which many rules time out is usually generated, minified or very large, and further rules on it are unlikely to finish.</p>
+<p>When a rule exceeds its <a href="timeout.html"><code>--timeout</code></a> on a file, Opengrep drops the findings of that rule on the file and continues with the other rules.</p>
 <p>After this many rules have timed out on a file, Opengrep runs no further rules on it, logs a message on standard error, and counts the file as partially analyzed. <code>0</code> removes the limit, so every rule runs regardless of the number of timeouts.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="skipping-a-file-after-one-timeout"><a class="hash" href="#skipping-a-file-after-one-timeout" aria-hidden="true" tabindex="-1">###</a> Skipping a file after one timeout</h3>

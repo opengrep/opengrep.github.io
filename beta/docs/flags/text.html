@@ -262,7 +262,7 @@
 </dl>
 <p>Selects the text output. It is the default format of a scan, so the flag is needed only to override another format setting.</p>
 <p>The layout of the output is set by <a href="skin.html"><code>--skin</code></a>, and the amount of code shown for a match by <a href="max-chars-per-line.html"><code>--max-chars-per-line</code></a> and <a href="max-lines-per-finding.html"><code>--max-lines-per-finding</code></a>.</p>
-<p><a href="text-output.html"><code>--text-output</code></a> writes the text output to a file. Unlike <a href="output.html"><code>-o</code></a>, it leaves standard output unchanged, so a scan can print JSON for a program and write the text output to a file.</p>
+<p><a href="text-output.html"><code>--text-output</code></a> writes the text output to a file. Unlike <a href="output.html"><code>-o</code></a>, it leaves standard output unchanged.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-readable-report-beside-the-json"><a class="hash" href="#a-readable-report-beside-the-json" aria-hidden="true" tabindex="-1">###</a> A readable report beside the JSON</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Environment variables · Opengrep</title>
-  <meta name="description" content="This section describes the environment variables that Opengrep reads.">
+  <meta name="description" content="For compatibility, most variables whose names start with OPENGREP_ can also be set with the prefix SEMGREP_: SEMGREP_TIMEOUT is read as OPENGREP_TIMEOUT. When both are set, the OPENGREP_ variable takes precedence. Some variables, such as OPENGREP_SKIN, are read only under their OPENGREP_ name, and variables such as NO_COLOR have neither prefix.">
   <meta name="theme-color" content="#0b0b0e">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 
@@ -256,12 +256,11 @@
     <main class="docs-main">
 <p class="docs-crumb"><a href="index.html">reference</a></p>
 <h1>Environment variables</h1>
-<p>This section describes the environment variables that Opengrep reads.</p>
 <h2 id="opengrep_-and-semgrep_-names"><a class="hash" href="#opengrep_-and-semgrep_-names" aria-hidden="true" tabindex="-1">##</a> <code>OPENGREP_</code> and <code>SEMGREP_</code> names</h2>
-<p>For compatibility, most variables whose names start with <code>OPENGREP_</code> can also be set with the prefix <code>SEMGREP_</code>: <code>SEMGREP_TIMEOUT</code> is read as <code>OPENGREP_TIMEOUT</code>. When both are set, the <code>OPENGREP_</code> variable takes precedence. The entry of such a variable lists its <code>SEMGREP_</code> name as an alias. Some variables, such as <a href="env/OPENGREP_SKIN.html"><code>OPENGREP_SKIN</code></a>, are read only under their <code>OPENGREP_</code> name, and variables such as <code>NO_COLOR</code> have neither prefix.</p>
+<p>For compatibility, most variables whose names start with <code>OPENGREP_</code> can also be set with the prefix <code>SEMGREP_</code>: <code>SEMGREP_TIMEOUT</code> is read as <code>OPENGREP_TIMEOUT</code>. When both are set, the <code>OPENGREP_</code> variable takes precedence. Some variables, such as <a href="env/OPENGREP_SKIN.html"><code>OPENGREP_SKIN</code></a>, are read only under their <code>OPENGREP_</code> name, and variables such as <code>NO_COLOR</code> have neither prefix.</p>
 <p>A variable set to the empty string is treated as unset.</p>
 <h2 id="variables-and-flags"><a class="hash" href="#variables-and-flags" aria-hidden="true" tabindex="-1">##</a> Variables and flags</h2>
-<p>Some variables set the same value as a command-line flag, shown in the <em>Equivalent flag</em> column. When both are given, the flag takes precedence, and Opengrep logs a warning:</p>
+<p>Some variables set the same value as a command-line flag. When both are given, the flag takes precedence, and Opengrep logs a warning:</p>
 <div class="file"><pre class="snip"><code>[00.04][WARNING]: --timeout is given; ignoring $OPENGREP_TIMEOUT</code></pre></div>
 <p>An invalid value of a variable is reported in the same way as an invalid flag value, and Opengrep exits with status 2.</p>
 <h2 id="index"><a class="hash" href="#index" aria-hidden="true" tabindex="-1">##</a> Index</h2>
@@ -284,7 +283,7 @@
 <tr><td><a href="env/OPENGREP_FORCE_COLOR.html"><code>OPENGREP_FORCE_COLOR</code></a></td><td><code>--force-color</code></td><td>Whether to style output that does not go to a terminal, when --force-color is not given.</td></tr>
 <tr><td><a href="env/OPENGREP_LOG_FILE.html"><code>OPENGREP_LOG_FILE</code></a></td><td></td><td>A file that receives a copy of the logs.</td></tr>
 <tr><td><a href="env/OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a></td><td></td><td>The level of the logs, taking precedence over --quiet, --verbose and --debug.</td></tr>
-<tr><td><a href="env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a></td><td></td><td>The log sources whose messages are shown in addition to those of opengrep.</td></tr>
+<tr><td><a href="env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a></td><td></td><td>The log sources whose messages are shown in addition to those of Opengrep.</td></tr>
 <tr><td><a href="env/OPENGREP_LOG_TAGS.html"><code>OPENGREP_LOG_TAGS</code></a></td><td></td><td>The tags of the debug messages that are shown.</td></tr>
 <tr><td><a href="env/OPENGREP_PR_ID.html"><code>OPENGREP_PR_ID</code></a></td><td></td><td>The pull request of an opengrep ci run; sets the event of the run to pull_request.</td></tr>
 <tr><td><a href="env/OPENGREP_REPO_NAME.html"><code>OPENGREP_REPO_NAME</code></a></td><td></td><td>On GitHub Actions, the repository for which opengrep ci requests the merge base of a pull request.</td></tr>
@@ -298,7 +297,7 @@
 </table></div>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="an-empty-value-is-treated-as-unset"><a class="hash" href="#an-empty-value-is-treated-as-unset" aria-hidden="true" tabindex="-1">###</a> An empty value is treated as unset</h3>
-<p>In this example, <code>OPENGREP_RULES</code> is empty, so Opengrep takes the rules from <code>--config</code> and logs no warning about the variable.</p>
+<p><code>OPENGREP_RULES</code> is empty, so Opengrep takes the rules from <code>--config</code> and logs no warning about the variable.</p>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="OPENGREP_RULES=&quot;&quot; opengrep scan --config rule.yaml app.py 2&gt;&amp;1 | grep -c WARNING

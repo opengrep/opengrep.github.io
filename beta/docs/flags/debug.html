@@ -261,7 +261,7 @@
 <div><dt>See also</dt><dd><a href="verbose.html"><code>--verbose</code></a>, <a href="quiet.html"><code>--quiet</code></a>, <a href="../env/OPENGREP_LOG_LEVEL.html"><code>OPENGREP_LOG_LEVEL</code></a>, <a href="../env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a>, <a href="../env/OPENGREP_LOG_FILE.html"><code>OPENGREP_LOG_FILE</code></a></dd></div>
 </dl>
 <p>Sets the log level on standard error to debug. In addition to what <a href="verbose.html"><code>--verbose</code></a> shows, the logs include the internals of the run: the targets as they are selected, the rules as they are prepared, and the progress of the engine. Even a scan of one file logs hundreds of lines.</p>
-<p><a href="../env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a> and <a href="../env/OPENGREP_LOG_TAGS.html"><code>OPENGREP_LOG_TAGS</code></a> restrict the output to parts of opengrep. <a href="../env/OPENGREP_LOG_FILE.html"><code>OPENGREP_LOG_FILE</code></a> writes a copy of the logs to a file.</p>
+<p><a href="../env/OPENGREP_LOG_SRCS.html"><code>OPENGREP_LOG_SRCS</code></a> and <a href="../env/OPENGREP_LOG_TAGS.html"><code>OPENGREP_LOG_TAGS</code></a> restrict the output to parts of Opengrep. <a href="../env/OPENGREP_LOG_FILE.html"><code>OPENGREP_LOG_FILE</code></a> writes a copy of the logs to a file.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-higher-log-level"><a class="hash" href="#a-higher-log-level" aria-hidden="true" tabindex="-1">###</a> A higher log level</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
@@ -272,7 +272,7 @@ opengrep scan --config rule.yaml --debug app.py 2&gt;&amp;1 &gt;/dev/null | grep
 0
 <span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --debug app.py 2&gt;&amp;1 &gt;/dev/null | grep -c setup_logging</span>
 1</code></pre></div>
-<p>The line counted here is one the engine logs while starting up, which <code>--verbose</code> does not show and <code>--debug</code> does.</p>
+<p>The counted line is logged by the engine while it starts up: <code>--verbose</code> does not show it, and <code>--debug</code> does.</p>
     </main>
   </div>
 

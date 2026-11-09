@@ -261,7 +261,7 @@
 <div><dt>Value</dt><dd><code>RULE_ID</code>, repeatable</dd></div>
 <div><dt>See also</dt><dd><a href="config.html"><code>--config</code></a>, <a href="exclude.html"><code>--exclude</code></a>, <a href="enable-nosem.html"><code>--enable-nosem</code></a>, <a href="opengrep-ignore-pattern.html"><code>--opengrep-ignore-pattern</code></a>, <a href="rewrite-rule-ids.html"><code>--rewrite-rule-ids</code></a>, <a href="severity.html"><code>--severity</code></a>, <a href="../rule-syntax/id.html"><code>id</code></a></dd></div>
 </dl>
-<p>Removes the rule with this id from the scan. The flag can be repeated. It applies to rules from any source, such as a registry pack or a shared directory that cannot be edited; the other rules of the source still run.</p>
+<p>Removes the rule with this id from the scan. The flag can be repeated. It applies to rules from any source; the other rules of the source still run.</p>
 <p>The id is the one reported in the findings. It includes the prefix that <a href="config.html"><code>--config</code></a> adds to the rules of a file in a subdirectory, as in <code>rules.python.find-eval</code>.</p>
 <p>To suppress a finding on one line, use a <code>nosem</code> comment. To exclude some files from a rule, give the rule a <a href="../rule-syntax/paths.html"><code>paths</code></a> key.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

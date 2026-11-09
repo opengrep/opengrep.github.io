@@ -260,7 +260,7 @@
 <div><dt>Value</dt><dd>any value; <code>false</code> and <code>0</code> are treated as unset</dd></div>
 <div><dt>See also</dt><dd><a href="../flags/no-progress-bar.html"><code>--no-progress-bar</code></a></dd></div>
 </dl>
-<p>Set by CI services in the environment of the jobs they run. When it is set, <code>opengrep scan</code> does not draw the status line that shows the progress of the scan, even on a terminal, since a CI log would record each redraw as a line. The values <code>false</code> and <code>0</code> are treated as unset, in any letter case.</p>
+<p>Set by CI services in the environment of the jobs they run. When it is set, <code>opengrep scan</code> does not draw the status line that shows the progress of the scan, even on a terminal. The values <code>false</code> and <code>0</code> are treated as unset, in any letter case.</p>
 <p>The variable has no other effect: <a href="../commands/ci.html"><code>opengrep ci</code></a> detects the CI service from the service's own variables. It has no <code>OPENGREP_</code> form.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-scan-on-a-terminal-as-a-ci-job"><a class="hash" href="#a-scan-on-a-terminal-as-a-ci-job" aria-hidden="true" tabindex="-1">###</a> A scan on a terminal, as a CI job</h3>

@@ -262,10 +262,10 @@
 <div><dt>Default</dt><dd><code>10000</code></dd></div>
 <div><dt>See also</dt><dd><a href="../rule-options/max_match_per_file.html"><code>max_match_per_file</code></a>, <a href="timeout.html"><code>--timeout</code></a>, <a href="max-memory.html"><code>--max-memory</code></a></dd></div>
 </dl>
-<p>A rule that matches thousands of times in one file usually indicates a mistake in the rule. The limit counts the matches of all rules in a file together. When a file has more, Opengrep drops all the findings of the file, of every rule, records a <code>Too many matches</code> error, and logs a warning that names the rule with the most matches:</p>
+<p>The limit counts the matches of all rules in a file together. When a file has more, Opengrep drops all the findings of the file, of every rule, records a <code>Too many matches</code> error, and logs a warning that names the rule with the most matches:</p>
 <div class="file"><pre class="snip"><code>most offending rule: id = find-eval, matches = 3, pattern = eval(...)</code></pre></div>
 <p>The file is counted as partially analyzed, and the scan continues with the other files.</p>
-<p>The limit protects against a rule that matches far too often; it does not shorten the output, since the findings of the file are lost. To keep only the first findings of one rule, set the option <a href="../rule-options/max_match_per_file.html"><code>max_match_per_file</code></a> of the rule.</p>
+<p>The limit does not shorten the output: the findings of the file are dropped. To keep only the first findings of one rule, set the option <a href="../rule-options/max_match_per_file.html"><code>max_match_per_file</code></a> of the rule.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-rule-that-matches-too-often"><a class="hash" href="#a-rule-that-matches-too-often" aria-hidden="true" tabindex="-1">###</a> A rule that matches too often</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

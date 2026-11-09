@@ -261,8 +261,8 @@
 <div><dt>Value</dt><dd><code>FILE</code></dd></div>
 <div><dt>See also</dt><dd><a href="json.html"><code>--json</code></a>, <a href="output.html"><code>--output</code></a></dd></div>
 </dl>
-<p>Writes the JSON document that <a href="json.html"><code>--json</code></a> prints to FILE, in addition to the output on standard output. A scan can then show its text output on the terminal and leave a JSON copy for another program.</p>
-<p>The flag can be repeated to write several files, and combined with the other <code>--&lt;format&gt;-output</code> flags to write several formats from one scan. The file is written even when the scan finds nothing. <a href="output.html"><code>--output</code></a> describes the rules that apply to all output files.</p>
+<p>Writes the JSON document that <a href="json.html"><code>--json</code></a> prints to FILE, in addition to the output on standard output.</p>
+<p>The flag can be repeated to write several files, and combined with the other <code>--&lt;format&gt;-output</code> flags to write several formats from one scan. The file is written even when the scan finds nothing.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-report-on-screen-and-a-json-copy"><a class="hash" href="#a-report-on-screen-and-a-json-copy" aria-hidden="true" tabindex="-1">###</a> A report on screen and a JSON copy</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>

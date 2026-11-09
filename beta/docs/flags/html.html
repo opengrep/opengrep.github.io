@@ -260,7 +260,7 @@
 <div><dt>Accepted by</dt><dd><a href="../commands/show.html"><code>opengrep show</code></a></dd></div>
 <div><dt>See also</dt><dd><a href="../commands/show.html"><code>opengrep show</code></a>, <a href="json.html"><code>--json</code></a></dd></div>
 </dl>
-<p>Wraps the output of <a href="../commands/show.html"><code>opengrep show</code></a> in an HTML page, with the tree indented and styled for a browser. The flag is meant for the <code>dump-*</code> kinds, whose plain output is a dense tree. Kinds that print plain text, such as <code>version</code> and <code>supported-languages</code>, ignore it. The dumps are described under <a href="../internal.html#opengrep-show-dump-commands">Internal and debugging interfaces</a>; their format is not stable.</p>
+<p>Wraps the output of <a href="../commands/show.html"><code>opengrep show</code></a> in an HTML page, with the tree indented and styled for a browser. The flag applies to the <code>dump-*</code> kinds. Kinds that print plain text, such as <code>version</code> and <code>supported-languages</code>, ignore it. The format of the <a href="../internal.html#opengrep-show-dump-commands">dumps</a> is not stable.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-pattern-dump-as-a-page"><a class="hash" href="#a-pattern-dump-as-a-page" aria-hidden="true" tabindex="-1">###</a> A pattern dump as a page</h3>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep show --html dump-pattern python &#x27;eval(...)&#x27; | grep -c &#x27;&lt;html&gt;&#x27;

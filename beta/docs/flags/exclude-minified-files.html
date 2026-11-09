@@ -262,7 +262,7 @@
 <div><dt>Default</dt><dd><code>false</code></dd></div>
 <div><dt>See also</dt><dd><a href="max-target-bytes.html"><code>--max-target-bytes</code></a>, <a href="exclude.html"><code>--exclude</code></a></dd></div>
 </dl>
-<p>Skips the files that look minified. Such files are usually generated, produce findings that are hard to read, and are slow to analyze.</p>
+<p>Skips the files that look minified.</p>
 <p>A file is considered minified when its first 4096 bytes contain less than 7% whitespace (spaces, tabs, carriage returns and newlines), or have more than 1000 bytes per line on average. The rest of the file is not examined. Files of 1000 bytes or less are never skipped.</p>
 <p>Minified files are scanned by default. <code>--no-exclude-minified-files</code> restores the default. <a href="max-target-bytes.html"><code>--max-target-bytes</code></a> skips files by size instead.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
@@ -279,7 +279,7 @@ normal.py
 <span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --files-with-matches --exclude-minified-files .</span>
 normal.py</code></pre></div>
 <h3 id="small-files-and-only-the-start-of-a-file"><a class="hash" href="#small-files-and-only-the-start-of-a-file" aria-hidden="true" tabindex="-1">###</a> Small files, and only the start of a file</h3>
-<p>The first two files below have no whitespace in their first bytes. The first is 1000 bytes long and is kept; the second is one byte longer and is skipped. The third starts with 4800 bytes of ordinary lines, so the long line after them does not count.</p>
+<p>The first two files have no whitespace in their first bytes. The first is 1000 bytes long and is kept; the second is one byte longer and is skipped. The third starts with 4800 bytes of ordinary lines, so the long line after them does not count.</p>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="python3 -c &quot;open(&#x27;a.py&#x27;,&#x27;w&#x27;).write(&#x27;eval(1);&#x27; * 125)&quot;
 python3 -c &quot;open(&#x27;b.py&#x27;,&#x27;w&#x27;).write(&#x27;eval(1);&#x27; * 125 + &#x27;\n&#x27;)&quot;

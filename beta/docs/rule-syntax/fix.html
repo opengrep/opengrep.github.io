@@ -259,7 +259,7 @@
 <dl class="facts">
 <div><dt>See also</dt><dd><a href="../flags/autofix.html"><code>--autofix</code></a>, <a href="../flags/dryrun.html"><code>--dryrun</code></a>, <a href="fix-regex.html"><code>fix-regex</code></a>, <a href="../commands/test.html"><code>opengrep test</code></a>, <a href="../flags/replacement.html"><code>--replacement</code></a></dd></div>
 </dl>
-<p>The code that replaces each match of the rule. The metavariables in it are replaced by the code they matched, so that the fix can reuse parts of the matched code. <a href="../flags/autofix.html"><code>--autofix</code></a> writes the fixes to the files; with <a href="../flags/dryrun.html"><code>--dryrun</code></a> as well, the text output shows the fixed code under each finding and the files are not changed.</p>
+<p>The code that replaces each match of the rule. The metavariables in it are replaced by the code they matched. <a href="../flags/autofix.html"><code>--autofix</code></a> writes the fixes to the files; with <a href="../flags/dryrun.html"><code>--dryrun</code></a> as well, the text output shows the fixed code under each finding and the files are not changed.</p>
 <p><a href="../commands/test.html"><code>opengrep test</code></a> checks the fix of a rule when the target <code>x.js</code> has a file <code>x.fixed.js</code> next to it: it applies the fix to <code>x.js</code> and compares the result with <code>x.fixed.js</code>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="innerhtml-to-textcontent"><a class="hash" href="#innerhtml-to-textcontent" aria-hidden="true" tabindex="-1">###</a> <code>innerHTML</code> to <code>textContent</code></h3>

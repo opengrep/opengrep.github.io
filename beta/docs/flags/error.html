@@ -262,7 +262,7 @@
 <div><dt>Default</dt><dd><code>false</code></dd></div>
 <div><dt>See also</dt><dd><a href="severity.html"><code>--severity</code></a>, <a href="../commands/ci.html"><code>opengrep ci</code></a>, <a href="strict.html"><code>--strict</code></a></dd></div>
 </dl>
-<p>By default, a scan that completes exits with status 0, whether or not it reports findings. With <code>--error</code>, a scan that reports a finding exits with status 1, so that a script or a CI step fails.</p>
+<p>By default, a scan that completes exits with status 0, whether or not it reports findings. With <code>--error</code>, a scan that reports a finding exits with status 1.</p>
 <p><a href="../commands/ci.html"><code>opengrep ci</code></a> exits with status 1 on blocking findings without the flag. To fail on some findings only, restrict the scan with <a href="severity.html"><code>--severity</code></a> or <a href="exclude-rule.html"><code>--exclude-rule</code></a>.</p>
 <p>The flag applies to findings only, not to errors during the scan, such as a file that cannot be parsed; see <a href="strict.html"><code>--strict</code></a>. Findings suppressed by a <code>nosemgrep</code> comment do not count, including those that <a href="sarif-output.html"><code>--sarif-output</code></a> records in its file.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>

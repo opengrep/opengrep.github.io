@@ -260,7 +260,7 @@
 <div><dt>Value</dt><dd>an integer</dd></div>
 <div><dt>See also</dt><dd><a href="../flags/dynamic-timeout-max-multiplier.html"><code>--dynamic-timeout-max-multiplier</code></a>, <a href="dynamic_timeout.html"><code>dynamic_timeout</code></a></dd></div>
 </dl>
-<p>When <a href="dynamic_timeout.html"><code>dynamic_timeout</code></a> scales this rule's time limit with the size of a file, the factor is the size divided by <a href="dynamic_timeout_unit_kb.html"><code>dynamic_timeout_unit_kb</code></a>, but never more than this value, so that a very large file does not get unlimited time.</p>
+<p>When <a href="dynamic_timeout.html"><code>dynamic_timeout</code></a> scales this rule's time limit with the size of a file, the factor is the size divided by <a href="dynamic_timeout_unit_kb.html"><code>dynamic_timeout_unit_kb</code></a>, but never more than this value.</p>
 <p>The option requires <a href="../flags/allow-rule-timeout-control.html"><code>--allow-rule-timeout-control</code></a>, like the other timeout options of a rule. A rule that does not set it uses <a href="../flags/dynamic-timeout-max-multiplier.html"><code>--dynamic-timeout-max-multiplier</code></a>, whose default is 20.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="a-10-kb-file-with-and-without-a-cap"><a class="hash" href="#a-10-kb-file-with-and-without-a-cap" aria-hidden="true" tabindex="-1">###</a> A 10 KB file with and without a cap</h3>
