@@ -106,7 +106,7 @@
         <span class="n">│</span>
         <span class="n">├─ </span>source           <span class="n">16: </span><span class="n">exec(tarCommand(</span>req.query<span class="n">.dir));</span>
         <span class="n">├─ </span>through call     <span class="n">16: </span><span class="n">exec(</span>tarCommand<span class="n">(req.query.dir));</span>
-        <span class="n">│  </span><span class="n">├─ </span>arg              <span class="n"> 7: </span><span class="n">function tarCommand(</span>dir<span class="n">) {</span>
+        <span class="n">│  </span><span class="n">├─ </span>param            <span class="n"> 7: </span><span class="n">function tarCommand(</span>dir<span class="n">) {</span>
         <span class="n">│  </span><span class="n">└─ </span>return           <span class="n"> 8: </span>return<span class="n"> "tar czf /backups/latest.tgz " + dir;</span>
         <span class="n">└─ </span>sink             <span class="n">16: </span>exec(tarCommand(req.query.dir))<span class="n">;</span>
 
@@ -131,7 +131,7 @@
       <ul class="notes flags">
         <li><span class="ref"><a class="plain" href="docs/flags/quiet.html"><code>-q</code></a></span><span>quiet: only the findings. Leaves out the banner, the progress and the summary that Opengrep prints around them.</span></li>
         <li><span class="ref"><a class="plain" href="docs/flags/output-enclosing-context.html"><code>--output-enclosing-context</code></a></span><span>adds the <code>in:</code> line, naming the function, or the class and the method, that contains each finding.</span></li>
-        <li><span class="ref"><a class="plain" href="docs/flags/dataflow-traces.html"><code>--dataflow-traces</code></a></span><span>draws the path of the data under each taint finding, from the source to the sink. A call the data goes through opens into the steps inside the function, from the parameter it enters by (<code>arg</code>) to the <code>return</code> it leaves by.</span></li>
+        <li><span class="ref"><a class="plain" href="docs/flags/dataflow-traces.html"><code>--dataflow-traces</code></a></span><span>draws the path of the data under each taint finding, from the source to the sink. A call the data goes through opens into the steps inside the function, from the parameter it enters by (<code>param</code>) to the <code>return</code> it leaves by.</span></li>
       </ul>
     </section>
 
