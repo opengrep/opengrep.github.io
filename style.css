@@ -1,0 +1,560 @@
+/* ---------- tokens ---------- */
+:root {
+  --bg: #0b0b0e;
+  --bg-raised: #111116;
+  --line: #26242e;
+  --fg: #eeecf2;
+  --text: #d5d3db;
+  --dim: #75727f;
+  --accent: #c792ff;        /* light neon violet */
+  --accent-deep: #9d5cff;
+  --error: #ff5c8a;
+  --critical: #ff6ee6;
+  --warn: #ffcb6b;
+  --info: #82aaff;
+  --code-kw: #b5b1c0;       /* keywords, yaml keys */
+  --code-str: #b8a8d8;      /* strings, literals: desaturated accent */
+  --glow: 0 0 2px rgb(199 146 255 / 0.9), 0 0 10px rgb(170 100 255 / 0.7), 0 0 26px rgb(150 70 255 / 0.45);
+
+  --font: "Noto Sans Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --measure: 760px;
+
+  color-scheme: dark;
+}
+
+/* ---------- base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  /* faint dot grid */
+  background-image: radial-gradient(rgb(255 255 255 / 0.055) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+a,
+.features details:not([open]) h3 {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed rgb(199 146 255 / 0.45);
+}
+a:hover,
+.features details:not([open]) > summary:hover h3 { border-bottom-style: solid; border-bottom-color: var(--accent); text-shadow: var(--glow); }
+/* in-text link that doesn't stand out: body colour, dashed underline */
+.quiet { color: inherit; border-bottom-color: var(--dim); }
+.quiet:hover { color: var(--fg); border-bottom-color: var(--fg); text-shadow: none; }
+/* a link that looks exactly like the text it wraps, such as a flag in <code>;
+   only hovering shows it is a link */
+.plain { color: inherit; border-bottom: 0; }
+.plain:hover { color: inherit; border-bottom: 1px solid var(--fg); text-shadow: none; }
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+
+code {
+  font-family: inherit;
+  font-weight: 400;
+  color: var(--fg);
+}
+
+strong { font-weight: 500; color: var(--fg); }
+.dim { color: var(--dim); }
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--measure) + 48px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+main.wrap { padding-bottom: 48px; }
+
+/* ---------- site header: page tabs ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgb(17 17 22 / 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav { display: flex; gap: 28px; font-size: 14px; }
+.nav a {
+  position: relative;
+  padding: 13px 0;
+  color: var(--text);
+  border: 0;
+}
+.nav a:hover { color: var(--accent); }
+.nav a[aria-current="page"] { color: var(--accent); text-shadow: var(--glow); }
+.nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: var(--glow);
+}
+
+/* ---------- hero ---------- */
+.hero { padding: 36px 0 0; }
+
+.brand, .brand:hover { border: 0; }
+
+.logo {
+  display: block;
+  width: min(320px, 72vw);
+  height: auto;
+}
+
+
+.slogan {
+  margin: 20px 0 0;
+  font-weight: 200;
+  font-size: clamp(21px, 3.6vw, 28px);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.slogan em { font-style: normal; font-weight: 300; color: var(--accent); white-space: nowrap; text-shadow: var(--glow); }
+
+/* ---------- sections ---------- */
+section { padding: 24px 0; }
+#why { padding: 36px 0 16px; }
+
+h2 {
+  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--fg);
+}
+h2 .hash { color: var(--accent); text-shadow: var(--glow); }
+
+section > p { margin: 0 0 16px; max-width: 66ch; }
+
+/* features: diff-style "+" lines, each a <details> that flips to "-" when open */
+.features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  line-height: 1.6;
+}
+.features li {
+  position: relative;
+  padding-left: 2.2ch;
+}
+.features summary {
+  list-style: none;
+  cursor: pointer;
+}
+.features summary::-webkit-details-marker { display: none; }
+.features summary::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: 400;
+  text-shadow: var(--glow);
+}
+.features details[open] > summary::before { content: "-"; }
+.features h3 {
+  display: inline;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--fg);
+}
+.features details:not([open]) h3 { font-weight: inherit; }
+.features p { margin: 0; }
+.features code { white-space: nowrap; }
+
+/* backers */
+.backers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+.backers li::before { content: "./"; color: var(--dim); }
+.backers li.dim::before { content: ""; }
+
+/* social channels: one short paragraph, as wide as the main column */
+#social > p { max-width: none; }
+
+/* ---------- terminal / tabs ---------- */
+.term {
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+}
+.tabs button {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-right: 1px solid var(--line);
+  margin: 0;
+  padding: 10px 18px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--dim);
+  cursor: pointer;
+  position: relative;
+}
+.tabs button:hover { color: var(--text); }
+.tabs button[aria-selected="true"] {
+  color: var(--fg);
+  font-weight: 400;
+  background: var(--bg);
+}
+.tabs button[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: var(--glow);
+}
+.tabs button[aria-selected="true"]::before { content: "> "; color: var(--accent); }
+
+.panel {
+  position: relative;
+  background: var(--bg);
+}
+
+pre {
+  margin: 0;
+  padding: 20px 18px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.75;
+}
+pre code { font-weight: 300; color: var(--fg); }
+pre .c { color: var(--dim); font-weight: 200; }
+pre .p { color: var(--accent); user-select: none; text-shadow: var(--glow); }
+
+.copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  appearance: none;
+  border: 0;
+  background: var(--bg);
+  color: var(--dim);
+  font: inherit;
+  font-size: 12px;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+.copy:hover { color: var(--fg); }
+.copy.done { color: var(--accent); }
+.copy::before { content: "["; }
+.copy::after { content: "]"; }
+
+.note {
+  margin: 0;
+  padding: 0 18px 20px;
+  font-size: 14px;
+}
+
+/* ---------- source ---------- */
+.repo {
+  display: inline-block;
+  padding: 14px 20px;
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  color: var(--fg);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+/* same type as the install commands; only the url keeps the link colour */
+.repo strong { color: var(--accent); font-weight: inherit; }
+.repo .p { color: var(--accent); text-shadow: var(--glow); }
+.repo:hover { border-color: var(--accent-deep); border-bottom-style: solid; }
+
+.stats {
+  margin: 14px 0 0;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text);
+  display: flex;
+  gap: 24px;
+}
+
+/* subpage title next to the logo: "Opengrep: about" */
+.crumb {
+  --logo-w: min(320px, 46vw);
+  margin: 0;
+  font-size: calc(var(--logo-w) * 0.16);
+  font-weight: 200;
+  /* 0 so the logo alone sets the line height: the logo then sits exactly
+     where it does on the home page, and the text keeps its baseline */
+  line-height: 0;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  white-space: nowrap;
+}
+.crumb .logo {
+  display: inline-block;
+  width: var(--logo-w);
+  /* sit the wordmark's baseline (77.5% down the svg) on the text baseline */
+  vertical-align: calc(var(--logo-w) * -0.0387);
+}
+.crumb .sep { margin: 0 0.16em 0 0.22em; color: var(--accent); text-shadow: var(--glow); }
+
+/* ---------- about page ---------- */
+.lede { margin: 20px 0 0; max-width: 66ch; }
+
+.notes code { white-space: nowrap; }
+
+
+.features .langs { margin-bottom: 8px; line-height: 1.9; }
+.langs > span { white-space: nowrap; }
+.langs > span:not(:last-child)::after { content: " · "; color: var(--dim); }
+.star { color: var(--accent); font-weight: 400; text-shadow: var(--glow); }
+.langs-note { color: var(--dim); }
+
+/* ---------- examples page ---------- */
+.example > p { margin: 0 0 16px; max-width: 66ch; }
+
+.file {
+  position: relative;
+  margin: 0 0 14px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+.file-head {
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-raised);
+  font-size: 13px;
+  color: var(--fg);
+}
+.file-head .dim { margin-left: 1ch; }
+.file .copy { top: 5px; background: none; }
+
+pre.code { padding: 14px 0; counter-reset: ln; }
+pre.code code { display: block; min-width: max-content; }
+pre.code .line { display: block; padding: 0 18px 0 0; }
+pre.code .line::before {
+  counter-increment: ln;
+  content: counter(ln);
+  display: inline-block;
+  width: 5ch;
+  padding-right: 2ch;
+  text-align: right;
+  color: var(--dim);
+  font-weight: 200;
+}
+pre.code .hit { background: rgb(199 146 255 / 0.09); box-shadow: inset 2px 0 0 var(--accent); }
+pre.code .hit::before { color: var(--accent); }
+/* syntax: structure recedes to grey, strings take a faint violet, rule wildcards the accent */
+pre .k { color: var(--code-kw); }
+pre .s { color: var(--code-str); }
+pre.code .c { color: var(--dim); }
+pre .mv { color: var(--accent); font-weight: 400; }
+
+pre.out .b { font-weight: 500; }
+pre.out .err { color: var(--error); }
+pre.out .crit { color: var(--critical); }
+pre.out .warn { color: var(--warn); }
+pre.out .info { color: var(--info); }
+pre.out .rule { color: var(--accent); }
+pre.out .n { color: var(--dim); }
+
+.notes { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 6px; }
+.notes li { display: grid; grid-template-columns: 9ch 1fr; }
+.notes .ref { color: var(--accent); }
+.notes.flags li { grid-template-columns: 30ch 1fr; }
+
+/* ---------- docs ---------- */
+/* The text sits in the site's own column, the middle one, so it starts right
+   under the nav as on every other page; the contents tree hangs in the left
+   margin. Below 1300px the margin is too narrow, and the tree folds into a
+   "contents" toggle above the text. */
+.docs-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, calc(var(--measure) + 48px)) minmax(0, 1fr);
+  align-items: start;
+  padding-top: 32px;
+  padding-bottom: 64px;
+}
+.docs-main { grid-column: 2; grid-row: 1; min-width: 0; padding: 0 24px; }
+
+/* sidebar: filter and contents tree; sticks below the site header and only the tree scrolls */
+.docs-side {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  width: min(260px, calc(100% - 40px));
+  margin-right: 8px;
+  position: sticky;
+  top: 76px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.docs-toc > summary { display: none; }
+.docs-filter {
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  outline: none;
+}
+.docs-filter:focus { border-color: var(--accent-deep); }
+
+.toc {
+  position: relative;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc > ul > li { margin: 0 0 4px; }
+.toc a { display: block; padding: 1px 0; border: 0; color: var(--text); overflow-wrap: anywhere; }
+.toc a:hover { color: var(--accent); text-shadow: none; }
+.toc a[aria-current="page"] { color: var(--accent); text-shadow: var(--glow); }
+.toc .top,
+.toc summary { position: relative; padding-left: 2ch; }
+.toc .top a,
+.toc summary a { color: var(--fg); font-weight: 400; text-transform: lowercase; }
+.toc summary { list-style: none; cursor: pointer; }
+.toc summary::-webkit-details-marker { display: none; }
+.toc summary::before { content: "+"; position: absolute; left: 0; top: 1px; color: var(--accent); font-weight: 400; }
+.toc details[open] > summary::before { content: "-"; }
+.toc details ul { margin: 2px 0 8px 0.5ch; padding-left: 1.5ch; border-left: 1px solid var(--line); }
+
+/* page */
+/* the overview's "Opengrep / docs" heading, at the height the other pages have theirs */
+.docs-main > .hero { padding-top: 4px; margin-bottom: 20px; }
+.docs-crumb { margin: 0 0 6px; font-size: 13px; color: var(--dim); text-transform: lowercase; }
+.docs-crumb a { color: var(--dim); border-bottom-color: var(--line); }
+.docs-crumb a:hover { color: var(--fg); border-bottom-color: var(--fg); text-shadow: none; }
+.docs-main h1:not(.crumb) {
+  margin: 0 0 22px;
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+.docs-main h1 code { font-weight: inherit; }
+/* flags and names stay on one line ("--" never splits); long code with spaces may wrap */
+.docs-main :not(pre) > code { white-space: nowrap; }
+.docs-main :not(pre) > code.long { white-space: normal; }
+.docs-main h2 { margin: 40px 0 14px; font-size: 16px; }
+.docs-main h3 { margin: 28px 0 12px; font-size: 15px; font-weight: 500; color: var(--fg); }
+.docs-main .hash { border: 0; color: var(--accent); text-shadow: var(--glow); }
+.docs-main h3 .hash { color: var(--dim); text-shadow: none; }
+.docs-main .hash:hover { color: var(--accent); }
+.docs-main :is(h2, h3) { scroll-margin-top: 72px; }
+.docs-main > p,
+.docs-main > ul,
+.docs-main > ol { margin: 0 0 16px; max-width: 72ch; }
+.docs-main ul { list-style: none; padding-left: 2.2ch; }
+.docs-main ul > li { position: relative; }
+.docs-main ul > li::before { content: "-"; position: absolute; left: -2.2ch; color: var(--accent); font-weight: 400; }
+.docs-main ol { padding-left: 3ch; }
+.docs-main ol > li::marker { color: var(--accent); }
+.docs-main li + li { margin-top: 4px; }
+.docs-main li p { margin: 0 0 8px; }
+.docs-main blockquote { margin: 0 0 20px; padding: 2px 0 2px 14px; border-left: 2px solid var(--accent-deep); }
+.docs-main blockquote p { margin: 0; }
+
+/* the facts under a title: accepted by, value, default, ... */
+.facts {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 24px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  font-size: 14px;
+}
+.facts div { display: grid; grid-template-columns: 13ch 1fr; gap: 2ch; }
+.facts dt { color: var(--dim); }
+.facts dd { margin: 0; }
+
+.table-wrap { overflow-x: auto; margin: 0 0 20px; border: 1px solid var(--line); }
+.docs-main table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.55; }
+.docs-main th,
+.docs-main td { padding: 7px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.docs-main th { background: var(--bg-raised); color: var(--fg); font-weight: 500; }
+.docs-main tr:last-child td { border-bottom: 0; }
+.docs-main td:first-child code { white-space: nowrap; }
+/* the environment variables under a flag in the flags index, as quiet as the cells beside them */
+.docs-main td br ~ code { color: inherit; font-weight: inherit; }
+
+.docs-main .file { margin: 0 0 16px; }
+pre.snip { padding: 14px 18px; }
+.console pre.out code { color: var(--text); }
+pre.out .cmd { color: var(--fg); font-weight: 400; }
+
+@media (max-width: 1299px) {
+  .docs-layout { padding-top: 20px; row-gap: 24px; }
+  .docs-side { grid-column: 2; justify-self: stretch; width: auto; margin: 0; padding: 0 24px; position: static; }
+  .docs-main { grid-row: 2; }
+  .toc { max-height: 60vh; }
+  .docs-toc { border: 1px solid var(--line); background: var(--bg-raised); padding: 8px 14px; }
+  .docs-toc > summary { display: block; position: relative; padding-left: 2ch; color: var(--fg); cursor: pointer; list-style: none; }
+  .docs-toc > summary::-webkit-details-marker { display: none; }
+  .docs-toc > summary::before { content: "+"; position: absolute; left: 0; color: var(--accent); }
+  .docs-toc[open] > summary { margin-bottom: 10px; }
+  .docs-toc[open] > summary::before { content: "-"; }
+}
+@media (max-width: 900px) {
+  .facts div { grid-template-columns: 1fr; gap: 0; }
+  .notes.flags li { grid-template-columns: 1fr; }
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 600px) {
+  .wrap { padding: 0 16px; }
+  .hero { padding: 28px 0 0; }
+  .slogan { margin-top: 24px; }
+  .tabs button { padding: 10px 12px; font-size: 13px; }
+  pre { padding: 16px 14px; font-size: 13px; }
+  .repo { font-size: 13px; }
+  .panel .copy + pre { padding-top: 34px; }
+  .copy { top: 6px; right: 6px; }
+  .file .copy { top: 4px; }
+  .nav { gap: 22px; }
+  .notes li { grid-template-columns: 1fr; }
+  .docs-main,
+  .docs-side { padding: 0 16px; }
+}

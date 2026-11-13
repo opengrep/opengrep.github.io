@@ -11,7 +11,7 @@ relative_links:
   enabled: true
   collections: true
 
-include:
+exclude:
   - README.md
 
 theme: jekyll-theme-slate
