@@ -270,15 +270,12 @@
 <tr><td><code>through call</code></td><td>A call that the data goes through, entering the called function by an argument and leaving it by its return value or by a field of an argument.</td></tr>
 <tr><td><code>source in call</code></td><td>A call to a function that contains the source.</td></tr>
 <tr><td><code>sink in call</code></td><td>A call to a function that contains the sink.</td></tr>
-<tr><td><code>arg</code></td><td>The parameter by which the data enters a called function.</td></tr>
+<tr><td><code>param</code></td><td>The parameter by which the data enters a called function.</td></tr>
 <tr><td><code>return</code></td><td>The <code>return</code> by which the data leaves a called function.</td></tr>
 <tr><td><code>sink</code></td><td>The code that a sink of the rule matches.</td></tr>
 </tbody>
 </table></div>
-<p>The steps inside a called function are drawn under its call, one level deeper. A function called within a called function is nested in turn. These steps appear only when the analysis follows calls: with <a href="taint-intrafile.html"><code>--taint-intrafile</code></a>, the rule option <a href="../rule-options/taint_intrafile.html"><code>taint_intrafile</code></a>, or the cross-file analysis of <a href="enable-interfile.html"><code>--enable-interfile</code></a>. Otherwise, a call appears as a single <code>through</code> step.</p>
-<h2 id="output-formats"><a class="hash" href="#output-formats" aria-hidden="true" tabindex="-1">##</a> Output formats</h2>
-<p>The <code>simple</code> and <code>vivid</code> <a href="skin.html">skins</a> draw the trace as a tree. The <code>legacy</code> skin lists the source, the intermediate variables and the sink, in order, without nesting.</p>
-<p>In the SARIF output, the flag adds a <code>codeFlows</code> entry to each result. The JSON output always contains the trace, in the <code>dataflow_trace</code> field of each result, as a flat list of variables in execution order; the flag does not change it.</p>
+<p>The steps inside a called function are drawn under its call, one level deeper. A function called within a called function is nested in turn. These steps appear only when the analysis follows calls: with the rule option <a href="../rule-options/taint_intrafile.html"><code>taint_intrafile</code></a>, the flag <a href="taint-intrafile.html"><code>--taint-intrafile</code></a>, or the cross-file analysis of <a href="enable-interfile.html"><code>--enable-interfile</code></a>. Otherwise, a call appears as a single <code>through</code> step.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="the-path-from-source-to-sink"><a class="hash" href="#the-path-from-source-to-sink" aria-hidden="true" tabindex="-1">###</a> The path from source to sink</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: input-to-eval</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: input reaches eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
@@ -324,7 +321,7 @@ search.py
         ├─ source           6: name = request.args.get(&quot;name&quot;)
         ├─ through          6: name = request.args.get(&quot;name&quot;)
         ├─ through call     7: query = build_query(name)
-        │  ├─ arg              1: def build_query(name):
+        │  ├─ param            1: def build_query(name):
         │  ├─ through          2: query = &quot;SELECT * FROM users WHERE name = &#x27;&quot; + name + &quot;&#x27;&quot;
         │  └─ return           3: return query
         ├─ through          7: query = build_query(name)
@@ -347,10 +344,362 @@ calls.py
         │  ├─ through           2: name = request.args.get(&quot;name&quot;)
         │  └─ return            3: return name
         └─ sink in call     10: run_query(get_name())
-           ├─ arg               5: def run_query(name):
+           ├─ param             5: def run_query(name):
            ├─ through           6: sql = &quot;SELECT * FROM users WHERE name = &#x27;&quot; + name + &quot;&#x27;&quot;
            └─ sink              7: cursor.execute(sql)</code></pre></div>
 <p>The finding is reported at the sink, inside <code>run_query</code>. The trace starts at the call in <code>search</code> that connects the two functions.</p>
+<h2 id="json-schema"><a class="hash" href="#json-schema" aria-hidden="true" tabindex="-1">##</a> JSON schema</h2>
+<p>In the <a href="json.html">JSON output</a>, each result of a taint rule holds its trace in <code>extra.dataflow_trace</code>, with or without the flag. The trace is a list of steps in execution order, and each step is an object with these fields:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Field</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td><code>kind</code></td><td>The kind of step: <code>source</code>, <code>through</code>, <code>through_call</code>, <code>source_in_call</code>, <code>sink_in_call</code>, <code>parameter</code>, <code>return</code> or <code>sink</code>. These are the labels of the text output, with <code>_</code> for a space and <code>parameter</code> for <code>param</code>.</td></tr>
+<tr><td><code>location</code></td><td>The <code>path</code> of the file, and the <code>start</code> and <code>end</code> of the code. Each has a <code>line</code> and a <code>col</code>, counted from 1, and an <code>offset</code> from the start of the file, counted from 0. <code>end</code> is the position after the last character.</td></tr>
+<tr><td><code>content</code></td><td>The code at the location, as written in the file; for a call, the name of the called function.</td></tr>
+<tr><td><code>children</code></td><td>For a call, the steps inside the called function, in the same form; for other steps, an empty list.</td></tr>
+</tbody>
+</table></div>
+<h3 id="a-trace-in-the-json-output"><a class="hash" href="#a-trace-in-the-json-output" aria-hidden="true" tabindex="-1">###</a> A trace in the JSON output</h3>
+<div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: input-to-eval</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">taint_intrafile</span>: true</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: input reaches eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
+<div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">def</span> run(code):</span><span class="line">    eval(code)</span><span class="line"></span><span class="line">run(input())</span></code></pre></div>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rule.yaml --dataflow-traces app.py
+opengrep scan --config rule.yaml --json app.py | jq .
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --dataflow-traces app.py</span>
+app.py
+
+  <span class="err">error</span>  <span class="rule">input-to-eval</span>
+  input reaches eval
+
+<span class="n">     2:</span><span class="b"> eval(code)</span>
+        │
+        ├─ source           4: run(input())
+        └─ sink in call     4: run(input())
+           ├─ param            1: def run(code):
+           └─ sink             2: eval(code)
+<span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --json app.py | jq .</span>
+{
+  <span class="k">&quot;version&quot;</span>: <span class="s">&quot;X.Y.Z&quot;</span>,
+  <span class="k">&quot;results&quot;</span>: [
+    {
+      <span class="k">&quot;check_id&quot;</span>: <span class="s">&quot;input-to-eval&quot;</span>,
+      <span class="k">&quot;path&quot;</span>: <span class="s">&quot;app.py&quot;</span>,
+      <span class="k">&quot;start&quot;</span>: {
+        <span class="k">&quot;line&quot;</span>: <span class="s">2</span>,
+        <span class="k">&quot;col&quot;</span>: <span class="s">5</span>,
+        <span class="k">&quot;offset&quot;</span>: <span class="s">19</span>
+      },
+      <span class="k">&quot;end&quot;</span>: {
+        <span class="k">&quot;line&quot;</span>: <span class="s">2</span>,
+        <span class="k">&quot;col&quot;</span>: <span class="s">15</span>,
+        <span class="k">&quot;offset&quot;</span>: <span class="s">29</span>
+      },
+      <span class="k">&quot;extra&quot;</span>: {
+        <span class="k">&quot;metavars&quot;</span>: {},
+        <span class="k">&quot;message&quot;</span>: <span class="s">&quot;input reaches eval&quot;</span>,
+        <span class="k">&quot;metadata&quot;</span>: {},
+        <span class="k">&quot;severity&quot;</span>: <span class="s">&quot;ERROR&quot;</span>,
+        <span class="k">&quot;fingerprint&quot;</span>: <span class="s">&quot;d41d752bf0b1ea72530217bd06cc03b7d24d71fb0d4af0ec9374a71b66caf9c82c17a25f10ae71f05a05fe5fc45177fabbd13b8dd7b991b62d833d75e641d928_0&quot;</span>,
+        <span class="k">&quot;lines&quot;</span>: <span class="s">&quot;    eval(code)&quot;</span>,
+        <span class="k">&quot;is_ignored&quot;</span>: <span class="s">false</span>,
+        <span class="k">&quot;validation_state&quot;</span>: <span class="s">&quot;NO_VALIDATOR&quot;</span>,
+        <span class="k">&quot;dataflow_trace&quot;</span>: [
+          {
+            <span class="k">&quot;kind&quot;</span>: <span class="s">&quot;source&quot;</span>,
+            <span class="k">&quot;location&quot;</span>: {
+              <span class="k">&quot;path&quot;</span>: <span class="s">&quot;app.py&quot;</span>,
+              <span class="k">&quot;start&quot;</span>: {
+                <span class="k">&quot;line&quot;</span>: <span class="s">4</span>,
+                <span class="k">&quot;col&quot;</span>: <span class="s">5</span>,
+                <span class="k">&quot;offset&quot;</span>: <span class="s">35</span>
+              },
+              <span class="k">&quot;end&quot;</span>: {
+                <span class="k">&quot;line&quot;</span>: <span class="s">4</span>,
+                <span class="k">&quot;col&quot;</span>: <span class="s">12</span>,
+                <span class="k">&quot;offset&quot;</span>: <span class="s">42</span>
+              }
+            },
+            <span class="k">&quot;content&quot;</span>: <span class="s">&quot;input()&quot;</span>,
+            <span class="k">&quot;children&quot;</span>: []
+          },
+          {
+            <span class="k">&quot;kind&quot;</span>: <span class="s">&quot;sink_in_call&quot;</span>,
+            <span class="k">&quot;location&quot;</span>: {
+              <span class="k">&quot;path&quot;</span>: <span class="s">&quot;app.py&quot;</span>,
+              <span class="k">&quot;start&quot;</span>: {
+                <span class="k">&quot;line&quot;</span>: <span class="s">4</span>,
+                <span class="k">&quot;col&quot;</span>: <span class="s">1</span>,
+                <span class="k">&quot;offset&quot;</span>: <span class="s">31</span>
+              },
+              <span class="k">&quot;end&quot;</span>: {
+                <span class="k">&quot;line&quot;</span>: <span class="s">4</span>,
+                <span class="k">&quot;col&quot;</span>: <span class="s">4</span>,
+                <span class="k">&quot;offset&quot;</span>: <span class="s">34</span>
+              }
+            },
+            <span class="k">&quot;content&quot;</span>: <span class="s">&quot;run&quot;</span>,
+            <span class="k">&quot;children&quot;</span>: [
+              {
+                <span class="k">&quot;kind&quot;</span>: <span class="s">&quot;parameter&quot;</span>,
+                <span class="k">&quot;location&quot;</span>: {
+                  <span class="k">&quot;path&quot;</span>: <span class="s">&quot;app.py&quot;</span>,
+                  <span class="k">&quot;start&quot;</span>: {
+                    <span class="k">&quot;line&quot;</span>: <span class="s">1</span>,
+                    <span class="k">&quot;col&quot;</span>: <span class="s">9</span>,
+                    <span class="k">&quot;offset&quot;</span>: <span class="s">8</span>
+                  },
+                  <span class="k">&quot;end&quot;</span>: {
+                    <span class="k">&quot;line&quot;</span>: <span class="s">1</span>,
+                    <span class="k">&quot;col&quot;</span>: <span class="s">13</span>,
+                    <span class="k">&quot;offset&quot;</span>: <span class="s">12</span>
+                  }
+                },
+                <span class="k">&quot;content&quot;</span>: <span class="s">&quot;code&quot;</span>,
+                <span class="k">&quot;children&quot;</span>: []
+              },
+              {
+                <span class="k">&quot;kind&quot;</span>: <span class="s">&quot;sink&quot;</span>,
+                <span class="k">&quot;location&quot;</span>: {
+                  <span class="k">&quot;path&quot;</span>: <span class="s">&quot;app.py&quot;</span>,
+                  <span class="k">&quot;start&quot;</span>: {
+                    <span class="k">&quot;line&quot;</span>: <span class="s">2</span>,
+                    <span class="k">&quot;col&quot;</span>: <span class="s">5</span>,
+                    <span class="k">&quot;offset&quot;</span>: <span class="s">19</span>
+                  },
+                  <span class="k">&quot;end&quot;</span>: {
+                    <span class="k">&quot;line&quot;</span>: <span class="s">2</span>,
+                    <span class="k">&quot;col&quot;</span>: <span class="s">15</span>,
+                    <span class="k">&quot;offset&quot;</span>: <span class="s">29</span>
+                  }
+                },
+                <span class="k">&quot;content&quot;</span>: <span class="s">&quot;eval(code)&quot;</span>,
+                <span class="k">&quot;children&quot;</span>: []
+              }
+            ]
+          }
+        ],
+        <span class="k">&quot;engine_kind&quot;</span>: <span class="s">&quot;Opengrep&quot;</span>
+      }
+    }
+  ],
+  <span class="k">&quot;errors&quot;</span>: [],
+  <span class="k">&quot;paths&quot;</span>: {
+    <span class="k">&quot;scanned&quot;</span>: [
+      <span class="s">&quot;app.py&quot;</span>
+    ]
+  },
+  <span class="k">&quot;interfile_languages_used&quot;</span>: [],
+  <span class="k">&quot;skipped_rules&quot;</span>: []
+}</code></pre></div>
+<h2 id="sarif-schema"><a class="hash" href="#sarif-schema" aria-hidden="true" tabindex="-1">##</a> SARIF schema</h2>
+<p>With the flag, each result of a taint rule in the <a href="sarif.html">SARIF output</a> has a <code>codeFlows</code> list with one code flow. The results of a rule that runs across files with <a href="enable-interfile.html"><code>--enable-interfile</code></a> have it without the flag as well.</p>
+<p>The <code>message</code> of the code flow names the file and line of the source and of the finding, as in <code class="long">Untrusted dataflow from app.py:4 to app.py:2</code>. The code flow has one thread flow, whose <code>locations</code> are the steps of the trace in execution order, each call followed by the steps inside the called function. Each location has these fields:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Field</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td><code>nestingLevel</code></td><td><code>0</code> for a step of the trace, one more for each call that the step is inside.</td></tr>
+<tr><td><code>kinds</code></td><td><code>[&quot;call&quot;]</code> for a call, <code>[&quot;enter&quot;]</code> for a parameter and <code>[&quot;exit&quot;]</code> for a return; absent for the other steps.</td></tr>
+<tr><td><code>location.message.text</code></td><td>The kind of step, the code at the location and its file and line, as in <code>Source: &#x27;input()&#x27; @ &#x27;app.py:4&#x27;</code>; for a call, the code is the name of the called function. The kind is <code>Source:</code> for a source, <code>Call:</code> for a call, <code>Sink:</code> for a sink and <code>Propagator :</code> for the other steps.</td></tr>
+<tr><td><code>location.physicalLocation</code></td><td>The file, in <code>artifactLocation.uri</code>, and the <code>region</code> of the code: <code>startLine</code>, <code>startColumn</code>, <code>endLine</code> and <code>endColumn</code>, the code in <code>snippet.text</code>, and the same <code>message</code>.</td></tr>
+</tbody>
+</table></div>
+<h3 id="a-trace-in-the-sarif-output"><a class="hash" href="#a-trace-in-the-sarif-output" aria-hidden="true" tabindex="-1">###</a> A trace in the SARIF output</h3>
+<div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: input-to-eval</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">options</span>:</span><span class="line">      <span class="k">taint_intrafile</span>: true</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: input(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: input reaches eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
+<div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">def</span> run(code):</span><span class="line">    eval(code)</span><span class="line"></span><span class="line">run(input())</span></code></pre></div>
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan --config rule.yaml --sarif --dataflow-traces app.py | jq .
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --sarif --dataflow-traces app.py | jq .</span>
+{
+  <span class="k">&quot;version&quot;</span>: <span class="s">&quot;2.1.0&quot;</span>,
+  <span class="k">&quot;runs&quot;</span>: [
+    {
+      <span class="k">&quot;invocations&quot;</span>: [
+        {
+          <span class="k">&quot;executionSuccessful&quot;</span>: <span class="s">true</span>,
+          <span class="k">&quot;toolExecutionNotifications&quot;</span>: []
+        }
+      ],
+      <span class="k">&quot;results&quot;</span>: [
+        {
+          <span class="k">&quot;codeFlows&quot;</span>: [
+            {
+              <span class="k">&quot;message&quot;</span>: {
+                <span class="k">&quot;text&quot;</span>: <span class="s">&quot;Untrusted dataflow from app.py:4 to app.py:2&quot;</span>
+              },
+              <span class="k">&quot;threadFlows&quot;</span>: [
+                {
+                  <span class="k">&quot;locations&quot;</span>: [
+                    {
+                      <span class="k">&quot;location&quot;</span>: {
+                        <span class="k">&quot;message&quot;</span>: {
+                          <span class="k">&quot;text&quot;</span>: <span class="s">&quot;Source: &#x27;input()&#x27; @ &#x27;app.py:4&#x27;&quot;</span>
+                        },
+                        <span class="k">&quot;physicalLocation&quot;</span>: {
+                          <span class="k">&quot;artifactLocation&quot;</span>: {
+                            <span class="k">&quot;uri&quot;</span>: <span class="s">&quot;app.py&quot;</span>
+                          },
+                          <span class="k">&quot;region&quot;</span>: {
+                            <span class="k">&quot;endColumn&quot;</span>: <span class="s">12</span>,
+                            <span class="k">&quot;endLine&quot;</span>: <span class="s">4</span>,
+                            <span class="k">&quot;message&quot;</span>: {
+                              <span class="k">&quot;text&quot;</span>: <span class="s">&quot;Source: &#x27;input()&#x27; @ &#x27;app.py:4&#x27;&quot;</span>
+                            },
+                            <span class="k">&quot;snippet&quot;</span>: {
+                              <span class="k">&quot;text&quot;</span>: <span class="s">&quot;input()&quot;</span>
+                            },
+                            <span class="k">&quot;startColumn&quot;</span>: <span class="s">5</span>,
+                            <span class="k">&quot;startLine&quot;</span>: <span class="s">4</span>
+                          }
+                        }
+                      },
+                      <span class="k">&quot;nestingLevel&quot;</span>: <span class="s">0</span>
+                    },
+                    {
+                      <span class="k">&quot;kinds&quot;</span>: [
+                        <span class="s">&quot;call&quot;</span>
+                      ],
+                      <span class="k">&quot;location&quot;</span>: {
+                        <span class="k">&quot;message&quot;</span>: {
+                          <span class="k">&quot;text&quot;</span>: <span class="s">&quot;Call: &#x27;run&#x27; @ &#x27;app.py:4&#x27;&quot;</span>
+                        },
+                        <span class="k">&quot;physicalLocation&quot;</span>: {
+                          <span class="k">&quot;artifactLocation&quot;</span>: {
+                            <span class="k">&quot;uri&quot;</span>: <span class="s">&quot;app.py&quot;</span>
+                          },
+                          <span class="k">&quot;region&quot;</span>: {
+                            <span class="k">&quot;endColumn&quot;</span>: <span class="s">4</span>,
+                            <span class="k">&quot;endLine&quot;</span>: <span class="s">4</span>,
+                            <span class="k">&quot;message&quot;</span>: {
+                              <span class="k">&quot;text&quot;</span>: <span class="s">&quot;Call: &#x27;run&#x27; @ &#x27;app.py:4&#x27;&quot;</span>
+                            },
+                            <span class="k">&quot;snippet&quot;</span>: {
+                              <span class="k">&quot;text&quot;</span>: <span class="s">&quot;run&quot;</span>
+                            },
+                            <span class="k">&quot;startColumn&quot;</span>: <span class="s">1</span>,
+                            <span class="k">&quot;startLine&quot;</span>: <span class="s">4</span>
+                          }
+                        }
+                      },
+                      <span class="k">&quot;nestingLevel&quot;</span>: <span class="s">0</span>
+                    },
+                    {
+                      <span class="k">&quot;kinds&quot;</span>: [
+                        <span class="s">&quot;enter&quot;</span>
+                      ],
+                      <span class="k">&quot;location&quot;</span>: {
+                        <span class="k">&quot;message&quot;</span>: {
+                          <span class="k">&quot;text&quot;</span>: <span class="s">&quot;Propagator : &#x27;code&#x27; @ &#x27;app.py:1&#x27;&quot;</span>
+                        },
+                        <span class="k">&quot;physicalLocation&quot;</span>: {
+                          <span class="k">&quot;artifactLocation&quot;</span>: {
+                            <span class="k">&quot;uri&quot;</span>: <span class="s">&quot;app.py&quot;</span>
+                          },
+                          <span class="k">&quot;region&quot;</span>: {
+                            <span class="k">&quot;endColumn&quot;</span>: <span class="s">13</span>,
+                            <span class="k">&quot;endLine&quot;</span>: <span class="s">1</span>,
+                            <span class="k">&quot;message&quot;</span>: {
+                              <span class="k">&quot;text&quot;</span>: <span class="s">&quot;Propagator : &#x27;code&#x27; @ &#x27;app.py:1&#x27;&quot;</span>
+                            },
+                            <span class="k">&quot;snippet&quot;</span>: {
+                              <span class="k">&quot;text&quot;</span>: <span class="s">&quot;code&quot;</span>
+                            },
+                            <span class="k">&quot;startColumn&quot;</span>: <span class="s">9</span>,
+                            <span class="k">&quot;startLine&quot;</span>: <span class="s">1</span>
+                          }
+                        }
+                      },
+                      <span class="k">&quot;nestingLevel&quot;</span>: <span class="s">1</span>
+                    },
+                    {
+                      <span class="k">&quot;location&quot;</span>: {
+                        <span class="k">&quot;message&quot;</span>: {
+                          <span class="k">&quot;text&quot;</span>: <span class="s">&quot;Sink: &#x27;eval(code)&#x27; @ &#x27;app.py:2&#x27;&quot;</span>
+                        },
+                        <span class="k">&quot;physicalLocation&quot;</span>: {
+                          <span class="k">&quot;artifactLocation&quot;</span>: {
+                            <span class="k">&quot;uri&quot;</span>: <span class="s">&quot;app.py&quot;</span>
+                          },
+                          <span class="k">&quot;region&quot;</span>: {
+                            <span class="k">&quot;endColumn&quot;</span>: <span class="s">15</span>,
+                            <span class="k">&quot;endLine&quot;</span>: <span class="s">2</span>,
+                            <span class="k">&quot;message&quot;</span>: {
+                              <span class="k">&quot;text&quot;</span>: <span class="s">&quot;Sink: &#x27;eval(code)&#x27; @ &#x27;app.py:2&#x27;&quot;</span>
+                            },
+                            <span class="k">&quot;snippet&quot;</span>: {
+                              <span class="k">&quot;text&quot;</span>: <span class="s">&quot;eval(code)&quot;</span>
+                            },
+                            <span class="k">&quot;startColumn&quot;</span>: <span class="s">5</span>,
+                            <span class="k">&quot;startLine&quot;</span>: <span class="s">2</span>
+                          }
+                        }
+                      },
+                      <span class="k">&quot;nestingLevel&quot;</span>: <span class="s">1</span>
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          <span class="k">&quot;fingerprints&quot;</span>: {
+            <span class="k">&quot;matchBasedId/v1&quot;</span>: <span class="s">&quot;d41d752bf0b1ea72530217bd06cc03b7d24d71fb0d4af0ec9374a71b66caf9c82c17a25f10ae71f05a05fe5fc45177fabbd13b8dd7b991b62d833d75e641d928_0&quot;</span>
+          },
+          <span class="k">&quot;locations&quot;</span>: [
+            {
+              <span class="k">&quot;physicalLocation&quot;</span>: {
+                <span class="k">&quot;artifactLocation&quot;</span>: {
+                  <span class="k">&quot;uri&quot;</span>: <span class="s">&quot;app.py&quot;</span>,
+                  <span class="k">&quot;uriBaseId&quot;</span>: <span class="s">&quot;%SRCROOT%&quot;</span>
+                },
+                <span class="k">&quot;region&quot;</span>: {
+                  <span class="k">&quot;endColumn&quot;</span>: <span class="s">15</span>,
+                  <span class="k">&quot;endLine&quot;</span>: <span class="s">2</span>,
+                  <span class="k">&quot;snippet&quot;</span>: {
+                    <span class="k">&quot;text&quot;</span>: <span class="s">&quot;    eval(code)&quot;</span>
+                  },
+                  <span class="k">&quot;startColumn&quot;</span>: <span class="s">5</span>,
+                  <span class="k">&quot;startLine&quot;</span>: <span class="s">2</span>
+                }
+              }
+            }
+          ],
+          <span class="k">&quot;message&quot;</span>: {
+            <span class="k">&quot;text&quot;</span>: <span class="s">&quot;input reaches eval&quot;</span>
+          },
+          <span class="k">&quot;properties&quot;</span>: {},
+          <span class="k">&quot;ruleId&quot;</span>: <span class="s">&quot;input-to-eval&quot;</span>
+        }
+      ],
+      <span class="k">&quot;tool&quot;</span>: {
+        <span class="k">&quot;driver&quot;</span>: {
+          <span class="k">&quot;name&quot;</span>: <span class="s">&quot;Opengrep&quot;</span>,
+          <span class="k">&quot;rules&quot;</span>: [
+            {
+              <span class="k">&quot;defaultConfiguration&quot;</span>: {
+                <span class="k">&quot;level&quot;</span>: <span class="s">&quot;error&quot;</span>
+              },
+              <span class="k">&quot;fullDescription&quot;</span>: {
+                <span class="k">&quot;text&quot;</span>: <span class="s">&quot;input reaches eval&quot;</span>
+              },
+              <span class="k">&quot;help&quot;</span>: {
+                <span class="k">&quot;markdown&quot;</span>: <span class="s">&quot;input reaches eval&quot;</span>,
+                <span class="k">&quot;text&quot;</span>: <span class="s">&quot;input reaches eval&quot;</span>
+              },
+              <span class="k">&quot;id&quot;</span>: <span class="s">&quot;input-to-eval&quot;</span>,
+              <span class="k">&quot;name&quot;</span>: <span class="s">&quot;input-to-eval&quot;</span>,
+              <span class="k">&quot;properties&quot;</span>: {
+                <span class="k">&quot;precision&quot;</span>: <span class="s">&quot;very-high&quot;</span>,
+                <span class="k">&quot;tags&quot;</span>: []
+              },
+              <span class="k">&quot;shortDescription&quot;</span>: {
+                <span class="k">&quot;text&quot;</span>: <span class="s">&quot;Opengrep Finding: input-to-eval&quot;</span>
+              }
+            }
+          ],
+          <span class="k">&quot;semanticVersion&quot;</span>: <span class="s">&quot;X.Y.Z&quot;</span>
+        }
+      }
+    }
+  ],
+  <span class="k">&quot;$schema&quot;</span>: <span class="s">&quot;https://docs.oasis-open.org/sarif/sarif/v2.1.0/os/schemas/sarif-schema-2.1.0.json&quot;</span>
+}</code></pre></div>
     </main>
   </div>
 

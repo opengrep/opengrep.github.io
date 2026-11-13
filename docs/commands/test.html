@@ -287,6 +287,7 @@ opengrep test --config RULES [FLAGS] TARGETS...</code></pre></div>
 <tr><td><a href="../flags/config.html"><code>--config</code></a></td><td>Load rules from a file, a directory, a URL, a git repository or the registry.</td></tr>
 <tr><td><a href="../flags/debug.html"><code>--debug</code></a></td><td>Log the messages of --verbose and the diagnostics of the engine.</td></tr>
 <tr><td><code>--develop</code></td><td>Listed in <a href="../internal.html#flags">Internal and debugging interfaces</a>.</td></tr>
+<tr><td><a href="../flags/disable-intrafile.html"><code>--disable-intrafile</code></a></td><td>Analyze every taint rule one function at a time, including rules that set taint_intrafile or taint_interfile.</td></tr>
 <tr><td><a href="../flags/enable-interfile.html"><code>--enable-interfile</code></a></td><td>Run cross-file taint analysis for the rules that set the taint_interfile option.</td></tr>
 <tr><td><a href="../flags/force-color.html"><code>--force-color</code></a></td><td>Style the output even when it does not go to a terminal.</td></tr>
 <tr><td><a href="../flags/interfile-depth.html"><code>--interfile-depth</code></a></td><td>The longest call chain the cross-file taint analysis follows.</td></tr>
