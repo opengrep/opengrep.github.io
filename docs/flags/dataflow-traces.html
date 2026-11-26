@@ -282,71 +282,71 @@
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">x = input()</span><span class="line">y = x</span><span class="line">eval(y)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rule.yaml --dataflow-traces app.py
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --dataflow-traces app.py</span>
-app.py
+<span class="b">app.py</span>
 
   <span class="err">error</span>  <span class="rule">input-to-eval</span>
   input reaches eval
 
-<span class="n">     3:</span><span class="b"> eval(y)</span>
-        │
-        ├─ source           1: x = input()
-        ├─ through          1: x = input()
-        ├─ through          2: y = x
-        └─ sink             3: eval(y)</code></pre></div>
+<span class="n">     3: </span>eval(y)
+        <span class="n">│</span>
+        <span class="n">├─ </span>source           <span class="n">1: </span><span class="n">x = </span>input()
+        <span class="n">├─ </span>through          <span class="n">1: </span>x<span class="n"> = input()</span>
+        <span class="n">├─ </span>through          <span class="n">2: </span>y<span class="n"> = x</span>
+        <span class="n">└─ </span>sink             <span class="n">3: </span>eval(y)</code></pre></div>
 <h3 id="through-a-function-call"><a class="hash" href="#through-a-function-call" aria-hidden="true" tabindex="-1">###</a> Through a function call</h3>
 <div class="file"><div class="file-head">sql.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: sql-injection</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: request.args.get(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: cursor.execute(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: user input reaches a SQL query</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
 <div class="file"><div class="file-head">search.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">def</span> build_query(name):</span><span class="line">    query = <span class="s">&quot;SELECT * FROM users WHERE name = &#x27;&quot;</span> + name + <span class="s">&quot;&#x27;&quot;</span></span><span class="line">    <span class="k">return</span> query</span><span class="line"></span><span class="line"><span class="k">def</span> search():</span><span class="line">    name = request.args.get(<span class="s">&quot;name&quot;</span>)</span><span class="line">    query = build_query(name)</span><span class="line">    cursor.execute(query)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config sql.yaml --dataflow-traces search.py
 opengrep scan -q --config sql.yaml --dataflow-traces --taint-intrafile search.py
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config sql.yaml --dataflow-traces search.py</span>
-search.py
+<span class="b">search.py</span>
 
   <span class="err">error</span>  <span class="rule">sql-injection</span>
   user input reaches a SQL query
 
-<span class="n">     8:</span><span class="b"> cursor.execute(query)</span>
-        │
-        ├─ source           6: name = request.args.get(&quot;name&quot;)
-        ├─ through          6: name = request.args.get(&quot;name&quot;)
-        ├─ through          7: query = build_query(name)
-        └─ sink             8: cursor.execute(query)
+<span class="n">     8: </span>cursor.execute(query)
+        <span class="n">│</span>
+        <span class="n">├─ </span>source           <span class="n">6: </span><span class="n">name = </span>request.args.get("name")
+        <span class="n">├─ </span>through          <span class="n">6: </span>name<span class="n"> = request.args.get("name")</span>
+        <span class="n">├─ </span>through          <span class="n">7: </span>query<span class="n"> = build_query(name)</span>
+        <span class="n">└─ </span>sink             <span class="n">8: </span>cursor.execute(query)
 <span class="p">$ </span><span class="cmd">opengrep scan -q --config sql.yaml --dataflow-traces --taint-intrafile search.py</span>
-search.py
+<span class="b">search.py</span>
 
   <span class="err">error</span>  <span class="rule">sql-injection</span>
   user input reaches a SQL query
 
-<span class="n">     8:</span><span class="b"> cursor.execute(query)</span>
-        │
-        ├─ source           6: name = request.args.get(&quot;name&quot;)
-        ├─ through          6: name = request.args.get(&quot;name&quot;)
-        ├─ through call     7: query = build_query(name)
-        │  ├─ param            1: def build_query(name):
-        │  ├─ through          2: query = &quot;SELECT * FROM users WHERE name = &#x27;&quot; + name + &quot;&#x27;&quot;
-        │  └─ return           3: return query
-        ├─ through          7: query = build_query(name)
-        └─ sink             8: cursor.execute(query)</code></pre></div>
+<span class="n">     8: </span>cursor.execute(query)
+        <span class="n">│</span>
+        <span class="n">├─ </span>source           <span class="n">6: </span><span class="n">name = </span>request.args.get("name")
+        <span class="n">├─ </span>through          <span class="n">6: </span>name<span class="n"> = request.args.get("name")</span>
+        <span class="n">├─ </span>through call     <span class="n">7: </span><span class="n">query = </span>build_query<span class="n">(name)</span>
+        <span class="n">│  </span><span class="n">├─ </span>param            <span class="n">1: </span><span class="n">def build_query(</span>name<span class="n">):</span>
+        <span class="n">│  </span><span class="n">├─ </span>through          <span class="n">2: </span>query<span class="n"> = "SELECT * FROM users WHERE name = '" + name + "'"</span>
+        <span class="n">│  </span><span class="n">└─ </span>return           <span class="n">3: </span>return<span class="n"> query</span>
+        <span class="n">├─ </span>through          <span class="n">7: </span>query<span class="n"> = build_query(name)</span>
+        <span class="n">└─ </span>sink             <span class="n">8: </span>cursor.execute(query)</code></pre></div>
 <p>The first scan treats the call to <code>build_query</code> as a single step. With <code>--taint-intrafile</code>, the trace also shows the path inside the function.</p>
 <h3 id="a-source-and-a-sink-in-called-functions"><a class="hash" href="#a-source-and-a-sink-in-called-functions" aria-hidden="true" tabindex="-1">###</a> A source and a sink in called functions</h3>
 <div class="file"><div class="file-head">sql.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: sql-injection</span><span class="line">    <span class="k">mode</span>: taint</span><span class="line">    <span class="k">pattern-sources</span>:</span><span class="line">      - <span class="k">pattern</span>: request.args.get(<span class="mv">...</span>)</span><span class="line">    <span class="k">pattern-sinks</span>:</span><span class="line">      - <span class="k">pattern</span>: cursor.execute(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: user input reaches a SQL query</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: ERROR</span></code></pre></div>
 <div class="file"><div class="file-head">calls.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">def</span> get_name():</span><span class="line">    name = request.args.get(<span class="s">&quot;name&quot;</span>)</span><span class="line">    <span class="k">return</span> name</span><span class="line"></span><span class="line"><span class="k">def</span> run_query(name):</span><span class="line">    sql = <span class="s">&quot;SELECT * FROM users WHERE name = &#x27;&quot;</span> + name + <span class="s">&quot;&#x27;&quot;</span></span><span class="line">    cursor.execute(sql)</span><span class="line"></span><span class="line"><span class="k">def</span> search():</span><span class="line">    run_query(get_name())</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config sql.yaml --dataflow-traces --taint-intrafile calls.py
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config sql.yaml --dataflow-traces --taint-intrafile calls.py</span>
-calls.py
+<span class="b">calls.py</span>
 
   <span class="err">error</span>  <span class="rule">sql-injection</span>
   user input reaches a SQL query
 
-<span class="n">     7:</span><span class="b"> cursor.execute(sql)</span>
-        │
-        ├─ source in call   10: run_query(get_name())
-        │  ├─ source           2: name = request.args.get(&quot;name&quot;)
-        │  ├─ through          2: name = request.args.get(&quot;name&quot;)
-        │  └─ return           3: return name
-        └─ sink in call     10: run_query(get_name())
-           ├─ param            5: def run_query(name):
-           ├─ through          6: sql = &quot;SELECT * FROM users WHERE name = &#x27;&quot; + name + &quot;&#x27;&quot;
-           └─ sink             7: cursor.execute(sql)</code></pre></div>
+<span class="n">     7: </span>cursor.execute(sql)
+        <span class="n">│</span>
+        <span class="n">├─ </span>source in call   <span class="n">10: </span><span class="n">run_query(</span>get_name<span class="n">())</span>
+        <span class="n">│  </span><span class="n">├─ </span>source           <span class="n">2: </span><span class="n">name = </span>request.args.get("name")
+        <span class="n">│  </span><span class="n">├─ </span>through          <span class="n">2: </span>name<span class="n"> = request.args.get("name")</span>
+        <span class="n">│  </span><span class="n">└─ </span>return           <span class="n">3: </span>return<span class="n"> name</span>
+        <span class="n">└─ </span>sink in call     <span class="n">10: </span>run_query<span class="n">(get_name())</span>
+           <span class="n">├─ </span>param            <span class="n">5: </span><span class="n">def run_query(</span>name<span class="n">):</span>
+           <span class="n">├─ </span>through          <span class="n">6: </span>sql<span class="n"> = "SELECT * FROM users WHERE name = '" + name + "'"</span>
+           <span class="n">└─ </span>sink             <span class="n">7: </span>cursor.execute(sql)</code></pre></div>
 <p>The finding is reported at the sink, inside <code>run_query</code>. The trace starts at the call in <code>search</code> that connects the two functions.</p>
 <h2 id="json-schema"><a class="hash" href="#json-schema" aria-hidden="true" tabindex="-1">##</a> JSON schema</h2>
 <p>In the <a href="json.html">JSON output</a>, each result of a taint rule holds its trace in <code>extra.dataflow_trace</code>, with or without the flag. The trace is a list of steps in execution order, and each step is an object with these fields:</p>
@@ -365,17 +365,17 @@ calls.py
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config rule.yaml --dataflow-traces app.py
 opengrep scan --config rule.yaml --json app.py | jq .
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --dataflow-traces app.py</span>
-app.py
+<span class="b">app.py</span>
 
   <span class="err">error</span>  <span class="rule">input-to-eval</span>
   input reaches eval
 
-<span class="n">     2:</span><span class="b"> eval(code)</span>
-        │
-        ├─ source           4: run(input())
-        └─ sink in call     4: run(input())
-           ├─ param            1: def run(code):
-           └─ sink             2: eval(code)
+<span class="n">     2: </span>eval(code)
+        <span class="n">│</span>
+        <span class="n">├─ </span>source           <span class="n">4: </span><span class="n">run(</span>input()<span class="n">)</span>
+        <span class="n">└─ </span>sink in call     <span class="n">4: </span>run<span class="n">(input())</span>
+           <span class="n">├─ </span>param            <span class="n">1: </span><span class="n">def run(</span>code<span class="n">):</span>
+           <span class="n">└─ </span>sink             <span class="n">2: </span>eval(code)
 <span class="p">$ </span><span class="cmd">opengrep scan --config rule.yaml --json app.py | jq .</span>
 {
   <span class="k">&quot;version&quot;</span>: <span class="s">&quot;X.Y.Z&quot;</span>,

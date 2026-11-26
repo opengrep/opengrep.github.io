@@ -292,17 +292,17 @@ No tests for fixes found.</code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">def</span> search():</span><span class="line">    name = request.args.get(<span class="s">&quot;name&quot;</span>)</span><span class="line">    query = <span class="s">&quot;SELECT * FROM users WHERE name = &#x27;&quot;</span> + name + <span class="s">&quot;&#x27;&quot;</span></span><span class="line">    cursor.execute(query)</span></code></pre></div>
 <div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="opengrep scan -q --config sql-injection.yaml --dataflow-traces app.py
 ">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">opengrep scan -q --config sql-injection.yaml --dataflow-traces app.py</span>
-app.py
+<span class="b">app.py</span>
 
   <span class="err">error</span>  <span class="rule">sql-injection</span>
   user input reaches a SQL query
 
-<span class="n">     4:</span><span class="b"> cursor.execute(query)</span>
-        │
-        ├─ source           2: name = request.args.get(&quot;name&quot;)
-        ├─ through          2: name = request.args.get(&quot;name&quot;)
-        ├─ through          3: query = &quot;SELECT * FROM users WHERE name = &#x27;&quot; + name + &quot;&#x27;&quot;
-        └─ sink             4: cursor.execute(query)</code></pre></div>
+<span class="n">     4: </span>cursor.execute(query)
+        <span class="n">│</span>
+        <span class="n">├─ </span>source           <span class="n">2: </span><span class="n">name = </span>request.args.get("name")
+        <span class="n">├─ </span>through          <span class="n">2: </span>name<span class="n"> = request.args.get("name")</span>
+        <span class="n">├─ </span>through          <span class="n">3: </span>query<span class="n"> = "SELECT * FROM users WHERE name = '" + name + "'"</span>
+        <span class="n">└─ </span>sink             <span class="n">4: </span>cursor.execute(query)</code></pre></div>
     </main>
   </div>
 
