@@ -261,24 +261,28 @@
 <div><dt>Default</dt><dd><code>true</code></dd></div>
 <div><dt>See also</dt><dd><a href="exclude.html"><code>--exclude</code></a>, <a href="semgrepignore-filename.html"><code>--semgrepignore-filename</code></a>, <a href="project-root.html"><code>--project-root</code></a></dd></div>
 </dl>
-<p>In a git repository, Opengrep skips the files that git ignores: those that <code>.gitignore</code> excludes, and git submodules. This is the default; <code>--use-git-ignore</code> requests it explicitly.</p>
-<p><code>--no-git-ignore</code> scans these files as well.</p>
-<p>Outside a git repository, the flag has no effect. <code>.semgrepignore</code> applies in either case; see <a href="semgrepignore-filename.html"><code>--semgrepignore-filename</code></a>.</p>
+<p>In a git repository, Opengrep scans the files that <code>git ls-files</code> lists: the tracked files, and the untracked files that git does not ignore. A tracked file is scanned even when <code>.gitignore</code> lists it. Git submodules are not scanned. This is the default; <code>--use-git-ignore</code> requests it explicitly.</p>
+<p><code>--no-git-ignore</code> scans all the files under the directory targets, including those that git ignores and git submodules.</p>
+<p>Outside a git repository, and with <a href="project-root.html"><code>--project-root</code></a>, the flag has no effect, and Opengrep does not read <code>.gitignore</code> files. When git cannot list the files of a repository, for example because git is not installed, Opengrep scans its directory as one outside git, with a warning such as <code class="long">/path/to/repo is scanned without git: Could not get files from git ls-files</code>. <code>.semgrepignore</code> applies in every case; see <a href="semgrepignore-filename.html"><code>--semgrepignore-filename</code></a>.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
-<h3 id="scanning-a-directory-that-git-ignores"><a class="hash" href="#scanning-a-directory-that-git-ignores" aria-hidden="true" tabindex="-1">###</a> Scanning a directory that git ignores</h3>
+<h3 id="files-that-git-ignores"><a class="hash" href="#files-that-git-ignores" aria-hidden="true" tabindex="-1">###</a> Files that git ignores</h3>
 <div class="file"><div class="file-head">rule.yaml</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line"><span class="k">rules</span>:</span><span class="line">  - <span class="k">id</span>: find-eval</span><span class="line">    <span class="k">pattern</span>: eval(<span class="mv">...</span>)</span><span class="line">    <span class="k">message</span>: found eval</span><span class="line">    <span class="k">languages</span>: [python]</span><span class="line">    <span class="k">severity</span>: WARNING</span></code></pre></div>
 <div class="file"><div class="file-head">app.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(1)</span></code></pre></div>
 <div class="file"><div class="file-head">generated/gen.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(2)</span></code></pre></div>
+<div class="file"><div class="file-head">generated/kept.py</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">eval(3)</span></code></pre></div>
 <div class="file"><div class="file-head">.gitignore</div><button class="copy" type="button">copy</button><pre class="code"><code><span class="line">generated/</span></code></pre></div>
-<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="git init -q &amp;&amp; git add -A &amp;&amp; git commit -qm init
+<div class="file console"><div class="file-head">Command and result</div><button class="copy" type="button" data-copy="git init -q &amp;&amp; git add -A &amp;&amp; git add -f generated/kept.py &amp;&amp; git commit -qm init
 opengrep scan -q --config rule.yaml --files-with-matches .
 opengrep scan -q --config rule.yaml --files-with-matches --no-git-ignore .
-">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">git init -q &amp;&amp; git add -A &amp;&amp; git commit -qm init</span>
+">copy</button><pre class="out"><code><span class="p">$ </span><span class="cmd">git init -q &amp;&amp; git add -A &amp;&amp; git add -f generated/kept.py &amp;&amp; git commit -qm init</span>
 <span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --files-with-matches .</span>
 app.py
+generated/kept.py
 <span class="p">$ </span><span class="cmd">opengrep scan -q --config rule.yaml --files-with-matches --no-git-ignore .</span>
 app.py
-generated/gen.py</code></pre></div>
+generated/gen.py
+generated/kept.py</code></pre></div>
+<p><code>.gitignore</code> lists the directory <code>generated/</code>, but <code>generated/kept.py</code> is tracked, so the first scan includes it.</p>
     </main>
   </div>
 
