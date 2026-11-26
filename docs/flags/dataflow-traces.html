@@ -340,13 +340,13 @@ calls.py
 <span class="n">     7:</span><span class="b"> cursor.execute(sql)</span>
         │
         ├─ source in call   10: run_query(get_name())
-        │  ├─ source            2: name = request.args.get(&quot;name&quot;)
-        │  ├─ through           2: name = request.args.get(&quot;name&quot;)
-        │  └─ return            3: return name
+        │  ├─ source           2: name = request.args.get(&quot;name&quot;)
+        │  ├─ through          2: name = request.args.get(&quot;name&quot;)
+        │  └─ return           3: return name
         └─ sink in call     10: run_query(get_name())
-           ├─ param             5: def run_query(name):
-           ├─ through           6: sql = &quot;SELECT * FROM users WHERE name = &#x27;&quot; + name + &quot;&#x27;&quot;
-           └─ sink              7: cursor.execute(sql)</code></pre></div>
+           ├─ param            5: def run_query(name):
+           ├─ through          6: sql = &quot;SELECT * FROM users WHERE name = &#x27;&quot; + name + &quot;&#x27;&quot;
+           └─ sink             7: cursor.execute(sql)</code></pre></div>
 <p>The finding is reported at the sink, inside <code>run_query</code>. The trace starts at the call in <code>search</code> that connects the two functions.</p>
 <h2 id="json-schema"><a class="hash" href="#json-schema" aria-hidden="true" tabindex="-1">##</a> JSON schema</h2>
 <p>In the <a href="json.html">JSON output</a>, each result of a taint rule holds its trace in <code>extra.dataflow_trace</code>, with or without the flag. The trace is a list of steps in execution order, and each step is an object with these fields:</p>

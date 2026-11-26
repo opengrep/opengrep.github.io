@@ -106,8 +106,8 @@
         <span class="n">│</span>
         <span class="n">├─ </span>source           <span class="n">16: </span><span class="n">exec(tarCommand(</span>req.query<span class="n">.dir));</span>
         <span class="n">├─ </span>through call     <span class="n">16: </span><span class="n">exec(</span>tarCommand<span class="n">(req.query.dir));</span>
-        <span class="n">│  </span><span class="n">├─ </span>param            <span class="n"> 7: </span><span class="n">function tarCommand(</span>dir<span class="n">) {</span>
-        <span class="n">│  </span><span class="n">└─ </span>return           <span class="n"> 8: </span>return<span class="n"> "tar czf /backups/latest.tgz " + dir;</span>
+        <span class="n">│  </span><span class="n">├─ </span>param            <span class="n">7: </span><span class="n">function tarCommand(</span>dir<span class="n">) {</span>
+        <span class="n">│  </span><span class="n">└─ </span>return           <span class="n">8: </span>return<span class="n"> "tar czf /backups/latest.tgz " + dir;</span>
         <span class="n">└─ </span>sink             <span class="n">16: </span>exec(tarCommand(req.query.dir))<span class="n">;</span>
 
 <span class="n">    in: </span><span class="n">function</span> backupAll
