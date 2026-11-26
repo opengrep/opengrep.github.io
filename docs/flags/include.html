@@ -261,7 +261,7 @@
 <div><dt>See also</dt><dd><a href="exclude.html"><code>--exclude</code></a>, <a href="force-exclude.html"><code>--force-exclude</code></a>, <a href="../rule-syntax/paths.html"><code>paths</code></a>, <a href="scan-unknown-extensions.html"><code>--scan-unknown-extensions</code></a></dd></div>
 </dl>
 <p>Scans only the files whose path matches at least one PATTERN. The flag can be repeated; a file that matches any of the patterns is kept.</p>
-<p><code>--include</code> applies last, after <a href="exclude.html"><code>--exclude</code></a>, the git ignore rules and <code>.semgrepignore</code>. It narrows the files that those filters keep and cannot restore a file that they skip.</p>
+<p><code>--include</code> applies last, after <a href="exclude.html"><code>--exclude</code></a>, the files that git does not list, and <code>.semgrepignore</code>. It narrows the files that those filters keep and cannot restore a file that they skip. A value that is not a valid pattern stops <code>opengrep scan</code> with status 2.</p>
 <p>PATTERN is a glob, in the syntax of <code>--exclude</code>: <code>--include=&#x27;*.py&#x27;</code> keeps the Python files at any depth, and <code>--include=lib</code> keeps the files under a directory named <code>lib</code>. A pattern that contains <code>*</code> must be quoted, or the shell expands it.</p>
 <h2 id="examples"><a class="hash" href="#examples" aria-hidden="true" tabindex="-1">##</a> Examples</h2>
 <h3 id="scanning-one-directory-of-a-tree"><a class="hash" href="#scanning-one-directory-of-a-tree" aria-hidden="true" tabindex="-1">###</a> Scanning one directory of a tree</h3>
